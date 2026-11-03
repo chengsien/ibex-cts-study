@@ -24,3 +24,4 @@ runs/**/*.webp
 runs/**/*.rtlil
 runs/**/*.tmp.log
 runs/**/route.guide
+.scratch/
