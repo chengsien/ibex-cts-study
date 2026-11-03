@@ -1,0 +1,100 @@
+parasitics                           rcx_spef
+clock_nets                           319
+clock_buffers                        317
+clock_inverters                      0
+clock_gates                          0
+clock_other_drivers                  1
+clock_buffer_area_um2                1686.440
+clock_routed_wirelength_um           12503.8
+clock_buffer_masters                 CLKBUF_X3:317
+cts_dummy_loads                      232
+cts_delay_buffers                    2
+hold_buffers_by_name                 0
+clock_sinks                          1938
+insertion_delay_min_ns               0.2695
+insertion_delay_max_ns               0.3085
+insertion_delay_mean_ns              0.2905
+insertion_delay_spread_ns            0.0390
+insertion_delay_min_pin              gen_regfile_ff.register_file_i.rf_reg[926]$_DFFE_PN0P_/CK
+insertion_delay_max_pin              if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.instr_addr_q[12]$_DFFE_PP_/CK
+
+--- report_clock_skew -setup
+Clock core_clock
+ 0.2695 source latency gen_regfile_ff.register_file_i.rf_reg[926]$_DFFE_PN0P_/CK ^
+-0.3082 target latency if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.instr_addr_q[12]$_DFFE_PP_/CK ^
+ 0.0000 CRPR
+--------------
+-0.0387 setup skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_setup_ns                        -0.0387
+
+--- report_clock_skew -hold
+Clock core_clock
+ 0.2695 source latency gen_regfile_ff.register_file_i.rf_reg[926]$_DFFE_PN0P_/CK ^
+-0.3085 target latency if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.instr_addr_q[12]$_DFFE_PP_/CK ^
+ 0.0000 CRPR
+--------------
+-0.0390 hold skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_hold_ns                         -0.0390
+
+--- report_clock_latency
+Clock core_clock
+rise -> rise
+    min     max
+ 0.0000  0.0000 source latency
+ 0.2695         network latency gen_regfile_ff.register_file_i.rf_reg[926]$_DFFE_PN0P_/CK
+         0.3085 network latency if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.instr_addr_q[12]$_DFFE_PP_/CK
+---------------
+ 0.2695  0.3085 latency
+         0.0390 skew
+
+fall -> fall
+    min     max
+ 0.0000  0.0000 source latency
+ 0.2808         network latency gen_regfile_ff.register_file_i.rf_reg[926]$_DFFE_PN0P_/CK
+         0.3191 network latency if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.instr_addr_q[12]$_DFFE_PP_/CK
+---------------
+ 0.2808  0.3191 latency
+         0.0383 skew
+
+
+Clock vclk_core_clock
+
+
+setup_wns_ns                         -0.2157
+setup_tns_ns                         -216.6114
+hold_wns_ns                          0.0918
+hold_tns_ns                          0.0000
+setup_viol_endpoints                 1580
+hold_viol_endpoints                  0
+
+--- report_power
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           7.536976e-03 1.161375e-04 1.542057e-04 7.807319e-03  48.7%
+Combinational        1.152220e-03 1.431897e-03 5.201069e-04 3.104223e-03  19.4%
+Clock                2.348457e-03 2.766798e-03 1.507296e-05 5.130328e-03  32.0%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                1.103765e-02 4.314836e-03 6.893987e-04 1.604188e-02 100.0%
+                            68.8%        26.9%         4.3%
+
+power_sequential_w                   7.807319e-03
+power_combinational_w                3.104223e-03
+power_clock_w                        5.130328e-03
+power_macro_w                        0.000000e+00
+power_pad_w                          0.000000e+00
+power_total_w                        1.604188e-02
+std_cell_instances                   32999

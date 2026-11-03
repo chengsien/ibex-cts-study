@@ -1,0 +1,829 @@
+
+==========================================================================
+floorplan final report_tns
+--------------------------------------------------------------------------
+tns max 0.00
+
+==========================================================================
+floorplan final report_wns
+--------------------------------------------------------------------------
+wns max 0.00
+
+==========================================================================
+floorplan final report_worst_slack
+--------------------------------------------------------------------------
+worst slack max 0.02
+
+==========================================================================
+floorplan final report_clock_min_period
+--------------------------------------------------------------------------
+core_clock period_min = 2.23 fmax = 449.07
+vclk_core_clock period_min = 1.76 fmax = 568.69
+
+==========================================================================
+floorplan final report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: rst_ni (input port clocked by vclk_core_clock)
+Endpoint: core_busy_q$_DFF_PN0_
+          (removal check against rising-edge clock core_clock)
+Path Group: asynchronous
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock vclk_core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                          0.45    0.73 ^ input external delay
+  1664 2955.66    0.00    0.00    0.73 ^ rst_ni (in)
+                                         rst_ni (net)
+                  0.00    0.00    0.73 ^ core_busy_q$_DFF_PN0_/RN (DFFR_X1)
+                                  0.73   data arrival time
+
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                          0.00    0.28   clock reconvergence pessimism
+                                  0.28 ^ core_busy_q$_DFF_PN0_/CK (DFFR_X1)
+                          0.18    0.47   library removal time
+                                  0.47   data required time
+-----------------------------------------------------------------------------
+                                  0.47   data required time
+                                 -0.73   data arrival time
+-----------------------------------------------------------------------------
+                                  0.27   slack (MET)
+
+
+Startpoint: core_clock_gate_i.en_latch$_DLATCH_N_
+            (negative level-sensitive latch clocked by core_clock)
+Endpoint: _26153_ (rising clock gating-check end-point clocked by core_clock)
+Path Group: gated clock
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    1.12    1.12   clock core_clock (fall edge)
+                          0.29    1.41   clock network delay (ideal)
+                  0.00    0.00    1.41 v core_clock_gate_i.en_latch$_DLATCH_N_/GN (DLL_X1)
+     1    0.92    0.01    0.04    1.45 ^ core_clock_gate_i.en_latch$_DLATCH_N_/Q (DLL_X1)
+                                         core_clock_gate_i.en_latch (net)
+                  0.01    0.00    1.45 ^ _26153_/A1 (AND2_X1)
+                                  1.45   data arrival time
+
+                  0.00    1.12    1.12   clock core_clock (fall edge)
+                          0.28    1.41   clock network delay (ideal)
+                          0.00    1.41   clock reconvergence pessimism
+                                  1.41 v _26153_/A2 (AND2_X1)
+                          0.00    1.41   clock gating hold time
+                                  1.41   data required time
+-----------------------------------------------------------------------------
+                                  1.41   data required time
+                                 -1.45   data arrival time
+-----------------------------------------------------------------------------
+                                  0.04   slack (MET)
+
+
+Startpoint: id_stage_i.controller_i.ctrl_fsm_cs[0]$_DFF_PN1_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: id_stage_i.controller_i.ctrl_fsm_cs[5]$_DFF_PN0_
+          (rising edge-triggered flip-flop clocked by core_clock)
+Path Group: core_clock
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                  0.00    0.00    0.28 ^ id_stage_i.controller_i.ctrl_fsm_cs[0]$_DFF_PN1_/CK (DFFS_X1)
+     3    3.35    0.01    0.08    0.37 v id_stage_i.controller_i.ctrl_fsm_cs[0]$_DFF_PN1_/Q (DFFS_X1)
+                                         id_stage_i.controller_i.ctrl_fsm_cs[0] (net)
+                  0.01    0.00    0.37 v id_stage_i.controller_i.ctrl_fsm_cs[5]$_DFF_PN0_/D (DFFR_X1)
+                                  0.37   data arrival time
+
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                          0.00    0.28   clock reconvergence pessimism
+                                  0.28 ^ id_stage_i.controller_i.ctrl_fsm_cs[5]$_DFF_PN0_/CK (DFFR_X1)
+                          0.00    0.29   library hold time
+                                  0.29   data required time
+-----------------------------------------------------------------------------
+                                  0.29   data required time
+                                 -0.37   data arrival time
+-----------------------------------------------------------------------------
+                                  0.08   slack (MET)
+
+
+Startpoint: load_store_unit_i.handle_misaligned_q$_DFFE_PN0P_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: data_be_o[3] (output port clocked by vclk_core_clock)
+Path Group: vclk_core_clock
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                  0.00    0.00    0.28 ^ load_store_unit_i.handle_misaligned_q$_DFFE_PN0P_/CK (DFFR_X1)
+     1    1.69    0.01    0.07    0.35 ^ load_store_unit_i.handle_misaligned_q$_DFFE_PN0P_/QN (DFFR_X1)
+                                         _00016_ (net)
+                  0.01    0.00    0.35 ^ _26433_/A1 (AOI22_X1)
+     1    1.52    0.01    0.01    0.36 v _26433_/ZN (AOI22_X1)
+                                         _07589_ (net)
+                  0.01    0.00    0.36 v _26434_/A (OAI21_X1)
+     1    0.00    0.01    0.01    0.38 ^ _26434_/ZN (OAI21_X1)
+                                         data_be_o[3] (net)
+                  0.01    0.00    0.38 ^ data_be_o[3] (out)
+                                  0.38   data arrival time
+
+                  0.00    0.00    0.00   clock vclk_core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                          0.00    0.28   clock reconvergence pessimism
+                         -0.45   -0.16   output external delay
+                                 -0.16   data required time
+-----------------------------------------------------------------------------
+                                 -0.16   data required time
+                                 -0.38   data arrival time
+-----------------------------------------------------------------------------
+                                  0.54   slack (MET)
+
+
+
+==========================================================================
+floorplan final report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: rst_ni (input port clocked by vclk_core_clock)
+Endpoint: cs_registers_i.priv_mode_id_o[0]$_DFFE_PN1P_
+          (recovery check against rising-edge clock core_clock)
+Path Group: asynchronous
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock vclk_core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                          0.45    0.73 ^ input external delay
+  1664 2955.66    0.00    0.00    0.73 ^ rst_ni (in)
+                                         rst_ni (net)
+                  0.00    0.00    0.73 ^ cs_registers_i.priv_mode_id_o[0]$_DFFE_PN1P_/SN (DFFS_X1)
+                                  0.73   data arrival time
+
+                  0.00    2.25    2.25   clock core_clock (rise edge)
+                          0.28    2.54   clock network delay (ideal)
+                          0.00    2.54   clock reconvergence pessimism
+                                  2.54 ^ cs_registers_i.priv_mode_id_o[0]$_DFFE_PN1P_/CK (DFFS_X1)
+                          0.04    2.58   library recovery time
+                                  2.58   data required time
+-----------------------------------------------------------------------------
+                                  2.58   data required time
+                                 -0.73   data arrival time
+-----------------------------------------------------------------------------
+                                  1.84   slack (MET)
+
+
+Startpoint: core_clock_gate_i.en_latch$_DLATCH_N_
+            (negative level-sensitive latch clocked by core_clock)
+Endpoint: _26153_ (rising clock gating-check end-point clocked by core_clock)
+Path Group: gated clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    1.12    1.12   clock core_clock (fall edge)
+                          0.29    1.41   clock network delay (ideal)
+                  0.00    0.00    1.41 v core_clock_gate_i.en_latch$_DLATCH_N_/GN (DLL_X1)
+     1    0.87    0.01    0.07    1.48 v core_clock_gate_i.en_latch$_DLATCH_N_/Q (DLL_X1)
+                                         core_clock_gate_i.en_latch (net)
+                  0.01    0.00    1.48 v _26153_/A1 (AND2_X1)
+                                  1.48   data arrival time
+
+                  0.00    2.25    2.25   clock core_clock (rise edge)
+                          0.28    2.54   clock network delay (ideal)
+                          0.00    2.54   clock reconvergence pessimism
+                                  2.54 ^ _26153_/A2 (AND2_X1)
+                          0.00    2.54   clock gating setup time
+                                  2.54   data required time
+-----------------------------------------------------------------------------
+                                  2.54   data required time
+                                 -1.48   data arrival time
+-----------------------------------------------------------------------------
+                                  1.06   slack (MET)
+
+
+Startpoint: if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: gen_regfile_ff.register_file_i.rf_reg[159]$_DFFE_PN0P_
+          (rising edge-triggered flip-flop clocked by core_clock)
+Path Group: core_clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                  0.00    0.00    0.28 ^ if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/CK (DFF_X1)
+     1    3.40    0.01    0.09    0.37 ^ if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/Q (DFF_X1)
+                                         gen_regfile_ff.register_file_i.raddr_b_i[0] (net)
+                  0.01    0.00    0.37 ^ _14557_/A (BUF_X4)
+     7   13.98    0.01    0.03    0.40 ^ _14557_/Z (BUF_X4)
+                                         _07593_ (net)
+                  0.01    0.00    0.40 ^ _14558_/A (BUF_X4)
+    10   17.37    0.01    0.03    0.43 ^ _14558_/Z (BUF_X4)
+                                         _07594_ (net)
+                  0.01    0.00    0.43 ^ _14559_/A (BUF_X4)
+    10   20.68    0.01    0.03    0.46 ^ _14559_/Z (BUF_X4)
+                                         _07595_ (net)
+                  0.01    0.00    0.46 ^ _14560_/A (BUF_X4)
+    10   18.68    0.01    0.03    0.49 ^ _14560_/Z (BUF_X4)
+                                         _07596_ (net)
+                  0.01    0.00    0.49 ^ _14561_/A (BUF_X4)
+    10   16.70    0.01    0.03    0.52 ^ _14561_/Z (BUF_X4)
+                                         _07597_ (net)
+                  0.01    0.00    0.52 ^ _14562_/A (BUF_X1)
+    10   10.49    0.03    0.04    0.56 ^ _14562_/Z (BUF_X1)
+                                         _07598_ (net)
+                  0.03    0.00    0.56 ^ _14657_/A (BUF_X1)
+    10   10.55    0.03    0.05    0.61 ^ _14657_/Z (BUF_X1)
+                                         _07693_ (net)
+                  0.03    0.00    0.61 ^ _14840_/A (BUF_X1)
+    10   19.20    0.05    0.07    0.68 ^ _14840_/Z (BUF_X1)
+                                         _07875_ (net)
+                  0.05    0.00    0.68 ^ _15218_/S (MUX2_X1)
+     1    0.90    0.01    0.06    0.74 v _15218_/Z (MUX2_X1)
+                                         _08250_ (net)
+                  0.01    0.00    0.74 v _15219_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.80 v _15219_/Z (MUX2_X1)
+                                         _08251_ (net)
+                  0.01    0.00    0.80 v _15220_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.85 v _15220_/Z (MUX2_X1)
+                                         _08252_ (net)
+                  0.01    0.00    0.85 v _15221_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.91 v _15221_/Z (MUX2_X1)
+                                         _08253_ (net)
+                  0.01    0.00    0.91 v _15222_/B (MUX2_X1)
+     1    0.88    0.01    0.06    0.96 v _15222_/Z (MUX2_X1)
+                                         _08254_ (net)
+                  0.01    0.00    0.96 v _15223_/A (BUF_X1)
+     8   11.13    0.01    0.04    1.01 v _15223_/Z (BUF_X1)
+                                         _08255_ (net)
+                  0.01    0.00    1.01 v _16774_/B2 (AOI21_X1)
+     8   12.72    0.07    0.09    1.10 ^ _16774_/ZN (AOI21_X1)
+                                         _09736_ (net)
+                  0.07    0.00    1.10 ^ _17570_/A (BUF_X1)
+    10   17.14    0.04    0.07    1.17 ^ _17570_/Z (BUF_X1)
+                                         _10467_ (net)
+                  0.04    0.00    1.17 ^ _17571_/A1 (NOR2_X1)
+     1    3.61    0.02    0.02    1.18 v _17571_/ZN (NOR2_X1)
+                                         _00275_ (net)
+                  0.02    0.00    1.18 v _26655_/A (FA_X1)
+     1    2.66    0.02    0.10    1.29 v _26655_/S (FA_X1)
+                                         _13830_ (net)
+                  0.02    0.00    1.29 v _26468_/CI (FA_X1)
+     1    2.76    0.01    0.12    1.40 ^ _26468_/S (FA_X1)
+                                         _13832_ (net)
+                  0.01    0.00    1.40 ^ _26513_/CI (FA_X1)
+     1    3.40    0.02    0.09    1.50 v _26513_/S (FA_X1)
+                                         _13999_ (net)
+                  0.02    0.00    1.50 v _26573_/B (FA_X1)
+     1    3.47    0.01    0.13    1.62 ^ _26573_/S (FA_X1)
+                                         _14202_ (net)
+                  0.01    0.00    1.62 ^ _26623_/B (FA_X1)
+     1    3.40    0.02    0.10    1.72 v _26623_/S (FA_X1)
+                                         _14036_ (net)
+                  0.02    0.00    1.72 v _26525_/B (FA_X1)
+     1    3.45    0.01    0.13    1.84 ^ _26525_/S (FA_X1)
+                                         _14039_ (net)
+                  0.01    0.00    1.84 ^ _26902_/B (HA_X1)
+     5    7.86    0.05    0.08    1.92 ^ _26902_/S (HA_X1)
+                                         _00566_ (net)
+                  0.05    0.00    1.92 ^ _19924_/A1 (AND3_X1)
+     1    0.96    0.01    0.05    1.97 ^ _19924_/ZN (AND3_X1)
+                                         _03029_ (net)
+                  0.01    0.00    1.97 ^ _19925_/A3 (AND3_X1)
+     3    4.34    0.02    0.05    2.02 ^ _19925_/ZN (AND3_X1)
+                                         _03030_ (net)
+                  0.02    0.00    2.02 ^ _19930_/A1 (NOR4_X1)
+     1    2.70    0.01    0.01    2.04 v _19930_/ZN (NOR4_X1)
+                                         _03035_ (net)
+                  0.01    0.00    2.04 v _19932_/A1 (NOR2_X2)
+     4    9.55    0.03    0.04    2.08 ^ _19932_/ZN (NOR2_X2)
+                                         _03037_ (net)
+                  0.03    0.00    2.08 ^ _19933_/C2 (OAI211_X2)
+     2    4.26    0.02    0.03    2.11 v _19933_/ZN (OAI211_X2)
+                                         _03038_ (net)
+                  0.02    0.00    2.11 v _22441_/B1 (AOI21_X2)
+     2    3.49    0.02    0.03    2.14 ^ _22441_/ZN (AOI21_X2)
+                                         _04519_ (net)
+                  0.02    0.00    2.14 ^ _22442_/S (MUX2_X1)
+     1    3.14    0.01    0.06    2.20 v _22442_/Z (MUX2_X1)
+                                         _04520_ (net)
+                  0.01    0.00    2.20 v _22445_/A (AOI221_X2)
+     2    3.32    0.04    0.07    2.28 ^ _22445_/ZN (AOI221_X2)
+                                         _04523_ (net)
+                  0.04    0.00    2.28 ^ _26168_/B1 (AOI21_X1)
+     1    1.56    0.01    0.02    2.29 v _26168_/ZN (AOI21_X1)
+                                         _07423_ (net)
+                  0.01    0.00    2.29 v _26180_/A2 (OAI22_X1)
+     1    1.66    0.03    0.03    2.33 ^ _26180_/ZN (OAI22_X1)
+                                         _07435_ (net)
+                  0.03    0.00    2.33 ^ _26181_/B1 (OAI21_X1)
+     4    4.79    0.02    0.03    2.36 v _26181_/ZN (OAI21_X1)
+                                         _07436_ (net)
+                  0.02    0.00    2.36 v _26381_/A (CLKBUF_X1)
+    10    9.00    0.02    0.05    2.41 v _26381_/Z (CLKBUF_X1)
+                                         _07569_ (net)
+                  0.02    0.00    2.41 v _26384_/B (MUX2_X1)
+     1    1.05    0.01    0.06    2.47 v _26384_/Z (MUX2_X1)
+                                         _02565_ (net)
+                  0.01    0.00    2.47 v gen_regfile_ff.register_file_i.rf_reg[159]$_DFFE_PN0P_/D (DFFR_X1)
+                                  2.47   data arrival time
+
+                  0.00    2.25    2.25   clock core_clock (rise edge)
+                          0.28    2.54   clock network delay (ideal)
+                          0.00    2.54   clock reconvergence pessimism
+                                  2.54 ^ gen_regfile_ff.register_file_i.rf_reg[159]$_DFFE_PN0P_/CK (DFFR_X1)
+                         -0.04    2.49   library setup time
+                                  2.49   data required time
+-----------------------------------------------------------------------------
+                                  2.49   data required time
+                                 -2.47   data arrival time
+-----------------------------------------------------------------------------
+                                  0.02   slack (MET)
+
+
+Startpoint: if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: instr_addr_o[31] (output port clocked by vclk_core_clock)
+Path Group: vclk_core_clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                  0.00    0.00    0.28 ^ if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/CK (DFF_X1)
+     1    3.40    0.01    0.09    0.37 ^ if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/Q (DFF_X1)
+                                         gen_regfile_ff.register_file_i.raddr_b_i[0] (net)
+                  0.01    0.00    0.37 ^ _14557_/A (BUF_X4)
+     7   13.98    0.01    0.03    0.40 ^ _14557_/Z (BUF_X4)
+                                         _07593_ (net)
+                  0.01    0.00    0.40 ^ _14558_/A (BUF_X4)
+    10   17.37    0.01    0.03    0.43 ^ _14558_/Z (BUF_X4)
+                                         _07594_ (net)
+                  0.01    0.00    0.43 ^ _14559_/A (BUF_X4)
+    10   20.68    0.01    0.03    0.46 ^ _14559_/Z (BUF_X4)
+                                         _07595_ (net)
+                  0.01    0.00    0.46 ^ _14560_/A (BUF_X4)
+    10   18.68    0.01    0.03    0.49 ^ _14560_/Z (BUF_X4)
+                                         _07596_ (net)
+                  0.01    0.00    0.49 ^ _14561_/A (BUF_X4)
+    10   16.70    0.01    0.03    0.52 ^ _14561_/Z (BUF_X4)
+                                         _07597_ (net)
+                  0.01    0.00    0.52 ^ _14562_/A (BUF_X1)
+    10   10.49    0.03    0.04    0.56 ^ _14562_/Z (BUF_X1)
+                                         _07598_ (net)
+                  0.03    0.00    0.56 ^ _14631_/A (BUF_X1)
+    10   10.55    0.03    0.05    0.61 ^ _14631_/Z (BUF_X1)
+                                         _07667_ (net)
+                  0.03    0.00    0.61 ^ _14649_/A (BUF_X1)
+    10   19.20    0.05    0.07    0.68 ^ _14649_/Z (BUF_X1)
+                                         _07685_ (net)
+                  0.05    0.00    0.68 ^ _14979_/S (MUX2_X1)
+     1    0.91    0.01    0.06    0.74 v _14979_/Z (MUX2_X1)
+                                         _08013_ (net)
+                  0.01    0.00    0.74 v _14981_/A (MUX2_X1)
+     1    0.90    0.01    0.06    0.80 v _14981_/Z (MUX2_X1)
+                                         _08015_ (net)
+                  0.01    0.00    0.80 v _14982_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.85 v _14982_/Z (MUX2_X1)
+                                         _08016_ (net)
+                  0.01    0.00    0.85 v _14983_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.91 v _14983_/Z (MUX2_X1)
+                                         _08017_ (net)
+                  0.01    0.00    0.91 v _14984_/B (MUX2_X1)
+     1    0.88    0.01    0.06    0.96 v _14984_/Z (MUX2_X1)
+                                         _08018_ (net)
+                  0.01    0.00    0.96 v _14985_/A (BUF_X1)
+     8   11.80    0.02    0.04    1.01 v _14985_/Z (BUF_X1)
+                                         _08019_ (net)
+                  0.02    0.00    1.01 v _17529_/B2 (AOI21_X1)
+     4    8.50    0.05    0.07    1.07 ^ _17529_/ZN (AOI21_X1)
+                                         ex_block_i.alu_i.operand_b_neg[21] (net)
+                  0.05    0.00    1.07 ^ _18898_/A2 (AOI22_X1)
+     1    1.52    0.02    0.02    1.10 v _18898_/ZN (AOI22_X1)
+                                         _11418_ (net)
+                  0.02    0.00    1.10 v _18899_/A (OAI21_X1)
+     1    3.45    0.03    0.03    1.12 ^ _18899_/ZN (OAI21_X1)
+                                         ex_block_i.alu_i.adder_in_b[21] (net)
+                  0.03    0.00    1.12 ^ _26885_/B (HA_X1)
+     1    0.97    0.02    0.05    1.17 ^ _26885_/S (HA_X1)
+                                         _00543_ (net)
+                  0.02    0.00    1.17 ^ _17746_/A (BUF_X1)
+     6    9.38    0.02    0.04    1.21 ^ _17746_/Z (BUF_X1)
+                                         _10627_ (net)
+                  0.02    0.00    1.21 ^ _18254_/A1 (NAND2_X1)
+     4    7.74    0.02    0.03    1.25 v _18254_/ZN (NAND2_X1)
+                                         _11024_ (net)
+                  0.02    0.00    1.25 v _18255_/A3 (NOR3_X1)
+     6    8.49    0.07    0.11    1.35 ^ _18255_/ZN (NOR3_X1)
+                                         _11025_ (net)
+                  0.07    0.00    1.35 ^ _18290_/A4 (NAND4_X1)
+     1    3.05    0.02    0.04    1.39 v _18290_/ZN (NAND4_X1)
+                                         _11055_ (net)
+                  0.02    0.00    1.39 v _18291_/B (AOI211_X2)
+     1    3.11    0.04    0.07    1.46 ^ _18291_/ZN (AOI211_X2)
+                                         _11056_ (net)
+                  0.04    0.00    1.46 ^ _18299_/A (AOI211_X2)
+     3    5.65    0.02    0.02    1.48 v _18299_/ZN (AOI211_X2)
+                                         _11064_ (net)
+                  0.02    0.00    1.48 v _18300_/C1 (AOI211_X2)
+     2    3.23    0.04    0.04    1.52 ^ _18300_/ZN (AOI211_X2)
+                                         _11065_ (net)
+                  0.04    0.00    1.52 ^ _18353_/C1 (OAI221_X1)
+     3    3.29    0.02    0.04    1.56 v _18353_/ZN (OAI221_X1)
+                                         _11109_ (net)
+                  0.02    0.00    1.56 v _18354_/A2 (AND2_X1)
+     2    4.16    0.01    0.04    1.60 v _18354_/ZN (AND2_X1)
+                                         _11110_ (net)
+                  0.01    0.00    1.60 v _18356_/B1 (OAI21_X1)
+     1    1.65    0.02    0.03    1.63 ^ _18356_/ZN (OAI21_X1)
+                                         _11112_ (net)
+                  0.02    0.00    1.63 ^ _18357_/A3 (NAND3_X1)
+     4    5.39    0.02    0.03    1.66 v _18357_/ZN (NAND3_X1)
+                                         _11113_ (net)
+                  0.02    0.00    1.66 v _18361_/A1 (NAND2_X1)
+     9   15.65    0.04    0.05    1.72 ^ _18361_/ZN (NAND2_X1)
+                                         _11117_ (net)
+                  0.04    0.00    1.72 ^ _26127_/A2 (NOR2_X1)
+     1    1.41    0.01    0.01    1.73 v _26127_/ZN (NOR2_X1)
+                                         _07391_ (net)
+                  0.01    0.00    1.73 v _26131_/B1 (OAI221_X1)
+     3    5.02    0.05    0.06    1.80 ^ _26131_/ZN (OAI221_X1)
+                                         _07395_ (net)
+                  0.05    0.00    1.80 ^ _26133_/A (OAI21_X1)
+     2    3.03    0.02    0.03    1.83 v _26133_/ZN (OAI21_X1)
+                                         _07397_ (net)
+                  0.02    0.00    1.83 v _26373_/B (MUX2_X1)
+     2    0.90    0.01    0.06    1.88 v _26373_/Z (MUX2_X1)
+                                         instr_addr_o[31] (net)
+                  0.01    0.00    1.88 v instr_addr_o[31] (out)
+                                  1.88   data arrival time
+
+                  0.00    2.25    2.25   clock vclk_core_clock (rise edge)
+                          0.28    2.54   clock network delay (ideal)
+                          0.00    2.54   clock reconvergence pessimism
+                         -0.45    2.09   output external delay
+                                  2.09   data required time
+-----------------------------------------------------------------------------
+                                  2.09   data required time
+                                 -1.88   data arrival time
+-----------------------------------------------------------------------------
+                                  0.20   slack (MET)
+
+
+
+==========================================================================
+floorplan final report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: rst_ni (input port clocked by vclk_core_clock)
+Endpoint: cs_registers_i.priv_mode_id_o[0]$_DFFE_PN1P_
+          (recovery check against rising-edge clock core_clock)
+Path Group: asynchronous
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock vclk_core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                          0.45    0.73 ^ input external delay
+  1664 2955.66    0.00    0.00    0.73 ^ rst_ni (in)
+                                         rst_ni (net)
+                  0.00    0.00    0.73 ^ cs_registers_i.priv_mode_id_o[0]$_DFFE_PN1P_/SN (DFFS_X1)
+                                  0.73   data arrival time
+
+                  0.00    2.25    2.25   clock core_clock (rise edge)
+                          0.28    2.54   clock network delay (ideal)
+                          0.00    2.54   clock reconvergence pessimism
+                                  2.54 ^ cs_registers_i.priv_mode_id_o[0]$_DFFE_PN1P_/CK (DFFS_X1)
+                          0.04    2.58   library recovery time
+                                  2.58   data required time
+-----------------------------------------------------------------------------
+                                  2.58   data required time
+                                 -0.73   data arrival time
+-----------------------------------------------------------------------------
+                                  1.84   slack (MET)
+
+
+Startpoint: core_clock_gate_i.en_latch$_DLATCH_N_
+            (negative level-sensitive latch clocked by core_clock)
+Endpoint: _26153_ (rising clock gating-check end-point clocked by core_clock)
+Path Group: gated clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    1.12    1.12   clock core_clock (fall edge)
+                          0.29    1.41   clock network delay (ideal)
+                  0.00    0.00    1.41 v core_clock_gate_i.en_latch$_DLATCH_N_/GN (DLL_X1)
+     1    0.87    0.01    0.07    1.48 v core_clock_gate_i.en_latch$_DLATCH_N_/Q (DLL_X1)
+                                         core_clock_gate_i.en_latch (net)
+                  0.01    0.00    1.48 v _26153_/A1 (AND2_X1)
+                                  1.48   data arrival time
+
+                  0.00    2.25    2.25   clock core_clock (rise edge)
+                          0.28    2.54   clock network delay (ideal)
+                          0.00    2.54   clock reconvergence pessimism
+                                  2.54 ^ _26153_/A2 (AND2_X1)
+                          0.00    2.54   clock gating setup time
+                                  2.54   data required time
+-----------------------------------------------------------------------------
+                                  2.54   data required time
+                                 -1.48   data arrival time
+-----------------------------------------------------------------------------
+                                  1.06   slack (MET)
+
+
+Startpoint: if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: gen_regfile_ff.register_file_i.rf_reg[159]$_DFFE_PN0P_
+          (rising edge-triggered flip-flop clocked by core_clock)
+Path Group: core_clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                  0.00    0.00    0.28 ^ if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/CK (DFF_X1)
+     1    3.40    0.01    0.09    0.37 ^ if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/Q (DFF_X1)
+                                         gen_regfile_ff.register_file_i.raddr_b_i[0] (net)
+                  0.01    0.00    0.37 ^ _14557_/A (BUF_X4)
+     7   13.98    0.01    0.03    0.40 ^ _14557_/Z (BUF_X4)
+                                         _07593_ (net)
+                  0.01    0.00    0.40 ^ _14558_/A (BUF_X4)
+    10   17.37    0.01    0.03    0.43 ^ _14558_/Z (BUF_X4)
+                                         _07594_ (net)
+                  0.01    0.00    0.43 ^ _14559_/A (BUF_X4)
+    10   20.68    0.01    0.03    0.46 ^ _14559_/Z (BUF_X4)
+                                         _07595_ (net)
+                  0.01    0.00    0.46 ^ _14560_/A (BUF_X4)
+    10   18.68    0.01    0.03    0.49 ^ _14560_/Z (BUF_X4)
+                                         _07596_ (net)
+                  0.01    0.00    0.49 ^ _14561_/A (BUF_X4)
+    10   16.70    0.01    0.03    0.52 ^ _14561_/Z (BUF_X4)
+                                         _07597_ (net)
+                  0.01    0.00    0.52 ^ _14562_/A (BUF_X1)
+    10   10.49    0.03    0.04    0.56 ^ _14562_/Z (BUF_X1)
+                                         _07598_ (net)
+                  0.03    0.00    0.56 ^ _14657_/A (BUF_X1)
+    10   10.55    0.03    0.05    0.61 ^ _14657_/Z (BUF_X1)
+                                         _07693_ (net)
+                  0.03    0.00    0.61 ^ _14840_/A (BUF_X1)
+    10   19.20    0.05    0.07    0.68 ^ _14840_/Z (BUF_X1)
+                                         _07875_ (net)
+                  0.05    0.00    0.68 ^ _15218_/S (MUX2_X1)
+     1    0.90    0.01    0.06    0.74 v _15218_/Z (MUX2_X1)
+                                         _08250_ (net)
+                  0.01    0.00    0.74 v _15219_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.80 v _15219_/Z (MUX2_X1)
+                                         _08251_ (net)
+                  0.01    0.00    0.80 v _15220_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.85 v _15220_/Z (MUX2_X1)
+                                         _08252_ (net)
+                  0.01    0.00    0.85 v _15221_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.91 v _15221_/Z (MUX2_X1)
+                                         _08253_ (net)
+                  0.01    0.00    0.91 v _15222_/B (MUX2_X1)
+     1    0.88    0.01    0.06    0.96 v _15222_/Z (MUX2_X1)
+                                         _08254_ (net)
+                  0.01    0.00    0.96 v _15223_/A (BUF_X1)
+     8   11.13    0.01    0.04    1.01 v _15223_/Z (BUF_X1)
+                                         _08255_ (net)
+                  0.01    0.00    1.01 v _16774_/B2 (AOI21_X1)
+     8   12.72    0.07    0.09    1.10 ^ _16774_/ZN (AOI21_X1)
+                                         _09736_ (net)
+                  0.07    0.00    1.10 ^ _17570_/A (BUF_X1)
+    10   17.14    0.04    0.07    1.17 ^ _17570_/Z (BUF_X1)
+                                         _10467_ (net)
+                  0.04    0.00    1.17 ^ _17571_/A1 (NOR2_X1)
+     1    3.61    0.02    0.02    1.18 v _17571_/ZN (NOR2_X1)
+                                         _00275_ (net)
+                  0.02    0.00    1.18 v _26655_/A (FA_X1)
+     1    2.66    0.02    0.10    1.29 v _26655_/S (FA_X1)
+                                         _13830_ (net)
+                  0.02    0.00    1.29 v _26468_/CI (FA_X1)
+     1    2.76    0.01    0.12    1.40 ^ _26468_/S (FA_X1)
+                                         _13832_ (net)
+                  0.01    0.00    1.40 ^ _26513_/CI (FA_X1)
+     1    3.40    0.02    0.09    1.50 v _26513_/S (FA_X1)
+                                         _13999_ (net)
+                  0.02    0.00    1.50 v _26573_/B (FA_X1)
+     1    3.47    0.01    0.13    1.62 ^ _26573_/S (FA_X1)
+                                         _14202_ (net)
+                  0.01    0.00    1.62 ^ _26623_/B (FA_X1)
+     1    3.40    0.02    0.10    1.72 v _26623_/S (FA_X1)
+                                         _14036_ (net)
+                  0.02    0.00    1.72 v _26525_/B (FA_X1)
+     1    3.45    0.01    0.13    1.84 ^ _26525_/S (FA_X1)
+                                         _14039_ (net)
+                  0.01    0.00    1.84 ^ _26902_/B (HA_X1)
+     5    7.86    0.05    0.08    1.92 ^ _26902_/S (HA_X1)
+                                         _00566_ (net)
+                  0.05    0.00    1.92 ^ _19924_/A1 (AND3_X1)
+     1    0.96    0.01    0.05    1.97 ^ _19924_/ZN (AND3_X1)
+                                         _03029_ (net)
+                  0.01    0.00    1.97 ^ _19925_/A3 (AND3_X1)
+     3    4.34    0.02    0.05    2.02 ^ _19925_/ZN (AND3_X1)
+                                         _03030_ (net)
+                  0.02    0.00    2.02 ^ _19930_/A1 (NOR4_X1)
+     1    2.70    0.01    0.01    2.04 v _19930_/ZN (NOR4_X1)
+                                         _03035_ (net)
+                  0.01    0.00    2.04 v _19932_/A1 (NOR2_X2)
+     4    9.55    0.03    0.04    2.08 ^ _19932_/ZN (NOR2_X2)
+                                         _03037_ (net)
+                  0.03    0.00    2.08 ^ _19933_/C2 (OAI211_X2)
+     2    4.26    0.02    0.03    2.11 v _19933_/ZN (OAI211_X2)
+                                         _03038_ (net)
+                  0.02    0.00    2.11 v _22441_/B1 (AOI21_X2)
+     2    3.49    0.02    0.03    2.14 ^ _22441_/ZN (AOI21_X2)
+                                         _04519_ (net)
+                  0.02    0.00    2.14 ^ _22442_/S (MUX2_X1)
+     1    3.14    0.01    0.06    2.20 v _22442_/Z (MUX2_X1)
+                                         _04520_ (net)
+                  0.01    0.00    2.20 v _22445_/A (AOI221_X2)
+     2    3.32    0.04    0.07    2.28 ^ _22445_/ZN (AOI221_X2)
+                                         _04523_ (net)
+                  0.04    0.00    2.28 ^ _26168_/B1 (AOI21_X1)
+     1    1.56    0.01    0.02    2.29 v _26168_/ZN (AOI21_X1)
+                                         _07423_ (net)
+                  0.01    0.00    2.29 v _26180_/A2 (OAI22_X1)
+     1    1.66    0.03    0.03    2.33 ^ _26180_/ZN (OAI22_X1)
+                                         _07435_ (net)
+                  0.03    0.00    2.33 ^ _26181_/B1 (OAI21_X1)
+     4    4.79    0.02    0.03    2.36 v _26181_/ZN (OAI21_X1)
+                                         _07436_ (net)
+                  0.02    0.00    2.36 v _26381_/A (CLKBUF_X1)
+    10    9.00    0.02    0.05    2.41 v _26381_/Z (CLKBUF_X1)
+                                         _07569_ (net)
+                  0.02    0.00    2.41 v _26384_/B (MUX2_X1)
+     1    1.05    0.01    0.06    2.47 v _26384_/Z (MUX2_X1)
+                                         _02565_ (net)
+                  0.01    0.00    2.47 v gen_regfile_ff.register_file_i.rf_reg[159]$_DFFE_PN0P_/D (DFFR_X1)
+                                  2.47   data arrival time
+
+                  0.00    2.25    2.25   clock core_clock (rise edge)
+                          0.28    2.54   clock network delay (ideal)
+                          0.00    2.54   clock reconvergence pessimism
+                                  2.54 ^ gen_regfile_ff.register_file_i.rf_reg[159]$_DFFE_PN0P_/CK (DFFR_X1)
+                         -0.04    2.49   library setup time
+                                  2.49   data required time
+-----------------------------------------------------------------------------
+                                  2.49   data required time
+                                 -2.47   data arrival time
+-----------------------------------------------------------------------------
+                                  0.02   slack (MET)
+
+
+Startpoint: if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: instr_addr_o[31] (output port clocked by vclk_core_clock)
+Path Group: vclk_core_clock
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock core_clock (rise edge)
+                          0.28    0.28   clock network delay (ideal)
+                  0.00    0.00    0.28 ^ if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/CK (DFF_X1)
+     1    3.40    0.01    0.09    0.37 ^ if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/Q (DFF_X1)
+                                         gen_regfile_ff.register_file_i.raddr_b_i[0] (net)
+                  0.01    0.00    0.37 ^ _14557_/A (BUF_X4)
+     7   13.98    0.01    0.03    0.40 ^ _14557_/Z (BUF_X4)
+                                         _07593_ (net)
+                  0.01    0.00    0.40 ^ _14558_/A (BUF_X4)
+    10   17.37    0.01    0.03    0.43 ^ _14558_/Z (BUF_X4)
+                                         _07594_ (net)
+                  0.01    0.00    0.43 ^ _14559_/A (BUF_X4)
+    10   20.68    0.01    0.03    0.46 ^ _14559_/Z (BUF_X4)
+                                         _07595_ (net)
+                  0.01    0.00    0.46 ^ _14560_/A (BUF_X4)
+    10   18.68    0.01    0.03    0.49 ^ _14560_/Z (BUF_X4)
+                                         _07596_ (net)
+                  0.01    0.00    0.49 ^ _14561_/A (BUF_X4)
+    10   16.70    0.01    0.03    0.52 ^ _14561_/Z (BUF_X4)
+                                         _07597_ (net)
+                  0.01    0.00    0.52 ^ _14562_/A (BUF_X1)
+    10   10.49    0.03    0.04    0.56 ^ _14562_/Z (BUF_X1)
+                                         _07598_ (net)
+                  0.03    0.00    0.56 ^ _14631_/A (BUF_X1)
+    10   10.55    0.03    0.05    0.61 ^ _14631_/Z (BUF_X1)
+                                         _07667_ (net)
+                  0.03    0.00    0.61 ^ _14649_/A (BUF_X1)
+    10   19.20    0.05    0.07    0.68 ^ _14649_/Z (BUF_X1)
+                                         _07685_ (net)
+                  0.05    0.00    0.68 ^ _14979_/S (MUX2_X1)
+     1    0.91    0.01    0.06    0.74 v _14979_/Z (MUX2_X1)
+                                         _08013_ (net)
+                  0.01    0.00    0.74 v _14981_/A (MUX2_X1)
+     1    0.90    0.01    0.06    0.80 v _14981_/Z (MUX2_X1)
+                                         _08015_ (net)
+                  0.01    0.00    0.80 v _14982_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.85 v _14982_/Z (MUX2_X1)
+                                         _08016_ (net)
+                  0.01    0.00    0.85 v _14983_/B (MUX2_X1)
+     1    0.90    0.01    0.06    0.91 v _14983_/Z (MUX2_X1)
+                                         _08017_ (net)
+                  0.01    0.00    0.91 v _14984_/B (MUX2_X1)
+     1    0.88    0.01    0.06    0.96 v _14984_/Z (MUX2_X1)
+                                         _08018_ (net)
+                  0.01    0.00    0.96 v _14985_/A (BUF_X1)
+     8   11.80    0.02    0.04    1.01 v _14985_/Z (BUF_X1)
+                                         _08019_ (net)
+                  0.02    0.00    1.01 v _17529_/B2 (AOI21_X1)
+     4    8.50    0.05    0.07    1.07 ^ _17529_/ZN (AOI21_X1)
+                                         ex_block_i.alu_i.operand_b_neg[21] (net)
+                  0.05    0.00    1.07 ^ _18898_/A2 (AOI22_X1)
+     1    1.52    0.02    0.02    1.10 v _18898_/ZN (AOI22_X1)
+                                         _11418_ (net)
+                  0.02    0.00    1.10 v _18899_/A (OAI21_X1)
+     1    3.45    0.03    0.03    1.12 ^ _18899_/ZN (OAI21_X1)
+                                         ex_block_i.alu_i.adder_in_b[21] (net)
+                  0.03    0.00    1.12 ^ _26885_/B (HA_X1)
+     1    0.97    0.02    0.05    1.17 ^ _26885_/S (HA_X1)
+                                         _00543_ (net)
+                  0.02    0.00    1.17 ^ _17746_/A (BUF_X1)
+     6    9.38    0.02    0.04    1.21 ^ _17746_/Z (BUF_X1)
+                                         _10627_ (net)
+                  0.02    0.00    1.21 ^ _18254_/A1 (NAND2_X1)
+     4    7.74    0.02    0.03    1.25 v _18254_/ZN (NAND2_X1)
+                                         _11024_ (net)
+                  0.02    0.00    1.25 v _18255_/A3 (NOR3_X1)
+     6    8.49    0.07    0.11    1.35 ^ _18255_/ZN (NOR3_X1)
+                                         _11025_ (net)
+                  0.07    0.00    1.35 ^ _18290_/A4 (NAND4_X1)
+     1    3.05    0.02    0.04    1.39 v _18290_/ZN (NAND4_X1)
+                                         _11055_ (net)
+                  0.02    0.00    1.39 v _18291_/B (AOI211_X2)
+     1    3.11    0.04    0.07    1.46 ^ _18291_/ZN (AOI211_X2)
+                                         _11056_ (net)
+                  0.04    0.00    1.46 ^ _18299_/A (AOI211_X2)
+     3    5.65    0.02    0.02    1.48 v _18299_/ZN (AOI211_X2)
+                                         _11064_ (net)
+                  0.02    0.00    1.48 v _18300_/C1 (AOI211_X2)
+     2    3.23    0.04    0.04    1.52 ^ _18300_/ZN (AOI211_X2)
+                                         _11065_ (net)
+                  0.04    0.00    1.52 ^ _18353_/C1 (OAI221_X1)
+     3    3.29    0.02    0.04    1.56 v _18353_/ZN (OAI221_X1)
+                                         _11109_ (net)
+                  0.02    0.00    1.56 v _18354_/A2 (AND2_X1)
+     2    4.16    0.01    0.04    1.60 v _18354_/ZN (AND2_X1)
+                                         _11110_ (net)
+                  0.01    0.00    1.60 v _18356_/B1 (OAI21_X1)
+     1    1.65    0.02    0.03    1.63 ^ _18356_/ZN (OAI21_X1)
+                                         _11112_ (net)
+                  0.02    0.00    1.63 ^ _18357_/A3 (NAND3_X1)
+     4    5.39    0.02    0.03    1.66 v _18357_/ZN (NAND3_X1)
+                                         _11113_ (net)
+                  0.02    0.00    1.66 v _18361_/A1 (NAND2_X1)
+     9   15.65    0.04    0.05    1.72 ^ _18361_/ZN (NAND2_X1)
+                                         _11117_ (net)
+                  0.04    0.00    1.72 ^ _26127_/A2 (NOR2_X1)
+     1    1.41    0.01    0.01    1.73 v _26127_/ZN (NOR2_X1)
+                                         _07391_ (net)
+                  0.01    0.00    1.73 v _26131_/B1 (OAI221_X1)
+     3    5.02    0.05    0.06    1.80 ^ _26131_/ZN (OAI221_X1)
+                                         _07395_ (net)
+                  0.05    0.00    1.80 ^ _26133_/A (OAI21_X1)
+     2    3.03    0.02    0.03    1.83 v _26133_/ZN (OAI21_X1)
+                                         _07397_ (net)
+                  0.02    0.00    1.83 v _26373_/B (MUX2_X1)
+     2    0.90    0.01    0.06    1.88 v _26373_/Z (MUX2_X1)
+                                         instr_addr_o[31] (net)
+                  0.01    0.00    1.88 v instr_addr_o[31] (out)
+                                  1.88   data arrival time
+
+                  0.00    2.25    2.25   clock vclk_core_clock (rise edge)
+                          0.28    2.54   clock network delay (ideal)
+                          0.00    2.54   clock reconvergence pessimism
+                         -0.45    2.09   output external delay
+                                  2.09   data required time
+-----------------------------------------------------------------------------
+                                  2.09   data required time
+                                 -1.88   data arrival time
+-----------------------------------------------------------------------------
+                                  0.20   slack (MET)
+
+
+
+==========================================================================
+floorplan final report_power
+--------------------------------------------------------------------------
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             5.45e-03   5.15e-05   1.54e-04   5.66e-03  74.4%
+Combinational          6.35e-04   5.79e-04   3.61e-04   1.57e-03  20.7%
+Clock                  9.84e-07   3.75e-04   2.45e-08   3.76e-04   4.9%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  6.09e-03   1.01e-03   5.15e-04   7.61e-03 100.0%
+                          80.0%      13.2%       6.8%

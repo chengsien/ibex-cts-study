@@ -1,0 +1,71 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/P2p4/results/nangate45/ibex/base/6_1_fill.odb
+read_sdc /work/runs/P2p4/results/nangate45/ibex/base/6_1_fill.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+write_db /work/runs/P2p4/results/nangate45/ibex/base/6_final.odb
+write_sdc -no_timestamp /work/runs/P2p4/results/nangate45/ibex/base/6_final.sdc
+Deleted 0 routing obstructions
+Elapsed time: 0:09.53[h:]min:sec. CPU time: user 9.14 sys 0.15 (97%). Peak memory: 191728KB.
+Global output passed lec test
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+[INFO RCX-0435] Reading extraction model file /OpenROAD-flow-scripts/flow/platforms/nangate45/rcx_patterns.rules ...
+[INFO RCX-0436] RC segment generation ibex_core (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 69355 rc segments
+[INFO RCX-0439] Coupling Cap extraction ibex_core ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 48% of 115069 wires extracted
+[INFO RCX-0442] 100% of 115069 wires extracted
+[INFO RCX-0045] Extract 16952 nets, 84442 rsegs, 84442 caps, 188474 ccs
+[INFO RCX-0443] 16952 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+########## IR report #################
+Net              : VDD
+Corner           : default
+Total power      : 1.16e-02 W
+Supply voltage   : 1.10e+00 V
+Worstcase voltage: 1.10e+00 V
+Average voltage  : 1.10e+00 V
+Average IR drop  : 1.20e-03 V
+Worstcase IR drop: 3.88e-03 V
+Percentage drop  : 0.35 %
+######################################
+[INFO PSM-0040] All shapes on net VSS are connected.
+########## IR report #################
+Net              : VSS
+Corner           : default
+Total power      : 1.16e-02 W
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 2.55e-03 V
+Average voltage  : 1.08e-03 V
+Average IR drop  : 1.08e-03 V
+Worstcase IR drop: 2.55e-03 V
+Percentage drop  : 0.23 %
+######################################
+Cell type report:                       Count       Area
+  Fill cell                             16307   27369.54
+  Tap cell                                423     112.52
+  Clock buffer                            455     534.93
+  Timing Repair Buffer                    883     937.38
+  Inverter                                562     300.31
+  Clock inverter                           93      78.47
+  Sequential cell                        1938   10091.24
+  Multi-Input combinational cell        10590   16678.20
+  Total                                 31251   56102.59
+Report metrics stage 6, finish...
+
+==========================================================================
+finish report_design_area
+--------------------------------------------------------------------------
+Design area 28733 um^2 51% utilization.
+Elapsed time: 0:41.95[h:]min:sec. CPU time: user 47.60 sys 1.55 (117%). Peak memory: 472648KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+6_report                             9        9     0.97      187 N/A

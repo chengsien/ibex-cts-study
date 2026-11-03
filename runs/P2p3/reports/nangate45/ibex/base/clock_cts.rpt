@@ -1,0 +1,99 @@
+parasitics                           placement_estimate
+clock_nets                           319
+clock_buffers                        317
+clock_inverters                      0
+clock_gates                          0
+clock_other_drivers                  1
+clock_buffer_area_um2                1686.440
+clock_buffer_masters                 CLKBUF_X3:317
+cts_dummy_loads                      226
+cts_delay_buffers                    2
+hold_buffers_by_name                 0
+clock_sinks                          1938
+insertion_delay_min_ns               0.2819
+insertion_delay_max_ns               0.3121
+insertion_delay_mean_ns              0.2915
+insertion_delay_spread_ns            0.0302
+insertion_delay_min_pin              if_stage_i.instr_fetch_err_plus2_o$_SDFFCE_PN0P_/CK
+insertion_delay_max_pin              core_busy_q$_DFF_PN0_/CK
+
+--- report_clock_skew -setup
+Clock core_clock
+ 0.2819 source latency id_stage_i.controller_i.load_err_q$_DFF_PN0_/CK ^
+-0.3121 target latency core_busy_q$_DFF_PN0_/CK ^
+ 0.0000 CRPR
+--------------
+-0.0302 setup skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_setup_ns                        -0.0302
+
+--- report_clock_skew -hold
+Clock core_clock
+ 0.2816 source latency id_stage_i.controller_i.load_err_q$_DFF_PN0_/CK ^
+-0.3121 target latency core_busy_q$_DFF_PN0_/CK ^
+ 0.0000 CRPR
+--------------
+-0.0304 hold skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_hold_ns                         -0.0304
+
+--- report_clock_latency
+Clock core_clock
+rise -> rise
+    min     max
+ 0.0000  0.0000 source latency
+ 0.2816         network latency if_stage_i.instr_fetch_err_plus2_o$_SDFFCE_PN0P_/CK
+         0.3121 network latency core_busy_q$_DFF_PN0_/CK
+---------------
+ 0.2816  0.3121 latency
+         0.0305 skew
+
+fall -> fall
+    min     max
+ 0.0000  0.0000 source latency
+ 0.2911         network latency if_stage_i.instr_fetch_err_plus2_o$_SDFFCE_PN0P_/CK
+         0.3278 network latency core_busy_q$_DFF_PN0_/CK
+---------------
+ 0.2911  0.3278 latency
+         0.0367 skew
+
+
+Clock vclk_core_clock
+
+
+setup_wns_ns                         0.0786
+setup_tns_ns                         0.0000
+hold_wns_ns                          0.0849
+hold_tns_ns                          0.0000
+setup_viol_endpoints                 0
+hold_viol_endpoints                  0
+
+--- report_power
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           5.898433e-03 8.943118e-05 1.542416e-04 6.142106e-03  50.9%
+Combinational        6.715683e-04 9.625502e-04 3.688955e-04 2.003014e-03  16.6%
+Clock                1.806731e-03 2.091367e-03 1.396907e-05 3.912067e-03  32.4%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                8.376722e-03 3.143347e-03 5.371062e-04 1.205717e-02 100.0%
+                            69.5%        26.1%         4.5%
+
+power_sequential_w                   6.142106e-03
+power_combinational_w                2.003014e-03
+power_clock_w                        3.912067e-03
+power_macro_w                        0.000000e+00
+power_pad_w                          0.000000e+00
+power_total_w                        1.205717e-02
+std_cell_instances                   15026

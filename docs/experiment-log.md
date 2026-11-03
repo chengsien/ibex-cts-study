@@ -63,3 +63,70 @@ fix: 118 overrides with latencies of 0.288–0.299 ns, hold WNS +0.09 ns. I did
 not determine why the property changes. It looks like a side effect of
 OpenSTA path enumeration on the search state, and it is worth reporting
 upstream.
+
+---
+
+## E1 — Phase 1 clock-period sweep (find the stress period)
+
+**Question.** What is the shortest period Ibex closes at after detailed
+route and RC extraction? Which period fails by the smallest margin (the
+"stress period") and should be used for the CTS comparison?
+
+**Method.** Full ORFS flow per period, all other settings at the ORFS default
+(50 % utilization, default CTS). `scripts/sweep_period.sh 1.8 2.0 2.2 2.3 2.4 2.6`,
+plus 2.25 added afterwards to locate the boundary. "Closes" means
+post-route setup WNS ≥ 0 **and** hold WNS ≥ 0 **and** 0 DRC. The post-route
+numbers come from OpenSTA with the OpenRCX SPEF (`6_final.spef`).
+Data: `results/period_sweep.csv`, plot: `results/period_sweep_wns.png`.
+
+**Result.**
+
+| period (ns) | post-CTS WNS | post-GRT WNS | **post-route WNS** | post-route TNS | failing endpoints | hold WNS | std cells (final, with fill) | cell area (µm²) | setup buffers CTS+GRT | total power (mW) | DRC | wall (s)* |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1.8  | −0.200 | −0.202 | **−0.216** | −216.6 | 1580 | +0.092 | 32 999 | 32 643 | 69+23 | 16.04 | 0 | 947 |
+| 2.0  | −0.001 | −0.000 | **−0.020** | −2.74 | 269 | +0.087 | 32 062 | 30 145 | 15+0 | 14.17 | 0 | 778 |
+| **2.2**  | +0.040 | +0.016 | **−0.014** | −0.36 | 31 | +0.085 | 31 488 | 29 018 | 0+0 | 12.71 | 0 | 668 |
+| **2.25** | +0.051 | +0.024 | **+0.013** | 0 | 0 | +0.084 | 31 259 | 28 958 | 0+0 | 12.38 | 0 | 574 |
+| 2.3  | +0.079 | +0.050 | **+0.023** | 0 | 0 | +0.085 | 31 395 | 28 898 | 0+0 | 12.10 | 0 | 679 |
+| 2.4  | +0.016 | +0.048 | **+0.018** | 0 | 0 | +0.089 | 31 251 | 28 733 | 0+0 | 11.63 | 0 | 674 |
+| 2.6  | +0.186 | +0.159 | **+0.118** | 0 | 0 | +0.085 | 31 227 | 28 604 | 0+0 | 10.86 | 0 | 715 |
+
+\*Two runs in parallel on 4 vCPUs (2.25 ran three-way), so wall time is not a
+clean per-run runtime. The single baseline run took about 515 s.
+
+* **Shortest closing period: 2.25 ns** (≈ 444 MHz).
+* **Stress period: 2.2 ns** (≈ 455 MHz, the ORFS default). It misses by
+  14 ps, with 31 failing endpoints and TNS −0.36 ns. Used for Phase 2.
+* Reproducibility: the 2.2 ns sweep point `P2p2` and the Step 0 run
+  `step0_default` were launched separately, one alone and one in parallel
+  with another run. They are **identical** in every reported metric (WNS,
+  TNS, wirelength, power). The flow is deterministic on this setup.
+
+**Findings.**
+
+1. **The failure at 2.0–2.2 ns comes from the gap between the global-route
+   RC estimate and OpenRCX.** At 2.0 ns `repair_timing` drives the
+   GRT-stage WNS to −0.00004 ns. At 2.2 ns GRT says +0.016 ns. In both cases
+   OpenRCX then lowers it by about 20–30 ps (−0.020 and −0.014 ns). The
+   design is not limited by logic depth in this range. It is limited by the
+   difference between the RC model the optimizer sees and the extracted RC.
+   That is why WNS is almost flat between 2.0 and 2.2 ns while TNS changes
+   by 7.6×.
+2. Below 2.0 ns the optimizer can no longer keep up. At 1.8 ns it inserts 92
+   setup buffers, grows cell area by 12 % and power by 26 % relative to
+   2.2 ns, and still ends at WNS −0.216 ns with 1580 failing endpoints.
+3. The WNS curve is **not monotonic**: 2.4 ns has less post-CTS slack
+   (+0.016) than 2.3 ns (+0.079). Synthesis (ABC with `-constr` derived from
+   the period) and placement both change with the period, so each period is
+   effectively a different netlist and placement. Differences of about
+   10–20 ps between neighbouring periods are within this "implementation
+   noise" and do not reflect a physical trend.
+4. The clock tree is essentially the same at every period: 316–321
+   `CLKBUF_X3`, max insertion delay 0.303–0.309 ns. The clock tree does not
+   adapt to the period. The data path does.
+
+**Learned.** With a deterministic flow, run-to-run noise at a *fixed* setup
+is zero. The relevant noise for Phase 2 is the sensitivity of the result to
+small perturbations (finding 3), which is about ±20 ps here. A CTS strategy
+that changes post-route WNS by less than about 10–20 ps should not be called
+"better".
