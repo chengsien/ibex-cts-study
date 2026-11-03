@@ -1,0 +1,199 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RB_nocl/results/nangate45/ibex/base/3_place.odb
+read_sdc /work/runs/RB_nocl/results/nangate45/ibex/base/3_place.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+clock_tree_synthesis -repair_clock_nets
+[INFO CTS-0050] Root buffer is CLKBUF_X3.
+[INFO CTS-0051] Sink buffer is CLKBUF_X3.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    CLKBUF_X3
+[INFO CTS-0049] Characterization buffer is CLKBUF_X3.
+[INFO CTS-0007] Net "clk_i" found for clock "core_clock".
+[INFO CTS-0011]  Clock net "clk_i" for macros has 1 sinks.
+[INFO CTS-0011]  Clock net "clk_i_regs" for registers has 995 sinks.
+[INFO CTS-0010]  Clock net "clk" has 943 sinks.
+[INFO CTS-0008] TritonCTS found 3 clock nets.
+[INFO CTS-0097] Characterization used 1 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_i.
+[INFO CTS-0028]  Total number of sinks: 1.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).
+[INFO CTS-0023]  Original sink region: [(254850, 310680), (254850, 310680)].
+[INFO CTS-0024]  Normalized sink region: [(18.2036, 22.1914), (18.2036, 22.1914)].
+[INFO CTS-0025]     Width:  0.0000.
+[INFO CTS-0026]     Height: 0.0000.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 1
+    Sub-region size: 0.0000 X 0.0000
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (591.189 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 1.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_i_regs.
+[INFO CTS-0028]  Total number of sinks: 995.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).
+[INFO CTS-0023]  Original sink region: [(16075, 3780), (344925, 265020)].
+[INFO CTS-0024]  Normalized sink region: [(1.14821, 0.27), (24.6375, 18.93)].
+[INFO CTS-0025]     Width:  23.4893.
+[INFO CTS-0026]     Height: 18.6600.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 498
+    Sub-region size: 11.7446 X 18.6600
+[INFO CTS-0034]     Segment length (rounded): 6.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 249
+    Sub-region size: 11.7446 X 9.3300
+[INFO CTS-0034]     Segment length (rounded): 4.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 125
+    Sub-region size: 5.8723 X 9.3300
+[INFO CTS-0034]     Segment length (rounded): 2.
+ Level 4
+    Direction: Vertical
+    Sinks per sub-region: 63
+    Sub-region size: 5.8723 X 4.6650
+[INFO CTS-0034]     Segment length (rounded): 2.
+ Level 5
+    Direction: Horizontal
+    Sinks per sub-region: 32
+    Sub-region size: 2.9362 X 4.6650
+[INFO CTS-0034]     Segment length (rounded): 1.
+ Level 6
+    Direction: Vertical
+    Sinks per sub-region: 16
+    Sub-region size: 2.9362 X 2.3325
+[INFO CTS-0034]     Segment length (rounded): 1.
+ Level 7
+    Direction: Horizontal
+    Sinks per sub-region: 8
+    Sub-region size: 1.4681 X 2.3325
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (591.189 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 995.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 943.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).
+[INFO CTS-0023]  Original sink region: [(38950, 153020), (472985, 472220)].
+[INFO CTS-0024]  Normalized sink region: [(2.78214, 10.93), (33.7846, 33.73)].
+[INFO CTS-0025]     Width:  31.0025.
+[INFO CTS-0026]     Height: 22.8000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 472
+    Sub-region size: 15.5013 X 22.8000
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 236
+    Sub-region size: 15.5013 X 11.4000
+[INFO CTS-0034]     Segment length (rounded): 6.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 118
+    Sub-region size: 7.7506 X 11.4000
+[INFO CTS-0034]     Segment length (rounded): 4.
+ Level 4
+    Direction: Vertical
+    Sinks per sub-region: 59
+    Sub-region size: 7.7506 X 5.7000
+[INFO CTS-0034]     Segment length (rounded): 2.
+ Level 5
+    Direction: Horizontal
+    Sinks per sub-region: 30
+    Sub-region size: 3.8753 X 5.7000
+[INFO CTS-0034]     Segment length (rounded): 2.
+ Level 6
+    Direction: Vertical
+    Sinks per sub-region: 15
+    Sub-region size: 3.8753 X 2.8500
+[INFO CTS-0034]     Segment length (rounded): 1.
+ Level 7
+    Direction: Horizontal
+    Sinks per sub-region: 8
+    Sub-region size: 1.9377 X 2.8500
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (591.189 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 943.
+[INFO CTS-0018]     Created 2 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 2 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 1:1..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 145 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 145 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 4:7, 5:10, 6:26, 7:28, 8:14, 9:16, 10:10, 11:8, 12:3, 13:2, 14:2, 15:1, 16:1..
+[INFO CTS-0017]     Max level of the clock tree: 7.
+[INFO CTS-0018]     Created 145 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 145 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 3:4, 4:12, 5:25, 6:19, 7:18, 8:11, 9:6, 10:10, 11:11, 12:7, 13:2, 14:2, 17:1..
+[INFO CTS-0017]     Max level of the clock tree: 7.
+[INFO CTS-0124] Clock net "clk_i"
+[INFO CTS-0125]  Sinks 1
+[INFO CTS-0098] Clock net "clk_i_regs"
+[INFO CTS-0099]  Sinks 1105
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 137.15 um
+[INFO CTS-0102]  Path depth 3 - 3
+[INFO CTS-0207]  Dummy loads inserted 110
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 1054
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 120.01 um
+[INFO CTS-0102]  Path depth 3 - 3
+[INFO CTS-0207]  Dummy loads inserted 111
+[INFO CTS-0033] Balancing latency for clock core_clock
+[INFO CTS-0036]  inserted 2 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 2
+[INFO CTS-0500] Runtime: 1.65s
+estimate_parasitics -placement
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 9230 moves: displacement total 6845.2 u, max 6.8 u; HPWL 199631.1 -> 203072.6 u (+1.7 %).
+[INFO DPL-0500] Runtime: 0.18s
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -verbose
+[WARNING RSZ-2024] Experimental repair setup policy 'SetupParallelEvalPolicy' selected. Do not use this for production.
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpoint
+------------------------------------------------------------------------------------------------------------------------------
+    final |       0 |       0 |        0 |      0 |     0 |    +0.0% |    0.053 |        0.0 |      0 | gen_regfile_ff.register_file_i.rf_reg\[703\]$_DFFE_PN0P_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0505] Runtime: 1.06s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.05s
+Elapsed time: 0:01.63[h:]min:sec. CPU time: user 1.93 sys 0.14 (126%). Peak memory: 117240KB.
+Repair timing output passed lec test
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 0 moves: displacement total 0.0 u, max 0.0 u; HPWL 203072.6 -> 203072.6 u (+0.0 %).
+[INFO DPL-0500] Runtime: 0.14s
+check_placement -placeable -verbose
+estimate_parasitics -placement
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 29007 um^2 52% utilization.
+write_db /work/runs/RB_nocl/results/nangate45/ibex/base/4_1_cts.odb
+write_sdc -no_timestamp /work/runs/RB_nocl/results/nangate45/ibex/base/4_cts.sdc
+Elapsed time: 0:23.11[h:]min:sec. CPU time: user 36.86 sys 1.55 (166%). Peak memory: 335272KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+4_1_cts                .odb          1        2     1.27      114 ffb451e6bf

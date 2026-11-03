@@ -1,0 +1,18 @@
+run_name=RC_full
+date_utc=2026-11-03T09:43:30Z
+period_ns=2.2
+core_utilization=50
+cts_args_override=-sink_clustering_enable -repair_clock_nets -apply_ndr full
+cluster_size=
+cluster_diameter=
+post_cts_tcl=
+base_run=R0a
+target=finish
+image=openroad/orfs:26Q4-260-gc9ac73efc
+makevar=DESIGN_CONFIG=./designs/nangate45/ibex/config.mk
+makevar=WORK_HOME=/work/runs/RC_full
+makevar=SDC_FILE=/work/runs/RC_full/constraint.sdc
+makevar=CORE_UTILIZATION=50
+makevar=CTS_ARGS=-sink_clustering_enable -repair_clock_nets -apply_ndr full
+exit_code=0
+wall_seconds=601

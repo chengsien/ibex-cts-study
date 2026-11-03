@@ -1,0 +1,17 @@
+run_name=R0a
+date_utc=2026-11-03T09:08:58Z
+period_ns=2.2
+core_utilization=50
+cts_args_override=
+cluster_size=
+cluster_diameter=
+post_cts_tcl=
+base_run=
+target=finish
+image=openroad/orfs:26Q4-260-gc9ac73efc
+makevar=DESIGN_CONFIG=./designs/nangate45/ibex/config.mk
+makevar=WORK_HOME=/work/runs/R0a
+makevar=SDC_FILE=/work/runs/R0a/constraint.sdc
+makevar=CORE_UTILIZATION=50
+exit_code=0
+wall_seconds=776

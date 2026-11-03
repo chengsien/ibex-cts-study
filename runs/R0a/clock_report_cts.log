@@ -1,0 +1,7 @@
+/usr/bin/python3 /OpenROAD-flow-scripts/flow/scripts/run_command.py --log /work/runs/R0a/logs/nangate45/ibex/base/clock_report_cts.log --tee -- /OpenROAD-flow-scripts/tools/install/OpenROAD/bin/openroad -exit -no_init -threads 4  -no_splash  /work/scripts/clock_report.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/R0a/results/nangate45/ibex/base/4_1_cts.odb
+read_sdc /work/runs/R0a/results/nangate45/ibex/base/4_cts.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+clock report written to /work/runs/R0a/reports/nangate45/ibex/base/clock_cts.rpt
+Elapsed time: 0:12.33[h:]min:sec. CPU time: user 21.68 sys 0.26 (177%). Peak memory: 323944KB.
