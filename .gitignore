@@ -1,0 +1,22 @@
+# Large physical-design databases / layouts produced by ORFS runs
+runs/**/*.odb
+runs/**/*.def
+runs/**/*.gds
+runs/**/*.gds.gz
+runs/**/*.oas
+runs/**/*.spef
+runs/**/*.v
+runs/**/*.sdc.bak
+runs/**/*.dat
+runs/**/*.rpt.gz
+runs/**/objects/
+runs/**/results/
+# PDK / library collateral must never be committed (see fetch_inputs.md)
+*.lef
+*.lib
+*.lib.gz
+*.gds
+# Python / misc
+__pycache__/
+*.pyc
+.venv/
