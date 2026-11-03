@@ -1,0 +1,50 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/step0_default/results/nangate45/ibex/base/3_3_place_gp.odb
+read_sdc /work/runs/step0_default/results/nangate45/ibex/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+estimate_parasitics -placement
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     16765
+     1000 |     +0.0% |       0 |       0 |             0 |     15765
+     2000 |     +0.0% |       0 |       0 |             0 |     14765
+     3000 |     +0.0% |       0 |       2 |             2 |     13765
+     4000 |     +0.0% |       0 |       5 |             5 |     12765
+     5000 |     +0.0% |       0 |       6 |             6 |     11765
+     6000 |     +0.0% |       0 |       7 |             7 |     10765
+     7000 |     +0.1% |       0 |      11 |            11 |      9765
+     8000 |     +0.1% |       0 |      11 |            11 |      8765
+     9000 |     +0.1% |       0 |      14 |            14 |      7765
+    10000 |     +0.1% |       0 |      15 |            15 |      6765
+    11000 |     +0.1% |       0 |      15 |            15 |      5765
+    12000 |     +0.1% |       0 |      15 |            15 |      4765
+    13000 |     +0.1% |       0 |      16 |            16 |      3765
+    14000 |     +0.1% |       0 |      16 |            16 |      2765
+    15000 |     +0.1% |       0 |      16 |            16 |      1765
+    16000 |     +0.1% |       0 |      16 |            16 |       765
+    final |     +0.1% |       0 |      16 |            16 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0036] Found 16 capacitance violations.
+[INFO RSZ-0038] Inserted 16 buffers in 16 nets.
+[INFO RSZ-0504] Runtime: 1.37s
+Floating nets: 
+Report metrics stage 3, resizer...
+
+==========================================================================
+resizer report_design_area
+--------------------------------------------------------------------------
+Design area 28403 um^2 51% utilization.
+Instance count before 14527, after 14543
+Pin count before 55114, after 55146
+write_db /work/runs/step0_default/results/nangate45/ibex/base/3_4_place_resized.odb
+Elapsed time: 0:07.00[h:]min:sec. CPU time: user 10.08 sys 0.85 (156%). Peak memory: 283016KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+3_4_place_resized      .odb          7       11     1.56      276 d082e32451

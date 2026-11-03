@@ -56,15 +56,16 @@ if [[ -n "$BASE" ]]; then
   B="$REPO/runs/$BASE"
   [[ -f "$B/results/nangate45/ibex/base/3_place.odb" ]] || {
     echo "base run $BASE has no 3_place.odb" >&2; exit 1; }
-  for d in results objects logs reports; do
-    mkdir -p "$RUN/$d/nangate45/ibex/base"
+  # copy the whole base run (timestamps preserved) and delete every
+  # artifact of stage 4 (CTS) onward, so make resumes exactly at CTS
+  rm -rf "$RUN" && cp -a "$B" "$RUN"
+  rm -f "$RUN"/flow.log "$RUN"/run_config.txt "$RUN"/clock_report_*.log "$RUN"/BASE_RUN
+  for d in results logs reports objects; do
+    find "$RUN/$d" -path '*/base/*' \( -name '4_*' -o -name '5_*' -o -name '6_*' \
+      -o -name 'clock_*' -o -name 'route.guide' -o -name 'final_*' -o -name 'drt*' \
+      -o -name '*.png' -o -name '*.webp' -o -name 'metadata*' -o -name 'VDD.rpt' -o -name 'VSS.rpt' \
+      -o -name 'congestion*' -o -name 'antenna*' -o -name 'synth_check*' \) -prune -exec rm -rf {} +
   done
-  # copy stage 1-3 artifacts preserving timestamps so make starts at CTS
-  (cd "$B" && find results objects logs reports -path '*/base/*' \
-      \( -name '1_*' -o -name '2_*' -o -name '3_*' -o -name 'synth*' \
-         -o -name 'mem*' -o -name 'clock_period.txt' -o -name '*.sdc' \
-         -o -name 'lib' -o -name 'klayout*' -o -name '*.lyt' -o -name '*.lyp' \) \
-      -print0 | cpio -0pdm --quiet "$RUN")
   # the SDC used by CTS onward is 3_place.sdc copied from base; refuse if the
   # requested period differs from the base period (would silently mismatch)
   bp=$(grep -E '^set clk_period' "$B/constraint.sdc" | awk '{print $3}')

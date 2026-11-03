@@ -1,0 +1,17 @@
+run_name=step0_default
+date_utc=2026-11-03T08:06:19Z
+period_ns=2.2
+core_utilization=50
+cts_args_override=
+cluster_size=
+cluster_diameter=
+post_cts_tcl=
+base_run=
+target=finish
+image=openroad/orfs:26Q4-260-gc9ac73efc
+makevar=DESIGN_CONFIG=./designs/nangate45/ibex/config.mk
+makevar=WORK_HOME=/work/runs/step0_default
+makevar=SDC_FILE=/work/runs/step0_default/constraint.sdc
+makevar=CORE_UTILIZATION=50
+exit_code=0
+wall_seconds=515  # from file timestamps (constraint.sdc -> 6_report.log); wrapper bookkeeping line failed, see setup-notes
