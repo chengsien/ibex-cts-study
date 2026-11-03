@@ -130,6 +130,16 @@ def collect(name):
     row.update(grt_congestion(logs / "5_1_grt.log"))
     row.update(drt_stats(logs / "5_2_route.log"))
 
+    # ---- worst post-route setup path, decomposed (scripts/worst_paths.tcl) ----
+    wp = reps / "worst_paths_final.txt"
+    if wp.exists():
+        lines = wp.read_text().splitlines()
+        if len(lines) > 1:
+            f = lines[1].split()
+            row.update({"wp_slack_ns": float(f[0]), "wp_launch_clk_ns": float(f[1]),
+                        "wp_capture_clk_ns": float(f[2]), "wp_skew_cap_minus_launch_ns": float(f[3]),
+                        "wp_data_delay_ns": float(f[4]), "wp_startpoint": f[5], "wp_endpoint": f[7]})
+
     # ---- clock-network metrics from scripts/clock_report.tcl ----
     for st in ("cts", "final"):
         kv = read_kv(reps / f"clock_{st}.kv")
@@ -197,12 +207,14 @@ def plot_cts(rows, png):
         ("final_clock_buffers", "clock buffers"),
         ("final_setup_wns", "setup WNS, post-route (ns)"),
         ("final_setup_tns", "setup TNS, post-route (ns)"),
-        ("final_power_clock_w", "clock-network power (W)"),
+        ("final_power_clock_w", "clock-network power (mW)"),
     ]
     fig, axs = plt.subplots(2, 3, figsize=(12, 6.5), dpi=150)
     for ax, (k, lab) in zip(axs.flat, panels):
         vals = [r.get(k) if isinstance(r.get(k), (int, float)) else float("nan")
                 for r in rows]
+        if k.endswith("_w"):
+            vals = [v * 1e3 for v in vals]
         ax.bar(range(len(names)), vals, color="#4C72B0")
         ax.set_xticks(range(len(names)))
         ax.set_xticklabels(names, rotation=45, ha="right", fontsize=7)
@@ -210,11 +222,41 @@ def plot_cts(rows, png):
         ax.grid(axis="y", alpha=0.3)
         for i, v in enumerate(vals):
             if v == v:
-                ax.annotate(f"{v:.4g}", (i, v), ha="center",
+                ax.annotate(f"{v:.3g}", (i, v), ha="center", rotation=90,
                             va="bottom" if v >= 0 else "top", fontsize=6)
     fig.suptitle("CTS strategy comparison (same placement, post detailed route)")
     fig.tight_layout()
     fig.savefig(png)
+    print(f"wrote {png.relative_to(REPO)}")
+
+
+def plot_decomp(rows, png, ref="RA"):
+    """Change of worst-path slack vs the reference run, split into the
+    clock part (capture - launch latency) and the data-path part."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    r0 = next(r for r in rows if r["run"] == ref)
+    rr = [r for r in rows if r["run"] != ref and "wp_slack_ns" in r]
+    names = [r["run"] for r in rr]
+    dclk = [1e3 * (r["wp_skew_cap_minus_launch_ns"] - r0["wp_skew_cap_minus_launch_ns"]) for r in rr]
+    ddat = [-1e3 * (r["wp_data_delay_ns"] - r0["wp_data_delay_ns"]) for r in rr]
+    dtot = [1e3 * (r["final_setup_wns"] - r0["final_setup_wns"]) for r in rr]
+    fig, ax = plt.subplots(figsize=(8.5, 4.2), dpi=150)
+    x = range(len(names))
+    ax.bar([i - 0.2 for i in x], dclk, 0.4, label="clock part (Δ capture−launch latency)", color="#4C72B0")
+    ax.bar([i + 0.2 for i in x], ddat, 0.4, label="data-path part (−Δ data delay)", color="#DD8452")
+    ax.plot(list(x), dtot, "k_", ms=18, mew=2, label="Δ post-route WNS")
+    noise = [v for r, v in zip(rr, ddat) if r["run"].startswith("N_")]
+    if noise:
+        ax.axhspan(min(0, min(noise)), max(0, max(noise)), color="0.85", zorder=0,
+                   label="data-path change from routing-only probes")
+    ax.axhline(0, color="0.3", lw=0.8)
+    ax.set_xticks(list(x)); ax.set_xticklabels(names, rotation=30, ha="right")
+    ax.set_ylabel(f"change vs {ref} (ps, + = better)")
+    ax.set_title("Where does the worst-path slack change come from? (post-route, 2.2 ns)")
+    ax.legend(fontsize=7, loc="upper left"); ax.grid(axis="y", alpha=0.3)
+    fig.tight_layout(); fig.savefig(png)
     print(f"wrote {png.relative_to(REPO)}")
 
 
@@ -247,6 +289,8 @@ CTS_COLS = [
     "grt_usage_metal4_pct", "grt_usage_metal5_pct", "grt_usage_total_pct",
     "grt_overflow_total", "drt_wirelength_um", "drt_vias", "drt_drc_errors",
     "final_instance_count", "final_instance_area_um2",
+    "wp_slack_ns", "wp_launch_clk_ns", "wp_capture_clk_ns",
+    "wp_skew_cap_minus_launch_ns", "wp_data_delay_ns", "wp_startpoint", "wp_endpoint",
 ]
 
 
@@ -267,6 +311,8 @@ def main():
         write_csv(rows, REPO / "results/cts_comparison.csv", CTS_COLS)
         write_csv(rows, REPO / "results/cts_comparison_full.csv")
         plot_cts(rows, REPO / "results/cts_comparison.png")
+        if any(r["run"] == "RA" for r in rows):
+            plot_decomp(rows, REPO / "results/cts_slack_decomposition.png")
     else:
         print(__doc__)
         sys.exit(1)

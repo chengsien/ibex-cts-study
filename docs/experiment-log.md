@@ -130,3 +130,246 @@ is zero. The relevant noise for Phase 2 is the sensitivity of the result to
 small perturbations (finding 3), which is about ±20 ps here. A CTS strategy
 that changes post-route WNS by less than about 10–20 ps should not be called
 "better".
+
+---
+
+## E2 — Phase 2 setup and reproducibility (R0a, R0b, RA)
+
+**Question.** Is the comparison clean? Does anything other than the CTS
+setting change between runs, and how large is the run-to-run noise?
+
+**Method.** At the stress period 2.2 ns:
+* **R0a** and **R0b**: two independent full flows (synthesis → finish).
+* **RA**: copy R0a, delete everything from stage 4 on, re-run CTS → finish
+  (`run.sh -b R0a`). All other variants use the same mechanism. Their
+  `3_place.odb` is byte-identical to R0a's (checked with `cmp`), and their
+  `flow.log` shows no synthesis/floorplan/place step.
+
+**Result.** R0a, R0b and RA are identical in **every** metric of
+`results/cts_comparison_full.csv`: WNS −0.0143 / TNS −0.3602 ns, skew
+0.0397 ns, 316 clock buffers, 256 598 µm wire, 118 073 vias, 12.706 mW.
+(The step0 run and P2p2 from E1 match them too.)
+
+**Findings.** The flow is fully deterministic on this machine and image:
+same inputs give bit-identical outputs, even with two runs sharing the CPU.
+So **the R0a/R0b noise estimate is 0**. That estimate is misleading,
+though. It only says that *repeating* a run is free of noise. It says
+nothing about how much the result moves when *anything* is perturbed.
+That was measured separately (E5).
+
+**Learned.** "Run it twice" is a necessary check, but a deterministic tool
+makes it uninformative. A perturbation experiment is needed to get a
+usable noise floor.
+
+---
+
+## E3 — Sink clustering (RB_nocl, RB_s4, RB_s20 vs RA)
+
+**Question.** The ORFS default already enables sink clustering, with the
+size auto-selected. What happens with clustering **off**, with **smaller**
+clusters (4) and with **larger** clusters (20)?
+
+**Method.** Branch from R0a. Only `CTS_ARGS` / `CTS_CLUSTER_SIZE` differ.
+* RB_nocl: `-repair_clock_nets`, no `-sink_clustering_enable`. NDR stays at
+  the default `half`.
+* RB_s4 / RB_s20: default arguments plus `-sink_clustering_size 4 / 20`.
+  The diameter stays automatic.
+
+**Result** (post-route, OpenRCX; worst-path decomposition from
+`scripts/worst_paths.tcl`).
+
+| metric | RA (auto, size 9) | RB_nocl (off) | RB_s4 | RB_s20 |
+|---|---|---|---|---|
+| tree (CTS log) | 4 H-tree levels + 277 leaf-cluster buffers, path depth 2–3 | 7 H-tree levels, 0 leaf buffers, depth 3–3 | 5 levels + 487 leaf buffers, depth 3–4 | **identical to RA** |
+| clock buffers / dummy loads | 316 / 232 | 295 / 221 | **590** / 110 | 316 / 232 |
+| insertion delay min / max (ns) | 0.2723 / 0.3122 | 0.2667 / **0.2886** | 0.2823 / 0.3124 | = RA |
+| setup skew (ns) | 0.0397 | **0.0217** | −0.0298 | = RA |
+| clock wirelength (µm) | 12 636 | 12 194 | 14 382 | = RA |
+| setup WNS post-CTS / post-GRT (ns) | +0.040 / +0.016 | +0.053 / +0.023 | +0.045 / +0.011 | = RA |
+| **setup WNS / TNS post-route (ns)** | −0.0143 / −0.360 | **+0.0043 / 0** | **+0.0102 / 0** | = RA |
+| worst path: launch / capture CK (ns) | 0.3053 / 0.2841 | 0.2778 / 0.2741 | 0.3049 / 0.2837 | = RA |
+| worst path: capture − launch (ns) | −0.0212 | **−0.0037** | −0.0212 | = RA |
+| worst path: data delay (ns) | 2.1559 | 2.1566 | **2.1302** | = RA |
+| hold WNS (ns) / hold buffers | +0.0855 / 0 | +0.0853 / 0 | +0.0848 / 0 | = RA |
+| clock power / total (mW) | 4.158 / 12.706 | 4.245 / 12.795 | **5.239 / 13.782** | = RA |
+| cell area (µm²) | 29 018 | 29 008 | 29 281 | = RA |
+| GRT usage total / overflow | 28.60 % / 0 | 28.91 % / 0 | 29.06 % / 0 | = RA |
+
+**Findings.**
+1. **RB_s20 is a no-op.** Its `4_1_cts.odb` is byte-identical to RA's. When
+   no size is given, clusters are limited by capacitance (sink-buffer input
+   cap × 10). With `CLKBUF_X3` sinks that limit is reached at about 9 sinks,
+   so a cap of 20 never binds. Larger clusters need a bigger sink buffer,
+   and Nangate45 has nothing above `CLKBUF_X3`.
+2. **Clustering off (RB_nocl) is a real clock-tree improvement.** All
+   critical paths go from the IF-stage instruction register
+   `if_stage_i.instr_rdata_id_o[*]` to register-file flops `rf_reg[*]/D`.
+   With clustering on, the launch flop sits in a cluster whose leaf buffer
+   arrives late (0.305 ns), while the capture flops arrive early (0.284 ns):
+   −21 ps of *harmful* skew. Without pre-clustering, the H-tree is built
+   directly to the sinks (7 levels, uniform depth 3). That cuts the max
+   latency by 23 ps and the harmful skew on the critical path to −4 ps. The
+   +17.5 ps gain is entirely in the clock term (the data delay changed by
+   −0.7 ps). Cost: +2.1 % clock power even with 21 fewer buffers, probably
+   because the 7-level trunk carries more switched wire capacitance near the
+   root. Exact cause not verified.
+3. **RB_s4 closes timing, but not because of the clock tree.** Its
+   critical-path skew is unchanged (−21.2 ps). The +24.5 ps gain is a
+   −25.7 ps change in **data delay**. 487 extra leaf buffers force detailed
+   placement to re-legalize cells, and routing changes along with it. E5
+   shows a routing-only perturbation alone moves the data term by up to
+   20.6 ps. RB_s4's gain is the same kind of change, at the edge of that
+   range, and **should not be counted as a CTS benefit**. Its costs are
+   real: 2× clock buffers, +14 % clock wire, **+26 % clock power, +8.5 %
+   total power**, +0.9 % area.
+
+**Learned.** The sign of the CTS effect depends on *which* flops share a
+cluster. Clustering balances latency *within* a cluster but can leave
+clusters offset from each other by about ±20 ps. With only a few critical
+paths, whether that offset helps or hurts them is close to chance. Here it
+hurt.
+
+---
+
+## E4 — Non-default rules (RC_none, RC_root, RC_full vs RA = half)
+
+**Question.** Does NDR (2× spacing on clock nets) matter here, and which
+strategy is best?
+
+**Method.** Branch from R0a, default arguments plus `-apply_ndr <s>`. After the run,
+`scripts/ndr_check.tcl` counted the clock nets that actually carry
+`CTS_NDR_0` in `6_final.odb`.
+
+**Result.**
+
+| metric | RC_none | RC_root | **RA (half, default)** | RC_full |
+|---|---|---|---|---|
+| clock nets with NDR | 0 / 318 | 7 / 318 | 7 / 318 | 9 / 318 |
+| CTS database vs RA | NDR differs only | **byte-identical** | – | NDR differs only |
+| insertion delay min / max (ns) | 0.2791 / 0.3107 | = RA | 0.2723 / 0.3122 | 0.2712 / **0.2979** |
+| setup skew (ns) | 0.0316 | = RA | 0.0397 | **0.0267** |
+| **setup WNS / TNS post-route (ns)** | −0.0090 / −0.213 | = RA | −0.0143 / −0.360 | **+0.0164 / 0** |
+| worst path capture − launch (ns) | −0.0162 | = RA | −0.0212 | −0.0071 |
+| worst path data delay (ns) | 2.1556 | = RA | 2.1559 | 2.1392 |
+| clock wirelength (µm) | 12 623 | = RA | 12 636 | 12 599 |
+| metal4 GRT usage | 25.23 % | = RA | 25.78 % | 25.78 % |
+| clock / total power (mW) | 4.162 / 12.710 | = RA | 4.158 / 12.706 | 4.140 / 12.688 |
+
+**Findings.**
+1. **NDR barely reaches the tree.** NDRs are never put on leaf nets, and
+   with clustering about 300 of the 318 clock nets *are* leaf nets.
+   `half` and `root_only` both cover the same 7 trunk nets, so `root_only`
+   = `half`. `full` adds only 2 more nets.
+2. Even so, NDR changes timing measurably. The NDR nets are the long,
+   upper-level trunk wires. Wider spacing lowers their coupling capacitance,
+   which OpenRCX extracts. `full` lowers max latency by 14 ps and improves
+   the critical-path skew by 14 ps. `none` improves the skew by 5 ps,
+   but through a different tree routing (min latency +7 ps), so the effect
+   is not monotonic.
+3. RC_full's total gain (+30.7 ps) is about half clock (+14 ps) and half data
+   path (+17 ps). The data half is inside the routing-perturbation band
+   (E5). Only the clock half can be credited to NDR.
+4. Cost of NDR: negligible here. The clock wire is only 4.9 % of the
+   256 600 µm total, and only a few nets carry the rule. Routing usage
+   changes by ±0.3 % or less, overflow is 0, and power is unchanged.
+5. OpenSTA does **no crosstalk / SI analysis**, so the main real-world
+   benefit of clock NDR (less aggressor-induced delta delay and jitter)
+   is invisible in this flow. Only the reduced grounded-equivalent
+   capacitance is seen.
+
+**Learned.** Check which nets a strategy actually touches before reading
+anything into a strategy name. "full" sounded like the whole tree, but in
+practice it meant 9 nets.
+
+---
+
+## E5 — Routing-perturbation noise floor (N_gr48, N_gr52)
+
+**Question.** E2 showed zero repeat noise. How much does post-route WNS move
+when the *routing* changes slightly but the clock tree does not?
+
+**Method.** Branch from R0a with the default CTS (so the clock tree is
+byte-identical to RA). A `PRE_GLOBAL_ROUTE_TCL` hook (`scripts/noise_grt_adj_*.tcl`)
+changes the metal2–metal3 global-routing capacity adjustment from 0.50 to
+0.48 / 0.52. Nothing else changes.
+
+*First attempt failed:* overriding `FASTROUTE_TCL` had no effect. ORFS
+applies it in `floorplan.tcl` and stores it in the ODB, so runs that branch
+at CTS never re-read it. I noticed because the congestion table was
+identical to RA's. The hook-based version was checked through its log
+line `FLW-0911`.
+
+**Result.**
+
+| metric | RA | N_gr48 | N_gr52 |
+|---|---|---|---|
+| metal2 GRT usage | 56.56 % | 56.48 % | 56.99 % |
+| vias / wire (µm) | 118 073 / 256 598 | 117 911 / 256 584 | 118 489 / 256 524 |
+| setup skew (ns) | 0.0397 | 0.0390 | 0.0423 |
+| worst path capture − launch (ns) | −0.0212 | −0.0206 | −0.0212 |
+| worst path data delay (ns) | 2.1559 | 2.1560 | **2.1353** |
+| **setup WNS / TNS (ns)** | −0.0143 / −0.360 | −0.0139 / −0.347 | **+0.0063 / 0** |
+
+**Findings.** A routing-only change, with no change to the CTS, moved
+post-route WNS by **+0.4 ps and +20.6 ps**, and the second one closed timing. The
+movement is all in the **data term**. The critical-path skew term moved by
+≤ 0.6 ps. With n = 2 this is a lower bound on the noise, not a
+distribution.
+
+**Learned / consequence for E3–E4.**
+* A data-path change of ≲ 20 ps is **noise**, so RB_s4's gain is not
+  credited, and neither is half of RC_full's.
+* A **skew** change is robust (≤ 0.6 ps of noise in the skew term), so
+  RB_nocl (+17.5 ps), RC_full (+14 ps) and RC_none (+5 ps) are real
+  clock-tree effects.
+* At a stress period that misses by 14 ps, "does it close?" is decided by
+  that noise. The pass/fail column must not be used to rank strategies.
+
+---
+
+## E6 — RD: useful-skew emulation with `set_clock_latency`
+
+**Question.** No built-in useful skew exists (E0). How much would
+deliberately delaying the capture clock of critical registers be worth?
+
+**Method.** `POST_CTS_TCL = scripts/rd_useful_skew.tcl` (after CTS repair,
+before writing `4_cts.sdc`):
+* Candidates: register endpoints with post-CTS setup slack < T = 60 ps.
+* For each one, delta = min(T − s_capture, (s_launch − s_capture)/2,
+  hold_slack − 20 ps, 80 ps).
+* The CK pin then gets `set_clock_latency (CTS-stage arrival + delta)`.
+* The overrides are carried in `4_cts.sdc`, `5_1_grt.sdc` and
+  `6_final.sdc`. All three files contain the same 62 overrides, so GRT
+  repair and final STA see them.
+
+**Result.** 62 registers received overrides, all in
+`gen_regfile_ff.register_file_i`. Delta was 6.9–19.7 ps (mean 13.3 ps).
+Physically RD is **identical to RA**: same clock tree, same buffers, vias,
+wirelength and power, and no extra hold or setup buffers. In STA:
+
+| metric | RA | RD |
+|---|---|---|
+| worst-path capture CK (ns) | 0.2841 | 0.3118 |
+| worst-path capture − launch (ns) | −0.0212 | **+0.0066** |
+| setup WNS / TNS post-route (ns) | −0.0143 / −0.360 | **+0.0139 / 0** |
+| hold WNS (ns) | +0.0855 | +0.0855 |
+
+**Findings.**
+1. The +28 ps gain is the largest of any variant, and it costs nothing in
+   power or area **because nothing was built**. It is an upper bound on
+   what a useful-skew tool could get from this one path family.
+2. The capture-latency shift on the worst path (+27.7 ps) is larger than
+   the delta applied (≤ 19.7 ps). The override freezes the **CTS-stage**
+   (placement-RC) arrival, which is about 8 ps higher than the post-route
+   extracted latency of those flops. This is a known flaw of pin-latency
+   emulation: the overridden pins stop following the real tree.
+3. A physical implementation would need about 13–20 ps of extra latency on
+   62 register-file flops. In Nangate45 that is roughly one `CLKBUF_X1`
+   stage per flop group. Its hold impact on the regfile → regfile paths is
+   protected here only through the hold-slack guard. Hold slack is +85 ps at
+   the typical corner, so there is room, but that would need checking at a
+   fast corner, which this platform does not have.
+
+**Unresolved.** RD was not physically built, for example by inserting
+delay buffers on the selected CK pins and re-routing. That would be the
+honest version of this experiment.
