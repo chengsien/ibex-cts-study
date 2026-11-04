@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Phase 2 CTS matrix at the stress period.  usage: scripts/phase2.sh <period_ns>
 # (RC_root, the N_gr* routing-noise probes and RD_phys* were added after the
-#  first pass; see docs/experiment-log.md E4/E5/E7.)
+#  first pass; see docs/experiment-log.md E4/E5/E7/E8.)
 # R0a/R0b: two independent full flows (reproducibility of the whole flow).
 # All other runs branch from R0a's 3_place.odb (identical RTL/SDC/floorplan/
 # placement/tools) and differ only in CTS settings; every run goes through
@@ -33,9 +33,24 @@ RD_phys_b1 -b R0a -t scripts/rd_phys_useful_skew_bufx1.tcl
 JOBS
 xargs -P 2 -L 1 bash -c 'one "$@"' _ < /tmp/phase2_jobs.txt
 
-# stage 3: post-route analyses for every run (worst paths, per-endpoint
+# stage 3: useful skew round 2, selected from RD_phys's POST-ROUTE timing
+#   T30: every endpoint < 30 ps not yet treated, plus a second stage for
+#        round-1 flops still < 30 ps (RD2_STACK=1)  -> RD_phys2
+#   444: only rf_reg[444], the RD_phys worst endpoint  -> RD_phys2_444
+IMG="${ORFS_IMAGE:-openroad/orfs:26Q4-260-gc9ac73efc}"
+mapfile -t MV < <(grep '^makevar=' runs/RD_phys/run_config.txt | sed 's/^makevar=//')
+docker run --rm -e RD2_T=0.030 -e RD2_STACK=1 -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow "$IMG" \
+  bash -c 'source ../env.sh >/dev/null 2>&1; make "$@"' _ "${MV[@]}" \
+  run RUN_SCRIPT=/work/scripts/rd2_select.tcl RUN_LOG_NAME_STEM=rd2_select_T30 >/dev/null 2>&1
+docker run --rm -e RD2_T=0.030 -e 'RD2_ONLY=gen_regfile_ff.register_file_i.rf_reg[444]$_DFFE_PN0P_' \
+  -e RD2_TAG=444 -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow "$IMG" \
+  bash -c 'source ../env.sh >/dev/null 2>&1; make "$@"' _ "${MV[@]}" \
+  run RUN_SCRIPT=/work/scripts/rd2_select.tcl RUN_LOG_NAME_STEM=rd2_select_444 >/dev/null 2>&1
+( one RD_phys2 -b R0a -t scripts/rd_phys2_T30.tcl ) & ( one RD_phys2_444 -b R0a -t scripts/rd_phys2_444.tcl ) & wait
+
+# stage 4: post-route analyses for every run (worst paths, per-endpoint
 # slack, CK arrivals) -> used by summarize.py for the clock/data split
-for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 N_gr48 N_gr52; do
+for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 N_gr48 N_gr52; do
   mapfile -t MV < <(grep '^makevar=' "runs/$n/run_config.txt" | sed 's/^makevar=//')
   for s in worst_paths endpoint_slack dump_ck_arrivals; do
     docker run --rm -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow \

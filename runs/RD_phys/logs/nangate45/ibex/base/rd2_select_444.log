@@ -1,0 +1,6 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RD_phys/results/nangate45/ibex/base/6_final.odb
+read_sdc /work/runs/RD_phys/results/nangate45/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+RD2_SELECT tag=444 candidates=1 selected=1
+Elapsed time: 0:03.75[h:]min:sec. CPU time: user 4.53 sys 0.58 (136%). Peak memory: 233792KB.

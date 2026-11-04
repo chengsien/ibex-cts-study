@@ -1,0 +1,4 @@
+# round-2 selection: T=0.03 ONLY='gen_regfile_ff.register_file_i.rf_reg[444]$_DFFE_PN0P_' STACK=0 STEP=0.045 HOLD_GUARD=0.020 DMAX=0.080
+register                                                      s_cap s_launch    h_cap  allowed ck_driver      decision
+gen_regfile_ff.register_file_i.rf_reg[444]$_DFFE_PN0P_       0.0185   0.2637   0.1403   0.0800 clkbuf_leaf_10 select
+candidates=1 selected=1

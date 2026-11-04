@@ -43,6 +43,7 @@ Ibex SV RTL ──yosys+slang──► netlist ──floorplan (50 % util)──
 | `scripts/sweep_period.sh`, `scripts/phase2.sh` | Phase 1 / Phase 2 drivers |
 | `scripts/rd_useful_skew.tcl` | RD: useful-skew emulation with `set_clock_latency` |
 | `scripts/rd_phys_useful_skew.tcl` (`_bufx1`) | RD_phys: the same selection, built with `insert_buffer` delay buffers on the leaf clock nets |
+| `scripts/rd2_select.tcl`, `scripts/rd_phys2_*.tcl` | useful skew round 2: targets from post-route slack, then round 1 + round 2 buffers |
 | `scripts/endpoint_slack.tcl`, `scripts/dump_ck_arrivals.tcl` | per-endpoint post-route slack / capture latency / startpoint, and every register's CK arrival |
 | `scripts/ndr_check.tcl` | counts clock nets carrying a non-default rule |
 | `scripts/worst_paths.tcl` | top post-route setup paths split into launch / capture clock latency and data delay |
@@ -76,11 +77,12 @@ scripts/phase2.sh 2.2
 ```
 
 ```bash
-python3 scripts/summarize.py cts R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 N_gr48 N_gr52
+python3 scripts/summarize.py cts R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 N_gr48 N_gr52
 ```
 
-`phase2.sh` runs all 14 Phase 2 runs (including RC_root, the N_gr* noise
-probes and RD_phys*). It then runs `worst_paths.tcl`, `endpoint_slack.tcl`
+`phase2.sh` runs all 16 Phase 2 runs (including RC_root, the N_gr* noise
+probes, RD_phys* and the round-2 runs, whose targets `scripts/rd2_select.tcl`
+picks from RD_phys's post-route timing). It then runs `worst_paths.tcl`, `endpoint_slack.tcl`
 and `dump_ck_arrivals.tcl` on each run for the per-endpoint clock/data split.
 
 A full flow takes about 8.6 min on 4 vCPUs. A Phase 2 branch (CTS → finish)
@@ -122,6 +124,8 @@ Plots: [`results/cts_comparison.png`](results/cts_comparison.png),
 | RD | useful skew **emulated** (`set_clock_latency`, STA only) | +26.7 | +26.7 | 0.0 | +0.014 | 0 | 0.312 | 316 | +0.086 / 0 | 4.16 / 12.71 |
 | **RD_phys** | useful skew **built**: 15 × `CLKBUF_X1` before 62 regfile flops | **+41.8** | **+36.3** | +5.6 | **+0.018** | 0 | 0.324 | 331 | +0.086 / 0 | 4.19 / 12.74 |
 | RD_phys_b1 | same with 15 × `BUF_X1` | +34.2 | +28.7 | +5.5 | +0.015 | 0 | 0.316 | 331 | +0.086 / 0 | 4.20 / 12.75 |
+| RD_phys2_444 | round 2: + 1 buffer for `rf_reg[444]` only | +36.9 | +34.8 | +2.1 | +0.017 | 0 | 0.324 | 332 | +0.085 / 0 | 4.19 / 12.74 |
+| **RD_phys2** | round 2 from post-route timing: + 21 buffers for 57 flops < 30 ps | **+55.4** | **+45.7** | +9.7 | **+0.023** | 0 | 0.352 | 352 | +0.085 / 0 | 4.24 / 12.79 |
 | N_gr48 | *noise probe*: routing-only change | +0.4 | +0.7 | −0.3 | −0.014 | −0.35 | 0.311 | 316 | +0.086 / 0 | 4.16 / 12.71 |
 | N_gr52 | *noise probe*: routing-only change | +26.8 | −0.9 | +27.7 | +0.006 | 0 | 0.315 | 316 | +0.086 / 0 | 4.16 / 12.70 |
 
@@ -142,6 +146,13 @@ is the trustworthy column.
   It beat the STA emulation (+27 ps) only because one buffer stage
   (about 36 ps) overshoots the requested 13 ps. The launch side of those
   flops had ≥ 0.14 ns to spare.
+* **Round 2** used post-route slack to pick targets.
+  * Delaying only `rf_reg[444]`, the new worst endpoint, lifts that
+    endpoint by +28.6 ps but lowers WNS by 1.7 ps: routing noise moved its
+    neighbours by more than the 0.3 ps that was available.
+  * Treating the whole < 30 ps tier (RD_phys2) gets WNS to +23.5 ps, but
+    only +5 ps more for 21 buffers and +1.1 % clock power. New path
+    families from other instruction-register bits now limit it.
 * TritonCTS knobs:
   * clustering **off**: +19 ps for +2 % clock power.
   * cluster size 4: +15 ps for +26 % clock power.

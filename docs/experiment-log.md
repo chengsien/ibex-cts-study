@@ -485,7 +485,116 @@ next at +16 ps. The "< 20 ps" count is therefore threshold-sensitive.
   optimization moves the bottleneck. Compare a fixed endpoint set instead.
 
 **Not done / open.**
-* Single pass only. The selection was not repeated after insertion, so the
+* Single pass only (done in E8). The selection was not repeated after insertion, so the
   next path family (`rf_reg[444]` …) was not treated.
 * No multi-step delay chains or delay-cell sizing.
 * No fast-corner hold check, because the platform has no fast corner.
+
+---
+
+## E8 — Useful skew round 2: treating rf_reg[444] and the next tier
+
+**Question.** After RD_phys, the worst endpoint is `rf_reg[444]` (+18.5 ps),
+a flop that round 1 did not select. Does a second round of useful skew
+aimed at it improve the design further?
+
+**Starting point (RD_phys post-route).** `rf_reg[444]` is the edge of a
+dense tier: 3 endpoints < 20 ps, 54 at 20–30 ps, 121 at 30–40 ps. Almost
+all are register-file flops fed from `if_stage_i.instr_rdata_id_o[20]`. The
+next endpoint after `rf_reg[444]` is at +18.8 ps, so delaying `rf_reg[444]`
+alone can raise WNS by at most 0.3 ps, far below the routing noise (E5).
+Round 1 missed it because it selected from CTS-stage (placement-RC) slack,
+where `rf_reg[444]` was above T = 60 ps.
+
+**Method.**
+1. `scripts/rd2_select.tcl` runs on RD_phys's **routed** database + SPEF
+   and selects register endpoints with post-route slack < T2.
+   * Guard: allowed = min((s_launch − s_cap)/2, h_cap − 20 ps, 80 ps), and a
+     register is kept only if allowed ≥ 45 ps (one `CLKBUF_X1` stage
+     realised up to 41 ps in E7).
+   * `RD2_STACK=1` also selects round-1 flops that are still < T2. They get a
+     second stage behind their round-1 buffer.
+2. `scripts/rd_phys2_useful_skew.tcl` (POST_CTS hook, branch from R0a) runs
+   round 1 unchanged. It is deterministic and rebuilds the same 15 buffers
+   with the same 419 legalization moves. Then it inserts round 2: one
+   `CLKBUF_X1` per group of targets sharing a CK net, with the same measure
+   and remove guard as round 1. The flow then re-routes from scratch.
+3. Two variants:
+   * **RD_phys2_444**: literally only `rf_reg[444]` (1 buffer).
+   * **RD_phys2**: T2 = 30 ps with stacking: 48 new flops + 9 round-1 flops,
+     57 targets, 21 buffers, none removed by the guard. Realised extra
+     latency (CTS stage) was +25 to +41 ps, median 36; the stacked second
+     stages gave +25 to +30 ps.
+
+**Result** (post-route, OpenRCX; "Δ vs RA on 31" is the per-endpoint metric
+from E7).
+
+| metric | RA | RD_phys | RD_phys2_444 | **RD_phys2** |
+|---|---|---|---|---|
+| useful-skew buffers (round 1 + round 2) | – | 15 | 15 + 1 | 15 + 21 |
+| delayed flops | – | 62 | 63 | 110 (9 with two stages) |
+| setup WNS / TNS (ns) | −0.0143 / −0.360 | +0.0185 / 0 | **+0.0167** / 0 | **+0.0235** / 0 |
+| endpoints < 20 ps* | 56 | 3 | 6 | **0** |
+| endpoints 20–30 / 30–40 ps | – | 54 / 121 | 101 / 153 | 3 / 108 |
+| `rf_reg[444]` slack / CK arrival | – | +18.5 ps / 272 ps | **+47.1 ps** / 300 ps | +57.7 ps / 308 ps |
+| worst endpoint | rf_reg[991] | rf_reg[444] | rf_reg[787] (not delayed) | rf_reg[863] (round 1, one stage) |
+| Δslack on RA's 31 failing endpoints, clock / data (ps) | 0 / 0 | +36.3 / +5.6 | +34.8 / +2.1 | +45.7 / +9.7 |
+| round-2 targets: Δslack vs RD_phys (ps) | – | – | – | mean +38.5, min +27.5 |
+| worst setup slack of paths launched by the delayed flops (ns) | 0.143 | 0.142 | – | 0.126 |
+| worst hold slack into the delayed flops (ns) | 0.401 | 0.362 | – | 0.338 |
+| design hold WNS (ns) / hold-fix cells | +0.0854 / 0 | +0.0855 / 0 | +0.0854 / 0 | +0.0854 / 0 |
+| clock buffers / max insertion delay (ns) | 316 / 0.312 | 331 / 0.324 | 332 / 0.324 | 352 / **0.352** |
+| clock / total power (mW) | 4.158 / 12.706 | 4.193 / 12.741 | 4.194 / 12.743 | 4.240 / 12.788 |
+| cell area (µm²) | 29 018 | 29 030 | 29 031 | 29 047 |
+| DRC | 0 | 0 | 0 | 0 |
+
+\*threshold-sensitive, see E7.
+
+**Findings.**
+1. **Fixing `rf_reg[444]` alone does nothing for the design.** Its own slack
+   rises from +18.5 to +47.1 ps; its CK is 28 ps later behind the new
+   `CLKBUF_X1`. But WNS *drops* by 1.7 ps (+18.5 → +16.7 ps). The re-route
+   moves other endpoints by more than the 0.3 ps that was available. For
+   example, round-1 flops `rf_reg[831]`/`[895]` fall from about +22 to
+   +17 ps, and `rf_reg[787]` becomes the new worst endpoint. A single-
+   endpoint fix on a dense tier is lost in routing noise.
+2. **Treating the whole tier works, but with sharply diminishing returns.**
+   RD_phys2 lifts the 57 round-2 targets by +38.5 ps on average and leaves
+   no endpoint below 20 ps. WNS still only gains **+5.0 ps** (+18.5 →
+   +23.5 ps). That compares with +32.8 ps from round 1. The new limiters
+   are:
+   * `rf_reg[863]`, a round-1 flop that round 2 did not re-treat (its
+     RD_phys slack was > 30 ps) and that dropped through routing noise.
+   * Two **new path families** from other instruction-register bits:
+     `instr_rdata_id_o[15]` → `rf_reg[381]` (+25.2 ps) and
+     `instr_rdata_id_o[1]` → `rf_reg[87]` (+26.9 ps).
+
+   Behind them is a wall of 108 endpoints at 30–40 ps. Each further round
+   would delay another large group for a few ps.
+3. **Cost per round.**
+   * Round 1: 15 buffers, +0.9 % clock power, +32.8 ps WNS.
+   * Round 2: 21 more buffers, another +1.1 % clock power, +5.0 ps WNS.
+   * In total vs RA: +36 buffers, +2.0 % clock power, +0.65 % total power,
+     +29 µm² (+0.1 % area). Max insertion delay +40 ps, because of the
+     two-stage flops.
+   * Timing margins consumed on the 110 delayed flops: launch side −17 ps
+     (0.143 → 0.126 ns), hold side −63 ps (0.401 → 0.338 ns). Both still
+     have large margins, and no hold fixing was triggered at the typical
+     corner.
+4. **The limit is the startpoint, not the endpoints.** All three remaining
+   families start at instruction-register bits. Delaying hundreds of
+   register-file capture flops one group at a time is the expensive side
+   of the trade. The natural next step would be the opposite move: make
+   the few **launch** flops (`if_stage_i.instr_rdata_id_o[*]`) *earlier*,
+   for example by moving them to an upstream clock net. That has to be
+   paid for on the paths captured *by* those flops and on their hold.
+   It was not tried.
+
+**Learned.**
+* Iterative useful skew needs post-route selection. The CTS-stage estimate
+  missed `rf_reg[444]`.
+* Every round re-routes the whole design, so its WNS benefit must exceed
+  the routing noise (≈ 20–28 ps on the data part) to be visible.
+  Per-endpoint gains on the treated flops (+28.6 ps for `rf_reg[444]`,
+  +38.5 ps mean for the tier) are the reliable measure of what the round
+  achieved.

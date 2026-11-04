@@ -41,6 +41,8 @@ to about 28 ps is not.
 | RD | useful skew **emulated** (`set_clock_latency`, 62 flops, STA only) | +26.7 | +26.7 | 0.0 | +0.0139 | 0 | 0.312 | 316 | +0.0855 / 0 | 4.158 / 12.706 | 29 018 |
 | **RD_phys** | useful skew **built**: 15 × `CLKBUF_X1` in front of the same 62 flops | **+41.8** | **+36.3** | +5.6 | **+0.0185** | 0 | 0.324 | 331 | +0.0856 / 0 | 4.193 / 12.742 | 29 030 |
 | **RD_phys_b1** | same, with 15 × `BUF_X1` | +34.2 | +28.7 | +5.5 | +0.0146 | 0 | 0.316 | 331 | +0.0856 / 0 | 4.201 / 12.748 | 29 030 |
+| RD_phys2_444 | round 2: + 1 `CLKBUF_X1` in front of `rf_reg[444]` only | +36.9 | +34.8 | +2.1 | +0.0167 | 0 | 0.324 | 332 | +0.0854 / 0 | 4.194 / 12.743 | 29 031 |
+| **RD_phys2** | round 2: + 21 `CLKBUF_X1` for 57 flops < 30 ps post-route (9 of them stacked, two stages) | **+55.4** | **+45.7** | +9.7 | **+0.0235** | 0 | **0.352** | 352 | +0.0854 / 0 | 4.240 / 12.788 | 29 047 |
 | N_gr48 | **noise probe** (routing only) | +0.4 | +0.7 | −0.3 | −0.0139 | −0.347 | 0.311 | 316 | +0.0855 / 0 | 4.158 / 12.706 | 29 018 |
 | N_gr52 | **noise probe** (routing only) | +26.8 | −0.9 | **+27.7** | +0.0063 | 0 | 0.315 | 316 | +0.0855 / 0 | 4.158 / 12.702 | 29 019 |
 
@@ -65,9 +67,9 @@ clock part of the slack on the critical endpoints, i.e. latency/skew.**
 * **The clock part of the critical-endpoint slack** is the timing quantity
   that differs most among strategies (0 to +36 ps), and it is the one that
   can be trusted (noise ≤ 0.9 ps).
-  * The largest is **physically built useful skew (RD_phys, +36.3 ps)**.
-    It delays the capture clock of the critical register-file flops
-    directly.
+  * The largest is **physically built useful skew**: +36.3 ps after one
+    round (RD_phys), +45.7 ps after two (RD_phys2). It delays the capture
+    clock of the critical register-file flops directly.
   * Among the TritonCTS knobs, **clustering off (+18.9 ps)** is the
     largest. With clustering, the launch flop `instr_rdata_id_o[20]` sits in
     a cluster whose leaf buffer arrives about 21 ps *after* the capture
@@ -75,7 +77,7 @@ clock part of the slack on the critical endpoints, i.e. latency/skew.**
     to the sinks (uniform depth 3) removes most of that offset. It also
     lowers max insertion delay by 23 ps, the largest latency change among
     the CTS knobs.
-* **Setup WNS** spans 32.8 ps (−0.0143 … +0.0185 ns), about 1.5 % of the
+* **Setup WNS** spans 37.8 ps (−0.0143 … +0.0235 ns), about 1.7 % of the
   period. **TNS and pass/fail** look like the biggest change (−0.36 ns → 0,
   fail → pass). But the stress period misses by only 14 ps, and a
   routing-only perturbation (N_gr52) already makes it pass. So the
@@ -88,6 +90,7 @@ clock part of the slack on the critical endpoints, i.e. latency/skew.**
 | improvement (clock part, credited) | cost |
 |---|---|
 | **Useful skew, built** (RD_phys): +36.3 ps | 15 `CLKBUF_X1` (+12 µm², +0.04 % area). Clock power **+0.9 %** (+0.036 mW), total +0.3 %. Clock wire +0.5 %, max insertion delay +11 ps. The delayed flops give up slack where they *launch*: register-file → register-file paths lose about 34 ps, but they started with ≥ 0.14 ns, so it does not show in WNS. Hold *into* the delayed flops drops by 39 ps (0.401 → 0.362 ns), still a large margin at the typical corner. The step is coarse: one `CLKBUF_X1` gives +27…41 ps (median 36) where 7–20 ps was asked for. That overshoot happens to help here, but it means the delay cannot be tuned finely. `BUF_X1` gives a smaller step (+20…34 ps) for +28.7 ps. |
+| **Useful skew, round 2** (RD_phys2): another +9.4 ps clock part on RA's 31 endpoints; +38.5 ps on the 57 new targets | 21 more buffers (36 in total), clock power +1.1 % on top of round 1 (+2.0 % vs RA), total +0.65 % vs RA, area +0.1 %. Max insertion delay rises to 0.352 ns (+40 ps vs RA), because of the 9 two-stage flops. Margins on the 110 delayed flops: launch side 0.126 ns (−17 ps vs RA), hold into them 0.338 ns (−63 ps). It buys only **+5 ps of WNS**. The next limiters are new path families (`instr_rdata_id_o[15]`, `[1]`) and a wall of 108 endpoints at 30–40 ps. Treating `rf_reg[444]` alone (RD_phys2_444) lifts that endpoint by +28.6 ps but *lowers* WNS by 1.7 ps through routing noise. |
 | **Clustering off** (RB_nocl): +18.9 ps, −23 ps max latency | **+2.1 % clock power** (+0.09 mW) despite 21 fewer buffers, total +0.7 %. GRT usage +0.3 pp. A deeper tree (7 levels vs 4 + leaf) means more stages exposed to OCV in a real sign-off (not modelled here). |
 | **Smaller clusters** (RB_s4): +14.6 ps | The most expensive: +274 buffers, **+26 % clock power, +8.5 % total power**, +0.9 % area, +14 % clock wire. The other +12.7 ps of its total gain is in the data part, inside the noise band. |
 | **NDR full** (RC_full): +13.9 ps, −14 ps max latency | Practically free *in this design*. Only 9 nets carry the rule, GRT usage +0.1 pp, clock power −0.4 %. NDR costs routing tracks, and that stays small only because the NDR nets are few. The SI benefit that NDR exists for is not measured (no crosstalk analysis). Its other +16.7 ps is in the data part (noise band). |
@@ -175,7 +178,11 @@ grows by about √10 ≈ 3.2× (≈ 750 µm), possibly with SRAM macros.
 At 2.2 ns, the clock-part gain on the 31 critical endpoints ranks as:
 
 1. **Physically built useful skew: +36 ps** (RD_phys, 15 `CLKBUF_X1`,
-   +0.9 % clock power).
+   +0.9 % clock power). A second round from post-route timing (RD_phys2,
+   +21 buffers) reaches +46 ps and WNS +23.5 ps, but adds only +5 ps of
+   WNS for another +1.1 % clock power. The design is then limited by other
+   instruction-register startpoints and a wall of 108 endpoints at
+   30–40 ps, so further rounds would return even less.
 2. Sink clustering **off: +19 ps** (+2.1 % clock power).
 3. Cluster size 4: +15 ps (+26 % clock power, not worth it).
 4. NDR **full: +14 ps** (≈ free here).

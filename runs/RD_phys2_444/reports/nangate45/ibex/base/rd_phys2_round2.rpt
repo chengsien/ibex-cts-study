@@ -1,0 +1,4 @@
+# round 2 (444) targets=1 buffer=CLKBUF_X1 file=/work/runs/RD_phys/reports/nangate45/ibex/base/rd2_targets_444.txt
+register                                                   buffer            allowed   before    after realised stacked
+gen_regfile_ff.register_file_i.rf_reg[444]$_DFFE_PN0P_     usefulskew2_02603   0.0800   0.2878   0.3157   0.0279 no
+round2: targets=1 groups=1 inserted=1 removed=0 kept=1
