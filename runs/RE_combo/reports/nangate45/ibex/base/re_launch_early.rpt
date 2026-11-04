@@ -1,0 +1,5 @@
+register                                     leaf_net                     upstream_net                      est  allowed   before    after  earlier decision
+if_stage_i.instr_rdata_id_o[15]$_DFFE_PP_    clknet_leaf_6_clk            clknet_4_2_0_clk               0.0435   0.0800   0.2902   0.2482   0.0420 kept
+if_stage_i.instr_rdata_id_o[1]$_DFFE_PP_     clknet_leaf_7_clk            clknet_4_2_0_clk               0.0443   0.0800   0.2909   0.2481   0.0428 kept
+if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_    clknet_leaf_133_clk          clknet_4_4_0_clk               0.0489   0.0797   0.2985   0.2559   0.0425 kept
+targets=3 kept=3 reverted=0

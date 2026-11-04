@@ -1,0 +1,2084 @@
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 4_1_cts cts
+Running cts.tcl, stage 4_1_cts
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RE/results/nangate45/ibex/base/3_place.odb
+read_sdc /work/runs/RE/results/nangate45/ibex/base/3_place.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is CLKBUF_X3.
+[INFO CTS-0051] Sink buffer is CLKBUF_X3.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    CLKBUF_X3
+[INFO CTS-0049] Characterization buffer is CLKBUF_X3.
+[INFO CTS-0007] Net "clk_i" found for clock "core_clock".
+[INFO CTS-0011]  Clock net "clk_i" for macros has 1 sinks.
+[INFO CTS-0011]  Clock net "clk_i_regs" for registers has 995 sinks.
+[INFO CTS-0010]  Clock net "clk" has 943 sinks.
+[INFO CTS-0008] TritonCTS found 3 clock nets.
+[INFO CTS-0097] Characterization used 1 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_i.
+[INFO CTS-0028]  Total number of sinks: 1.
+[INFO CTS-0060]  Macro  sinks will be clustered in groups of up to 4 and based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).
+[INFO CTS-0023]  Original sink region: [(254850, 310680), (254850, 310680)].
+[INFO CTS-0024]  Normalized sink region: [(18.2036, 22.1914), (18.2036, 22.1914)].
+[INFO CTS-0025]     Width:  0.0000.
+[INFO CTS-0026]     Height: 0.0000.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 1
+    Sub-region size: 0.0000 X 0.0000
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (591.189 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 1.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_i_regs.
+[INFO CTS-0028]  Total number of sinks: 995.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).
+[INFO CTS-0206] Best clustering solution was found from max clustering size of 9 and max clustering diameter of 56.
+[INFO CTS-0019]  Total number of sinks after clustering: 141.
+[INFO CTS-0024]  Normalized sink region: [(1.52046, 0.552857), (33.3729, 22.7213)].
+[INFO CTS-0025]     Width:  31.8524.
+[INFO CTS-0026]     Height: 22.1684.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 71
+    Sub-region size: 15.9262 X 22.1684
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 36
+    Sub-region size: 15.9262 X 11.0842
+[INFO CTS-0034]     Segment length (rounded): 6.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 18
+    Sub-region size: 7.9631 X 11.0842
+[INFO CTS-0034]     Segment length (rounded): 4.
+ Level 4
+    Direction: Vertical
+    Sinks per sub-region: 9
+    Sub-region size: 7.9631 X 5.5421
+[INFO CTS-0034]     Segment length (rounded): 2.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (591.189 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 141.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 943.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).
+[INFO CTS-0206] Best clustering solution was found from max clustering size of 9 and max clustering diameter of 72.
+[INFO CTS-0019]  Total number of sinks after clustering: 136.
+[INFO CTS-0024]  Normalized sink region: [(2.84917, 10.8047), (33.4613, 33.4843)].
+[INFO CTS-0025]     Width:  30.6121.
+[INFO CTS-0026]     Height: 22.6796.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 68
+    Sub-region size: 15.3061 X 22.6796
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 34
+    Sub-region size: 15.3061 X 11.3398
+[INFO CTS-0034]     Segment length (rounded): 6.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 17
+    Sub-region size: 7.6530 X 11.3398
+[INFO CTS-0034]     Segment length (rounded): 4.
+ Level 4
+    Direction: Vertical
+    Sinks per sub-region: 9
+    Sub-region size: 7.6530 X 5.6699
+[INFO CTS-0034]     Segment length (rounded): 2.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (591.189 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 136.
+[INFO CTS-0018]     Created 2 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 2 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 1:1..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 158 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 158 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:1, 3:2, 4:1, 5:5, 6:22, 7:66, 8:49, 9:5, 10:1, 11:2, 12:3..
+[INFO CTS-0017]     Max level of the clock tree: 4.
+[INFO CTS-0018]     Created 153 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 153 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:2, 4:2, 5:8, 6:26, 7:66, 8:38, 9:5, 10:1, 11:1, 12:1, 13:1, 14:1..
+[INFO CTS-0017]     Max level of the clock tree: 4.
+[INFO CTS-0124] Clock net "clk_i"
+[INFO CTS-0125]  Sinks 1
+[INFO CTS-0098] Clock net "clk_i_regs"
+[INFO CTS-0099]  Sinks 1108
+[INFO CTS-0100]  Leaf buffers 141
+[INFO CTS-0101]  Average sink wire length 111.28 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 113
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 1062
+[INFO CTS-0100]  Leaf buffers 136
+[INFO CTS-0101]  Average sink wire length 121.17 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 119
+[INFO CTS-0033] Balancing latency for clock core_clock
+[INFO CTS-0036]  inserted 2 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 2
+[INFO CTS-0500] Runtime: 2.07s
+estimate_parasitics -placement
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 9993 moves: displacement total 6847.5 u, max 6.4 u; HPWL 200398.0 -> 203734.8 u (+1.7 %).
+[INFO DPL-0500] Runtime: 0.22s
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -verbose
+[WARNING RSZ-2024] Experimental repair setup policy 'SetupParallelEvalPolicy' selected. Do not use this for production.
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpoint
+------------------------------------------------------------------------------------------------------------------------------
+    final |       0 |       0 |        0 |      0 |     0 |    +0.0% |    0.040 |        0.0 |      0 | gen_regfile_ff.register_file_i.rf_reg\[991\]$_DFFE_PN0P_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0505] Runtime: 1.27s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.06s
+Elapsed time: 0:05.12[h:]min:sec. CPU time: user 1.95 sys 0.76 (53%). Peak memory: 113376KB.
+Repair timing output passed lec test
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 0 moves: displacement total 0.0 u, max 0.0 u; HPWL 203734.8 -> 203734.8 u (+0.0 %).
+[INFO DPL-0500] Runtime: 0.13s
+check_placement -placeable -verbose
+estimate_parasitics -placement
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 29018 um^2 52% utilization.
+source /work/scripts/re_RA.tcl
+[INFO FLW-0941] RE launch-early (RA_T30): targets from /work/runs/RA/reports/nangate45/ibex/base/re_targets_RA_T30.txt
+[INFO FLW-0942] RE: moved 1 CK pins one stage up (0 reverted)
+worst slack max 0.05
+worst slack min 0.09
+write_db /work/runs/RE/results/nangate45/ibex/base/4_1_cts.odb
+write_sdc -no_timestamp /work/runs/RE/results/nangate45/ibex/base/4_cts.sdc
+Elapsed time: 0:26.75[h:]min:sec. CPU time: user 36.69 sys 2.46 (146%). Peak memory: 335620KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+4_1_cts                .odb          5        3     0.53      110 c2e8237bbd
+cp /work/runs/RE/results/nangate45/ibex/base/4_1_cts.odb /work/runs/RE/results/nangate45/ibex/base/4_cts.odb
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 5_1_grt global_route
+Running global_route.tcl, stage 5_1_grt
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RE/results/nangate45/ibex/base/4_cts.odb
+read_sdc /work/runs/RE/results/nangate45/ibex/base/4_cts.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+pin_access
+[INFO DRT-0149] Reading tech and libs.
+
+Units:                2000
+Number of layers:     21
+Number of macros:     135
+Number of vias:       33
+Number of viarulegen: 19
+
+[INFO DRT-0150] Reading design.
+
+Design:                   ibex_core
+Die area:                 ( 0 0 ) ( 478560 478560 )
+Number of track patterns: 20
+Number of DEF vias:       0
+Number of components:     15091
+Number of terminals:      266
+Number of snets:          2
+Number of nets:           17097
+
+[INFO DRT-0167] List of default vias:
+  Layer via2
+    default via: via2_5
+  Layer via3
+    default via: via3_2
+  Layer via4
+    default via: via4_0
+  Layer via5
+    default via: via5_0
+  Layer via6
+    default via: via6_0
+  Layer via7
+    default via: via7_0
+  Layer via8
+    default via: via8_0
+  Layer via9
+    default via: via9_0
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 148.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete active.
+[INFO DRT-0024]   Complete Fr_VIA.
+[INFO DRT-0024]   Complete metal1.
+[INFO DRT-0024]   Complete via1.
+[INFO DRT-0024]   Complete metal2.
+[INFO DRT-0024]   Complete via2.
+[INFO DRT-0024]   Complete metal3.
+[INFO DRT-0024]   Complete via3.
+[INFO DRT-0024]   Complete metal4.
+[INFO DRT-0024]   Complete via4.
+[INFO DRT-0024]   Complete metal5.
+[INFO DRT-0024]   Complete via5.
+[INFO DRT-0024]   Complete metal6.
+[INFO DRT-0024]   Complete via6.
+[INFO DRT-0024]   Complete metal7.
+[INFO DRT-0024]   Complete via7.
+[INFO DRT-0024]   Complete metal8.
+[INFO DRT-0024]   Complete via8.
+[INFO DRT-0024]   Complete metal9.
+[INFO DRT-0024]   Complete via9.
+[INFO DRT-0024]   Complete metal10.
+[INFO DRT-0033] active shape region query size = 0.
+[INFO DRT-0033] FR_VIA shape region query size = 0.
+[INFO DRT-0033] metal1 shape region query size = 333795.
+[INFO DRT-0033] via1 shape region query size = 2295.
+[INFO DRT-0033] metal2 shape region query size = 1530.
+[INFO DRT-0033] via2 shape region query size = 2295.
+[INFO DRT-0033] metal3 shape region query size = 1530.
+[INFO DRT-0033] via3 shape region query size = 2295.
+[INFO DRT-0033] metal4 shape region query size = 846.
+[INFO DRT-0033] via4 shape region query size = 720.
+[INFO DRT-0033] metal5 shape region query size = 367.
+[INFO DRT-0033] via5 shape region query size = 720.
+[INFO DRT-0033] metal6 shape region query size = 185.
+[INFO DRT-0033] via6 shape region query size = 288.
+[INFO DRT-0033] metal7 shape region query size = 104.
+[INFO DRT-0033] via7 shape region query size = 0.
+[INFO DRT-0033] metal8 shape region query size = 0.
+[INFO DRT-0033] via8 shape region query size = 0.
+[INFO DRT-0033] metal9 shape region query size = 0.
+[INFO DRT-0033] via9 shape region query size = 0.
+[INFO DRT-0033] metal10 shape region query size = 0.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0078]   Complete 870 pins.
+[INFO DRT-0079]   Complete 100 unique inst patterns.
+[INFO DRT-0081]   Complete 148 unique inst patterns.
+[INFO DRT-0084]   Complete 8151 groups.
+#scanned instances     = 15091
+#unique  instances     = 148
+#stdCellGenAp          = 5147
+#stdCellValidPlanarAp  = 0
+#stdCellValidViaAp     = 3565
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 56010
+#instTermValidViaApCnt = 0
+#macroGenAp            = 0
+#macroValidPlanarAp    = 0
+#macroValidViaAp       = 0
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:02:39, elapsed time = 00:01:20, memory = 160.36 (MB), peak = 160.03 (MB)
+Took 80 seconds: pin_access
+global_route -congestion_report_file /work/runs/RE/reports/nangate45/ibex/base/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose
+[INFO GRT-0020] Min routing layer: metal2
+[INFO GRT-0021] Max routing layer: metal10
+[INFO GRT-0022] Global adjustment: 0%
+[INFO GRT-0023] Grid origin: (0, 0)
+[INFO GRT-0088] Layer metal1  Track-Pitch = 0.1400  line-2-Via Pitch: 0.1350
+[INFO GRT-0088] Layer metal2  Track-Pitch = 0.1900  line-2-Via Pitch: 0.1400
+[INFO GRT-0088] Layer metal3  Track-Pitch = 0.1400  line-2-Via Pitch: 0.1400
+[INFO GRT-0088] Layer metal4  Track-Pitch = 0.2800  line-2-Via Pitch: 0.2800
+[INFO GRT-0088] Layer metal5  Track-Pitch = 0.2800  line-2-Via Pitch: 0.2800
+[INFO GRT-0088] Layer metal6  Track-Pitch = 0.2800  line-2-Via Pitch: 0.2800
+[INFO GRT-0088] Layer metal7  Track-Pitch = 0.8000  line-2-Via Pitch: 0.8000
+[INFO GRT-0088] Layer metal8  Track-Pitch = 0.8000  line-2-Via Pitch: 0.8000
+[INFO GRT-0088] Layer metal9  Track-Pitch = 1.6000  line-2-Via Pitch: 1.6000
+[INFO GRT-0088] Layer metal10 Track-Pitch = 1.6000  line-2-Via Pitch: 1.6000
+[INFO GRT-0003] Macros: 0
+[INFO GRT-0004] Blockages: 0
+[INFO GRT-0019] Found 318 clock nets.
+[INFO GRT-0001] Minimum degree: 2
+[INFO GRT-0002] Maximum degree: 51
+
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+metal1     Horizontal          0             0          0.00%
+metal2     Vertical       100942         47478          52.97%
+metal3     Horizontal     139346         68372          50.93%
+metal4     Vertical        68388         48380          29.26%
+metal5     Horizontal      69718         49225          29.39%
+metal6     Vertical        69863         49337          29.38%
+metal7     Horizontal      21320         14924          30.00%
+metal8     Vertical        24436         17548          28.19%
+metal9     Horizontal      12218          6888          43.62%
+metal10    Vertical        12218          6888          43.62%
+---------------------------------------------------------------
+
+[INFO GRT-0197] Via related to pin nodes: 98431
+[INFO GRT-0198] Via related Steiner nodes: 2206
+[INFO GRT-0199] Via filling finished.
+[INFO GRT-0111] Final number of vias: 125059
+[INFO GRT-0112] Final usage 3D: 463560
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Congestion
+---------------------------------------------------------------------------------------
+metal1               0             0            0.00%             0 /  0 /  0
+metal2           47478         26847           56.55%             0 /  0 /  0
+metal3           68372         34988           51.17%             0 /  0 /  0
+metal4           48380         12462           25.76%             0 /  0 /  0
+metal5           49225         11615           23.60%             0 /  0 /  0
+metal6           49337          1955            3.96%             0 /  0 /  0
+metal7           14924           516            3.46%             0 /  0 /  0
+metal8           17548             0            0.00%             0 /  0 /  0
+metal9            6888             0            0.00%             0 /  0 /  0
+metal10           6888             0            0.00%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total           309040         88383           28.60%             0 /  0 /  0
+
+[INFO GRT-0018] Total wirelength: 367319 um
+[INFO GRT-0014] Routed nets: 15232
+[INFO GRT-0303] Global routing runtime = 00:00:01
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+estimate_parasitics -global_routing
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     17329
+     1000 |     +0.0% |       0 |       0 |             0 |     16329
+     2000 |     +0.0% |       0 |       0 |             0 |     15329
+     3000 |     +0.0% |       0 |       0 |             0 |     14329
+[WARNING RSZ-0104] Net _14551_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14550_ only has one pin. Check if it is intended to be dangling.
+     4000 |     +0.0% |       0 |       0 |             0 |     13329
+[WARNING RSZ-0104] Net _14470_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14469_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14466_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14465_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14468_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14467_ only has one pin. Check if it is intended to be dangling.
+     5000 |     +0.0% |       0 |       0 |             1 |     12329
+[WARNING RSZ-0104] Net _14539_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14540_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14538_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14535_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14534_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14533_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14532_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14531_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14530_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14519_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14518_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14517_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14515_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14505_ only has one pin. Check if it is intended to be dangling.
+     6000 |     +0.0% |       0 |       0 |             1 |     11329
+[WARNING RSZ-0104] Net _14544_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14541_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14537_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14536_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14528_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14526_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14525_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14524_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14523_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14522_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14520_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14516_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14552_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14543_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14542_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14529_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14527_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14521_ only has one pin. Check if it is intended to be dangling.
+     7000 |     +0.0% |       0 |       0 |             1 |     10329
+[WARNING RSZ-0104] Net _14545_ only has one pin. Check if it is intended to be dangling.
+     8000 |     +0.0% |       0 |       0 |             1 |      9329
+[WARNING RSZ-0104] Net _14507_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14506_ only has one pin. Check if it is intended to be dangling.
+     9000 |     +0.0% |       0 |       0 |             1 |      8329
+[WARNING RSZ-0104] Net _14549_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14548_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14547_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _14546_ only has one pin. Check if it is intended to be dangling.
+    10000 |     +0.0% |       0 |       0 |             1 |      7329
+    11000 |     +0.0% |       0 |       0 |             1 |      6329
+    12000 |     +0.0% |       0 |       0 |             1 |      5329
+[WARNING RSZ-0104] Net _14501_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12085_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12084_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11961_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12106_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12105_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12104_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12103_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12102_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12101_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12100_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12099_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12098_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12097_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12096_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12095_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12094_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12093_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12092_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12091_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12090_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12089_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12088_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12087_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12086_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13693_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13684_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11965_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12116_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12115_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12114_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12113_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12112_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12111_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12110_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11924_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12137_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12109_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12136_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12135_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12134_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12133_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12132_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12131_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12130_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12129_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12128_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12127_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12108_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12126_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12125_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12124_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12123_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12122_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12121_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12120_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12119_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12118_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12117_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12107_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12059_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12058_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12057_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12056_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12055_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12054_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12053_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11917_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12080_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12052_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12079_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12078_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12077_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12076_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12075_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12074_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12073_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12072_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12071_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12070_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12069_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12068_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12067_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12066_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12065_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12064_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12063_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12062_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12061_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12060_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11918_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11941_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12362_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12361_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12360_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12359_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12358_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12357_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12372_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12371_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12370_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12369_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12368_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12367_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12366_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12365_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12364_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11942_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12377_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12376_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12375_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12374_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12373_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12363_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11900_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11953_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12629_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12628_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12627_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12626_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12625_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12624_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12623_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13700_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12650_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12622_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12649_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12648_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12647_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12646_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12645_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12644_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12643_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12642_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12641_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12640_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12639_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12638_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12637_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12636_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12635_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12634_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12633_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12632_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12631_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12630_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13676_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12416_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11937_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12499_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12498_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12497_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12496_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12495_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12415_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12494_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12493_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12492_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12491_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12490_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12489_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12488_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12487_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12486_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12485_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12414_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12484_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12483_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12482_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12481_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12480_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12479_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12478_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12477_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12476_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12475_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12413_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12474_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12473_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12472_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12471_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12470_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12469_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11925_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12468_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12467_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12466_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12412_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12465_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12464_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12463_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12462_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12461_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12460_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12459_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12458_ only has one pin. Check if it is intended to be dangling.
+    13000 |     +0.0% |       0 |       0 |             1 |      4329
+[WARNING RSZ-0104] Net _12457_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12456_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12411_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12455_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12454_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12453_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12452_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12451_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12450_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12449_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12448_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12447_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12446_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12410_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12445_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12444_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12443_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12442_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12441_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12440_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12439_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12438_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11922_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12437_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12409_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12436_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12435_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12434_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12433_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12432_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12431_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12430_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12429_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12428_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12427_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12408_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12426_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12425_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12424_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12423_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12422_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12421_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12420_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12419_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12418_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12417_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12407_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12385_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12384_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12383_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12382_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12381_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12380_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12379_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11934_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12406_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12405_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12404_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12403_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12402_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12401_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12400_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12399_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12398_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12397_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12396_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12378_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12395_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12394_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12393_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12392_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12391_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12390_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12389_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12388_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12387_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12386_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13696_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11930_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11974_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11973_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11972_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11971_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11970_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11969_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11968_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11966_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11995_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13692_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11994_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11993_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11992_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11991_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11990_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11989_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11988_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11987_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11986_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11985_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11984_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11983_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11982_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11981_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11980_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11979_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11978_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11977_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11976_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11975_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13703_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13702_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11931_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12651_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11939_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13699_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13698_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13697_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13677_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13678_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13679_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13680_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13681_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13682_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13683_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11945_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12661_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12660_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12659_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12658_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12657_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12656_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12655_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11932_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12682_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12654_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12681_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12680_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12679_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12678_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12677_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12676_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12675_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12674_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12673_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12672_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12653_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12671_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12670_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12669_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12668_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12667_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12666_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12665_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12664_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12663_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12662_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12652_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12692_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12691_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12690_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12689_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12688_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12687_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12686_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11933_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12713_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12685_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12712_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12711_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12710_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12709_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12708_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12707_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12706_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12705_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12704_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12703_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12684_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12702_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12701_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12700_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12699_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12698_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12697_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12696_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12695_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12694_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12693_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12683_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11967_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13688_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13689_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13690_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13691_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13675_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13694_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13685_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13686_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13687_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11997_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11996_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11920_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12018_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12017_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12016_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12015_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12014_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12013_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12012_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12011_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12010_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12009_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12008_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12007_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12006_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12005_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12004_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12003_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12002_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12001_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12000_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11999_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11998_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12235_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12234_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12233_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12232_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12231_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12230_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12229_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11947_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12256_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12228_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12255_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12254_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12253_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12252_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12251_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12250_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12249_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12248_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12247_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12246_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12227_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12245_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12244_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12243_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12242_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12241_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12240_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12239_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12238_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12237_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12236_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12226_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13695_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12140_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12139_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12138_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11943_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12141_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12330_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12329_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12328_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12327_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12326_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12325_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12324_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11928_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12351_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12323_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12350_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12349_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12348_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12347_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12346_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12345_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12344_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12343_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12342_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12341_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12322_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12340_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12339_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12338_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12337_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12336_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12335_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12334_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12333_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12332_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12331_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12321_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11927_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12320_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12319_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11929_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12356_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12355_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12354_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12353_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12352_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12199_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12198_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12197_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12196_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12195_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12194_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12193_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11923_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12220_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12192_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12219_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12218_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12217_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12216_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12215_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12214_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12213_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12212_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12211_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12210_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12191_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12209_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12208_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12207_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12206_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12205_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12204_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12203_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12202_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12201_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12200_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12190_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12182_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12181_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12180_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12179_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12178_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12177_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12176_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12175_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12174_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11951_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12189_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12188_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12187_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12186_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12185_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12184_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12183_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12173_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12151_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12150_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12149_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12148_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12147_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12146_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12145_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11921_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12172_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12144_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12171_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12170_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12169_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12168_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12167_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12166_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12165_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12164_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12163_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12162_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12143_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12161_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12160_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12159_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12158_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12157_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12156_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12155_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12154_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12153_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12152_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12142_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11946_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12225_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12224_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12223_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12222_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12221_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12297_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12296_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12295_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12294_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12293_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12292_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12291_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11950_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12318_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12290_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12317_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12316_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12315_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12314_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12313_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12312_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12311_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12310_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12309_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12308_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12289_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12307_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12306_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12305_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12304_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12303_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12302_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12301_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12300_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12299_ only has one pin. Check if it is intended to be dangling.
+    14000 |     +0.0% |       0 |       0 |             1 |      3329
+[WARNING RSZ-0104] Net _12298_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12288_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12266_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12265_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12264_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12263_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12262_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12261_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12260_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11949_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12287_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12259_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12286_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12285_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12284_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12283_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12282_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12281_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12280_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12279_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12278_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12277_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12258_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12276_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12275_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12274_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12273_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12272_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12271_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12270_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12269_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12268_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12267_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12257_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12027_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12026_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12025_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12024_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12023_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12022_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12021_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11948_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12048_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12020_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12047_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12046_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12045_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12044_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12043_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12042_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12041_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12040_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12039_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12038_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12019_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12037_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12036_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12035_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12034_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12033_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12032_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12031_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12030_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12029_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12028_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11919_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12051_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12050_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11940_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11895_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12083_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12082_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12081_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12049_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12569_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12568_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12567_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12566_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11952_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12621_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12620_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12619_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12565_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12618_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12617_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12616_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12615_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12614_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12613_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12612_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12611_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12610_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12609_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12564_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12608_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12607_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12606_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12605_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12604_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12603_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12602_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12601_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12600_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12599_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12563_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12598_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12597_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12596_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12595_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12594_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12593_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12592_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12591_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11962_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12590_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12562_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12589_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12588_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12587_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12586_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12585_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12584_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12583_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12582_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12581_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12580_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12561_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12579_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12578_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12577_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12576_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12575_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12574_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12573_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12572_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12571_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12570_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12508_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12507_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12506_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12505_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11926_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12560_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12559_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12558_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12504_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12557_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12556_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12555_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12554_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12553_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12552_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12551_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12550_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12549_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12548_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12503_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12547_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12546_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12545_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12544_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12543_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12542_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12541_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12540_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12539_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12538_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12502_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12537_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12536_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12535_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12534_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12533_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12532_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12531_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12530_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11944_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12529_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12501_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12528_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12527_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12526_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12525_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12524_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12523_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12522_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12521_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12520_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12519_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12500_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12518_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12517_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12516_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12515_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12514_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12513_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12512_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12511_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12510_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12509_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12779_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12876_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12875_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12874_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12873_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12872_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12871_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12870_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12869_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11909_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13054_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12778_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13053_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13052_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13051_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13050_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13049_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13048_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13047_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13046_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13045_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13044_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12777_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13043_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13042_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13041_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13040_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13039_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13038_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13037_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13036_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13035_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13034_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12776_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13033_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13032_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13031_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13030_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13029_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13028_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13027_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13026_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13025_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13024_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11936_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11898_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13240_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13239_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13238_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13237_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13236_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13235_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13234_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13233_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13232_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12775_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13231_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13230_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13229_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13228_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13227_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13226_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13225_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13224_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13223_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13222_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12774_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13221_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13220_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13219_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13218_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13217_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13216_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13215_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13214_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13213_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13212_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12773_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13211_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13210_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11959_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13550_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13549_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13548_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13547_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13546_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13545_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13544_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12772_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13543_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13542_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13541_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13540_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13539_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13538_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13537_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13536_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13535_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13534_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12771_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13533_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13532_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13531_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13530_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13529_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13528_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13527_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13526_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13525_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13524_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12770_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13523_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13522_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13521_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13520_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _11911_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13178_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13177_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13176_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13175_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13174_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12769_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13173_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13172_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13171_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13170_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13169_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13168_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13167_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13166_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13165_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13164_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _12768_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13163_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13162_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13161_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _13160_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] message limit (1000) reached. This message will no longer print.
+    15000 |     +0.0% |       0 |       0 |             1 |      2329
+    16000 |     +0.0% |       0 |       0 |             1 |      1329
+    17000 |     +0.0% |       0 |       0 |             1 |       329
+    final |     +0.0% |       0 |       0 |             1 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0036] Found 1 capacitance violations.
+[INFO RSZ-0504] Runtime: 2.74s
+global_route -start_incremental
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 0 moves: displacement total 0.0 u, max 0.0 u; HPWL 203722.0 -> 203722.0 u (+0.0 %).
+[INFO DPL-0500] Runtime: 0.13s
+global_route -end_incremental -congestion_report_file /work/runs/RE/reports/nangate45/ibex/base/congestion_post_repair_design.rpt
+Repair setup and hold violations...
+estimate_parasitics -global_routing
+repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -verbose
+[WARNING RSZ-2024] Experimental repair setup policy 'SetupParallelEvalPolicy' selected. Do not use this for production.
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpoint
+------------------------------------------------------------------------------------------------------------------------------
+    final |       0 |       0 |        0 |      0 |     0 |    +0.0% |    0.037 |        0.0 |      0 | gen_regfile_ff.register_file_i.rf_reg\[438\]$_DFFE_PN0P_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0505] Runtime: 1.24s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.12s
+global_route -start_incremental
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 0 moves: displacement total 0.0 u, max 0.0 u; HPWL 203722.0 -> 203722.0 u (+0.0 %).
+[INFO DPL-0500] Runtime: 0.09s
+check_placement -placeable -verbose
+global_route -end_incremental -congestion_report_file /work/runs/RE/reports/nangate45/ibex/base/congestion_post_repair_timing.rpt
+estimate_parasitics -global_routing
+global_route -start_incremental
+global_route -end_incremental -congestion_report_file /work/runs/RE/reports/nangate45/ibex/base/congestion_post_recover_power.rpt
+Repair antennas...
+[WARNING GRT-0246] No diode with LEF class CORE ANTENNACELL found.
+check_placement -placeable -verbose
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Estimate parasitics...
+estimate_parasitics -global_routing
+Report metrics stage 5, global route...
+
+==========================================================================
+global route report_design_area
+--------------------------------------------------------------------------
+Design area 29018 um^2 52% utilization.
+[INFO FLW-0007] clock core_clock period 2.200000
+[WARNING FLW-0010] more than one clock found. Skipping sdc update.
+[INFO FLW-0011] Path endpoint path count 5791
+write_db /work/runs/RE/results/nangate45/ibex/base/5_1_grt.odb
+write_sdc -no_timestamp /work/runs/RE/results/nangate45/ibex/base/5_1_grt.sdc
+Elapsed time: 1:50.50[h:]min:sec. CPU time: user 209.87 sys 1.59 (191%). Peak memory: 496416KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+5_1_grt                .odb        110      211     1.91      484 6de0281438
+5_1_grt                .sdc                                       bdd9229f46
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 5_2_route detail_route
+Running detail_route.tcl, stage 5_2_route
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RE/results/nangate45/ibex/base/5_1_grt.odb
+read_sdc /work/runs/RE/results/nangate45/ibex/base/5_1_grt.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+detailed_route -output_drc /work/runs/RE/reports/nangate45/ibex/base/5_route_drc.rpt -output_maze /work/runs/RE/results/nangate45/ibex/base/maze.log -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
+[INFO DRT-0149] Reading tech and libs.
+
+Units:                2000
+Number of layers:     21
+Number of macros:     135
+Number of vias:       33
+Number of viarulegen: 19
+
+[INFO DRT-0150] Reading design.
+
+Design:                   ibex_core
+Die area:                 ( 0 0 ) ( 478560 478560 )
+Number of track patterns: 20
+Number of DEF vias:       0
+Number of components:     15091
+Number of terminals:      266
+Number of snets:          2
+Number of nets:           17097
+
+[INFO DRT-0167] List of default vias:
+  Layer via2
+    default via: via2_5
+  Layer via3
+    default via: via3_2
+  Layer via4
+    default via: via4_0
+  Layer via5
+    default via: via5_0
+  Layer via6
+    default via: via6_0
+  Layer via7
+    default via: via7_0
+  Layer via8
+    default via: via8_0
+  Layer via9
+    default via: via9_0
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 148.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete active.
+[INFO DRT-0024]   Complete Fr_VIA.
+[INFO DRT-0024]   Complete metal1.
+[INFO DRT-0024]   Complete via1.
+[INFO DRT-0024]   Complete metal2.
+[INFO DRT-0024]   Complete via2.
+[INFO DRT-0024]   Complete metal3.
+[INFO DRT-0024]   Complete via3.
+[INFO DRT-0024]   Complete metal4.
+[INFO DRT-0024]   Complete via4.
+[INFO DRT-0024]   Complete metal5.
+[INFO DRT-0024]   Complete via5.
+[INFO DRT-0024]   Complete metal6.
+[INFO DRT-0024]   Complete via6.
+[INFO DRT-0024]   Complete metal7.
+[INFO DRT-0024]   Complete via7.
+[INFO DRT-0024]   Complete metal8.
+[INFO DRT-0024]   Complete via8.
+[INFO DRT-0024]   Complete metal9.
+[INFO DRT-0024]   Complete via9.
+[INFO DRT-0024]   Complete metal10.
+[INFO DRT-0033] active shape region query size = 0.
+[INFO DRT-0033] FR_VIA shape region query size = 0.
+[INFO DRT-0033] metal1 shape region query size = 333795.
+[INFO DRT-0033] via1 shape region query size = 2295.
+[INFO DRT-0033] metal2 shape region query size = 1530.
+[INFO DRT-0033] via2 shape region query size = 2295.
+[INFO DRT-0033] metal3 shape region query size = 1530.
+[INFO DRT-0033] via3 shape region query size = 2295.
+[INFO DRT-0033] metal4 shape region query size = 846.
+[INFO DRT-0033] via4 shape region query size = 720.
+[INFO DRT-0033] metal5 shape region query size = 367.
+[INFO DRT-0033] via5 shape region query size = 720.
+[INFO DRT-0033] metal6 shape region query size = 185.
+[INFO DRT-0033] via6 shape region query size = 288.
+[INFO DRT-0033] metal7 shape region query size = 104.
+[INFO DRT-0033] via7 shape region query size = 0.
+[INFO DRT-0033] metal8 shape region query size = 0.
+[INFO DRT-0033] via8 shape region query size = 0.
+[INFO DRT-0033] metal9 shape region query size = 0.
+[INFO DRT-0033] via9 shape region query size = 0.
+[INFO DRT-0033] metal10 shape region query size = 0.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0078]   Complete 870 pins.
+[INFO DRT-0079]   Complete 100 unique inst patterns.
+[INFO DRT-0081]   Complete 148 unique inst patterns.
+[INFO DRT-0084]   Complete 8151 groups.
+#scanned instances     = 15091
+#unique  instances     = 148
+#stdCellGenAp          = 5147
+#stdCellValidPlanarAp  = 0
+#stdCellValidViaAp     = 3565
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 56010
+#instTermValidViaApCnt = 0
+#macroGenAp            = 0
+#macroValidPlanarAp    = 0
+#macroValidViaAp       = 0
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:02:32, elapsed time = 00:01:15, memory = 345.09 (MB), peak = 344.89 (MB)
+[INFO DRT-0156] guideIn read 100000 guides.
+
+[INFO DRT-0157] Number of guides:     133386
+
+[INFO DRT-0169] Post process guides.
+[INFO DRT-0176] GCELLGRID X 0 DO 83 STEP 5700 ;
+[INFO DRT-0177] GCELLGRID Y 0 DO 83 STEP 5700 ;
+[INFO DRT-0026]   Complete 100000 origin guides.
+[INFO DRT-0028]   Complete active.
+[INFO DRT-0028]   Complete Fr_VIA.
+[INFO DRT-0028]   Complete metal1.
+[INFO DRT-0028]   Complete via1.
+[INFO DRT-0028]   Complete metal2.
+[INFO DRT-0028]   Complete via2.
+[INFO DRT-0028]   Complete metal3.
+[INFO DRT-0028]   Complete via3.
+[INFO DRT-0028]   Complete metal4.
+[INFO DRT-0028]   Complete via4.
+[INFO DRT-0028]   Complete metal5.
+[INFO DRT-0028]   Complete via5.
+[INFO DRT-0028]   Complete metal6.
+[INFO DRT-0028]   Complete via6.
+[INFO DRT-0028]   Complete metal7.
+[INFO DRT-0028]   Complete via7.
+[INFO DRT-0028]   Complete metal8.
+[INFO DRT-0028]   Complete via8.
+[INFO DRT-0028]   Complete metal9.
+[INFO DRT-0028]   Complete via9.
+[INFO DRT-0028]   Complete metal10.
+[INFO DRT-0178] Init guide query.
+[INFO DRT-0035]   Complete active (guide).
+[INFO DRT-0035]   Complete Fr_VIA (guide).
+[INFO DRT-0035]   Complete metal1 (guide).
+[INFO DRT-0035]   Complete via1 (guide).
+[INFO DRT-0035]   Complete metal2 (guide).
+[INFO DRT-0035]   Complete via2 (guide).
+[INFO DRT-0035]   Complete metal3 (guide).
+[INFO DRT-0035]   Complete via3 (guide).
+[INFO DRT-0035]   Complete metal4 (guide).
+[INFO DRT-0035]   Complete via4 (guide).
+[INFO DRT-0035]   Complete metal5 (guide).
+[INFO DRT-0035]   Complete via5 (guide).
+[INFO DRT-0035]   Complete metal6 (guide).
+[INFO DRT-0035]   Complete via6 (guide).
+[INFO DRT-0035]   Complete metal7 (guide).
+[INFO DRT-0035]   Complete via7 (guide).
+[INFO DRT-0035]   Complete metal8 (guide).
+[INFO DRT-0035]   Complete via8 (guide).
+[INFO DRT-0035]   Complete metal9 (guide).
+[INFO DRT-0035]   Complete via9 (guide).
+[INFO DRT-0035]   Complete metal10 (guide).
+[INFO DRT-0036] active guide region query size = 0.
+[INFO DRT-0036] FR_VIA guide region query size = 0.
+[INFO DRT-0036] metal1 guide region query size = 44674.
+[INFO DRT-0036] via1 guide region query size = 0.
+[INFO DRT-0036] metal2 guide region query size = 38875.
+[INFO DRT-0036] via2 guide region query size = 0.
+[INFO DRT-0036] metal3 guide region query size = 22082.
+[INFO DRT-0036] via3 guide region query size = 0.
+[INFO DRT-0036] metal4 guide region query size = 4202.
+[INFO DRT-0036] via4 guide region query size = 0.
+[INFO DRT-0036] metal5 guide region query size = 1792.
+[INFO DRT-0036] via5 guide region query size = 0.
+[INFO DRT-0036] metal6 guide region query size = 297.
+[INFO DRT-0036] via6 guide region query size = 0.
+[INFO DRT-0036] metal7 guide region query size = 28.
+[INFO DRT-0036] via7 guide region query size = 0.
+[INFO DRT-0036] metal8 guide region query size = 0.
+[INFO DRT-0036] via8 guide region query size = 0.
+[INFO DRT-0036] metal9 guide region query size = 0.
+[INFO DRT-0036] via9 guide region query size = 0.
+[INFO DRT-0036] metal10 guide region query size = 0.
+[INFO DRT-0179] Init gr pin query.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 387.68 (MB), peak = 387.43 (MB)
+[INFO DRT-0245] skipped writing guide updates to database.
+[INFO DRT-0181] Start track assignment.
+[INFO DRT-0184] Done with 43374 vertical wires in 2 frboxes and 68576 horizontal wires in 2 frboxes.
+[INFO DRT-0186] Done with 12615 vertical wires in 2 frboxes and 14349 horizontal wires in 2 frboxes.
+[INFO DRT-0182] Complete track assignment.
+[INFO DRT-0267] cpu time = 00:00:10, elapsed time = 00:00:06, memory = 603.46 (MB), peak = 603.16 (MB)
+[INFO DRT-0187] Start routing data preparation.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 604.42 (MB), peak = 604.03 (MB)
+[INFO DRT-0194] Start detail routing.
+[INFO DRT-0195] Start 0th optimization iteration.
+    Completing 10% with 0 violations.
+    elapsed time = 00:00:07, memory = 684.92 (MB).
+    Completing 20% with 0 violations.
+    elapsed time = 00:00:23, memory = 751.32 (MB).
+    Completing 30% with 650 violations.
+    elapsed time = 00:00:32, memory = 822.80 (MB).
+    Completing 40% with 650 violations.
+    elapsed time = 00:00:45, memory = 789.02 (MB).
+    Completing 50% with 650 violations.
+    elapsed time = 00:01:02, memory = 738.04 (MB).
+    Completing 60% with 1281 violations.
+    elapsed time = 00:01:16, memory = 839.20 (MB).
+    Completing 70% with 1281 violations.
+    elapsed time = 00:01:25, memory = 822.78 (MB).
+    Completing 80% with 1886 violations.
+    elapsed time = 00:01:41, memory = 887.17 (MB).
+    Completing 90% with 1886 violations.
+    elapsed time = 00:01:52, memory = 885.68 (MB).
+    Completing 100% with 2525 violations.
+    elapsed time = 00:02:07, memory = 806.51 (MB).
+[INFO DRT-0199]   Number of violations = 3931.
+Viol/Layer      metal1   via1 metal2   via2 metal3   via3 metal4   via4 metal5 metal6   via6 metal7
+Cut Spacing          0      3      0      7      0      0      0     10      0      0      0      0
+Metal Spacing        5      0    295      0     32      0      1      0      0      0      0      0
+Recheck             36      0    841      0    475      0     24      0     18      8      0      4
+Short                0      3   1764      7    357      2     24      0      9      0      3      3
+[INFO DRT-0267] cpu time = 00:04:12, elapsed time = 00:02:09, memory = 809.44 (MB), peak = 1128.05 (MB)
+Total wire length = 258757 um.
+Total wire length on LAYER metal1 = 0 um.
+Total wire length on LAYER metal2 = 81560 um.
+Total wire length on LAYER metal3 = 104554 um.
+Total wire length on LAYER metal4 = 34393 um.
+Total wire length on LAYER metal5 = 31375 um.
+Total wire length on LAYER metal6 = 5489 um.
+Total wire length on LAYER metal7 = 1383 um.
+Total wire length on LAYER metal8 = 0 um.
+Total wire length on LAYER metal9 = 0 um.
+Total wire length on LAYER metal10 = 0 um.
+Total number of vias = 118550.
+Up-via summary (total 118550):
+
+-----------------
+ active         0
+ metal1     54773
+ metal2     54765
+ metal3      5796
+ metal4      2652
+ metal5       512
+ metal6        52
+ metal7         0
+ metal8         0
+ metal9         0
+-----------------
+       118550
+
+
+[INFO DRT-0195] Start 1st optimization iteration.
+    Completing 10% with 3931 violations.
+    elapsed time = 00:00:09, memory = 951.51 (MB).
+    Completing 20% with 3931 violations.
+    elapsed time = 00:00:21, memory = 918.77 (MB).
+    Completing 30% with 3338 violations.
+    elapsed time = 00:00:29, memory = 822.01 (MB).
+    Completing 40% with 3338 violations.
+    elapsed time = 00:00:43, memory = 919.37 (MB).
+    Completing 50% with 3338 violations.
+    elapsed time = 00:00:52, memory = 926.26 (MB).
+    Completing 60% with 2538 violations.
+    elapsed time = 00:01:09, memory = 910.30 (MB).
+    Completing 70% with 2538 violations.
+    elapsed time = 00:01:17, memory = 899.66 (MB).
+    Completing 80% with 1949 violations.
+    elapsed time = 00:01:35, memory = 914.13 (MB).
+    Completing 90% with 1949 violations.
+    elapsed time = 00:01:48, memory = 931.84 (MB).
+    Completing 100% with 1297 violations.
+    elapsed time = 00:02:05, memory = 835.31 (MB).
+[INFO DRT-0199]   Number of violations = 1297.
+Viol/Layer      metal1   via1 metal2   via2 metal3 metal4 metal5
+Cut Spacing          0      1      0      4      0      0      0
+Metal Spacing        1      0    222      0     15      2      0
+Short                0      0    966      0     82      3      1
+[INFO DRT-0267] cpu time = 00:04:09, elapsed time = 00:02:06, memory = 862.66 (MB), peak = 1128.05 (MB)
+Total wire length = 256835 um.
+Total wire length on LAYER metal1 = 0 um.
+Total wire length on LAYER metal2 = 80603 um.
+Total wire length on LAYER metal3 = 103745 um.
+Total wire length on LAYER metal4 = 34373 um.
+Total wire length on LAYER metal5 = 31242 um.
+Total wire length on LAYER metal6 = 5487 um.
+Total wire length on LAYER metal7 = 1382 um.
+Total wire length on LAYER metal8 = 0 um.
+Total wire length on LAYER metal9 = 0 um.
+Total wire length on LAYER metal10 = 0 um.
+Total number of vias = 117108.
+Up-via summary (total 117108):
+
+-----------------
+ active         0
+ metal1     54807
+ metal2     53456
+ metal3      5706
+ metal4      2599
+ metal5       489
+ metal6        51
+ metal7         0
+ metal8         0
+ metal9         0
+-----------------
+       117108
+
+
+[INFO DRT-0195] Start 2nd optimization iteration.
+    Completing 10% with 1297 violations.
+    elapsed time = 00:00:05, memory = 948.67 (MB).
+    Completing 20% with 1297 violations.
+    elapsed time = 00:00:11, memory = 872.70 (MB).
+    Completing 30% with 1273 violations.
+    elapsed time = 00:00:21, memory = 826.68 (MB).
+    Completing 40% with 1273 violations.
+    elapsed time = 00:00:31, memory = 903.51 (MB).
+    Completing 50% with 1273 violations.
+    elapsed time = 00:00:40, memory = 904.77 (MB).
+    Completing 60% with 1288 violations.
+    elapsed time = 00:00:45, memory = 925.49 (MB).
+    Completing 70% with 1288 violations.
+    elapsed time = 00:00:54, memory = 924.38 (MB).
+    Completing 80% with 1205 violations.
+    elapsed time = 00:01:05, memory = 827.93 (MB).
+    Completing 90% with 1205 violations.
+    elapsed time = 00:01:14, memory = 931.97 (MB).
+    Completing 100% with 1155 violations.
+    elapsed time = 00:01:33, memory = 821.46 (MB).
+[INFO DRT-0199]   Number of violations = 1155.
+Viol/Layer      metal1   via1 metal2   via2 metal3 metal4
+Cut Spacing          0      2      0      4      0      0
+Metal Spacing        1      0    217      0      5      1
+Short                0      0    833      0     88      4
+[INFO DRT-0267] cpu time = 00:03:03, elapsed time = 00:01:34, memory = 820.76 (MB), peak = 1128.46 (MB)
+Total wire length = 256578 um.
+Total wire length on LAYER metal1 = 0 um.
+Total wire length on LAYER metal2 = 80561 um.
+Total wire length on LAYER metal3 = 103656 um.
+Total wire length on LAYER metal4 = 34290 um.
+Total wire length on LAYER metal5 = 31197 um.
+Total wire length on LAYER metal6 = 5495 um.
+Total wire length on LAYER metal7 = 1377 um.
+Total wire length on LAYER metal8 = 0 um.
+Total wire length on LAYER metal9 = 0 um.
+Total wire length on LAYER metal10 = 0 um.
+Total number of vias = 116971.
+Up-via summary (total 116971):
+
+-----------------
+ active         0
+ metal1     54785
+ metal2     53378
+ metal3      5694
+ metal4      2570
+ metal5       493
+ metal6        51
+ metal7         0
+ metal8         0
+ metal9         0
+-----------------
+       116971
+
+
+[INFO DRT-0195] Start 3rd optimization iteration.
+    Completing 10% with 1155 violations.
+    elapsed time = 00:00:03, memory = 968.79 (MB).
+    Completing 20% with 1155 violations.
+    elapsed time = 00:00:08, memory = 987.40 (MB).
+    Completing 30% with 842 violations.
+    elapsed time = 00:00:09, memory = 882.46 (MB).
+    Completing 40% with 842 violations.
+    elapsed time = 00:00:15, memory = 972.33 (MB).
+    Completing 50% with 842 violations.
+    elapsed time = 00:00:21, memory = 876.92 (MB).
+    Completing 60% with 568 violations.
+    elapsed time = 00:00:26, memory = 996.03 (MB).
+    Completing 70% with 568 violations.
+    elapsed time = 00:00:30, memory = 942.62 (MB).
+    Completing 80% with 238 violations.
+    elapsed time = 00:00:35, memory = 972.92 (MB).
+    Completing 90% with 238 violations.
+    elapsed time = 00:00:36, memory = 974.18 (MB).
+    Completing 100% with 25 violations.
+    elapsed time = 00:00:42, memory = 849.76 (MB).
+[INFO DRT-0199]   Number of violations = 25.
+Viol/Layer      metal2 metal3
+Metal Spacing        7      0
+Short               14      4
+[INFO DRT-0267] cpu time = 00:01:28, elapsed time = 00:00:43, memory = 888.82 (MB), peak = 1129.54 (MB)
+Total wire length = 256578 um.
+Total wire length on LAYER metal1 = 0 um.
+Total wire length on LAYER metal2 = 79157 um.
+Total wire length on LAYER metal3 = 103851 um.
+Total wire length on LAYER metal4 = 35478 um.
+Total wire length on LAYER metal5 = 31224 um.
+Total wire length on LAYER metal6 = 5490 um.
+Total wire length on LAYER metal7 = 1376 um.
+Total wire length on LAYER metal8 = 0 um.
+Total wire length on LAYER metal9 = 0 um.
+Total wire length on LAYER metal10 = 0 um.
+Total number of vias = 117991.
+Up-via summary (total 117991):
+
+-----------------
+ active         0
+ metal1     54786
+ metal2     53881
+ metal3      6192
+ metal4      2588
+ metal5       493
+ metal6        51
+ metal7         0
+ metal8         0
+ metal9         0
+-----------------
+       117991
+
+
+[INFO DRT-0195] Start 4th guides tiles iteration.
+    Completing 10% with 25 violations.
+    elapsed time = 00:00:00, memory = 888.82 (MB).
+    Completing 20% with 25 violations.
+    elapsed time = 00:00:00, memory = 888.82 (MB).
+    Completing 30% with 25 violations.
+    elapsed time = 00:00:00, memory = 888.82 (MB).
+    Completing 50% with 25 violations.
+    elapsed time = 00:00:00, memory = 888.82 (MB).
+    Completing 60% with 3 violations.
+    elapsed time = 00:00:00, memory = 888.82 (MB).
+    Completing 70% with 3 violations.
+    elapsed time = 00:00:00, memory = 888.82 (MB).
+    Completing 80% with 3 violations.
+    elapsed time = 00:00:00, memory = 888.82 (MB).
+    Completing 100% with 0 violations.
+    elapsed time = 00:00:00, memory = 888.82 (MB).
+[INFO DRT-0199]   Number of violations = 0.
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:00, memory = 1129.25 (MB), peak = 1129.54 (MB)
+Total wire length = 256576 um.
+Total wire length on LAYER metal1 = 0 um.
+Total wire length on LAYER metal2 = 79156 um.
+Total wire length on LAYER metal3 = 103853 um.
+Total wire length on LAYER metal4 = 35474 um.
+Total wire length on LAYER metal5 = 31225 um.
+Total wire length on LAYER metal6 = 5490 um.
+Total wire length on LAYER metal7 = 1376 um.
+Total wire length on LAYER metal8 = 0 um.
+Total wire length on LAYER metal9 = 0 um.
+Total wire length on LAYER metal10 = 0 um.
+Total number of vias = 117994.
+Up-via summary (total 117994):
+
+-----------------
+ active         0
+ metal1     54786
+ metal2     53881
+ metal3      6193
+ metal4      2590
+ metal5       493
+ metal6        51
+ metal7         0
+ metal8         0
+ metal9         0
+-----------------
+       117994
+
+
+[INFO DRT-0198] Complete detail routing.
+Total wire length = 256576 um.
+Total wire length on LAYER metal1 = 0 um.
+Total wire length on LAYER metal2 = 79156 um.
+Total wire length on LAYER metal3 = 103853 um.
+Total wire length on LAYER metal4 = 35474 um.
+Total wire length on LAYER metal5 = 31225 um.
+Total wire length on LAYER metal6 = 5490 um.
+Total wire length on LAYER metal7 = 1376 um.
+Total wire length on LAYER metal8 = 0 um.
+Total wire length on LAYER metal9 = 0 um.
+Total wire length on LAYER metal10 = 0 um.
+Total number of vias = 117994.
+Up-via summary (total 117994):
+
+-----------------
+ active         0
+ metal1     54786
+ metal2     53881
+ metal3      6193
+ metal4      2590
+ metal5       493
+ metal6        51
+ metal7         0
+ metal8         0
+ metal9         0
+-----------------
+       117994
+
+
+[INFO DRT-0267] cpu time = 00:12:53, elapsed time = 00:06:34, memory = 1129.31 (MB), peak = 1129.54 (MB)
+
+[INFO DRT-0180] Post processing.
+[INFO DRT-0501] Runtime: 477.19s
+Took 477 seconds: detailed_route -output_drc /work/runs/RE/reports/nangate45/ibex/base/5_route_drc.rpt -output_maze /work/runs/RE/results/nangate45/ibex/base/maze.log -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
+[WARNING GRT-0246] No diode with LEF class CORE ANTENNACELL found.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Design area 29018 um^2 52% utilization.
+write_db /work/runs/RE/results/nangate45/ibex/base/5_2_route.odb
+Elapsed time: 8:08.59[h:]min:sec. CPU time: user 953.38 sys 8.20 (196%). Peak memory: 1232520KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+5_2_route              .odb        488      962     1.97     1203 4d75bc46be
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 5_3_fillcell fillcell
+Running fillcell.tcl, stage 5_3_fillcell
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RE/results/nangate45/ibex/base/5_2_route.odb
+read_sdc /work/runs/RE/results/nangate45/ibex/base/5_1_grt.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+filler_placement "FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 FILLCELL_X16 FILLCELL_X32"
+[INFO DPL-0001] Placed 16397 filler instances.
+Design area 29018 um^2 52% utilization.
+write_db /work/runs/RE/results/nangate45/ibex/base/5_3_fillcell.odb
+Elapsed time: 0:00.64[h:]min:sec. CPU time: user 0.54 sys 0.09 (98%). Peak memory: 163132KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+5_3_fillcell           .odb          0        1     0.98      159 a7c1d5a6ea
+cp /work/runs/RE/results/nangate45/ibex/base/5_3_fillcell.odb /work/runs/RE/results/nangate45/ibex/base/5_route.odb
+cp /work/runs/RE/results/nangate45/ibex/base/5_1_grt.sdc /work/runs/RE/results/nangate45/ibex/base/5_route.sdc
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 6_1_fill density_fill
+Running density_fill.tcl, stage 6_1_fill
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RE/results/nangate45/ibex/base/5_route.odb
+read_sdc /work/runs/RE/results/nangate45/ibex/base/5_route.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+exec cp /work/runs/RE/results/nangate45/ibex/base/5_route.odb /work/runs/RE/results/nangate45/ibex/base/6_1_fill.odb
+Elapsed time: 0:00.48[h:]min:sec. CPU time: user 0.38 sys 0.07 (94%). Peak memory: 133708KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+6_1_fill               .odb          0        0     0.94      130 a7c1d5a6ea
+cp /work/runs/RE/results/nangate45/ibex/base/5_route.sdc /work/runs/RE/results/nangate45/ibex/base/6_1_fill.sdc
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 6_report final_report
+Running final_report.tcl, stage 6_report
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RE/results/nangate45/ibex/base/6_1_fill.odb
+read_sdc /work/runs/RE/results/nangate45/ibex/base/6_1_fill.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+write_db /work/runs/RE/results/nangate45/ibex/base/6_final.odb
+write_sdc -no_timestamp /work/runs/RE/results/nangate45/ibex/base/6_final.sdc
+Deleted 0 routing obstructions
+Elapsed time: 0:19.27[h:]min:sec. CPU time: user 19.31 sys 0.19 (101%). Peak memory: 234600KB.
+Global output passed lec test
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+[INFO RCX-0435] Reading extraction model file /OpenROAD-flow-scripts/flow/platforms/nangate45/rcx_patterns.rules ...
+[INFO RCX-0436] RC segment generation ibex_core (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 69588 rc segments
+[INFO RCX-0439] Coupling Cap extraction ibex_core ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 48% of 115898 wires extracted
+[INFO RCX-0442] 100% of 115898 wires extracted
+[INFO RCX-0045] Extract 17097 nets, 84820 rsegs, 84820 caps, 189282 ccs
+[INFO RCX-0443] 17097 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+########## IR report #################
+Net              : VDD
+Corner           : default
+Total power      : 1.27e-02 W
+Supply voltage   : 1.10e+00 V
+Worstcase voltage: 1.10e+00 V
+Average voltage  : 1.10e+00 V
+Average IR drop  : 1.30e-03 V
+Worstcase IR drop: 3.71e-03 V
+Percentage drop  : 0.34 %
+######################################
+[INFO PSM-0040] All shapes on net VSS are connected.
+########## IR report #################
+Net              : VSS
+Corner           : default
+Total power      : 1.27e-02 W
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 2.59e-03 V
+Average voltage  : 1.17e-03 V
+Average IR drop  : 1.17e-03 V
+Worstcase IR drop: 2.59e-03 V
+Percentage drop  : 0.24 %
+######################################
+Cell type report:                       Count       Area
+  Fill cell                             16397   27084.65
+  Tap cell                                423     112.52
+  Clock buffer                            438     519.50
+  Timing Repair Buffer                   1030    1179.98
+  Inverter                                562     300.31
+  Clock inverter                          110      94.96
+  Sequential cell                        1938   10091.24
+  Multi-Input combinational cell        10590   16719.43
+  Total                                 31488   56102.59
+Report metrics stage 6, finish...
+
+==========================================================================
+finish report_design_area
+--------------------------------------------------------------------------
+Design area 29018 um^2 52% utilization.
+Elapsed time: 0:49.75[h:]min:sec. CPU time: user 59.54 sys 1.65 (122%). Peak memory: 476080KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+6_report                            19       20     1.01      229 N/A
+/usr/bin/python3 /OpenROAD-flow-scripts/flow/scripts/run_command.py --log /work/runs/RE/logs/nangate45/ibex/base/6_1_merge.log --tee -- \
+        /OpenROAD-flow-scripts/flow/scripts/klayout.sh -zz -rd design_name=ibex_core \
+        -rd in_def=/work/runs/RE/results/nangate45/ibex/base/6_final.def \
+        -rd in_files="/OpenROAD-flow-scripts/flow/platforms/nangate45/gds/NangateOpenCellLibrary.gds  " \
+        -rd seal_file="" \
+        -rd out_file=/work/runs/RE/results/nangate45/ibex/base/6_1_merged.gds \
+        -rd tech_file=/work/runs/RE/objects/nangate45/ibex/base/klayout.lyt \
+        -rd layer_map= \
+        -r /OpenROAD-flow-scripts/flow/util/def2stream.py
+KLayout 0.30.12
+Warning: DEF UNITS does not match reader DBU (DEF UNITS is 2000 and corresponds to a DBU of 0.0005, but reader DBU is set to 0.0001) (line=5, cell=, file=6_final.def)
+[INFO] Reporting cells prior to loading DEF ...
+	/OpenROAD-flow-scripts/flow/platforms/nangate45/gds/NangateOpenCellLibrary.gds
+[INFO] GDS_ALLOW_EMPTY=fakeram.*
+[INFO] All LEF cells have matching GDS/OAS cells
+[INFO] No orphan cells in the final layout
+Elapsed time: 0:18.78[h:]min:sec. CPU time: user 2.75 sys 0.34 (16%). Peak memory: 493296KB.
+cp /work/runs/RE/results/nangate45/ibex/base/6_1_merged.gds /work/runs/RE/results/nangate45/ibex/base/6_final.gds
+/work/runs/RE/logs/nangate45/ibex/base
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_1_yosys_canonicalize .rtlil        0        0     1.00       49 bc22e716c1
+1_2_yosys              .v           64       64     1.00      101 02870f7b9f
+1_2_yosys              .sdc                                       b8e34dfe48
+1_synth                .odb          0        1     0.99      129 ea01b555f1
+1_synth                .sdc                                       8e98133a22
+2_1_floorplan          .odb          4        6     1.53      167 b8addd5a99
+2_1_floorplan          .sdc                                       8e98133a22
+2_2_floorplan_macro    .odb          0        0     0.97      109 b8addd5a99
+2_3_floorplan_tapcell  .odb          0        0     1.00      108 afde5faea7
+2_4_floorplan_pdn      .odb          0        0     0.98      123 b2467e775e
+3_1_place_gp_skip_io   .odb          0        0     0.93       75 b2467e775e
+3_2_place_iop          .odb          0        0     0.93       75 b2467e775e
+3_3_place_gp           .odb         27       37     1.36      508 ada993ebcc
+3_4_place_resized      .odb          7       10     1.43      272 d082e32451
+3_5_place_dp           .odb          9       12     1.29      294 2692c14baa
+4_1_cts                .odb          5        3     0.53      110 c2e8237bbd
+4_rsz_lec                            5        3     0.53      110 N/A
+5_1_grt                .odb        110      211     1.91      484 6de0281438
+5_1_grt                .sdc                                       bdd9229f46
+5_2_route              .odb        488      962     1.97     1203 4d75bc46be
+5_3_fillcell           .odb          0        1     0.98      159 a7c1d5a6ea
+6_1_fill               .odb          0        0     0.94      130 a7c1d5a6ea
+6_1_fill               .sdc                                       bdd9229f46
+6_1_merge                           18        3     0.16      481 N/A
+6_final_lec            .v           19       20     1.01      229 4c52e2c453
+6_report                            19       20     1.01      229 N/A
+dump_ck_arrivals                     3        4     1.23      257 N/A
+endpoint_slack                       3        4     1.28      231 N/A
+worst_paths                          3        5     1.28      273 N/A
+Total                              760     1345     1.75     1203

@@ -1,0 +1,4 @@
+# RE selection: T=0.03 HOLD_GUARD=0.020 DMAX=0.080
+register                                       n_eps   s_from    s_cap   h_from      est  allowed ck_driver              decision
+if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_         93  -0.0143   0.1188   0.2004   0.0490   0.0800 CLKBUF_X3:clkbuf_leaf_1 select
+startpoints=1 selected=1

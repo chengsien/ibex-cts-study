@@ -1,0 +1,6 @@
+if_stage_i.instr_rdata_id_o[0]$_DFFE_PP_ 0.072528 0.04412499999999997
+if_stage_i.instr_rdata_id_o[15]$_DFFE_PP_ 0.08 0.04379499999999997
+if_stage_i.instr_rdata_id_o[1]$_DFFE_PP_ 0.0716 0.04434699999999997
+if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_ 0.06879 0.04897700000000005
+if_stage_i.instr_rdata_id_o[31]$_DFFE_PP_ 0.073779 0.04350999999999999
+if_stage_i.instr_rdata_id_o[4]$_DFFE_PP_ 0.072632 0.044140999999999986

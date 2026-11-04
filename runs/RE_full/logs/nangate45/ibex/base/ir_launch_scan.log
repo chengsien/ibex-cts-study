@@ -1,0 +1,37 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RE_full/results/nangate45/ibex/base/6_final.odb
+read_sdc /work/runs/RE_full/results/nangate45/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+IR 0 0.06507
+IR 1 0.05864
+IR 2 0.06229
+IR 3 0.07281
+IR 4 0.07482
+IR 5 0.06028
+IR 6 0.07633
+IR 7 0.47579
+IR 8 0.49014
+IR 9 0.47506
+IR 10 0.42220
+IR 11 0.42757
+IR 12 0.05309
+IR 13 0.05999
+IR 14 0.05843
+IR 15 0.03757
+IR 16 0.04405
+IR 17 0.07518
+IR 18 0.16503
+IR 19 0.18372
+IR 20 0.03161
+IR 21 0.05211
+IR 22 0.09980
+IR 23 0.15971
+IR 24 0.15864
+IR 25 0.06415
+IR 26 0.07425
+IR 27 0.06336
+IR 28 0.08145
+IR 29 0.06286
+IR 30 0.07576
+IR 31 0.05931
+Elapsed time: 0:06.53[h:]min:sec. CPU time: user 12.23 sys 1.40 (208%). Peak memory: 244528KB.

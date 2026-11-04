@@ -44,6 +44,8 @@ Ibex SV RTL ──yosys+slang──► netlist ──floorplan (50 % util)──
 | `scripts/rd_useful_skew.tcl` | RD: useful-skew emulation with `set_clock_latency` |
 | `scripts/rd_phys_useful_skew.tcl` (`_bufx1`) | RD_phys: the same selection, built with `insert_buffer` delay buffers on the leaf clock nets |
 | `scripts/rd2_select.tcl`, `scripts/rd_phys2_*.tcl` | useful skew round 2: targets from post-route slack, then round 1 + round 2 buffers |
+| `scripts/re_select.tcl`, `scripts/re_launch_early.tcl`, `scripts/re_*.tcl` | launch-side useful skew: pick launch flops from post-route slack, move their CK pin one clock stage up |
+| `scripts/ir_launch_scan.tcl` | launch slack of every instruction-register bit (direct `-from` scan) |
 | `scripts/endpoint_slack.tcl`, `scripts/dump_ck_arrivals.tcl` | per-endpoint post-route slack / capture latency / startpoint, and every register's CK arrival |
 | `scripts/ndr_check.tcl` | counts clock nets carrying a non-default rule |
 | `scripts/worst_paths.tcl` | top post-route setup paths split into launch / capture clock latency and data delay |
@@ -77,12 +79,12 @@ scripts/phase2.sh 2.2
 ```
 
 ```bash
-python3 scripts/summarize.py cts R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 N_gr48 N_gr52
+python3 scripts/summarize.py cts R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 RE RE_multi RE_full RE_combo RE_combo2 RE_combo3 N_gr48 N_gr52
 ```
 
-`phase2.sh` runs all 16 Phase 2 runs (including RC_root, the N_gr* noise
-probes, RD_phys* and the round-2 runs, whose targets `scripts/rd2_select.tcl`
-picks from RD_phys's post-route timing). It then runs `worst_paths.tcl`, `endpoint_slack.tcl`
+`phase2.sh` runs all 22 Phase 2 runs (including RC_root, the N_gr* noise
+probes, RD_phys*, the round-2 runs and the RE launch-early runs, whose
+targets `rd2_select.tcl` / `re_select.tcl` pick from post-route timing). It then runs `worst_paths.tcl`, `endpoint_slack.tcl`
 and `dump_ck_arrivals.tcl` on each run for the per-endpoint clock/data split.
 
 A full flow takes about 8.6 min on 4 vCPUs. A Phase 2 branch (CTS → finish)
@@ -126,8 +128,13 @@ Plots: [`results/cts_comparison.png`](results/cts_comparison.png),
 | RD_phys_b1 | same with 15 × `BUF_X1` | +34.2 | +28.7 | +5.5 | +0.015 | 0 | 0.316 | 331 | +0.086 / 0 | 4.20 / 12.75 |
 | RD_phys2_444 | round 2: + 1 buffer for `rf_reg[444]` only | +36.9 | +34.8 | +2.1 | +0.017 | 0 | 0.324 | 332 | +0.085 / 0 | 4.19 / 12.74 |
 | **RD_phys2** | round 2 from post-route timing: + 21 buffers for 57 flops < 30 ps | **+55.4** | **+45.7** | +9.7 | **+0.023** | 0 | 0.352 | 352 | +0.085 / 0 | 4.24 / 12.79 |
+| RE | launch-early: `instr_rdata_id_o[20]` CK one stage up (0 cells) | +22.3 | +8.3‡ | +14.0 | +0.008 | 0 | 0.312 | 316 | +0.086 / 0 | 4.16 / 12.71 |
+| **RE_full** | launch-early: 9 instruction-register bits one stage up (0 cells) | +45.8 | **+41.9** | +3.9 | **+0.032** | 0 | 0.312 | 316 | +0.086 / 0 | **4.16 / 12.71** |
+| **RE_combo3** | RD_phys2 + 10 launch moves | **+98.4** | **+84.7** | +11.6 | **+0.048** | 0 | 0.352 | 352 | +0.085 / 0 | 4.24 / 12.79 |
 | N_gr48 | *noise probe*: routing-only change | +0.4 | +0.7 | −0.3 | −0.014 | −0.35 | 0.311 | 316 | +0.086 / 0 | 4.16 / 12.71 |
 | N_gr52 | *noise probe*: routing-only change | +26.8 | −0.9 | +27.7 | +0.006 | 0 | 0.315 | 316 | +0.086 / 0 | 4.16 / 12.70 |
+
+‡ the binding path switches from `[20]` to `[15]`, so this is not the size of the move (−42 ps). RE_multi / RE_combo / RE_combo2 are in experiment-log E9.
 
 † within the data-part noise band (up to +27.7 ps, N_gr52), so not
 credited to CTS. The clock part moves by ≤ 0.9 ps in the noise probes, so it
@@ -153,6 +160,13 @@ is the trustworthy column.
   * Treating the whole < 30 ps tier (RD_phys2) gets WNS to +23.5 ps, but
     only +5 ps more for 21 buffers and +1.1 % clock power. New path
     families from other instruction-register bits now limit it.
+* **Launch-side useful skew is the cheapest lever** (E9). Moving the CK pins
+  of the 9 most critical instruction-register flops one clock stage up
+  (`connect_pin`, **no new cell**, +0.1 % clock power) gives WNS +31.6 ps.
+  That beats RD_phys2's 36 capture-side buffers. Combined with those
+  buffers (RE_combo3) it reaches **+48.2 ps**, the best result. Selecting
+  by each register's own launch slack mattered: two earlier attempts that
+  enumerated paths per endpoint missed launch flops.
 * TritonCTS knobs:
   * clustering **off**: +19 ps for +2 % clock power.
   * cluster size 4: +15 ps for +26 % clock power.

@@ -598,3 +598,135 @@ from E7).
   Per-endpoint gains on the treated flops (+28.6 ps for `rf_reg[444]`,
   +38.5 ps mean for the tier) are the reliable measure of what the round
   achieved.
+
+---
+
+## E9 — RE: useful skew on the launch side ("make the launch flop earlier")
+
+**Question.** All critical paths start at a few instruction-register flops
+`if_stage_i.instr_rdata_id_o[*]` and end at hundreds of register-file flops.
+Instead of delaying many capture flops (E7/E8), can a few launch flops be made
+*earlier*?
+
+**Method.** No cell is added. A launch flop's CK pin is moved from its leaf
+clock net to the input net of the leaf `CLKBUF_X3` that drives it
+(`disconnect_pin` / `connect_pin`), skipping one buffer stage.
+
+* `scripts/re_select.tcl` picks targets on a **routed** run (SPEF). For each
+  candidate flop F:
+  * cost side: setup slack of paths captured *by* F (s_cap), and hold slack
+    of paths launched by F (h_from), since both lose Δ;
+  * expected shift: arrival(F/CK) − arrival(leaf-buffer input), with
+    arrivals sampled before path enumeration;
+  * allowed = min(s_cap − T, h_from − 20 ps, 80 ps). F is selected if the
+    expected shift ≤ allowed.
+* `scripts/re_launch_early.tcl` (POST_CTS hook, branch from R0a) moves the
+  pins and measures the real shift from timing paths. It reverts a move that
+  is too large or goes in the wrong direction; none was reverted.
+* Optionally it first rebuilds RD_phys2 (`re_pre`), for the "combo" runs.
+
+**The selection needed three attempts.** The first two missed launch flops,
+and both shortfalls show up in the results.
+
+| run | base / targets | how targets were found | moved flops |
+|---|---|---|---|
+| RE | RA | worst path per endpoint < 30 ps | `[20]` (it starts all 93 such endpoints) |
+| RE_multi | RA | up to 50 paths per endpoint < 50 ps | `[20] [15] [31] [1] [0] [4]` |
+| **RE_full** | RA | **each register's own launch slack < 50 ps** (`RE_MODE=launch`) | `[20] [15] [21] [1] [31] [0] [3] [4] [30]` (9) |
+| RE_combo | RD_phys2 + | worst path per endpoint < 40 ps | `[20] [15] [1]` |
+| RE_combo2 | RD_phys2 + | 50 paths per endpoint < 60 ps | `[20] [15] [31] [1] [0] [30] [3]` |
+| **RE_combo3** | RD_phys2 + | own launch slack < 60 ps | `[20] [15] [21] [1] [31] [0] [3] [4] [30] [12]` (10) |
+
+Why the first two fell short:
+* RE: the worst path per endpoint only ever shows `[20]`. Once `[20]` is
+  earlier, `[15]` limits the same endpoints.
+* RE_multi: with `-endpoint_path_count 50`, the many `[20]`-launched paths
+  into each register-file flop fill all 50 slots. `[21]`, at +21.3 ps the
+  third-worst launch bit, never appears. A direct `-from` scan of each bit
+  (`scripts/ir_launch_scan.tcl`) shows the true ranking. "Own launch
+  slack" (`slack_max` on the Q pin) gives the same list.
+
+**Launch slack per instruction-register bit** (worst setup slack of the
+paths each bit launches, post-route, ps; from `ir_launch_scan.txt`):
+
+| bit | RA | RE_full | RD_phys2 | RE_combo3 |
+|---|---|---|---|---|
+| [20] | −14.3 | +31.6 | +23.5 | +67.2 |
+| [15] | +9.7 | +37.6 | +25.2 | **+48.2** |
+| [21] | +21.3 | +52.1 | +49.1 | +83.4 |
+| [1] | +25.5 | +58.6 | +26.9 | +54.7 |
+| [31] | +31.3 | +59.3 | +30.8 | +54.8 |
+| [0] | +32.6 | +65.1 | +34.2 | +61.9 |
+| [3] | +40.0 | +72.8 | +43.4 | +71.2 |
+| [4] | +44.3 | +74.8 | +50.6 | +80.9 |
+| [30] | +46.9 | +75.8 | +46.5 | +70.8 |
+| [16] (not moved) | +54.2 | +44.0 | +72.0 | +55.9 |
+
+**Result** (post-route, OpenRCX).
+
+| metric | RA | RD_phys2 | RE | RE_multi | **RE_full** | RE_combo | RE_combo2 | **RE_combo3** |
+|---|---|---|---|---|---|---|---|---|
+| launch moves / added cells | – / 0 | – / 36 | 1 / 0 | 6 / 0 | **9 / 0** | 3 / 36 | 7 / 36 | 10 / 36 |
+| setup WNS (ns) | −0.0143 | +0.0235 | +0.0078 | +0.0167 | **+0.0316** | +0.0226 | +0.0425 | **+0.0482** |
+| TNS (ns) | −0.360 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| endpoints < 20 ps | 56 | 0 | 31 | 23 | 0 | 0 | 0 | 0 |
+| worst path | [20]→rf[991] | [20]→rf[863] | [15]→rf[991] | [21]→rf[991] | [20]→rf[991] | [31]→rf[919] | [21]→rf[87] | [15]→rf[381] |
+| hold WNS (ns) / hold-fix cells | +0.0854 / 0 | +0.0854 / 0 | +0.0855 / 0 | +0.0854 / 0 | +0.0855 / 0 | +0.0854 / 0 | +0.0856 / 0 | +0.0854 / 0 |
+| clock / total power (mW) | 4.158 / 12.706 | 4.240 / 12.788 | 4.159 / 12.708 | 4.159 / 12.708 | **4.162 / 12.710** | 4.238 / 12.786 | 4.242 / 12.792 | 4.243 / 12.793 |
+| cell area (µm²) | 29 018 | 29 047 | 29 018 | 29 018 | **29 018** | 29 047 | 29 047 | 29 047 |
+| min / max insertion delay (ns) | 0.272 / 0.312 | 0.266 / 0.352 | 0.263 / 0.312 | 0.258 / 0.312 | 0.261 / 0.312 | 0.255 / 0.351 | 0.260 / 0.352 | 0.261 / 0.352 |
+| DRC | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+Costs on the moved flops:
+
+| metric (ns) | RA | RE_full | RD_phys2 | RE_combo3 |
+|---|---|---|---|---|
+| worst setup slack of paths **into** the moved flops | 0.117 | 0.103 | 0.118 | 0.104 |
+| worst hold slack from / into the moved flops | 0.124 / 0.124 | 0.125 / 0.125 | 0.125 / 0.125 | 0.124 / 0.124 |
+
+**Findings.**
+1. **Launch-early is far more efficient than capture-delay here.** RE_full
+   moves 9 CK pins, adds no cell, and costs +0.1 % clock power (+0.04 %
+   total). It reaches WNS **+31.6 ps**, more than RD_phys2's +23.5 ps with
+   36 buffers and +2.0 % clock power. The reason is the shape of the
+   critical cone: a handful of instruction-register bits fan out to
+   hundreds of register-file flops. One launch-side move helps thousands of
+   paths at once. In the RE_multi scan, which looked at up to 50 paths per endpoint, `[20]` alone launched 5 676 of the near-critical paths found.
+2. **The shift is real and nearly free in this topology.** After route, the
+   9 moved flops are 35.7–42.0 ps earlier. The other 1 929 flops move by
+   −1.8…+10.4 ps (median −0.2): the leaf nets lost a load, and the shared
+   upstream nets gained up to 5 loads. That side effect is why the unmoved
+   `[16]` dropped from +54.2 to +44.0 ps.
+3. **The cost lands where predicted, and it is small.** Setup into the moved
+   flops (fetch → instruction register) drops by 14–15 ps but keeps more
+   than 0.10 ns. The worst hold paths into and from these flops are the DFFE
+   enable-recirculation loops Q → D on the same flop, which shift with the
+   flop, so hold is unchanged. Design hold WNS is unchanged, with 0 hold-fix
+   cells.
+4. **The selection rule matters as much as the move.** Two of the three
+   attempts were limited by launch flops the selector did not see. Selecting
+   by each register's **own launch slack** found them all. Path enumeration
+   per endpoint does not, because one dominant startpoint fills the
+   per-endpoint slots.
+5. **The limit after one stage is the step size again.** RE_full is now
+   limited by `[20]` itself (−14.3 + about 42 = +31.6 ps), because `[20]`
+   started 24 ps behind the next bit and one buffer stage is worth only
+   about 42 ps. Moving `[20]` two levels up would be the next step, if the
+   setup into it allows: it had 0.103 ns left.
+6. **Launch and capture combine.** RE_combo3 (RD_phys2's 36 capture buffers
+   plus 10 launch moves) reaches **+48.2 ps**, the best result of the
+   study. That is +24.7 ps over RD_phys2 for 10 wire changes, and
+   +16.6 ps over RE_full for 36 buffers. It is now limited by `[15]`.
+
+**Learned.**
+* When the critical cone is "few launch → many capture", treat the launch
+  side first. The capture-side rounds (E7/E8) were the expensive direction.
+* Rank useful-skew candidates by their own launch/capture slack, not by
+  enumerating paths per endpoint.
+
+**Not done / open.**
+* No two-level launch moves, and no automatic iteration of select → build →
+  route.
+* The side-effect load on shared upstream nets (up to +10 ps on other flops)
+  is not part of the guard.
+* As before, there is no fast corner to confirm hold.

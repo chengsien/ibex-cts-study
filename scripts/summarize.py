@@ -184,6 +184,10 @@ def collect(name):
     if hk.exists():
         m = re.search(r"kept=(\d+)", hk.read_text())
         row["usefulskew_buffers"] = int(m.group(1)) if m else None
+    hk3 = reps / "re_launch_early.rpt"
+    if hk3.exists():
+        m = re.search(r"targets=\d+ kept=(\d+)", hk3.read_text())
+        row["launch_early_moves"] = int(m.group(1)) if m else None
     hk2 = reps / "rd_phys2_round2.rpt"
     if hk2.exists():
         m = re.search(r"round2: .*kept=(\d+)", hk2.read_text())
@@ -356,7 +360,7 @@ CTS_COLS = [
     "endpoints_below_0ps", "endpoints_below_20ps",
     "ra_fail_endpoints_dslack_mean_ps", "ra_fail_endpoints_dslack_min_ps",
     "ra_fail_dclock_mean_ps", "ra_fail_ddata_mean_ps", "ra_fail_split_n",
-    "usefulskew_buffers", "usefulskew_round2_buffers",
+    "usefulskew_buffers", "usefulskew_round2_buffers", "launch_early_moves",
 ]
 
 

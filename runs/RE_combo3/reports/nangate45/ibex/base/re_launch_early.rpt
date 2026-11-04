@@ -1,0 +1,12 @@
+register                                     leaf_net                     upstream_net                      est  allowed   before    after  earlier decision
+if_stage_i.instr_rdata_id_o[0]$_DFFE_PP_     clknet_leaf_7_clk            clknet_4_2_0_clk               0.0441   0.0632   0.2909   0.2554   0.0354 kept
+if_stage_i.instr_rdata_id_o[12]$_DFFE_PP_    clknet_leaf_5_clk            clknet_4_2_0_clk               0.0428   0.0576   0.2895   0.2554   0.0340 kept
+if_stage_i.instr_rdata_id_o[15]$_DFFE_PP_    clknet_leaf_6_clk            clknet_4_2_0_clk               0.0435   0.0800   0.2902   0.2552   0.0349 kept
+if_stage_i.instr_rdata_id_o[1]$_DFFE_PP_     clknet_leaf_7_clk            clknet_4_2_0_clk               0.0443   0.0623   0.2909   0.2554   0.0356 kept
+if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_    clknet_leaf_133_clk          clknet_4_4_0_clk               0.0489   0.0597   0.2985   0.2559   0.0425 kept
+if_stage_i.instr_rdata_id_o[21]$_DFFE_PP_    clknet_leaf_3_clk            clknet_4_2_0_clk               0.0429   0.0628   0.2899   0.2555   0.0345 kept
+if_stage_i.instr_rdata_id_o[30]$_DFFE_PP_    clknet_leaf_7_clk            clknet_4_2_0_clk               0.0441   0.0727   0.2908   0.2554   0.0355 kept
+if_stage_i.instr_rdata_id_o[31]$_DFFE_PP_    clknet_leaf_10_clk           clknet_4_2_0_clk               0.0435   0.0646   0.2903   0.2555   0.0348 kept
+if_stage_i.instr_rdata_id_o[3]$_DFFE_PP_     clknet_leaf_7_clk            clknet_4_2_0_clk               0.0443   0.0635   0.2909   0.2554   0.0355 kept
+if_stage_i.instr_rdata_id_o[4]$_DFFE_PP_     clknet_leaf_7_clk            clknet_4_2_0_clk               0.0441   0.0634   0.2908   0.2554   0.0354 kept
+targets=10 kept=10 reverted=0

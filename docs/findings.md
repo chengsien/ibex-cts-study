@@ -43,8 +43,13 @@ to about 28 ps is not.
 | **RD_phys_b1** | same, with 15 × `BUF_X1` | +34.2 | +28.7 | +5.5 | +0.0146 | 0 | 0.316 | 331 | +0.0856 / 0 | 4.201 / 12.748 | 29 030 |
 | RD_phys2_444 | round 2: + 1 `CLKBUF_X1` in front of `rf_reg[444]` only | +36.9 | +34.8 | +2.1 | +0.0167 | 0 | 0.324 | 332 | +0.0854 / 0 | 4.194 / 12.743 | 29 031 |
 | **RD_phys2** | round 2: + 21 `CLKBUF_X1` for 57 flops < 30 ps post-route (9 of them stacked, two stages) | **+55.4** | **+45.7** | +9.7 | **+0.0235** | 0 | **0.352** | 352 | +0.0854 / 0 | 4.240 / 12.788 | 29 047 |
+| RE | launch-early: CK pin of `instr_rdata_id_o[20]` moved one stage up (0 cells) | +22.3 | +8.3† | +14.0 | +0.0078 | 0 | 0.312 | 316 | +0.0855 / 0 | 4.160 / 12.708 | 29 018 |
+| **RE_full** | launch-early: 9 instruction-register bits moved one stage up (0 cells) | +45.8 | **+41.9** | +3.9 | **+0.0316** | 0 | 0.312 | 316 | +0.0855 / 0 | 4.162 / 12.710 | 29 018 |
+| **RE_combo3** | RD_phys2 + 10 launch moves | **+98.4** | **+84.7** | +11.6 | **+0.0482** | 0 | 0.352 | 352 | +0.0854 / 0 | 4.243 / 12.794 | 29 047 |
 | N_gr48 | **noise probe** (routing only) | +0.4 | +0.7 | −0.3 | −0.0139 | −0.347 | 0.311 | 316 | +0.0855 / 0 | 4.158 / 12.706 | 29 018 |
 | N_gr52 | **noise probe** (routing only) | +26.8 | −0.9 | **+27.7** | +0.0063 | 0 | 0.315 | 316 | +0.0855 / 0 | 4.158 / 12.702 | 29 019 |
+
+†In RE the binding path into the 31 endpoints switches from `[20]` to `[15]`. The clock part then compares `[15]`'s launch now with `[20]`'s launch before, so the +8.3 ps is not the size of the move (−42 ps on `[20]`). Intermediate RE variants (RE_multi, RE_combo, RE_combo2) are in experiment-log E9.
 
 GRT usage is 28.4–29.1 % with overflow 0, and DRC is 0 in every run.
 Plots: `results/cts_comparison.png` (six metrics per run) and
@@ -65,11 +70,13 @@ clock part of the slack on the critical endpoints, i.e. latency/skew.**
   so capping clusters at 4 sinks instead of about 9 nearly doubles the leaf
   drivers. Clock power is already 33 % of total power in the default run.
 * **The clock part of the critical-endpoint slack** is the timing quantity
-  that differs most among strategies (0 to +36 ps), and it is the one that
+  that differs most among strategies (0 to +85 ps), and it is the one that
   can be trusted (noise ≤ 0.9 ps).
-  * The largest is **physically built useful skew**: +36.3 ps after one
-    round (RD_phys), +45.7 ps after two (RD_phys2). It delays the capture
-    clock of the critical register-file flops directly.
+  * The largest come from **physically built useful skew**. On the capture
+    side: +36.3 ps after one round (RD_phys), +45.7 ps after two (RD_phys2).
+    On the **launch side** (9 instruction-register flops moved one clock
+    stage earlier, RE_full): +41.9 ps with no new cell. Both together
+    (RE_combo3): +84.7 ps.
   * Among the TritonCTS knobs, **clustering off (+18.9 ps)** is the
     largest. With clustering, the launch flop `instr_rdata_id_o[20]` sits in
     a cluster whose leaf buffer arrives about 21 ps *after* the capture
@@ -77,7 +84,7 @@ clock part of the slack on the critical endpoints, i.e. latency/skew.**
     to the sinks (uniform depth 3) removes most of that offset. It also
     lowers max insertion delay by 23 ps, the largest latency change among
     the CTS knobs.
-* **Setup WNS** spans 37.8 ps (−0.0143 … +0.0235 ns), about 1.7 % of the
+* **Setup WNS** spans 62.5 ps (−0.0143 … +0.0482 ns), about 2.8 % of the
   period. **TNS and pass/fail** look like the biggest change (−0.36 ns → 0,
   fail → pass). But the stress period misses by only 14 ps, and a
   routing-only perturbation (N_gr52) already makes it pass. So the
@@ -90,6 +97,7 @@ clock part of the slack on the critical endpoints, i.e. latency/skew.**
 | improvement (clock part, credited) | cost |
 |---|---|
 | **Useful skew, built** (RD_phys): +36.3 ps | 15 `CLKBUF_X1` (+12 µm², +0.04 % area). Clock power **+0.9 %** (+0.036 mW), total +0.3 %. Clock wire +0.5 %, max insertion delay +11 ps. The delayed flops give up slack where they *launch*: register-file → register-file paths lose about 34 ps, but they started with ≥ 0.14 ns, so it does not show in WNS. Hold *into* the delayed flops drops by 39 ps (0.401 → 0.362 ns), still a large margin at the typical corner. The step is coarse: one `CLKBUF_X1` gives +27…41 ps (median 36) where 7–20 ps was asked for. That overshoot happens to help here, but it means the delay cannot be tuned finely. `BUF_X1` gives a smaller step (+20…34 ps) for +28.7 ps. |
+| **Useful skew on the launch side** (RE_full): +41.9 ps; WNS +0.0316 ns | **No cell added**: 9 CK pins reconnected one clock stage up. Clock power +0.1 %, total +0.04 %, area unchanged. Paths captured *by* the moved flops (fetch → instruction register) lose about 15 ps (worst 0.117 → 0.103 ns). Hold is unchanged, because the worst hold paths are the flops' own enable loops. Side effect: up to 5 extra loads on shared upstream nets make some other flops up to 10 ps later. It beats RD_phys2's 36 buffers. Combined with them (RE_combo3): WNS +0.0482 ns. |
 | **Useful skew, round 2** (RD_phys2): another +9.4 ps clock part on RA's 31 endpoints; +38.5 ps on the 57 new targets | 21 more buffers (36 in total), clock power +1.1 % on top of round 1 (+2.0 % vs RA), total +0.65 % vs RA, area +0.1 %. Max insertion delay rises to 0.352 ns (+40 ps vs RA), because of the 9 two-stage flops. Margins on the 110 delayed flops: launch side 0.126 ns (−17 ps vs RA), hold into them 0.338 ns (−63 ps). It buys only **+5 ps of WNS**. The next limiters are new path families (`instr_rdata_id_o[15]`, `[1]`) and a wall of 108 endpoints at 30–40 ps. Treating `rf_reg[444]` alone (RD_phys2_444) lifts that endpoint by +28.6 ps but *lowers* WNS by 1.7 ps through routing noise. |
 | **Clustering off** (RB_nocl): +18.9 ps, −23 ps max latency | **+2.1 % clock power** (+0.09 mW) despite 21 fewer buffers, total +0.7 %. GRT usage +0.3 pp. A deeper tree (7 levels vs 4 + leaf) means more stages exposed to OCV in a real sign-off (not modelled here). |
 | **Smaller clusters** (RB_s4): +14.6 ps | The most expensive: +274 buffers, **+26 % clock power, +8.5 % total power**, +0.9 % area, +14 % clock wire. The other +12.7 ps of its total gain is in the data part, inside the noise band. |
@@ -122,8 +130,10 @@ clock power, targeted physical useful skew is by far the most efficient:
    instruction-register → decode → register-file write path is 2.16 ns of
    2.2 ns, and all 31 failing endpoints come from one startpoint. A
    balance-oriented CTS can only change the ±20 ps offset between that
-   launch flop and the capture flops. Only targeted skew (RD_phys) goes
-   beyond that.
+   launch flop and the capture flops. Only targeted skew goes beyond that,
+   and the cone shape (a few instruction-register bits fanning out to
+   hundreds of register-file flops) makes the launch side the cheap place to
+   apply it (RE_full).
 5. **Hold is not a constraint.** Hold slack is about +85 ps everywhere
    (single typical corner, DFF clock-to-Q), so no strategy pays or saves
    hold fixing. In a real flow, fast-corner hold is where a skewed tree
@@ -166,6 +176,10 @@ grows by about √10 ≈ 3.2× (≈ 750 µm), possibly with SRAM macros.
   critical path usually launches another. Hold at a fast corner becomes the
   limit. A real latency-scheduling engine would matter more than any
   TritonCTS option tested here.
+  Whether the launch side stays the cheap lever (as in RE_full) depends on
+  the cone shape. A few launch flops feeding many captures favours it, but
+  in a bigger design more flops are both launch and capture of different
+  critical paths, and moving them earlier costs setup on their own inputs.
 * **Under OCV derates**, which a real 10× design would be signed off with,
   a shorter tree with more shared top-level paths (CRPR) would dominate. That
   favours lower latency (RB_nocl-like, NDR on the trunk). It penalises
@@ -175,23 +189,33 @@ grows by about √10 ≈ 3.2× (≈ 750 µm), possibly with SRAM macros.
 
 ## Bottom line
 
-At 2.2 ns, the clock-part gain on the 31 critical endpoints ranks as:
+At 2.2 ns, ranked by post-route WNS and by cost:
 
-1. **Physically built useful skew: +36 ps** (RD_phys, 15 `CLKBUF_X1`,
-   +0.9 % clock power). A second round from post-route timing (RD_phys2,
-   +21 buffers) reaches +46 ps and WNS +23.5 ps, but adds only +5 ps of
-   WNS for another +1.1 % clock power. The design is then limited by other
-   instruction-register startpoints and a wall of 108 endpoints at
-   30–40 ps, so further rounds would return even less.
-2. Sink clustering **off: +19 ps** (+2.1 % clock power).
-3. Cluster size 4: +15 ps (+26 % clock power, not worth it).
-4. NDR **full: +14 ps** (≈ free here).
-5. NDR none: +5 ps.
+1. **Useful skew, launch + capture (RE_combo3): WNS +48.2 ps**. It uses
+   RD_phys2's 36 capture buffers plus 10 launch-side pin moves, for +2.0 %
+   clock power.
+2. **Useful skew, launch side only (RE_full): WNS +31.6 ps with no new
+   cell**. Nine instruction-register flops are moved one clock stage
+   earlier, for +0.1 % clock power. This is the most cost-effective result
+   of the study.
+3. **Useful skew, capture side (RD_phys / RD_phys2): WNS +18.5 / +23.5 ps**.
+   That takes 15 / 36 delay buffers and +0.9 / +2.0 % clock power, with
+   sharply diminishing returns in the second round.
+
+The TritonCTS settings, by clock-part gain on the 31 critical endpoints:
+
+* Sink clustering **off: +19 ps** (+2.1 % clock power).
+* Cluster size 4: +15 ps (+26 % clock power, not worth it).
+* NDR **full: +14 ps** (≈ free here).
+* NDR none: +5 ps.
 
 Cluster size 20 and NDR root_only are no-ops. The useful-skew result is the
 one that cannot be had from TritonCTS settings: OpenROAD has no useful-skew
 engine. Here it was built with a script, using `insert_buffer` on the leaf
-clock nets. The STA-only emulation (RD) *under*-estimated the real result,
-because a single buffer stage overshoots the requested delay. For this
+clock nets (capture side) and `connect_pin` one stage up (launch side). The
+STA-only emulation (RD) *under*-estimated the real capture-side result,
+because a single buffer stage overshoots the requested delay. The
+launch-side result depended on selecting by each register's own launch
+slack. Path enumeration per endpoint missed launch flops twice (E9). For this
 small, shallow-tree design the clock tree is not the main bottleneck. The
 data path and the GRT-vs-RCX correlation gap (E1) are.

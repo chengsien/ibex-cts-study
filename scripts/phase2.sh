@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Phase 2 CTS matrix at the stress period.  usage: scripts/phase2.sh <period_ns>
 # (RC_root, the N_gr* routing-noise probes and RD_phys* were added after the
-#  first pass; see docs/experiment-log.md E4/E5/E7/E8.)
+#  first pass; see docs/experiment-log.md E4/E5/E7/E8/E9.)
 # R0a/R0b: two independent full flows (reproducibility of the whole flow).
 # All other runs branch from R0a's 3_place.odb (identical RTL/SDC/floorplan/
 # placement/tools) and differ only in CTS settings; every run goes through
@@ -48,9 +48,35 @@ docker run --rm -e RD2_T=0.030 -e 'RD2_ONLY=gen_regfile_ff.register_file_i.rf_re
   run RUN_SCRIPT=/work/scripts/rd2_select.tcl RUN_LOG_NAME_STEM=rd2_select_444 >/dev/null 2>&1
 ( one RD_phys2 -b R0a -t scripts/rd_phys2_T30.tcl ) & ( one RD_phys2_444 -b R0a -t scripts/rd_phys2_444.tcl ) & wait
 
-# stage 4: post-route analyses for every run (worst paths, per-endpoint
+# stage 4: launch-side useful skew (RE): targets from RA / RD_phys2 post-route
+#   RA_T30 (worst path per endpoint), RA_T50_multi (50 paths/endpoint),
+#   RA_L50 (own launch slack, the robust rule); same three for RD_phys2.
+sel() {  # sel <base_run> <RE_T> <tag> [extra -e args...]
+  local b=$1 t=$2 tag=$3; shift 3
+  mapfile -t MVB < <(grep '^makevar=' "runs/$b/run_config.txt" | sed 's/^makevar=//')
+  docker run --rm -e RE_T="$t" -e RE_TAG="$tag" "$@" -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow "$IMG" \
+    bash -c 'source ../env.sh >/dev/null 2>&1; make "$@"' _ "${MVB[@]}" \
+    run RUN_SCRIPT=/work/scripts/re_select.tcl RUN_LOG_NAME_STEM=re_select_$tag >/dev/null 2>&1
+}
+sel RA 0.030 RA_T30
+sel RA 0.050 RA_T50_multi -e RE_EPC=50
+sel RA 0.050 RA_L50 -e RE_MODE=launch
+sel RD_phys2 0.040 RDP2_T40
+sel RD_phys2 0.060 RDP2_T60_multi -e RE_EPC=50
+sel RD_phys2 0.060 RDP2_L60 -e RE_MODE=launch
+cat > /tmp/phase2_re_jobs.txt <<JOBS
+RE        -b R0a -t scripts/re_RA.tcl
+RE_multi  -b R0a -t scripts/re_multi.tcl
+RE_full   -b R0a -t scripts/re_full.tcl
+RE_combo  -b R0a -t scripts/re_combo.tcl
+RE_combo2 -b R0a -t scripts/re_combo2.tcl
+RE_combo3 -b R0a -t scripts/re_combo3.tcl
+JOBS
+xargs -P 2 -L 1 bash -c 'one "$@"' _ < /tmp/phase2_re_jobs.txt
+
+# stage 5: post-route analyses for every run (worst paths, per-endpoint
 # slack, CK arrivals) -> used by summarize.py for the clock/data split
-for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 N_gr48 N_gr52; do
+for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 RE RE_multi RE_full RE_combo RE_combo2 RE_combo3 N_gr48 N_gr52; do
   mapfile -t MV < <(grep '^makevar=' "runs/$n/run_config.txt" | sed 's/^makevar=//')
   for s in worst_paths endpoint_slack dump_ck_arrivals; do
     docker run --rm -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow \
@@ -58,5 +84,10 @@ for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_p
       'source ../env.sh >/dev/null 2>&1; make "$@"' _ "${MV[@]}" \
       run RUN_SCRIPT=/work/scripts/$s.tcl RUN_LOG_NAME_STEM=$s >/dev/null 2>&1
   done
+  docker run --rm -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow \
+    "${ORFS_IMAGE:-openroad/orfs:26Q4-260-gc9ac73efc}" bash -c \
+    'source ../env.sh >/dev/null 2>&1; make "$@"' _ "${MV[@]}" \
+    run RUN_SCRIPT=/work/scripts/ir_launch_scan.tcl RUN_LOG_NAME_STEM=ir_launch_scan 2>/dev/null \
+    | grep '^IR' > "runs/$n/reports/nangate45/ibex/base/ir_launch_scan.txt"
 done
 echo PHASE2_DONE

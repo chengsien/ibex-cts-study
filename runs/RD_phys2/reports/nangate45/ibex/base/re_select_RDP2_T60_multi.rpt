@@ -1,0 +1,10 @@
+# RE selection: T=0.06 EPC=50 HOLD_GUARD=0.020 DMAX=0.080  (n_eps = near-critical paths launched)
+register                                       n_eps   s_from    s_cap   h_from      est  allowed ck_driver              decision
+if_stage_i.instr_rdata_id_o[0]$_DFFE_PP_          31   0.0342   0.1232   0.1247   0.0441   0.0632 CLKBUF_X3:clkbuf_leaf_7 select
+if_stage_i.instr_rdata_id_o[15]$_DFFE_PP_       1288   0.0252   0.1418   0.1506   0.0435   0.0800 CLKBUF_X3:clkbuf_leaf_6 select
+if_stage_i.instr_rdata_id_o[1]$_DFFE_PP_         419   0.0269   0.1223   0.1254   0.0443   0.0623 CLKBUF_X3:clkbuf_leaf_7 select
+if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_       3491   0.0235   0.1197   0.2008   0.0489   0.0597 CLKBUF_X3:clkbuf_leaf_1 select
+if_stage_i.instr_rdata_id_o[30]$_DFFE_PP_          1   0.0465   0.1327   0.1415   0.0441   0.0727 CLKBUF_X3:clkbuf_leaf_7 select
+if_stage_i.instr_rdata_id_o[31]$_DFFE_PP_        511   0.0308   0.1246   0.2314   0.0435   0.0646 CLKBUF_X3:clkbuf_leaf_1 select
+if_stage_i.instr_rdata_id_o[3]$_DFFE_PP_           1   0.0434   0.1235   0.1565   0.0443   0.0635 CLKBUF_X3:clkbuf_leaf_7 select
+startpoints=7 selected=7
