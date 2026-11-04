@@ -213,15 +213,17 @@ clusters (4) and with **larger** clusters (20)?
    −0.7 ps). Cost: +2.1 % clock power even with 21 fewer buffers, probably
    because the 7-level trunk carries more switched wire capacitance near the
    root. Exact cause not verified.
-3. **RB_s4 closes timing, but not because of the clock tree.** Its
-   critical-path skew is unchanged (−21.2 ps). The +24.5 ps gain is a
-   −25.7 ps change in **data delay**. 487 extra leaf buffers force detailed
-   placement to re-legalize cells, and routing changes along with it. E5
-   shows a routing-only perturbation alone moves the data term by up to
-   20.6 ps. RB_s4's gain is the same kind of change, at the edge of that
-   range, and **should not be counted as a CTS benefit**. Its costs are
-   real: 2× clock buffers, +14 % clock wire, **+26 % clock power, +8.5 %
-   total power**, +0.9 % area.
+3. **RB_s4 closes timing, about half of it through the clock tree.**
+   *Corrected in E7.* The first version of this finding said "not a
+   clock effect". It looked only at the single worst path, where the skew
+   term is unchanged (−21.2 ps) and the whole +24.5 ps gain is in data
+   delay (−25.7 ps). Averaged over all 31 endpoints that fail in RA, RB_s4's
+   +27.3 ps splits into **+14.6 ps clock** and +12.7 ps data (E7 method).
+   The data part is inside the routing-noise band (E5), but the clock part
+   is real. 487 extra leaf buffers also force detailed placement to
+   re-legalize cells, which is where the data-path change comes from. The
+   costs are large: 2× clock buffers, +14 % clock wire, **+26 % clock
+   power, +8.5 % total power**, +0.9 % area.
 
 **Learned.** The sign of the CTS effect depends on *which* flops share a
 cluster. Clustering balances latency *within* a cluster but can leave
@@ -316,12 +318,18 @@ movement is all in the **data term**. The critical-path skew term moved by
 ≤ 0.6 ps. With n = 2 this is a lower bound on the noise, not a
 distribution.
 
+Per-endpoint view (added in E7; mean over the 31 endpoints that fail in
+RA): N_gr48 Δslack +0.4 ps = clock +0.7 / data −0.3. **N_gr52 Δslack +26.8 ps
+= clock −0.9 / data +27.7.** The noise band for the data part is therefore
+up to about 28 ps. The clock part stays within 1 ps.
+
 **Learned / consequence for E3–E4.**
-* A data-path change of ≲ 20 ps is **noise**, so RB_s4's gain is not
-  credited, and neither is half of RC_full's.
-* A **skew** change is robust (≤ 0.6 ps of noise in the skew term), so
-  RB_nocl (+17.5 ps), RC_full (+14 ps) and RC_none (+5 ps) are real
-  clock-tree effects.
+* A data-path change of up to about 28 ps is **noise**. The data parts of
+  RB_s4 (+12.7) and RC_full (+16.7) are not credited.
+* A **clock** change is robust (≤ 0.9 ps of noise in the clock part), so
+  RB_nocl (+18.9 ps), RB_s4 (+14.6 ps), RC_full (+13.9 ps) and RC_none
+  (+4.6 ps) are real clock-tree effects. These are per-endpoint values, which
+  differ slightly from the single worst-path values quoted in E3/E4.
 * At a stress period that misses by 14 ps, "does it close?" is decided by
   that noise. The pass/fail column must not be used to rank strategies.
 
@@ -370,6 +378,114 @@ wirelength and power, and no extra hold or setup buffers. In STA:
    the typical corner, so there is room, but that would need checking at a
    fast corner, which this platform does not have.
 
-**Unresolved.** RD was not physically built, for example by inserting
-delay buffers on the selected CK pins and re-routing. That would be the
-honest version of this experiment.
+**Resolved in E7.** RD was not physically built in this experiment. E7
+builds it with real delay buffers and re-routes.
+
+---
+
+## E7 — RD_phys: useful skew built with real delay buffers
+
+**Question.** RD (E6) only emulated useful skew in STA. Does the gain hold
+when the extra capture latency is physically built, placed and routed, and
+what does it cost?
+
+**Method.** `POST_CTS_TCL = scripts/rd_phys_useful_skew.tcl`, branching from
+R0a like every Phase 2 run.
+
+1. **Selection: identical to RD.** Same hook point, same rule, code copied
+   verbatim. The same 62 register-file flops were selected, with target
+   delta 7–20 ps (mean 13.3 ps).
+2. **Group and insert.** The selected CK pins are grouped by the leaf clock
+   net that drives them (15 groups of 1–8 flops). Each group is moved
+   behind one new buffer with `insert_buffer -buffer_cell CLKBUF_X1
+   -load_pins <group CK pins> -location <group centroid>`. The new output
+   nets are marked `CLOCK`, and the buffers are legalized with
+   `detailed_placement_helper` (419 cell moves, max 3.4 µm).
+3. **Measure and guard.** The realised latency is measured from timing paths
+   (`target_clk_delay` before vs after, not from the unreliable pin
+   property). A buffer is removed again if its delay exceeds what its flops'
+   launch and hold constraints allow, min((s_launch − s_cap)/2,
+   h_cap − 20 ps, 80 ps). The guard removed none.
+4. The flow then continues normally: GRT + repair_timing, detailed route,
+   OpenRCX, STA. There is **no** SDC latency override anywhere.
+5. **RD_phys_b1**: the same hook with `BUF_X1`, which has a smaller delay
+   step (`scripts/rd_phys_useful_skew_bufx1.tcl`).
+
+New analysis scripts:
+* `scripts/dump_ck_arrivals.tcl`: the post-route CK arrival of every
+  register, sampled before any path enumeration.
+* `scripts/endpoint_slack.tcl`: every setup endpoint with slack < 100 ps,
+  with its capture latency and startpoint.
+* `summarize.py`: the per-endpoint clock/data split over RA's 31 failing
+  endpoints, which all start at `if_stage_i.instr_rdata_id_o[20]`. It
+  replaces the single-worst-path split, which breaks when the worst
+  endpoint moves.
+
+**Result.**
+
+| metric | RA | RD (STA only) | **RD_phys** (CLKBUF_X1) | RD_phys_b1 (BUF_X1) |
+|---|---|---|---|---|
+| useful-skew buffers | – | – (62 SDC overrides) | 15 | 15 |
+| target Δlatency on the 62 flops (ps) | – | 7–20, mean 13.3 | same | same |
+| realised Δlatency post-route vs RA (ps) | – | (override) | **+26.9 … +41.2, median 35.9** | +20.2 … +33.7, median 28.4 |
+| Δlatency of the other 1 876 flops (ps) | – | 0 | −7.2 … +1.2, median −0.7 | −6.9 … +1.2, median −0.7 |
+| Δslack on RA's 31 failing endpoints (ps, mean) | 0 | +26.7 | **+41.8** | +34.2 |
+| … clock part / data part (ps) | 0 / 0 | +26.7 / 0.0 | **+36.3 / +5.6** | +28.7 / +5.5 |
+| setup WNS / TNS post-route (ns) | −0.0143 / −0.360 | +0.0139 / 0 | **+0.0185 / 0** | +0.0146 / 0 |
+| worst endpoint | rf_reg[991] (selected) | rf_reg[255] (selected) | rf_reg[444] (**not** selected) | rf_reg[831] (selected) |
+| failing endpoints / endpoints < 20 ps* | 31 / 56 | 0 / 31 | 0 / **3** | 0 / 10 |
+| worst setup slack of paths launched by the 62 flops (ns) | 0.1430 | 0.1473 | 0.1420 | 0.1448 |
+| worst hold slack into the 62 flops (ns) | 0.4008 | 0.3755 | 0.3615 | 0.3692 |
+| design hold WNS (ns) / hold-fix cells | +0.0855 / 0 | +0.0855 / 0 | +0.0856 / 0 | +0.0856 / 0 |
+| max insertion delay (ns) | 0.3122 | 0.3122 | 0.3235 | 0.3158 |
+| clock wirelength (µm) | 12 636 | 12 636 | 12 698 | 12 699 |
+| clock / total power (mW) | 4.158 / 12.706 | 4.158 / 12.706 | 4.193 / 12.742 | 4.201 / 12.748 |
+| cell area (µm²) | 29 018 | 29 018 | 29 030 | 29 030 |
+| DRC / GRT overflow | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 |
+
+\*RA's endpoint slacks have a gap: 31 endpoints at −14…−7 ps, then the
+next at +16 ps. The "< 20 ps" count is therefore threshold-sensitive.
+
+**Findings.**
+1. **The physical version beats the emulation.** RD_phys gains +36.3 ps of
+   clock part on the 31 critical endpoints, against +26.7 ps for RD. That is
+   *not* because the physics is better. It is because a single `CLKBUF_X1`
+   stage gives about 36 ps where only 13 ps (mean) was requested. The
+   requested delta was conservative (capped at T − s_cap), and the launch
+   side of these flops had ≥ 0.14 ns of margin, so the overshoot was
+   harmless and helpful. Without that margin, the same overshoot would have
+   created a new critical path. `BUF_X1` (median 28 ps) lands closer to the
+   target and gains less (+28.7 ps).
+2. **The bottleneck moves.** In RD_phys the worst endpoint is now
+   `rf_reg[444]`, a flop that was *not* selected (its CTS-stage slack was
+   above T = 60 ps). Only 3 endpoints remain below 20 ps. Because of this
+   endpoint switch, the single-worst-path decomposition became misleading
+   (it showed clock −11 ps / data +39 ps). That is why the per-endpoint
+   split was introduced.
+3. **The skew is real and confined.** The 62 flops really are 27–41 ps later
+   post-route (SPEF). All other flops moved by less than 8 ps, from the
+   re-legalization and re-routing around the 15 new cells.
+4. **Cost is small but not zero.** 15 cells, +0.04 % area, **+0.9 % clock
+   power**, +0.3 % total power, +0.5 % clock wire, +11 ps max insertion
+   delay. On the timing side, the paths launched *by* the delayed flops lose
+   about 34 ps, hidden behind ≥ 0.14 ns of remaining slack. Hold *into* them
+   loses 39 ps (0.401 → 0.362 ns). No hold fixing was triggered at the
+   single typical corner.
+5. `report_clock_skew` now reports −0.057 ns (RD_phys) / −0.049 ns
+   (RD_phys_b1). That number is no longer a quality metric, because the skew
+   is intentional.
+
+**Learned.**
+* An STA latency override is not a reliable predictor of the physical
+  result. Here the real delay step is coarser than the request (one cell is
+  about 36 ps), and the override also froze CTS-stage latencies.
+* In a library this coarse, useful skew is a matter of choosing *which
+  flops get one extra stage*, not of dialling in picoseconds.
+* Comparing runs by their single worst path breaks as soon as the
+  optimization moves the bottleneck. Compare a fixed endpoint set instead.
+
+**Not done / open.**
+* Single pass only. The selection was not repeated after insertion, so the
+  next path family (`rf_reg[444]` …) was not treated.
+* No multi-step delay chains or delay-cell sizing.
+* No fast-corner hold check, because the platform has no fast corner.

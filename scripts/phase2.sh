@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Phase 2 CTS matrix at the stress period.  usage: scripts/phase2.sh <period_ns>
-# (RC_root and the N_gr* routing-noise probes were added after the first pass;
-#  see docs/experiment-log.md E4/E5.)
+# (RC_root, the N_gr* routing-noise probes and RD_phys* were added after the
+#  first pass; see docs/experiment-log.md E4/E5/E7.)
 # R0a/R0b: two independent full flows (reproducibility of the whole flow).
 # All other runs branch from R0a's 3_place.odb (identical RTL/SDC/floorplan/
 # placement/tools) and differ only in CTS settings; every run goes through
@@ -28,15 +28,20 @@ RD      -b R0a -t scripts/rd_useful_skew.tcl
 RC_root -b R0a -c "$D -apply_ndr root_only"
 N_gr48  -b R0a -e PRE_GLOBAL_ROUTE_TCL=/work/scripts/noise_grt_adj_48.tcl
 N_gr52  -b R0a -e PRE_GLOBAL_ROUTE_TCL=/work/scripts/noise_grt_adj_52.tcl
+RD_phys    -b R0a -t scripts/rd_phys_useful_skew.tcl
+RD_phys_b1 -b R0a -t scripts/rd_phys_useful_skew_bufx1.tcl
 JOBS
 xargs -P 2 -L 1 bash -c 'one "$@"' _ < /tmp/phase2_jobs.txt
 
-# stage 3: worst-path slack decomposition for every run
-for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD N_gr48 N_gr52; do
+# stage 3: post-route analyses for every run (worst paths, per-endpoint
+# slack, CK arrivals) -> used by summarize.py for the clock/data split
+for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 N_gr48 N_gr52; do
   mapfile -t MV < <(grep '^makevar=' "runs/$n/run_config.txt" | sed 's/^makevar=//')
-  docker run --rm -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow \
-    "${ORFS_IMAGE:-openroad/orfs:26Q4-260-gc9ac73efc}" bash -c \
-    'source ../env.sh >/dev/null 2>&1; make "$@"' _ "${MV[@]}" \
-    run RUN_SCRIPT=/work/scripts/worst_paths.tcl RUN_LOG_NAME_STEM=worst_paths >/dev/null 2>&1
+  for s in worst_paths endpoint_slack dump_ck_arrivals; do
+    docker run --rm -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow \
+      "${ORFS_IMAGE:-openroad/orfs:26Q4-260-gc9ac73efc}" bash -c \
+      'source ../env.sh >/dev/null 2>&1; make "$@"' _ "${MV[@]}" \
+      run RUN_SCRIPT=/work/scripts/$s.tcl RUN_LOG_NAME_STEM=$s >/dev/null 2>&1
+  done
 done
 echo PHASE2_DONE

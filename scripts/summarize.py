@@ -130,6 +130,61 @@ def collect(name):
     row.update(grt_congestion(logs / "5_1_grt.log"))
     row.update(drt_stats(logs / "5_2_route.log"))
 
+    # ---- per-endpoint post-route setup slack (scripts/endpoint_slack.tcl) ----
+    es = reps / "endpoint_slack_final.csv"
+    if es.exists():
+        with open(es) as fh:
+            ep = {x["endpoint"]: float(x["slack_ns"]) for x in csv.DictReader(fh)}
+        row["endpoints_below_0ps"] = sum(1 for v in ep.values() if v < 0)
+        row["endpoints_below_20ps"] = sum(1 for v in ep.values() if v < 0.020)
+        ref = REPO / "runs" / "RA" / "reports" / SUB / "endpoint_slack_final.csv"
+        if ref.exists():
+            with open(ref) as fh:
+                ra = {x["endpoint"]: float(x["slack_ns"]) for x in csv.DictReader(fh)}
+            fail = [e for e, v in ra.items() if v < 0]
+            # endpoints absent from the dump have slack >= 0.1 ns: count them as 0.1
+            d = [1e3 * (ep.get(e, 0.1) - ra[e]) for e in fail]
+            if d:
+                row["ra_fail_endpoints_dslack_mean_ps"] = round(sum(d) / len(d), 2)
+                row["ra_fail_endpoints_dslack_min_ps"] = round(min(d), 2)
+            # per-endpoint split of that change into clock and data parts:
+            #   dclock = d(capture latency) - d(launch latency)
+            #   ddata  = dslack - dclock      (data path + setup time)
+            ca = REPO / "runs" / "RA" / "reports" / SUB / "ck_arrivals_final.csv"
+            cr = reps / "ck_arrivals_final.csv"
+            if ca.exists() and cr.exists():
+                def arrivals(path):
+                    with open(path) as fh:
+                        return {x["instance"]: float(x["arrival_ns"]) for x in csv.DictReader(fh)}
+                def ep_rows(path):
+                    with open(path) as fh:
+                        return {x["endpoint"]: x for x in csv.DictReader(fh)}
+                a_ra, a_r = arrivals(ca), arrivals(cr)
+                e_ra, e_r = ep_rows(ref), ep_rows(es)
+                dclk, ddat = [], []
+                for e in fail:
+                    if e not in e_r:
+                        continue
+                    sp_ra = e_ra[e]["startpoint"].rsplit("/", 1)[0]
+                    sp_r = e_r[e]["startpoint"].rsplit("/", 1)[0]
+                    if sp_ra not in a_ra or sp_r not in a_r:
+                        continue
+                    dcap = float(e_r[e]["capture_clk_ns"]) - float(e_ra[e]["capture_clk_ns"])
+                    dlau = a_r[sp_r] - a_ra[sp_ra]
+                    dc = 1e3 * (dcap - dlau)
+                    dclk.append(dc)
+                    ddat.append(1e3 * (float(e_r[e]["slack_ns"]) - float(e_ra[e]["slack_ns"])) - dc)
+                if dclk:
+                    row["ra_fail_dclock_mean_ps"] = round(sum(dclk) / len(dclk), 2)
+                    row["ra_fail_ddata_mean_ps"] = round(sum(ddat) / len(ddat), 2)
+                    row["ra_fail_split_n"] = len(dclk)
+    # number of physical useful-skew buffers (RD_phys*), from the clock report
+    # masters list is not enough (CLKBUF_X1 could come from CTS); use the hook report
+    hk = reps / "rd_phys_useful_skew.rpt"
+    if hk.exists():
+        m = re.search(r"kept=(\d+)", hk.read_text())
+        row["usefulskew_buffers"] = int(m.group(1)) if m else None
+
     # ---- worst post-route setup path, decomposed (scripts/worst_paths.tcl) ----
     wp = reps / "worst_paths_final.txt"
     if wp.exists():
@@ -231,22 +286,24 @@ def plot_cts(rows, png):
 
 
 def plot_decomp(rows, png, ref="RA"):
-    """Change of worst-path slack vs the reference run, split into the
-    clock part (capture - launch latency) and the data-path part."""
+    """Mean change of post-route setup slack over the endpoints that fail in
+    the reference run, split into the clock part (capture - launch latency)
+    and the data-path part. Per-endpoint, so it stays valid when the single
+    worst endpoint moves to another flop."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    r0 = next(r for r in rows if r["run"] == ref)
-    rr = [r for r in rows if r["run"] != ref and "wp_slack_ns" in r]
+    rr = [r for r in rows if r["run"] != ref and "ra_fail_dclock_mean_ps" in r]
     names = [r["run"] for r in rr]
-    dclk = [1e3 * (r["wp_skew_cap_minus_launch_ns"] - r0["wp_skew_cap_minus_launch_ns"]) for r in rr]
-    ddat = [-1e3 * (r["wp_data_delay_ns"] - r0["wp_data_delay_ns"]) for r in rr]
-    dtot = [1e3 * (r["final_setup_wns"] - r0["final_setup_wns"]) for r in rr]
-    fig, ax = plt.subplots(figsize=(8.5, 4.2), dpi=150)
+    dclk = [r["ra_fail_dclock_mean_ps"] for r in rr]
+    ddat = [r["ra_fail_ddata_mean_ps"] for r in rr]
+    dtot = [r["ra_fail_endpoints_dslack_mean_ps"] for r in rr]
+    n = rr[0].get("ra_fail_split_n", "?") if rr else "?"
+    fig, ax = plt.subplots(figsize=(9, 4.3), dpi=150)
     x = range(len(names))
-    ax.bar([i - 0.2 for i in x], dclk, 0.4, label="clock part (Δ capture−launch latency)", color="#4C72B0")
-    ax.bar([i + 0.2 for i in x], ddat, 0.4, label="data-path part (−Δ data delay)", color="#DD8452")
-    ax.plot(list(x), dtot, "k_", ms=18, mew=2, label="Δ post-route WNS")
+    ax.bar([i - 0.2 for i in x], dclk, 0.4, label="clock part (Δ capture − Δ launch latency)", color="#4C72B0")
+    ax.bar([i + 0.2 for i in x], ddat, 0.4, label="data-path part", color="#DD8452")
+    ax.plot(list(x), dtot, "k_", ms=18, mew=2, label="Δ slack (mean)")
     noise = [v for r, v in zip(rr, ddat) if r["run"].startswith("N_")]
     if noise:
         ax.axhspan(min(0, min(noise)), max(0, max(noise)), color="0.85", zorder=0,
@@ -254,7 +311,8 @@ def plot_decomp(rows, png, ref="RA"):
     ax.axhline(0, color="0.3", lw=0.8)
     ax.set_xticks(list(x)); ax.set_xticklabels(names, rotation=30, ha="right")
     ax.set_ylabel(f"change vs {ref} (ps, + = better)")
-    ax.set_title("Where does the worst-path slack change come from? (post-route, 2.2 ns)")
+    ax.set_title(f"Post-route slack change on the {n} endpoints that fail in {ref} (2.2 ns), "
+                 "mean per endpoint", fontsize=9)
     ax.legend(fontsize=7, loc="upper left"); ax.grid(axis="y", alpha=0.3)
     fig.tight_layout(); fig.savefig(png)
     print(f"wrote {png.relative_to(REPO)}")
@@ -291,6 +349,10 @@ CTS_COLS = [
     "final_instance_count", "final_instance_area_um2",
     "wp_slack_ns", "wp_launch_clk_ns", "wp_capture_clk_ns",
     "wp_skew_cap_minus_launch_ns", "wp_data_delay_ns", "wp_startpoint", "wp_endpoint",
+    "endpoints_below_0ps", "endpoints_below_20ps",
+    "ra_fail_endpoints_dslack_mean_ps", "ra_fail_endpoints_dslack_min_ps",
+    "ra_fail_dclock_mean_ps", "ra_fail_ddata_mean_ps", "ra_fail_split_n",
+    "usefulskew_buffers",
 ]
 
 

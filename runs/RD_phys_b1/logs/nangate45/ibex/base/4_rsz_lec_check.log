@@ -1,0 +1,153 @@
+[2026-11-04 01:44:57.228] [miter_logger] [info] MiterStrategy::run starting
+[2026-11-04 01:44:57.228] [miter_logger] [info] Collecting POs for design 0: ibex_core
+
+[2026-11-04 01:44:57.326] [miter_logger] [info] Collected 4040 PIs for design 0
+
+[2026-11-04 01:44:57.326] [miter_logger] [info] Collected 5646 POs for design 0
+
+[2026-11-04 01:44:57.326] [miter_logger] [info] design 0 PI summary by model/term (4040 total terminals, 30 unique rows):
+| Model     | Term           | Count |
+|-----------|----------------|-------|
+| DFFR_X1   | Q              |  1655 |
+| DFFR_X1   | QN             |  1655 |
+| DFF_X1    | Q              |   270 |
+| DFF_X1    | QN             |   270 |
+| ibex_core | boot_addr_i    |    32 |
+| ibex_core | data_rdata_i   |    32 |
+| ibex_core | hart_id_i      |    32 |
+| ibex_core | instr_rdata_i  |    32 |
+| ibex_core | irq_fast_i     |    15 |
+| DFFS_X1   | Q              |     9 |
+| DFFS_X1   | QN             |     9 |
+| LOGIC0_X1 | Z              |     7 |
+| DFF_X2    | Q              |     3 |
+| DFF_X2    | QN             |     3 |
+| DLL_X1    | Q              |     1 |
+| ibex_core | clk_i          |     1 |
+| ibex_core | data_err_i     |     1 |
+| ibex_core | data_gnt_i     |     1 |
+| ibex_core | data_rvalid_i  |     1 |
+| ibex_core | debug_req_i    |     1 |
+| ibex_core | fetch_enable_i |     1 |
+| ibex_core | instr_err_i    |     1 |
+| ibex_core | instr_gnt_i    |     1 |
+| ibex_core | instr_rvalid_i |     1 |
+| ibex_core | irq_external_i |     1 |
+| ibex_core | irq_nm_i       |     1 |
+| ibex_core | irq_software_i |     1 |
+| ibex_core | irq_timer_i    |     1 |
+| ibex_core | rst_ni         |     1 |
+| ibex_core | test_en_i      |     1 |
+
+[2026-11-04 01:44:57.327] [miter_logger] [info] design 0 PO summary by model/term (5646 total terminals, 22 unique rows):
+| Model     | Term          | Count |
+|-----------|---------------|-------|
+| DFFR_X1   | CK            |  1655 |
+| DFFR_X1   | D             |  1655 |
+| DFFR_X1   | RN            |  1655 |
+| DFF_X1    | CK            |   270 |
+| DFF_X1    | D             |   270 |
+| ibex_core | data_addr_o   |    32 |
+| ibex_core | data_wdata_o  |    32 |
+| ibex_core | instr_addr_o  |    32 |
+| DFFS_X1   | CK            |     9 |
+| DFFS_X1   | D             |     9 |
+| DFFS_X1   | SN            |     9 |
+| ibex_core | data_be_o     |     4 |
+| DFF_X2    | CK            |     3 |
+| DFF_X2    | D             |     3 |
+| DLL_X1    | D             |     1 |
+| DLL_X1    | GN            |     1 |
+| ibex_core | alert_major_o |     1 |
+| ibex_core | alert_minor_o |     1 |
+| ibex_core | core_sleep_o  |     1 |
+| ibex_core | data_req_o    |     1 |
+| ibex_core | data_we_o     |     1 |
+| ibex_core | instr_req_o   |     1 |
+
+[2026-11-04 01:44:57.328] [miter_logger] [info] Collecting POs for design 1: ibex_core
+
+[2026-11-04 01:44:57.397] [miter_logger] [info] size of common inputs: 4032
+[2026-11-04 01:44:57.397] [miter_logger] [info] size of diff0 inputs: 0
+[2026-11-04 01:44:57.397] [miter_logger] [info] size of diff1 inputs: 0
+[2026-11-04 01:44:57.398] [miter_logger] [info] Collected 4040 PIs for design 1
+
+[2026-11-04 01:44:57.398] [miter_logger] [info] Collected 5646 POs for design 1
+
+[2026-11-04 01:44:57.398] [miter_logger] [info] design 1 PI summary by model/term (4040 total terminals, 30 unique rows):
+| Model     | Term           | Count |
+|-----------|----------------|-------|
+| DFFR_X1   | Q              |  1655 |
+| DFFR_X1   | QN             |  1655 |
+| DFF_X1    | Q              |   270 |
+| DFF_X1    | QN             |   270 |
+| ibex_core | boot_addr_i    |    32 |
+| ibex_core | data_rdata_i   |    32 |
+| ibex_core | hart_id_i      |    32 |
+| ibex_core | instr_rdata_i  |    32 |
+| ibex_core | irq_fast_i     |    15 |
+| DFFS_X1   | Q              |     9 |
+| DFFS_X1   | QN             |     9 |
+| LOGIC0_X1 | Z              |     7 |
+| DFF_X2    | Q              |     3 |
+| DFF_X2    | QN             |     3 |
+| DLL_X1    | Q              |     1 |
+| ibex_core | clk_i          |     1 |
+| ibex_core | data_err_i     |     1 |
+| ibex_core | data_gnt_i     |     1 |
+| ibex_core | data_rvalid_i  |     1 |
+| ibex_core | debug_req_i    |     1 |
+| ibex_core | fetch_enable_i |     1 |
+| ibex_core | instr_err_i    |     1 |
+| ibex_core | instr_gnt_i    |     1 |
+| ibex_core | instr_rvalid_i |     1 |
+| ibex_core | irq_external_i |     1 |
+| ibex_core | irq_nm_i       |     1 |
+| ibex_core | irq_software_i |     1 |
+| ibex_core | irq_timer_i    |     1 |
+| ibex_core | rst_ni         |     1 |
+| ibex_core | test_en_i      |     1 |
+
+[2026-11-04 01:44:57.399] [miter_logger] [info] design 1 PO summary by model/term (5646 total terminals, 22 unique rows):
+| Model     | Term          | Count |
+|-----------|---------------|-------|
+| DFFR_X1   | CK            |  1655 |
+| DFFR_X1   | D             |  1655 |
+| DFFR_X1   | RN            |  1655 |
+| DFF_X1    | CK            |   270 |
+| DFF_X1    | D             |   270 |
+| ibex_core | data_addr_o   |    32 |
+| ibex_core | data_wdata_o  |    32 |
+| ibex_core | instr_addr_o  |    32 |
+| DFFS_X1   | CK            |     9 |
+| DFFS_X1   | D             |     9 |
+| DFFS_X1   | SN            |     9 |
+| ibex_core | data_be_o     |     4 |
+| DFF_X2    | CK            |     3 |
+| DFF_X2    | D             |     3 |
+| DLL_X1    | D             |     1 |
+| DLL_X1    | GN            |     1 |
+| ibex_core | alert_major_o |     1 |
+| ibex_core | alert_minor_o |     1 |
+| ibex_core | core_sleep_o  |     1 |
+| ibex_core | data_req_o    |     1 |
+| ibex_core | data_we_o     |     1 |
+| ibex_core | instr_req_o   |     1 |
+
+[2026-11-04 01:44:57.399] [miter_logger] [info] normalizeInputs: starting
+[2026-11-04 01:44:57.404] [miter_logger] [info] size of common inputs: 4040
+[2026-11-04 01:44:57.404] [miter_logger] [info] size of diff0 inputs: 0
+[2026-11-04 01:44:57.404] [miter_logger] [info] size of diff1 inputs: 0
+[2026-11-04 01:44:57.405] [miter_logger] [info] normalizeOutputs: starting
+[2026-11-04 01:44:57.412] [miter_logger] [info] size of common outputs: 5646
+[2026-11-04 01:44:57.412] [miter_logger] [info] size of diff0 outputs: 0
+[2026-11-04 01:44:57.412] [miter_logger] [info] size of diff1 outputs: 0
+[2026-11-04 01:44:57.413] [miter_logger] [info] size of PIs in circuit 0: 4040
+[2026-11-04 01:44:57.413] [miter_logger] [info] size of PIs in circuit 1: 4040
+[2026-11-04 01:44:57.413] [miter_logger] [info] size of POs in circuit 0: 5646
+[2026-11-04 01:44:57.413] [miter_logger] [info] size of POs in circuit 1: 5646
+[2026-11-04 01:44:57.886] [miter_logger] [info] Building miter expression
+[2026-11-04 01:44:57.886] [miter_logger] [info] Finished building miter expression
+[2026-11-04 01:44:57.888] [miter_logger] [info] Starting solver
+[2026-11-04 01:44:57.888] [miter_logger] [info] SAT solver finished: UNSAT
+[2026-11-04 01:44:57.888] [miter_logger] [info] Circuits are IDENTICAL

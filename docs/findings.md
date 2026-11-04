@@ -2,115 +2,138 @@
 
 All numbers come from `results/cts_comparison_full.csv`, which
 `scripts/summarize.py` builds from the run reports. The details and
-per-experiment tables are in [`experiment-log.md`](experiment-log.md) (E2–E6).
+per-experiment tables are in [`experiment-log.md`](experiment-log.md) (E2–E7).
 Every run uses R0a's byte-identical placement and goes through detailed
 route + OpenRCX + OpenSTA. The design and PDK are open source (Ibex,
 FreePDK45/Nangate45), with a single typical corner and no OCV/derates and
 no SI analysis.
 
+## How the runs are compared
+
+At 2.2 ns, RA (the ORFS default) fails on **31 endpoints**. All of them are
+register-file flops `rf_reg[*]/D`, and all are reached from one startpoint,
+the IF-stage instruction-register bit `if_stage_i.instr_rdata_id_o[20]`.
+The main metric is the **mean change of post-route slack on those 31
+endpoints**, split per endpoint into:
+
+* **clock part** = Δ(capture clock latency) − Δ(launch clock latency)
+* **data part** = the rest (data-path delay and setup time)
+
+This view stays valid when a strategy moves the single worst endpoint
+to another flop, which happens in RD_phys. The two routing-only
+**noise probes** (N_gr48/N_gr52: placement and clock tree identical to RA,
+global-routing capacity changed by ±0.02) set the noise floor. They move the
+**data part by up to +27.7 ps** but the **clock part by only ≤ 0.9 ps**.
+So a clock-part change is a real CTS effect, and a data-part change of up
+to about 28 ps is not.
+
 ## Summary table (post-route, 2.2 ns)
 
-| run | what changed | max insertion delay (ns) | setup skew (ns) | clock buffers | setup WNS (ns) | setup TNS (ns) | worst-path Δskew vs RA (ps) | worst-path Δdata vs RA (ps) | hold WNS (ns) | hold-fix cells | clock / total power (mW) | GRT usage |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| RA (=R0a=R0b) | ORFS default: clustering auto (size 9), NDR half | 0.3122 | 0.0397 | 316 | −0.0143 | −0.360 | 0 | 0 | +0.0855 | 0 | 4.158 / 12.71 | 28.60 % |
-| RB_nocl | clustering **off** | **0.2886** | **0.0217** | 295 | +0.0043 | 0 | **+17.5** | −0.7 | +0.0853 | 0 | 4.245 / 12.80 | 28.91 % |
-| RB_s4 | cluster size 4 | 0.3124 | −0.0298 | **590** | +0.0102 | 0 | 0.0 | +25.7 | +0.0848 | 0 | **5.239 / 13.78** | 29.06 % |
-| RB_s20 | cluster size 20 | = RA (byte-identical CTS DB) | | | | | | | | | | |
-| RC_none | NDR none (0 nets) | 0.3107 | 0.0316 | 316 | −0.0090 | −0.213 | +5.0 | +0.3 | +0.0855 | 0 | 4.162 / 12.71 | 28.41 % |
-| RC_root | NDR root_only (7 nets) | = RA (byte-identical CTS DB, same 7 nets as half) | | | | | | | | | | |
-| RC_full | NDR full (9 nets) | 0.2979 | 0.0267 | 316 | **+0.0164** | 0 | +14.1 | +16.7 | +0.0855 | 0 | 4.140 / 12.69 | 28.72 % |
-| RD | `set_clock_latency` on 62 regfile CK pins (STA what-if) | 0.3122 | 0.0397* | 316 | +0.0139 | 0 | **+27.8** | +0.2 | +0.0855 | 0 | 4.158 / 12.71 | 28.60 % |
-| N_gr48 | **noise probe**: GRT M2–M3 capacity 0.48, CTS = RA | 0.3114 | 0.0390 | 316 | −0.0139 | −0.347 | +0.6 | −0.1 | +0.0855 | 0 | 4.158 / 12.71 | 28.60 % |
-| N_gr52 | **noise probe**: GRT M2–M3 capacity 0.52, CTS = RA | 0.3146 | 0.0423 | 316 | +0.0063 | 0 | 0.0 | **+20.6** | +0.0855 | 0 | 4.158 / 12.70 | 29.10 % |
+| run | what changed | Δslack on RA's 31 failing endpoints (ps) | **clock part** | data part | WNS (ns) | TNS (ns) | max ins. delay (ns) | clock buffers | hold WNS (ns) / hold-fix cells | clock / total power (mW) | cell area (µm²) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| RA (= R0a = R0b) | ORFS default: clustering auto (size 9), NDR half | 0 | 0 | 0 | −0.0143 | −0.360 | 0.312 | 316 | +0.0855 / 0 | 4.158 / 12.706 | 29 018 |
+| RB_nocl | clustering **off** | +19.4 | **+18.9** | +0.6 | +0.0043 | 0 | **0.289** | 295 | +0.0853 / 0 | 4.245 / 12.795 | 29 008 |
+| RB_s4 | cluster size 4 | +27.3 | +14.6 | +12.7 | +0.0102 | 0 | 0.312 | **590** | +0.0848 / 0 | **5.239 / 13.782** | 29 281 |
+| RB_s20 | cluster size 20 | = RA (byte-identical CTS DB) | | | | | | | | | |
+| RC_none | NDR none (0 nets) | +4.7 | +4.6 | +0.1 | −0.0090 | −0.213 | 0.311 | 316 | +0.0855 / 0 | 4.162 / 12.710 | 29 019 |
+| RC_root | NDR root_only (7 nets) | = RA (byte-identical CTS DB, same 7 nets as half) | | | | | | | | | |
+| RC_full | NDR full (9 nets) | +30.6 | +13.9 | +16.7 | +0.0164 | 0 | 0.298 | 316 | +0.0855 / 0 | 4.140 / 12.688 | 29 018 |
+| RD | useful skew **emulated** (`set_clock_latency`, 62 flops, STA only) | +26.7 | +26.7 | 0.0 | +0.0139 | 0 | 0.312 | 316 | +0.0855 / 0 | 4.158 / 12.706 | 29 018 |
+| **RD_phys** | useful skew **built**: 15 × `CLKBUF_X1` in front of the same 62 flops | **+41.8** | **+36.3** | +5.6 | **+0.0185** | 0 | 0.324 | 331 | +0.0856 / 0 | 4.193 / 12.742 | 29 030 |
+| **RD_phys_b1** | same, with 15 × `BUF_X1` | +34.2 | +28.7 | +5.5 | +0.0146 | 0 | 0.316 | 331 | +0.0856 / 0 | 4.201 / 12.748 | 29 030 |
+| N_gr48 | **noise probe** (routing only) | +0.4 | +0.7 | −0.3 | −0.0139 | −0.347 | 0.311 | 316 | +0.0855 / 0 | 4.158 / 12.706 | 29 018 |
+| N_gr52 | **noise probe** (routing only) | +26.8 | −0.9 | **+27.7** | +0.0063 | 0 | 0.315 | 316 | +0.0855 / 0 | 4.158 / 12.702 | 29 019 |
 
-\*`report_clock_skew` does not reflect RD's pin-latency overrides. The
-worst-path decomposition does.
-
+GRT usage is 28.4–29.1 % with overflow 0, and DRC is 0 in every run.
 Plots: `results/cts_comparison.png` (six metrics per run) and
-`results/cts_slack_decomposition.png` (Δslack split into clock part and
-data part, with the routing-noise band shaded).
+`results/cts_slack_decomposition.png` (the clock/data split above, with the
+routing-noise band shaded).
 
 ---
 
 ## 1. Which metric differs the most, and why?
 
-**In relative terms: clock-tree size and clock power. In timing terms:
-setup skew. Setup WNS changes are small and half of them are noise.**
+**In relative terms: clock-tree size and clock power. In timing terms: the
+clock part of the slack on the critical endpoints, i.e. latency/skew.**
 
 * **Clock buffers and clock power** have the largest spread. RB_s4 (cluster
   size 4) doubles the clock buffers (316 → 590, +87 %), adds 14 % clock
-  wire, and raises clock power by **+26 %** (4.16 → 5.24 mW), which is
-  **+8.5 % of total power**. The cause is direct: each cluster gets its own
-  leaf `CLKBUF_X3`, so capping clusters at 4 sinks instead of about 9
-  nearly doubles the number of leaf drivers. Clock power is already 33 % of
-  total power in the default run, so any change to the tree shows up in
-  total power.
-* **Setup skew** is the timing metric that changes the most, and it is a
-  *real* clock-tree effect. It goes from 0.040 ns (RA) to 0.022 ns with
-  clustering off (−45 %) and to 0.027 ns with NDR full. The routing-only
-  noise probes move the critical-path skew term by 0.6 ps at most. On the
-  critical path (IF-stage instruction register → register-file write),
-  turning clustering off removes 17.5 ps of harmful skew. With clustering,
-  the launch flop sits in a cluster whose leaf buffer arrives 21 ps after
-  the capture flops' clusters. The 7-level H-tree built straight to the
-  sinks has uniform depth and is better balanced.
-* **Setup WNS** spans 30.7 ps (−0.0143 … +0.0164 ns), about 1.4 % of the
+  wire, and raises clock power by **+26 %**, which is **+8.5 % of total
+  power**. The cause is direct: each cluster gets its own leaf `CLKBUF_X3`,
+  so capping clusters at 4 sinks instead of about 9 nearly doubles the leaf
+  drivers. Clock power is already 33 % of total power in the default run.
+* **The clock part of the critical-endpoint slack** is the timing quantity
+  that differs most among strategies (0 to +36 ps), and it is the one that
+  can be trusted (noise ≤ 0.9 ps).
+  * The largest is **physically built useful skew (RD_phys, +36.3 ps)**.
+    It delays the capture clock of the critical register-file flops
+    directly.
+  * Among the TritonCTS knobs, **clustering off (+18.9 ps)** is the
+    largest. With clustering, the launch flop `instr_rdata_id_o[20]` sits in
+    a cluster whose leaf buffer arrives about 21 ps *after* the capture
+    flops' clusters, which is harmful skew. A 7-level H-tree built straight
+    to the sinks (uniform depth 3) removes most of that offset. It also
+    lowers max insertion delay by 23 ps, the largest latency change among
+    the CTS knobs.
+* **Setup WNS** spans 32.8 ps (−0.0143 … +0.0185 ns), about 1.5 % of the
   period. **TNS and pass/fail** look like the biggest change (−0.36 ns → 0,
   fail → pass). But the stress period misses by only 14 ps, and a
   routing-only perturbation (N_gr52) already makes it pass. So the
   pass/fail column cannot rank strategies.
-* **Hold** does not differ at all: hold WNS is +0.0848 to +0.0855 ns in every
-  run and **0 hold-fix cells** are inserted anywhere. Routing resources
-  barely move: GRT usage 28.4–29.1 %, overflow 0 and 0 DRC in every run.
+* **Hold** does not differ: hold WNS is +0.0848 to +0.0856 ns in every run,
+  and **0 hold-fix cells** are inserted anywhere, RD_phys included.
 
 ## 2. What do the improvements cost?
 
-| improvement (credited part only) | cost |
+| improvement (clock part, credited) | cost |
 |---|---|
-| **Clustering off** (RB_nocl): +17.5 ps skew on the critical path, −23 ps max latency | **+2.1 % clock power** (+0.09 mW) despite 21 fewer buffers. Total power +0.7 %. GRT usage +0.3 pp, metal4 +0.4 pp. The tree is deeper (7 levels vs 4 + leaf), so it has more stages exposed to OCV in a real sign-off (not modelled here). CTS runtime is unchanged (seconds). |
-| **NDR full** (RC_full): +14 ps skew, −14 ps max latency | Practically free *in this design*. Only 9 nets carry the rule, the clock wire is 4.9 % of all wire, GRT usage changes by +0.1 pp, clock power −0.4 %. The cost of NDR is routing tracks. It stays small only because the NDR nets are few and short. The SI benefit that NDR exists for is not measured (OpenSTA has no crosstalk analysis). |
-| **Smaller clusters** (RB_s4) | **Not an improvement.** The skew term is unchanged. The +25.7 ps comes from the data path, which is the same size as the routing noise. Paid for with +26 % clock power, +8.5 % total power, +0.9 % area. |
-| **Useful skew, emulated** (RD): +27.8 ps | Free in STA because nothing is built. A real version would need roughly 13–20 ps of extra latency on 62 register-file flops (≈ one extra `CLKBUF_X1` stage per group): some clock power and area, plus hold risk on regfile → regfile paths. Hold slack is +85 ps at the only (typical) corner, so there is room, but a fast corner would have to confirm it. The emulation also freezes CTS-stage latencies (≈ 8 ps off post-route), so the +27.8 ps is optimistic. |
+| **Useful skew, built** (RD_phys): +36.3 ps | 15 `CLKBUF_X1` (+12 µm², +0.04 % area). Clock power **+0.9 %** (+0.036 mW), total +0.3 %. Clock wire +0.5 %, max insertion delay +11 ps. The delayed flops give up slack where they *launch*: register-file → register-file paths lose about 34 ps, but they started with ≥ 0.14 ns, so it does not show in WNS. Hold *into* the delayed flops drops by 39 ps (0.401 → 0.362 ns), still a large margin at the typical corner. The step is coarse: one `CLKBUF_X1` gives +27…41 ps (median 36) where 7–20 ps was asked for. That overshoot happens to help here, but it means the delay cannot be tuned finely. `BUF_X1` gives a smaller step (+20…34 ps) for +28.7 ps. |
+| **Clustering off** (RB_nocl): +18.9 ps, −23 ps max latency | **+2.1 % clock power** (+0.09 mW) despite 21 fewer buffers, total +0.7 %. GRT usage +0.3 pp. A deeper tree (7 levels vs 4 + leaf) means more stages exposed to OCV in a real sign-off (not modelled here). |
+| **Smaller clusters** (RB_s4): +14.6 ps | The most expensive: +274 buffers, **+26 % clock power, +8.5 % total power**, +0.9 % area, +14 % clock wire. The other +12.7 ps of its total gain is in the data part, inside the noise band. |
+| **NDR full** (RC_full): +13.9 ps, −14 ps max latency | Practically free *in this design*. Only 9 nets carry the rule, GRT usage +0.1 pp, clock power −0.4 %. NDR costs routing tracks, and that stays small only because the NDR nets are few. The SI benefit that NDR exists for is not measured (no crosstalk analysis). Its other +16.7 ps is in the data part (noise band). |
+| **Useful skew, emulated** (RD): +26.7 ps | Free in STA because nothing is built. RD_phys shows the real thing costs 15 buffers and about 1 % clock power, and that the realised shift is not the one asked for. |
 
-General trade-off: **every lever that changes the tree's balance also
-changes clock power**, and none of them came for free except NDR at this
-scale. The only lever that gave more than 20 ps was useful skew, which
-TritonCTS does not provide.
+General trade-off: **every lever that changes the tree's balance changes
+clock power.** Measured as ps of critical-endpoint clock gain per % of
+clock power, targeted physical useful skew is by far the most efficient:
++36 ps for +0.9 %. Next come clustering off (+19 ps for +2.1 %) and NDR full
+(+14 ps for ≈ 0 %). Smaller clusters are the worst (+15 ps for +26 %).
 
 ## 3. Why are the differences small?
 
 1. **The clock tree is shallow and short.** There are 1 938 sinks on a
    237 × 237 µm core. The default tree has 2–3 buffer stages from the root to a
    flop, and the insertion delay is about 0.29–0.31 ns, only **14 % of the
-   period**. The whole design-wide skew (0.02–0.04 ns) is 1–2 % of the
-   period. A strategy can only redistribute a few tens of ps.
+   period**. Design-wide skew (0.02–0.04 ns) is 1–2 % of the period. A
+   balance-oriented strategy can only redistribute a few tens of ps.
 2. **There is almost nothing to tune in the cell library.** Nangate45's
    strongest clock buffer is `CLKBUF_X3`, and TritonCTS uses it for all
-   316 buffers. There is no buffer sizing, no clock inverters and no
-   multi-bit flops. Cluster size is capped by the buffer's max capacitance:
-   size 20 produced a byte-identical tree to size 9.
+   316 buffers. Cluster size is capped by that buffer's max capacitance:
+   size 20 produced a byte-identical tree to size 9. The *smallest* delay
+   step is also coarse: one `CLKBUF_X1` is about 36 ps, so useful skew
+   cannot be applied in 5–10 ps increments.
 3. **Most NDR settings change the same few nets.** With clustering, about 300 of 318 clock nets are
    leaf nets, and NDRs are never put on leaf nets. `half` = `root_only`
    (7 nets) and `full` adds 2.
 4. **The critical path is dominated by the data path.** The
    instruction-register → decode → register-file write path is 2.16 ns of
-   2.2 ns. The clock contributes only the ±20 ps launch/capture offset.
-   The 10 worst setup paths all start at the same instruction-register
-   bit (`if_stage_i.instr_rdata_id_o[20]`), so one cluster's offset decides
-   the result.
+   2.2 ns, and all 31 failing endpoints come from one startpoint. A
+   balance-oriented CTS can only change the ±20 ps offset between that
+   launch flop and the capture flops. Only targeted skew (RD_phys) goes
+   beyond that.
 5. **Hold is not a constraint.** Hold slack is about +85 ps everywhere
    (single typical corner, DFF clock-to-Q), so no strategy pays or saves
    hold fixing. In a real flow, fast-corner hold is where a skewed tree
    gets expensive.
 6. **The analysis model ignores the effects CTS strategies usually target.**
-   There is one corner, no OCV/AOCV derates (so no CRPR benefit from shared
-   tree paths), no SI and no jitter. A shorter or better-shared tree, or NDR,
-   would count more under derates and crosstalk.
+   There is one corner, no OCV/AOCV derates (so no CRPR benefit), no SI and
+   no jitter.
 7. **The noise floor is comparable to the effects.** A routing-only
-   perturbation moves WNS by up to 20.6 ps. The repeat noise is 0 because the
-   flow is deterministic, but that hides the real sensitivity. The clock
-   effects (5–17.5 ps) are only identifiable because the slack was split
-   into a clock term and a data term.
+   perturbation moves WNS by up to 20.6 ps, and the data part of the
+   critical-endpoint slack by up to 27.7 ps. The repeat noise is 0 because
+   the flow is deterministic, but that hides the real sensitivity. The CTS
+   effects are only identifiable because the slack was split into a clock
+   part and a data part.
 
 ## 4. What would change if the design were 10× larger?
 
@@ -120,51 +143,48 @@ grows by about √10 ≈ 3.2× (≈ 750 µm), possibly with SRAM macros.
 
 * **Insertion delay and skew grow with wire length.** The tree needs about
   3–4 more levels, and latency would roughly double to ~0.5–0.7 ns. That is
-  a much larger share of a 2–3 ns period. Skew would be several tens of ps
-  even when "balanced". The options affect a bigger number, so the
-  differences between strategies should grow from ~1 % to several % of the
-  period.
-* **Sink clustering becomes necessary.** Building the H-tree directly to
-  20 k sinks (the RB_nocl approach) would need many more levels and buffers
-  near the root. The cluster-offset problem seen in RB_nocl vs RA probably
-  stays, but it is averaged over many more critical paths. Cluster size
-  would matter more if the library offered stronger leaf buffers. With
-  Nangate45's `CLKBUF_X3` the size cap of about 9 stays the same.
+  a much larger share of the period. Skew would be tens of ps even when
+  "balanced", so the differences between strategies should grow from
+  ~1 % to several % of the period.
+* **Sink clustering becomes necessary.** An H-tree built directly to 20 k
+  sinks (the RB_nocl approach) would need many more levels and buffers near
+  the root. The cluster-offset effect seen in RB_nocl vs RA probably
+  stays, but it is averaged over many more critical paths.
 * **NDR matters more, and costs more.** Trunk wires would be hundreds of µm
   long and the upper-level net count grows, so `half` and `full` would
-  cover a meaningful fraction of the tree. The latency and skew reduction
-  should scale with trunk length. The track cost would then compete with
-  signal routing in congested areas, which it did not do here (GRT usage
-  ≈ 29 %).
-* **Clock power share stays high or rises.** More buffers and longer trunk
-  wires mean RB_s4-type choices (+26 % clock power) become very expensive
-  in absolute terms.
-* **Useful skew becomes more valuable and riskier.** There are more
-  critical path families with different slack profiles, and so more room to
-  borrow time. Hold impact and fast-corner checks become the limit. A
-  built-in useful-skew or latency-adjust engine would matter more than any
+  cover a meaningful fraction of the tree. Their track cost would compete
+  with signal routing in congested areas.
+* **Clock power share stays high or rises**, so RB_s4-type choices
+  (+26 % clock power) become very expensive in absolute terms.
+* **Useful skew becomes more valuable and harder to do by hand.** There are
+  more critical path families with different slack profiles, and so more
+  room to borrow time. But the RD_phys recipe (one fixed buffer per leaf
+  group) would conflict across path families: a flop that captures one
+  critical path usually launches another. Hold at a fast corner becomes the
+  limit. A real latency-scheduling engine would matter more than any
   TritonCTS option tested here.
 * **Under OCV derates**, which a real 10× design would be signed off with,
   a shorter tree with more shared top-level paths (CRPR) would dominate. That
-  favours lower latency (RB_nocl-like, NDR on the trunk) more than this
-  single-corner study shows.
-* **Noise.** The ±20 ps routing noise would probably not scale with the
-  design, while the clock effects should. The ranking would become clearer,
-  and the WNS pass/fail would be less dominated by the GRT-vs-RCX gap seen
-  in E1.
+  favours lower latency (RB_nocl-like, NDR on the trunk). It penalises
+  useful-skew buffers slightly, because each one adds an unshared stage.
+* **Noise.** The ±20–28 ps routing noise would probably not scale with the
+  design, while the clock effects should. The ranking would become clearer.
 
 ## Bottom line
 
-At 2.2 ns the three ORFS/TritonCTS knobs tested (clustering, cluster size,
-NDR) move post-route WNS by at most about 30 ps, and part of that is
-routing noise. The **robust** effects are:
+At 2.2 ns, the clock-part gain on the 31 critical endpoints ranks as:
 
-* Turning sink clustering **off** cuts critical-path skew by 17.5 ps, for
-  +2 % clock power.
-* NDR **full** cuts it by 14 ps at negligible cost.
-* Smaller clusters cost 26 % more clock power and give **no** clock benefit.
+1. **Physically built useful skew: +36 ps** (RD_phys, 15 `CLKBUF_X1`,
+   +0.9 % clock power).
+2. Sink clustering **off: +19 ps** (+2.1 % clock power).
+3. Cluster size 4: +15 ps (+26 % clock power, not worth it).
+4. NDR **full: +14 ps** (≈ free here).
+5. NDR none: +5 ps.
 
-The largest gain (+28 ps) came from **useful skew**, which this OpenROAD
-version does not have and which was only emulated in STA. For this small,
-shallow-tree design the clock tree is not the bottleneck. The data path and
-the GRT-vs-RCX correlation gap (E1) are.
+Cluster size 20 and NDR root_only are no-ops. The useful-skew result is the
+one that cannot be had from TritonCTS settings: OpenROAD has no useful-skew
+engine. Here it was built with a script, using `insert_buffer` on the leaf
+clock nets. The STA-only emulation (RD) *under*-estimated the real result,
+because a single buffer stage overshoots the requested delay. For this
+small, shallow-tree design the clock tree is not the main bottleneck. The
+data path and the GRT-vs-RCX correlation gap (E1) are.

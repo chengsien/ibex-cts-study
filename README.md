@@ -42,6 +42,8 @@ Ibex SV RTL ──yosys+slang──► netlist ──floorplan (50 % util)──
 | `scripts/summarize.py` | builds `results/*.csv` + plots from the run reports |
 | `scripts/sweep_period.sh`, `scripts/phase2.sh` | Phase 1 / Phase 2 drivers |
 | `scripts/rd_useful_skew.tcl` | RD: useful-skew emulation with `set_clock_latency` |
+| `scripts/rd_phys_useful_skew.tcl` (`_bufx1`) | RD_phys: the same selection, built with `insert_buffer` delay buffers on the leaf clock nets |
+| `scripts/endpoint_slack.tcl`, `scripts/dump_ck_arrivals.tcl` | per-endpoint post-route slack / capture latency / startpoint, and every register's CK arrival |
 | `scripts/ndr_check.tcl` | counts clock nets carrying a non-default rule |
 | `scripts/worst_paths.tcl` | top post-route setup paths split into launch / capture clock latency and data delay |
 | `scripts/noise_grt_adj_*.tcl` | routing-only perturbation probes (PRE_GLOBAL_ROUTE_TCL) |
@@ -74,12 +76,12 @@ scripts/phase2.sh 2.2
 ```
 
 ```bash
-python3 scripts/summarize.py cts R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD N_gr48 N_gr52
+python3 scripts/summarize.py cts R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 N_gr48 N_gr52
 ```
 
-`phase2.sh` runs all 12 Phase 2 runs (including RC_root and the N_gr*
-noise probes) and then `scripts/worst_paths.tcl` for the slack
-decomposition.
+`phase2.sh` runs all 14 Phase 2 runs (including RC_root, the N_gr* noise
+probes and RD_phys*). It then runs `worst_paths.tcl`, `endpoint_slack.tcl`
+and `dump_ck_arrivals.tcl` on each run for the per-endpoint clock/data split.
 
 A full flow takes about 8.6 min on 4 vCPUs. A Phase 2 branch (CTS → finish)
 takes about 5–7 min.
@@ -99,39 +101,51 @@ See [`results/period_sweep_wns.png`](results/period_sweep_wns.png).
 ### Phase 2: CTS strategies at 2.2 ns
 
 All runs share R0a's placement. The numbers are post-route (OpenRCX SPEF).
-"Δskew / Δdata" splits the change in worst-path slack vs RA into the clock
-part (capture − launch latency) and the data-path part (+ = better).
+RA fails on 31 endpoints. All of them are register-file flops reached from
+one startpoint (`if_stage_i.instr_rdata_id_o[20]`). "Δslack" is the mean
+change of post-route slack on those 31 endpoints vs RA (+ = better), split
+per endpoint into the **clock part** (Δcapture − Δlaunch latency) and the
+**data part**.
 Full table: [`results/cts_comparison.csv`](results/cts_comparison.csv).
 Plots: [`results/cts_comparison.png`](results/cts_comparison.png),
 [`results/cts_slack_decomposition.png`](results/cts_slack_decomposition.png).
 
-| run | CTS setting | max ins. delay (ns) | skew (ns) | clk bufs | WNS (ns) | TNS (ns) | Δskew (ps) | Δdata (ps) | hold WNS (ns) | hold-fix cells | clock / total power (mW) |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| R0a = R0b = RA | ORFS default (clustering auto ≈ 9, NDR half) | 0.312 | 0.040 | 316 | −0.014 | −0.36 | 0 | 0 | +0.086 | 0 | 4.16 / 12.71 |
-| RB_nocl | clustering off | **0.289** | **0.022** | 295 | +0.004 | 0 | **+17.5** | −0.7 | +0.085 | 0 | 4.25 / 12.80 |
-| RB_s4 | cluster size 4 | 0.312 | −0.030 | 590 | +0.010 | 0 | 0.0 | +25.7† | +0.085 | 0 | **5.24 / 13.78** |
-| RB_s20 | cluster size 20 | = RA (identical tree) | | | | | | | | | |
-| RC_none | NDR none | 0.311 | 0.032 | 316 | −0.009 | −0.21 | +5.0 | +0.3 | +0.086 | 0 | 4.16 / 12.71 |
-| RC_root | NDR root_only | = RA (same 7 nets as half) | | | | | | | | | |
-| RC_full | NDR full (9 nets) | 0.298 | 0.027 | 316 | **+0.016** | 0 | +14.1 | +16.7† | +0.086 | 0 | 4.14 / 12.69 |
-| RD | manual skew via `set_clock_latency` (STA only) | 0.312 | – | 316 | +0.014 | 0 | +27.8 | +0.2 | +0.086 | 0 | 4.16 / 12.71 |
-| N_gr48 | *noise probe*: routing-only change | 0.311 | 0.039 | 316 | −0.014 | −0.35 | +0.6 | −0.1 | +0.086 | 0 | 4.16 / 12.71 |
-| N_gr52 | *noise probe*: routing-only change | 0.315 | 0.042 | 316 | +0.006 | 0 | 0.0 | +20.6 | +0.086 | 0 | 4.16 / 12.70 |
+| run | CTS setting | Δslack (ps) | **clock part** | data part | WNS (ns) | TNS (ns) | max ins. delay (ns) | clk bufs | hold WNS (ns) / hold-fix cells | clock / total power (mW) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| R0a = R0b = RA | ORFS default (clustering auto ≈ 9, NDR half) | 0 | 0 | 0 | −0.014 | −0.36 | 0.312 | 316 | +0.086 / 0 | 4.16 / 12.71 |
+| RB_nocl | clustering off | +19.4 | **+18.9** | +0.6 | +0.004 | 0 | **0.289** | 295 | +0.085 / 0 | 4.25 / 12.80 |
+| RB_s4 | cluster size 4 | +27.3 | +14.6 | +12.7† | +0.010 | 0 | 0.312 | 590 | +0.085 / 0 | **5.24 / 13.78** |
+| RB_s20 | cluster size 20 | = RA (identical tree) | | | | | | | | |
+| RC_none | NDR none | +4.7 | +4.6 | +0.1 | −0.009 | −0.21 | 0.311 | 316 | +0.086 / 0 | 4.16 / 12.71 |
+| RC_root | NDR root_only | = RA (same 7 nets as half) | | | | | | | | |
+| RC_full | NDR full (9 nets) | +30.6 | +13.9 | +16.7† | +0.016 | 0 | 0.298 | 316 | +0.086 / 0 | 4.14 / 12.69 |
+| RD | useful skew **emulated** (`set_clock_latency`, STA only) | +26.7 | +26.7 | 0.0 | +0.014 | 0 | 0.312 | 316 | +0.086 / 0 | 4.16 / 12.71 |
+| **RD_phys** | useful skew **built**: 15 × `CLKBUF_X1` before 62 regfile flops | **+41.8** | **+36.3** | +5.6 | **+0.018** | 0 | 0.324 | 331 | +0.086 / 0 | 4.19 / 12.74 |
+| RD_phys_b1 | same with 15 × `BUF_X1` | +34.2 | +28.7 | +5.5 | +0.015 | 0 | 0.316 | 331 | +0.086 / 0 | 4.20 / 12.75 |
+| N_gr48 | *noise probe*: routing-only change | +0.4 | +0.7 | −0.3 | −0.014 | −0.35 | 0.311 | 316 | +0.086 / 0 | 4.16 / 12.71 |
+| N_gr52 | *noise probe*: routing-only change | +26.8 | −0.9 | +27.7 | +0.006 | 0 | 0.315 | 316 | +0.086 / 0 | 4.16 / 12.70 |
 
-† within the ±20 ps data-path noise that a routing-only change produces
-(N_gr52), so not credited to CTS.
+† within the data-part noise band (up to +27.7 ps, N_gr52), so not
+credited to CTS. The clock part moves by ≤ 0.9 ps in the noise probes, so it
+is the trustworthy column.
 
-**Takeaways** (details in [`docs/findings.md`](docs/findings.md)):
+**Takeaways** (details in [`docs/findings.md`](docs/findings.md) and
+[`docs/experiment-log.md`](docs/experiment-log.md)):
 * Repeating a run gives zero noise (the flow is deterministic). A
   routing-only perturbation still moves WNS by up to 21 ps, so pass/fail at
-  the stress period does not rank strategies.
-* Robust clock effects:
-  * Sink clustering **off** removes 17.5 ps of harmful skew on the
-    critical path, for +2 % clock power.
-  * NDR **full** removes 14 ps at no measurable cost.
-* Smaller clusters cost +26 % clock power and give no clock benefit.
-  Cluster size 20 and NDR root_only are no-ops in this design.
-* Emulated useful skew gives the largest gain (+28 ps). It is not a
-  TritonCTS feature, and the emulation is an STA what-if.
+  the stress period does not rank strategies. Compare the clock part on a
+  fixed endpoint set instead.
+* **Useful skew built with real buffers (RD_phys) gives the largest gain:
+  +36 ps clock part.** It costs 15 `CLKBUF_X1`, +0.9 % clock power and no hold
+  fixing. OpenROAD has no useful-skew engine; it was scripted with
+  `insert_buffer` on the leaf clock nets (`scripts/rd_phys_useful_skew.tcl`).
+  It beat the STA emulation (+27 ps) only because one buffer stage
+  (about 36 ps) overshoots the requested 13 ps. The launch side of those
+  flops had ≥ 0.14 ns to spare.
+* TritonCTS knobs:
+  * clustering **off**: +19 ps for +2 % clock power.
+  * cluster size 4: +15 ps for +26 % clock power.
+  * NDR **full**: +14 ps, ≈ free here.
+  * cluster size 20 and NDR root_only: no-ops in this design.
 * No strategy needed or saved any hold fixing: hold slack was +85 ps
   everywhere at the single typical corner.
