@@ -1,0 +1,6 @@
+run,setup_wns_ps,hold_wns_ps,clock_buffers,clock_power_mw,moved_registers
+RA,-14.3,85.5,316,4.158,
+RE_full,31.6,85.5,316,4.162,
+RE_full3b,40.5,85.4,318,4.167,
+E16_1,21.8,85.6,316,4.165,5
+E16_2,26.3,85.7,316,4.159,5
