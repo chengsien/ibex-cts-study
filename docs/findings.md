@@ -146,7 +146,10 @@ clock power, targeted physical useful skew is by far the most efficient:
 5. **Hold is not a constraint.** Hold slack is about +85 ps everywhere
    (single typical corner, DFF clock-to-Q), so no strategy pays or saves
    hold fixing. In a real flow, fast-corner hold is where a skewed tree
-   gets expensive.
+   gets expensive. *Checked in E17 on ASAP7, the platform with real
+   corners: implemented at TT, hold at FF is +35.0 ps for all three CTS
+   settings (16.5 ps less than at TT, no violation). The hold-limiting paths
+   do not depend on the tree.*
 6. **The analysis model ignores the effects CTS strategies usually target.**
    The main runs use one corner, no OCV/AOCV derates (so no CRPR benefit), no
    SI and no jitter. Two of these were checked afterwards:

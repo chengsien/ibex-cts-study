@@ -215,8 +215,18 @@ one by one (details in `docs/experiment-log.md`):
 * **Noise (E14, done).** With 10 routing-only probes (9 independent), WNS
   moves by −4.5 to +31.0 ps (sd 12 ps) and 4 of 10 close timing. Even the
   clock part moves by up to 7.85 ps, not ≤ 0.9 ps as two samples suggested.
-* **In progress:**
-  * E16: automated select → build → route useful-skew loop, whose guard
-    includes the shared-net side effect.
-  * E17: Ibex on ASAP7, implemented at TT and signed off at FF/TT/SS.
-  * E18: ariane133, about 10.7× Ibex, with the same three CTS settings.
+* **Automated useful skew (E16, done).** A select → build → route loop whose
+  guard re-times the whole design for every move, so it includes the
+  shared-net side effect. It runs unattended, converges in 2–3 iterations
+  and reaches +21.8 ps with no added cell. A variant that lets each move
+  cost 2 ps reaches +22.3 ps, the same within noise. That is about 10 ps
+  below the manual RE_full. The guard judges side effects on placement RC,
+  and one move it accepts (`[15]` two levels up) costs `[20]` about 4.5 ps
+  after routing.
+* **Real corners (E17, done).** Ibex on ASAP7 was implemented at TT and
+  signed off post-route at FF/TT/SS. Hold is clean at FF (+35.0 ps) for
+  every CTS setting, and identical across settings. Clustering off costs
+  2.9× the clock buffers and +104 % clock power on ASAP7, against −7 %
+  buffers on Nangate45, so CTS conclusions do not transfer across PDKs.
+* **In progress:** E18, ariane133 (about 10.7× Ibex) with the same three CTS
+  settings. The default run is done; the other two are running.
