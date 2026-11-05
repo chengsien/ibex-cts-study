@@ -1394,7 +1394,7 @@ The extra moves were bought with the tolerance. `[21]`, rejected in
 iteration 1 for its J, was accepted in iteration 2 after the threshold was
 re-calibrated on routed timing. `[4]` and `[30]` stayed rejected on J
 even with the tolerance. The result, +22.3 ps, is the same as the strict
-guard's +21.8 ps within noise. Three identical-tree pairs now show the
+guard's +21.8 ps within noise. Two identical-tree pairs now show the
 revert-induced noise: E16_1/E16_2 4.5 ps, E16r_2/E16r_3 0.8 ps. **Guard
 strictness at the 0–2 ps level is therefore not what separates the loop
 from RE_full.** The remaining suspect is the one move both automated
