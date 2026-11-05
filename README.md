@@ -79,10 +79,10 @@ scripts/phase2.sh 2.2
 ```
 
 ```bash
-python3 scripts/summarize.py cts R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 RE RE_multi RE_full RE_combo RE_combo2 RE_combo3 N_gr48 N_gr52
+python3 scripts/summarize.py cts R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 RE RE_multi RE_full RE_full2 RE_full2b RE_combo RE_combo2 RE_combo3 N_gr48 N_gr52
 ```
 
-`phase2.sh` runs all 22 Phase 2 runs (including RC_root, the N_gr* noise
+`phase2.sh` runs all 24 Phase 2 runs (including RC_root, the N_gr* noise
 probes, RD_phys*, the round-2 runs and the RE launch-early runs, whose
 targets `rd2_select.tcl` / `re_select.tcl` pick from post-route timing). It then runs `worst_paths.tcl`, `endpoint_slack.tcl`
 and `dump_ck_arrivals.tcl` on each run for the per-endpoint clock/data split.
@@ -130,6 +130,8 @@ Plots: [`results/cts_comparison.png`](results/cts_comparison.png),
 | **RD_phys2** | round 2 from post-route timing: + 21 buffers for 57 flops < 30 ps | **+55.4** | **+45.7** | +9.7 | **+0.023** | 0 | 0.352 | 352 | +0.085 / 0 | 4.24 / 12.79 |
 | RE | launch-early: `instr_rdata_id_o[20]` CK one stage up (0 cells) | +22.3 | +8.3‡ | +14.0 | +0.008 | 0 | 0.312 | 316 | +0.086 / 0 | 4.16 / 12.71 |
 | **RE_full** | launch-early: 9 instruction-register bits one stage up (0 cells) | +45.8 | **+41.9** | +3.9 | **+0.032** | 0 | 0.312 | 316 | +0.086 / 0 | **4.16 / 12.71** |
+| RE_full2 | RE_full + `[20]` a second level up | – | – | – | +0.025 | 0 | 0.313 | 316 | +0.085 / 0 | 4.16 / 12.71 |
+| **RE_full2b** | RE_full2 + 1 `CLKBUF_X1` in front of `[20]` | – | – | – | **+0.036** | 0 | 0.314 | 317 | +0.086 / 0 | 4.16 / 12.71 |
 | **RE_combo3** | RD_phys2 + 10 launch moves | **+98.4** | **+84.7** | +11.6 | **+0.048** | 0 | 0.352 | 352 | +0.085 / 0 | 4.24 / 12.79 |
 | N_gr48 | *noise probe*: routing-only change | +0.4 | +0.7 | −0.3 | −0.014 | −0.35 | 0.311 | 316 | +0.086 / 0 | 4.16 / 12.71 |
 | N_gr52 | *noise probe*: routing-only change | +26.8 | −0.9 | +27.7 | +0.006 | 0 | 0.315 | 316 | +0.086 / 0 | 4.16 / 12.70 |
@@ -167,6 +169,11 @@ is the trustworthy column.
   buffers (RE_combo3) it reaches **+48.2 ps**, the best result. Selecting
   by each register's own launch slack mattered: two earlier attempts that
   enumerated paths per endpoint missed launch flops.
+* Moving `[20]` a **second** clock level up overshoots (79 ps). The paths
+  *into* `[20]` become critical and WNS drops to +24.6 ps, as predicted
+  before the run. Adding one `CLKBUF_X1` back balances its launch and
+  capture sides (+62.8 / +61.3 ps) and gives **+36.2 ps**, the best
+  launch-only result (E10).
 * TritonCTS knobs:
   * clustering **off**: +19 ps for +2 % clock power.
   * cluster size 4: +15 ps for +26 % clock power.

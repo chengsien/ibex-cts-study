@@ -45,6 +45,8 @@ to about 28 ps is not.
 | **RD_phys2** | round 2: + 21 `CLKBUF_X1` for 57 flops < 30 ps post-route (9 of them stacked, two stages) | **+55.4** | **+45.7** | +9.7 | **+0.0235** | 0 | **0.352** | 352 | +0.0854 / 0 | 4.240 / 12.788 | 29 047 |
 | RE | launch-early: CK pin of `instr_rdata_id_o[20]` moved one stage up (0 cells) | +22.3 | +8.3† | +14.0 | +0.0078 | 0 | 0.312 | 316 | +0.0855 / 0 | 4.160 / 12.708 | 29 018 |
 | **RE_full** | launch-early: 9 instruction-register bits moved one stage up (0 cells) | +45.8 | **+41.9** | +3.9 | **+0.0316** | 0 | 0.312 | 316 | +0.0855 / 0 | 4.162 / 12.710 | 29 018 |
+| RE_full2 | RE_full + `[20]` a second level up (onto the root trunk) | – | – | – | +0.0246 | 0 | 0.313 | 316 | +0.0854 / 0 | 4.156 / 12.705 | 29 019 |
+| **RE_full2b** | RE_full2 + 1 `CLKBUF_X1` in front of `[20]` (net extra shift 33 ps) | – | – | – | **+0.0362** | 0 | 0.314 | 317 | +0.0855 / 0 | 4.159 / 12.708 | 29 020 |
 | **RE_combo3** | RD_phys2 + 10 launch moves | **+98.4** | **+84.7** | +11.6 | **+0.0482** | 0 | 0.352 | 352 | +0.0854 / 0 | 4.243 / 12.794 | 29 047 |
 | N_gr48 | **noise probe** (routing only) | +0.4 | +0.7 | −0.3 | −0.0139 | −0.347 | 0.311 | 316 | +0.0855 / 0 | 4.158 / 12.706 | 29 018 |
 | N_gr52 | **noise probe** (routing only) | +26.8 | −0.9 | **+27.7** | +0.0063 | 0 | 0.315 | 316 | +0.0855 / 0 | 4.158 / 12.702 | 29 019 |
@@ -195,7 +197,10 @@ At 2.2 ns, ranked by post-route WNS and by cost:
    RD_phys2's 36 capture buffers plus 10 launch-side pin moves, for +2.0 %
    clock power.
 2. **Useful skew, launch side only (RE_full): WNS +31.6 ps with no new
-   cell**. Nine instruction-register flops are moved one clock stage
+   cell**. With `[20]` moved a second level and one `CLKBUF_X1` added back
+   to balance it (RE_full2b, E10): **+36.2 ps** for one cell. Moving `[20]` a
+   full second level without the buffer overshoots: the paths into `[20]`
+   become critical and WNS falls to +24.6 ps. Nine instruction-register flops are moved one clock stage
    earlier, for +0.1 % clock power. This is the most cost-effective result
    of the study.
 3. **Useful skew, capture side (RD_phys / RD_phys2): WNS +18.5 / +23.5 ps**.

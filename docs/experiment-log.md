@@ -730,3 +730,76 @@ Costs on the moved flops:
 * The side-effect load on shared upstream nets (up to +10 ps on other flops)
   is not part of the guard.
 * As before, there is no fast corner to confirm hold.
+
+---
+
+## E10 — Moving `[20]` one more clock level up
+
+**Question.** RE_full is limited by `instr_rdata_id_o[20]` itself (+31.6 ps)
+after its CK was moved one level up. Does moving it a second level up help?
+
+**Prediction (from RE_full post-route, before running).** `[20]` sits on
+`clknet_4_4_0_clk` (8 sinks), driven by `clkbuf_4_4_0_clk` about 94 µm away.
+The next net up is `clknet_0_clk`, the root trunk of the gated clock tree
+(16 sinks, about 943 flops below it). The expected extra shift is 79 ps
+(arrival 0.263 → 0.184 ns), because that level drives a long wire. Setup into
+`[20]` had 102.5 ps, so it would fall to about +23 ps and become the worst
+path. `re_select.tcl` rejected the move (expected shift 79 ps > allowed
+67.5 ps). The balance point is about (102.5 − 31.6)/2 ≈ 35 ps of extra
+shift.
+
+**Method.** Both runs branch from R0a: RE_full's 9 moves, then a second
+`re_launch_early.tcl` pass for `[20]` only (`re_rpt_name =
+re_launch_early_pass2.rpt`; allowed relaxed to 95 ps on request).
+* **RE_full2** (`scripts/re_full2.tcl`): `[20]` onto `clknet_0_clk`.
+* **RE_full2b** (`scripts/re_full2b.tcl`): the same, then one `CLKBUF_X1`
+  inserted in front of `[20]/CK` at the flop (fed from the trunk), so the
+  extra shift is one level minus one buffer delay. At CTS stage the buffer
+  added back 45.1 ps (`re_launch_early_pass2b.rpt`).
+
+**Result** (post-route, OpenRCX).
+
+| metric | RA | RE_full | **RE_full2** | **RE_full2b** |
+|---|---|---|---|---|
+| `[20]` CK arrival (ns) | 0.305 | 0.263 | 0.185 | 0.230 (via CLKBUF_X1) |
+| `[20]` launch setup slack (ns) | −0.014 | +0.032 | +0.102 | +0.063 |
+| setup slack **into** `[20]` (ns) | 0.119 | 0.103 | **0.025** | 0.061 |
+| hold slack of paths launched by `[20]` (ns) | 0.200 | 0.165 | **0.087** | 0.119 |
+| hold slack into `[20]` (ns) | 0.258 | 0.269 | 0.273 | 0.266 |
+| **setup WNS (ns)** | −0.0143 | +0.0316 | **+0.0246** | **+0.0362** |
+| worst path | [20]→rf[991] | [20]→rf[991] | **[12]→[20]/D** | [15]→rf[991] |
+| launch slack [15] / [12] / [14] / [31] (ps) | +9.7 / +58.5 / – / +31.3 | +37.6 / +53.1 / +58.4 / +59.3 | +43.6 / **+24.6** / **+30.1** / **+32.8** | +36.2 / +53.7 / +56.1 / +63.9 |
+| other 1 937 flops, Δlatency vs RE_full (ps) | – | – | −5.4 … +3.5 (median +0.3) | −5.3 … +3.5 (median +0.8) |
+| clock buffers / clock power (mW) | 316 / 4.158 | 316 / 4.162 | 316 / 4.156 | 317 / 4.159 |
+| design hold WNS (ns) / hold-fix cells | +0.0854 / 0 | +0.0855 / 0 | +0.0854 / 0 | +0.0855 / 0 |
+| DRC | 0 | 0 | 0 | 0 |
+
+**Findings.**
+1. **A full second level overshoots, exactly as predicted.** `[20]` moves
+   another 78.7 ps earlier. Its own launch paths go to +102 ps, but the
+   paths *into* it drop to +24.6 ps. These are instruction-register →
+   instruction-register paths such as `[12]`/`[14]`/`[31]` → `[20]/D`, so
+   their launch slack collapses too. WNS falls from +31.6 to +24.6 ps. The
+   launch-side hold of `[20]` drops to 0.087 ns, within 2 ps of becoming the
+   design's worst hold path.
+2. **Adding one buffer back lands on the balance point.** RE_full2b's net
+   extra shift is 33.1 ps (predicted optimum ≈ 35 ps). `[20]` ends with
+   +62.8 ps launch and +61.3 ps into, almost perfectly balanced. `[20]` is
+   no longer critical, and WNS improves to **+36.2 ps**, now limited by
+   `[15]`. Cost: one `CLKBUF_X1` (+1.9 µm²), clock power essentially
+   unchanged.
+3. **Loading the root trunk had little side effect.** Hanging one flop with a
+   ~70 µm stub (or one CLKBUF_X1) on `clknet_0_clk` moved every other flop
+   by only −5.4 … +3.5 ps.
+4. **The rule from E9 generalises.** A launch-side move must balance the slack
+   of the paths the flop *launches* against the paths it *captures*. Whole
+   clock levels are coarse: 42 ps for the first level, 79 ps for the second,
+   because the higher net drives a longer wire. A level plus a buffer is a
+   way to land in between.
+
+**Learned.** `re_select.tcl`'s rejection (expected 79 ps > allowed 67.5 ps)
+was right. Its estimate of the shift (79 ps expected, 78.7 ps realised) and of
+the into-`[20]` slack (≈ +23 ps predicted, +24.6 ps measured) were both
+accurate. The next lever is now `[15]` (+36.2 ps). It would need either a
+second level or capture-side help (as in RE_combo3), each with the same
+into/launch balance check.

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Phase 2 CTS matrix at the stress period.  usage: scripts/phase2.sh <period_ns>
 # (RC_root, the N_gr* routing-noise probes and RD_phys* were added after the
-#  first pass; see docs/experiment-log.md E4/E5/E7/E8/E9.)
+#  first pass; see docs/experiment-log.md E4/E5/E7/E8/E9/E10.)
 # R0a/R0b: two independent full flows (reproducibility of the whole flow).
 # All other runs branch from R0a's 3_place.odb (identical RTL/SDC/floorplan/
 # placement/tools) and differ only in CTS settings; every run goes through
@@ -64,6 +64,9 @@ sel RA 0.050 RA_L50 -e RE_MODE=launch
 sel RD_phys2 0.040 RDP2_T40
 sel RD_phys2 0.060 RDP2_T60_multi -e RE_EPC=50
 sel RD_phys2 0.060 RDP2_L60 -e RE_MODE=launch
+# E10: second level for [20] (target file written by hand: allowed relaxed to 95 ps on request)
+mkdir -p runs/RE_full/reports/nangate45/ibex/base
+printf 'if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_ 0.095 0.0793\n' > runs/RE_full/reports/nangate45/ibex/base/re_targets_RF_20_lvl2.txt
 cat > /tmp/phase2_re_jobs.txt <<JOBS
 RE        -b R0a -t scripts/re_RA.tcl
 RE_multi  -b R0a -t scripts/re_multi.tcl
@@ -71,12 +74,14 @@ RE_full   -b R0a -t scripts/re_full.tcl
 RE_combo  -b R0a -t scripts/re_combo.tcl
 RE_combo2 -b R0a -t scripts/re_combo2.tcl
 RE_combo3 -b R0a -t scripts/re_combo3.tcl
+RE_full2  -b R0a -t scripts/re_full2.tcl
+RE_full2b -b R0a -t scripts/re_full2b.tcl
 JOBS
 xargs -P 2 -L 1 bash -c 'one "$@"' _ < /tmp/phase2_re_jobs.txt
 
 # stage 5: post-route analyses for every run (worst paths, per-endpoint
 # slack, CK arrivals) -> used by summarize.py for the clock/data split
-for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 RE RE_multi RE_full RE_combo RE_combo2 RE_combo3 N_gr48 N_gr52; do
+for n in R0a R0b RA RB_nocl RB_s4 RB_s20 RC_none RC_root RC_full RD RD_phys RD_phys_b1 RD_phys2_444 RD_phys2 RE RE_multi RE_full RE_full2 RE_full2b RE_combo RE_combo2 RE_combo3 N_gr48 N_gr52; do
   mapfile -t MV < <(grep '^makevar=' "runs/$n/run_config.txt" | sed 's/^makevar=//')
   for s in worst_paths endpoint_slack dump_ck_arrivals; do
     docker run --rm -v "$PWD:/work" -w /OpenROAD-flow-scripts/flow \

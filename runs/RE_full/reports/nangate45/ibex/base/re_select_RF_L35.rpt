@@ -1,0 +1,4 @@
+# RE selection: MODE=launch T=0.035 EPC=1 HOLD_GUARD=0.020 DMAX=0.080  (n_eps = near-critical paths launched)
+register                                       n_eps   s_from    s_cap   h_from      est  allowed ck_driver              decision
+if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_          1   0.0316   0.1025   0.1645   0.0793   0.0675 CLKBUF_X3:clkbuf_4_4_0_ skip:est>allowed
+startpoints=1 selected=0

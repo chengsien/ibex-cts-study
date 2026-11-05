@@ -12,7 +12,10 @@
 # captures and the hold slack of the paths F launches).
 #
 # Set by the wrapper before sourcing: re_targets_file, re_tag.
-# Optional: re_pre = script sourced first (e.g. the RD_phys2 hook).
+# Optional: re_pre = script sourced first (e.g. the RD_phys2 hook);
+#           re_rpt_name = report file name (default re_launch_early.rpt), so a
+#           second pass (e.g. moving one flop a second level up) gets its own
+#           report.
 if { [info exists re_pre] && $re_pre != "" } { source $re_pre }
 
 utl::info FLW 941 "RE launch-early ($re_tag): targets from $re_targets_file"
@@ -39,7 +42,8 @@ proc re_cap_lat { dpin } {
   return [sta::format_time [$p target_clk_delay] 6]
 }
 
-set re_rpt [open $::env(REPORTS_DIR)/re_launch_early.rpt w]
+if { ![info exists re_rpt_name] } { set re_rpt_name re_launch_early.rpt }
+set re_rpt [open $::env(REPORTS_DIR)/$re_rpt_name w]
 puts $re_rpt [format "%-44s %-28s %-28s %8s %8s %8s %8s %8s %s" register leaf_net upstream_net est allowed before after earlier decision]
 set moves {}
 foreach t $re_t {
