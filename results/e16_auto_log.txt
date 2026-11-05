@@ -1,0 +1,8 @@
+[E16] start from RA  WNS=-0.0143
+E16SEL candidates=9 setup_wns=-0.0143
+[E16_1] rc=0 wall=772s
+[E16_1] post-route WNS=0.0218 (prev -0.0143)  registers moved=5  # E16 E16_1 end: tries=15 kept=6 wns=0.07873501850497178 hold=0.08534370432577987 J=-1.6075368495618279 n=117
+E16SEL candidates=6 setup_wns=0.0218
+[E16_2] rc=0 wall=738s
+[E16_2] post-route WNS=0.0263 (prev 0.0218)  registers moved=5  # E16 E16_2 end: tries=6 kept=0 wns=0.07873501850497178 hold=0.08534370432577987 J=-1.8948677780998562 n=139
+E16SEL candidates=5 setup_wns=0.0263

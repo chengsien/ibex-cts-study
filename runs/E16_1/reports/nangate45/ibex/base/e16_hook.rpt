@@ -1,0 +1,18 @@
+# E16 E16_1 start: wns=0.04029865330323901 hold=0.08534389861480918 T=0.050 T_eff=0.104598653303239 J=-11.422810167358174 n=532 re-applied=0
+register                                       lev from                       to                              wns0      wns1     hold1        J0        J1        dJ decision
+if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_        1 clknet_leaf_133_clk        clknet_4_4_0_clk              0.0403    0.0545    0.0853  -11.4228   -9.2906    2.1322 kept
+if_stage_i.instr_rdata_id_o[15]$_DFFE_PP_        1 clknet_leaf_6_clk          clknet_4_2_0_clk              0.0545    0.0669    0.0853   -9.2906   -5.0246    4.2660 kept
+if_stage_i.instr_rdata_id_o[21]$_DFFE_PP_        1 clknet_leaf_3_clk          clknet_4_2_0_clk              0.0669    0.0656    0.0853   -5.0246   -5.5601   -0.5355 reverted(wns)
+if_stage_i.instr_rdata_id_o[1]$_DFFE_PP_         1 clknet_leaf_7_clk          clknet_4_2_0_clk              0.0669    0.0687    0.0853   -5.0246   -3.8290    1.1956 kept
+if_stage_i.instr_rdata_id_o[31]$_DFFE_PP_        1 clknet_leaf_10_clk         clknet_4_2_0_clk              0.0687    0.0719    0.0853   -3.8290   -3.2641    0.5649 kept
+if_stage_i.instr_rdata_id_o[0]$_DFFE_PP_         1 clknet_leaf_7_clk          clknet_4_2_0_clk              0.0719    0.0771    0.0853   -3.2641   -1.8480    1.4161 kept
+if_stage_i.instr_rdata_id_o[3]$_DFFE_PP_         1 clknet_leaf_7_clk          clknet_4_2_0_clk              0.0771    0.0760    0.0853   -1.8480   -1.6713    0.1767 reverted(wns)
+if_stage_i.instr_rdata_id_o[4]$_DFFE_PP_         1 clknet_leaf_7_clk          clknet_4_2_0_clk              0.0771    0.0758    0.0853   -1.8480   -1.9473   -0.0992 reverted(wns)
+if_stage_i.instr_rdata_id_o[30]$_DFFE_PP_        1 clknet_leaf_7_clk          clknet_4_2_0_clk              0.0771    0.0762    0.0853   -1.8480   -1.8641   -0.0160 reverted(wns)
+if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_        2 clknet_4_4_0_clk           clknet_0_clk                  0.0771    0.0596    0.0853   -1.8480   -2.6851   -0.8371 reverted(wns)
+if_stage_i.instr_rdata_id_o[15]$_DFFE_PP_        2 clknet_4_2_0_clk           clknet_0_clk                  0.0771    0.0787    0.0853   -1.8480   -1.6075    0.2405 kept
+if_stage_i.instr_rdata_id_o[1]$_DFFE_PP_         2 clknet_4_2_0_clk           clknet_0_clk                  0.0787    0.0720    0.0780   -1.6075   -1.8686   -0.2611 reverted(wns)
+if_stage_i.instr_rdata_id_o[31]$_DFFE_PP_        2 clknet_4_2_0_clk           clknet_0_clk                  0.0787    0.0769    0.0853   -1.6075   -1.6547   -0.0471 reverted(wns)
+if_stage_i.instr_rdata_id_o[0]$_DFFE_PP_         2 clknet_4_2_0_clk           clknet_0_clk                  0.0787    0.0729    0.0767   -1.6075   -1.7209   -0.1134 reverted(wns)
+if_stage_i.instr_rdata_id_o[15]$_DFFE_PP_        3 clknet_0_clk               clk                           0.0787   -0.0160    0.0853   -1.6075   -7.2452   -5.6376 reverted(wns)
+# E16 E16_1 end: tries=15 kept=6 wns=0.07873501850497178 hold=0.08534370432577987 J=-1.6075368495618279 n=117

@@ -10,8 +10,9 @@
 # Iteration k: e16_select.tcl on the routed result of iteration k-1 ->
 # candidates; build <prefix>_k from R0a's placement with e16_hook.tcl, which
 # re-applies the moves accepted so far and greedily tries the new candidates
-# with a whole-design STA guard; route + RCX; stop when post-route setup WNS
-# improves by less than 1 ps, when no move is kept, or after max_iter.
+# with a whole-design STA guard; route + RCX; stop when an iteration keeps no
+# new move, when post-route setup WNS improves by less than 1 ps, or after
+# max_iter.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 PFX=${1:-E16}; PREV=${2:-RA}; KMAX=${3:-4}; PRE=${4:-}
@@ -48,6 +49,12 @@ for k in $(seq 1 "$KMAX"); do
   kept=$(grep -c . "runs/$n/reports/$SUB/e16_moves_out.txt" 2>/dev/null || echo 0)
   nw=$(wns "$n")
   echo "[$n] post-route WNS=$nw (prev $bw)  registers moved=$kept  $(tail -1 runs/$n/reports/$SUB/e16_hook.rpt)"
+  # no new move kept -> the tree equals the previous iteration's, and any WNS
+  # change is routing noise (tried-and-reverted moves still re-order net pins)
+  if [[ -f runs/$PREV/reports/$SUB/e16_moves_out.txt ]] && \
+     cmp -s <(sort runs/$PREV/reports/$SUB/e16_moves_out.txt) <(sort runs/$n/reports/$SUB/e16_moves_out.txt); then
+    echo "[$PFX] stop: iteration $k kept no new move (same tree as $PREV; WNS $nw vs $bw is noise; best $best, $bw)"; break
+  fi
   if python3 -c "import sys; sys.exit(0 if float('$nw') > float('$bw') + 0.001 else 1)"; then
     best=$n; bw=$nw; PREV=$n
   else

@@ -1,0 +1,7 @@
+# E16 candidates: launch slack < 0.05 ns, worst first (max 40)  register launch_slack capture_slack
+{if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_} 0.021797 0.094490
+{if_stage_i.instr_rdata_id_o[21]$_DFFE_PP_} 0.022678 0.136245
+{if_stage_i.instr_rdata_id_o[3]$_DFFE_PP_} 0.034002 0.137009
+{if_stage_i.instr_rdata_id_o[30]$_DFFE_PP_} 0.039189 0.147861
+{if_stage_i.instr_rdata_id_o[4]$_DFFE_PP_} 0.048437 0.137027
+{if_stage_i.instr_rdata_id_o[12]$_DFFE_PP_} 0.048493 0.133028
