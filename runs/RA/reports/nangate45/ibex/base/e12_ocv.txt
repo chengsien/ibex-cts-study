@@ -1,0 +1,4 @@
+OCV none setup_wns=-0.0143 setup_tns=-0.3602 setup_viol=31 hold_wns=0.0855 hold_tns=0.0000 hold_viol=0
+OCV ocv5 setup_wns=-0.1515 setup_tns=-90.3780 setup_viol=1347 hold_wns=0.0809 hold_tns=0.0000 hold_viol=0
+OCV ocv10 setup_wns=-0.2888 setup_tns=-285.4810 setup_viol=1583 hold_wns=0.0609 hold_tns=0.0000 hold_viol=0
+OCV fast5 setup_wns=0.1915 setup_tns=0.0000 setup_viol=0 hold_wns=0.0647 hold_tns=0.0000 hold_viol=0

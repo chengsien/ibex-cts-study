@@ -25,3 +25,19 @@ runs/**/*.rtlil
 runs/**/*.tmp.log
 runs/**/route.guide
 .scratch/
+# E18: large designs (same rules as runs/)
+runs_big/**/*.odb
+runs_big/**/*.def
+runs_big/**/*.gds
+runs_big/**/*.gds.gz
+runs_big/**/*.oas
+runs_big/**/*.spef
+runs_big/**/*.v
+runs_big/**/*.dat
+runs_big/**/*.rpt.gz
+runs_big/**/objects/
+runs_big/**/results/
+runs_big/**/*.webp
+runs_big/**/*.rtlil
+runs_big/**/*.tmp.log
+runs_big/**/route.guide

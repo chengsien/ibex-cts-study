@@ -7,7 +7,7 @@ REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ORFS_IMAGE="${ORFS_IMAGE:-openroad/orfs:26Q4-260-gc9ac73efc}"
 NAME="$1"; shift
 STAGES=("${@:-cts final}"); STAGES=(${STAGES[@]})
-RUN="$REPO/runs/$NAME"
+RUN="$REPO/${RUNS_DIR:-runs}/$NAME"   # RUNS_DIR=runs_big for the E18 designs
 mapfile -t MV < <(grep '^makevar=' "$RUN/run_config.txt" | sed 's/^makevar=//')
 for st in "${STAGES[@]}"; do
   docker run --rm -e CLK_RPT_STAGE="$st" -v "$REPO:/work" \

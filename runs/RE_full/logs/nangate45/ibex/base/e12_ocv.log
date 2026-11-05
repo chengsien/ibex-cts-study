@@ -1,0 +1,10 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RE_full/results/nangate45/ibex/base/6_final.odb
+read_sdc /work/runs/RE_full/results/nangate45/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+OCV crpr_enabled=1 crpr_mode=same_pin
+OCV none setup_wns=0.0316 setup_tns=0.0000 setup_viol=0 hold_wns=0.0855 hold_tns=0.0000 hold_viol=0
+OCV ocv5 setup_wns=-0.1034 setup_tns=-57.1213 setup_viol=1232 hold_wns=0.0810 hold_tns=0.0000 hold_viol=0
+OCV ocv10 setup_wns=-0.2383 setup_tns=-243.9768 setup_viol=1569 hold_wns=0.0615 hold_tns=0.0000 hold_viol=0
+OCV fast5 setup_wns=0.1867 setup_tns=0.0000 setup_viol=0 hold_wns=0.0648 hold_tns=0.0000 hold_viol=0
+Elapsed time: 0:09.92[h:]min:sec. CPU time: user 9.19 sys 0.72 (99%). Peak memory: 266628KB.

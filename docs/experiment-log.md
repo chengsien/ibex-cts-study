@@ -906,3 +906,78 @@ port) and bit `[7]` (≈ +470 ps, irrelevant). E10 is corrected accordingly.
 side effect on other flops through the shared trunk, and the routing re-roll.
 When the remaining launch bits are this close together, those two effects are
 as large as the gain.
+
+---
+
+## E12 — OCV / timing derate with CRPR (limitation: "no OCV analysis")
+
+**Question.** All earlier numbers use one typical corner with no on-chip
+variation. Do the CTS / useful-skew gains survive OCV, and does useful skew
+(which lengthens unshared clock paths) get penalized?
+
+**Method.** STA only: no re-implementation. `scripts/e12_ocv.tcl` loads each
+run's `6_final.odb` + SPEF, enables CRPR (`sta::set_crpr_enabled 1`, mode
+`same_pin`), and reports setup/hold under:
+* `none`: no derate. This reproduces the normal post-route numbers exactly
+  (sanity check).
+* `ocv5`: `set_timing_derate -late 1.05 / -early 0.95` on cell and net
+  delays, clock and data paths.
+* `ocv10`: late 1.10 / early 0.90.
+* `fast5`: a crude **fast-corner proxy**, used for hold only. All cell delays
+  and cell timing checks are ×0.80, then ocv5 on top. The platform has no
+  fast library; real corners are in E17.
+
+A second script compared ocv5 with CRPR on and off.
+
+**Result** (setup WNS; Δ = gain over RA in the same scenario, ps).
+
+| run | none WNS (Δ) | ocv5 WNS (Δ) | ocv10 WNS (Δ) | hold WNS none / ocv10 / fast5 (ns) |
+|---|---|---|---|---|
+| RA | −14.3 (0) | −151.5 (0) | −288.8 (0) | 0.0855 / 0.0609 / 0.0647 |
+| RB_nocl | +4.3 (+18.6) | −131.1 (+20.4) | −266.6 (+22.2) | 0.0853 / 0.0544 / 0.0646 |
+| RC_full | +16.4 (+30.7) | −119.2 (+32.3) | −254.8 (+34.0) | 0.0855 / 0.0492 / 0.0648 |
+| RD_phys | +18.5 (+32.8) | −116.7 (+34.8) | −255.1 (+33.7) | 0.0856 / 0.0686 / 0.0648 |
+| RD_phys2 | +23.5 (+37.8) | −114.6 (+36.9) | −252.6 (+36.2) | 0.0854 / 0.0667 / 0.0647 |
+| RE_full | +31.6 (+45.9) | −103.4 (+48.1) | −238.3 (+50.5) | 0.0855 / 0.0615 / 0.0648 |
+| RE_full3b | +40.5 (+54.8) | −92.9 (+58.6) | −226.4 (+62.4) | 0.0854 / 0.0702 / 0.0647 |
+| RE_combo3 | +48.2 (+62.5) | −84.0 (+67.5) | −216.2 (+72.6) | 0.0854 / 0.0672 / 0.0647 |
+
+CRPR on vs off under ocv5: setup WNS is **identical** in all five runs
+checked (RA, RB_nocl, RD_phys2, RE_full3b, RE_combo3). Setup TNS gets
+5–8 ns worse without CRPR, and hold WNS drops from about 0.081 to about
+0.051 ns.
+
+**Findings.**
+1. **The ranking of all strategies survives OCV unchanged.** No gain shrinks
+   by more than about 1.6 ps going from nominal to ±10 %.
+2. **Useful skew is *not* penalized here, and launch-side gains even grow.**
+   * Launch-early (RE_*) shortens the launch clock path, so less delay is
+     multiplied by the late factor: +45.9 → +50.5 ps for RE_full, +62.5 →
+     +72.6 ps for RE_combo3 at ±10 %.
+   * Capture-side delay buffers sit in the capture clock path, which setup
+     derates *early* (×0.95 / ×0.90). Their gain therefore shrinks by about
+     the derate times the inserted delay: RD_phys2 +37.8 → +36.2 ps.
+   * The penalty predicted in findings Q4 ("each useful-skew buffer adds an
+     unshared stage") is real but only about 5–10 % of the skew amount, i.e.
+     1–3 ps here.
+3. **CRPR does not matter for the critical setup path, but matters a lot for
+   hold.** The critical launch flop `[20]` sits in the gated clock subtree
+   (`clk`), and the register-file captures sit in the ungated subtree
+   (`clk_i_regs`). Their common clock path ends almost at the root, so
+   there is no pessimism to remove. The worst hold paths are DFFE
+   enable-recirculation loops, with the same flop as launch and capture
+   and a fully common clock. CRPR removes all their pessimism (+30 ps).
+4. **Hold stays clean in every derate scenario.** The lowest hold WNS is
+   0.049 ns (RC_full, ocv10) and 0.065 ns under the fast-corner proxy. No run
+   had a single hold violation. Whether this survives a *real* fast library
+   is checked in E17.
+5. Absolute numbers: with ±5 % OCV, 2.2 ns is far from closing (WNS −84 to
+   −152 ps). A realistic sign-off period for this design and library would
+   be about 2.35–2.45 ns, so the stress-period choice of E1 applies to the
+   nominal analysis only.
+
+**Learned.** OCV scales the clock-path *difference* between strategies by the
+derate (±5–10 %), not by something larger, because these strategies change
+only tens of ps of clock delay. CRPR is crucial for hold sign-off of
+self-loop paths but irrelevant for this design's critical setup path,
+because its launch and capture sit in different subtrees.
