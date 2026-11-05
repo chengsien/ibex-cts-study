@@ -1386,3 +1386,94 @@ routed side effects, and the routing noise (E14) is as large as the
 decisions being made. A guard should either be evaluated on routed
 parasitics or carry a margin of about the noise. A loop's stopping rule
 must look at what changed, not only at the score.
+
+---
+
+## E17 — Real FF / TT / SS corners on ASAP7 (limitation: "hold never checked at a fast corner")
+
+**Question.** Nangate45 ships only a typical library, so every hold number in
+this study is at the typical corner. Hold usually binds at the fast corner.
+Does a design implemented and hold-fixed at typical stay hold-clean at a
+real fast corner, and does the CTS strategy change that?
+
+**Method.** The same Ibex RTL on ASAP7, the one ORFS platform with FF, TT
+and SS libraries (`scripts/e17_run.sh`).
+* **Implementation.** All runs are implemented at the typical corner
+  (`CORNER=TC`: TT libraries, 0.70 V, 0 °C), like the Nangate45 study.
+  The period is 1468 ps from ORFS's own `constraint_pos_slack.sdc`, because
+  the default 900 ps SDC is tuned for implementation at the fast corner.
+* **Runs:**
+
+  | run | CTS setting | built from |
+  |---|---|---|
+  | asap7_A | ORFS default | full flow |
+  | asap7_B | clustering off | asap7_A's placement |
+  | asap7_C | NDR full | asap7_A's placement |
+
+* **Sign-off.** Post-route STA with each corner's libraries and the same
+  SPEF (`scripts/e17_corners.tcl`, CRPR on):
+  * BC = FF, 0.77 V, 25 °C;
+  * TC = TT;
+  * WC = SS, 0.63 V, 100 °C.
+
+  The corner is selected by appending `CORNER=..` to the run's make
+  variables (`STA_MAKEVARS` in `sta_run.sh`).
+
+Data: `results/e17_corners.csv`, plot `results/e17_corners.png`. ASAP7
+times are in ps. Note that `clock_report.tcl` writes them under `_ns` keys
+for this platform.
+
+**Result** (ps).
+
+| | asap7_A default | asap7_B clustering off | asap7_C NDR full |
+|---|---|---|---|
+| **FF hold WNS** | **+35.00** | **+35.01** | **+34.99** |
+| TT hold WNS | +51.51 | +51.58 | +51.55 |
+| SS hold WNS | +76.36 | +76.40 | +76.38 |
+| FF setup WNS | +204.2 | +225.0 | +203.1 |
+| TT setup WNS | +8.9 | +15.1 | +3.1 |
+| SS setup WNS (violations) | −706.8 (1,844) | −714.2 (1,837) | −710.9 (1,844) |
+| mean CK latency FF / TT / SS | 133.8 / 170.6 / 234.7 | 147.0 / 186.7 / 255.5 | 133.2 / 170.1 / 234.1 |
+| clock buffers | 116 | 340 | 116 |
+| clock power / total power at TT (mW) | 1.50 / 5.11 | 3.06 / 6.68 | 1.50 / 5.11 |
+| tree depth (CTS log) | 2–3 | 3 and 4 | 2–3 |
+| clock nets with NDR | 7 of 118 | – | 9 of 118 |
+
+**Findings.**
+1. **Hold survives the real fast corner, and the CTS strategy does not
+   touch it.**
+   * Implemented and hold-fixed at TT, every run keeps +35.0 ps of hold
+     slack at FF, with no violation. The FF corner costs 16.5 ps of hold
+     margin.
+   * The three strategies agree to ±0.02 ps, so the hold-limiting paths are
+     independent of the clock tree. On Nangate45 they were DFFE
+     self-recirculation paths with a fully common clock path (E12).
+   * On this evidence the "typical-only hold" limitation did not hide a
+     problem for this design. This is a different PDK, so it shows a trend,
+     not a re-check of the Nangate45 numbers.
+2. **SS is a period problem, not a CTS problem.** SS cell delays are about
+   38 % slower (latency 234.7 vs 170.6 ps), and every run misses setup by
+   about 710 ps with about 1,840 endpoints. A TT-implemented design would
+   need about 1.5× the period, or implementation at SS, to sign off there.
+3. **The strategy ranking depends on the corner, and the Nangate45
+   conclusions do not transfer.**
+   * Clustering off is best at FF and TT (+6.2 ps at TT) but worst at SS.
+     Its latency is 16 ps higher (20 ps at SS). One possible mechanism, not
+     verified, is that the I/O paths constrained against a virtual clock
+     pay for that latency.
+   * It also costs **2.9× the clock buffers and +104 % clock power (+31 %
+     total power)**. On Nangate45, clustering off used 7 % *fewer* buffers
+     for +2 % clock power. The cheap win does not carry over to a library
+     with smaller clock-buffer drive.
+   * NDR full again changes only 2 nets (7 → 9, the same pattern as
+     Nangate45) and moves TT setup by −5.8 ps.
+   * Routing noise was not measured on ASAP7. With the Nangate45 floor
+     (WNS sd 12 ps, E14), none of these setup differences is significant.
+4. **The corners scale clock latency about 0.78 : 1 : 1.38** (FF : TT : SS).
+   Skew scales with it, so any absolute skew target would have to be set
+   per corner.
+
+**Learned.** Checking the missing corner removed the biggest unknown, fast-
+corner hold, cheaply. It also showed that a CTS setting's cost depends on
+the library: the same TritonCTS option was free on Nangate45 and doubled
+clock power on ASAP7.
