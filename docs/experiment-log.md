@@ -1295,3 +1295,94 @@ to +3.6 ps. In N_gr47 they move by −4.6 to −0.3 ps.
 for the one quantity, the clock part, that the conclusions leaned on. A
 "clock-tree-only" comparison is never purely about the tree, because the
 tree's wires are routed together with everything else.
+
+---
+
+## E16 — Automated select → build → route loop with a side-effect guard (limitation: "no automated iteration; shared-net load not in the guard")
+
+**Question.** The useful-skew runs of E9–E11 were selected and built by
+hand, one round at a time. Their guard looked only at the moved flop's own
+shift. E11 measured the side effect that guard misses: every move onto a
+shared upstream net makes that net's other sinks about 3.4–5.4 ps later.
+Can a closed loop with a guard that includes that side effect find an
+equal or better result without manual steps?
+
+**Method.** Three scripts.
+* `scripts/e16_select.tcl` runs STA on a *routed* result. It lists every
+  register whose own launch slack is < 50 ps and whose CK net is driven by
+  a buffer, worst first.
+* `scripts/e16_hook.tcl` is the `POST_CTS_TCL` hook. It first re-applies
+  the moves accepted so far; the CTS result is deterministic, so this
+  rebuilds the previous tree exactly. Then, one candidate at a time, it
+  moves the CK pin one buffer stage up, re-estimates parasitics, re-times
+  the **whole design**, and keeps the move only if all three hold:
+  * J = Σ min(0, slack − T_eff) improves;
+  * setup WNS does not drop (tolerance 0.1 ps);
+  * hold WNS stays ≥ 20 ps.
+
+  Otherwise it reverts the move. Because every endpoint is re-timed, the
+  extra load on the shared net counts against the move. A kept register is
+  re-queued for another level (at most 3). Moves never cross the clock
+  gate or an inverter. Post-CTS timing (placement RC) is about 55 ps more
+  optimistic than post-route, so T_eff = 50 ps + (post-CTS WNS − post-route
+  WNS of the same tree); without this shift J saw no endpoint below 50 ps
+  after the first move.
+* `scripts/e16_auto.sh` iterates: select on iteration k−1, build iteration
+  k from R0a's placement, route + RCX, repeat.
+
+**Result.**
+
+| run | moves kept (registers / levels) | post-CTS WNS | post-route WNS | cells added | clock power |
+|---|---|---|---|---|---|
+| RA | – | +40.3 | −14.3 | 0 | 4.158 mW |
+| **E16_1** | 5 / 6: `[20]`, `[1]`, `[31]`, `[0]` one level; `[15]` two levels | +78.7 | **+21.8** | 0 | 4.165 mW |
+| E16_2 | none new (6 tries, all reverted) | +78.7 | +26.3 | 0 | 4.159 mW |
+| RE_full (manual, E9) | 9 / 9 | – | +31.6 | 0 | 4.162 mW |
+| RE_full3b (manual, E11) | 9 / 11 + 2 buffers | – | +40.5 | 2 | 4.167 mW |
+
+Iteration 1 made 15 tries (`runs/E16_1/reports/.../e16_hook.rpt`). The
+whole-design guard reverted 9 of them:
+* `[21]`, `[3]`, `[4]` and `[30]` onto `clknet_4_2_0_clk`: each cost 0.7–1.3
+  ps of post-CTS WNS, because the extra load delays `[15]`, which hangs
+  from the same net. This is the side effect E11 measured.
+* `[20]` a second level: WNS dropped 77.1 → 59.6 ps, the overshoot E10 found
+  by hand.
+* `[1]`, `[31]`, `[0]` a second level, and `[15]` a third.
+
+Iteration 2 tried the 6 new candidates from E16_1's post-route timing and
+kept none.
+
+**Findings.**
+1. **The loop runs unattended and converges in two iterations.** It finds
+   the same family of moves as the manual work, including `[15]` two
+   levels, and on its own rejects the `[20]` overshoot.
+2. **But it ends about 10 ps below the manual RE_full.** On the critical
+   endpoint `rf_reg[991]`, E16_1 − RE_full = −9.8 ps, split into:
+   * clock −5.5 ps: `[20]`'s CK is 4.5 ps later. The guard accepted moving
+     `[15]` a second level onto the root trunk `clknet_0_clk`, which
+     `[20]`'s branch also hangs from. Post-CTS this looked like +1.6 ps of
+     WNS; after routing it cost `[20]` about 4.5 ps.
+   * data −4.3 ps: inside the routing noise of E14.
+
+   So the guard catches the shared-net side effect, but it judges it with
+   placement RC and misses the part that only appears after routing.
+3. **A strict "no WNS loss" guard is conservative.** RE_full kept the four
+   moves the guard rejected for a 1 ps post-CTS loss and came out ahead.
+   A variant that allows each move to cost up to 2 ps (E16r,
+   `E16_WNS_TOL=0.002`) tests this.
+4. **Identical trees do not give identical results.** E16_2 kept no move,
+   so its tree equals E16_1's, but it routed to +26.3 instead of +21.8 ps.
+   The likely cause, not verified, is that a tried-and-reverted move
+   disconnects and reconnects a CK pin, which re-orders the net's pins, and
+   global route then builds different Steiner trees. The loop's first
+   stopping rule (WNS only) counted this noise as progress and started a
+   third iteration. I stopped it and changed `e16_auto.sh` to stop when an
+   iteration keeps no new move. That change went into the auto-commit
+   `5a90195` together with the E16 results.
+
+**Learned.** Automating the loop is easy. The hard part is the model the
+guard uses: post-CTS placement RC is optimistic and does not show the
+routed side effects, and the routing noise (E14) is as large as the
+decisions being made. A guard should either be evaluated on routed
+parasitics or carry a margin of about the noise. A loop's stopping rule
+must look at what changed, not only at the score.
