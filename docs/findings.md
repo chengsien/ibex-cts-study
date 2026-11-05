@@ -143,8 +143,13 @@ clock power, targeted physical useful skew is by far the most efficient:
    hold fixing. In a real flow, fast-corner hold is where a skewed tree
    gets expensive.
 6. **The analysis model ignores the effects CTS strategies usually target.**
-   There is one corner, no OCV/AOCV derates (so no CRPR benefit), no SI and
-   no jitter.
+   The main runs use one corner, no OCV/AOCV derates (so no CRPR benefit), no
+   SI and no jitter. Two of these were checked afterwards:
+   * **OCV (E12).** Derates scale the strategy differences by only the derate
+     itself (±5–10 %), and the ranking is unchanged.
+   * **Crosstalk (E13).** This is where NDR earns its keep. With clock-net
+     coupling bounded at ×2 late / ×0 early, NDR full's advantage over the
+     default grows from +30.7 to +55.1 ps. Nominal STA understates NDR.
 7. **The noise floor is comparable to the effects.** A routing-only
    perturbation moves WNS by up to 20.6 ps, and the data part of the
    critical-endpoint slack by up to 27.7 ps. The repeat noise is 0 because

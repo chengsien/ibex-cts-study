@@ -187,3 +187,30 @@ is the trustworthy column.
   * cluster size 20 and NDR root_only: no-ops in this design.
 * No strategy needed or saved any hold fixing: hold slack was +85 ps
   everywhere at the single typical corner.
+
+### Limitations research (E12–E18)
+
+The limitations listed in the first version of this study are being checked
+one by one (details in `docs/experiment-log.md`):
+
+* **OCV (E12, done).** ±5 % and ±10 % derates with CRPR leave the ranking of
+  all strategies unchanged; launch-side useful-skew gains even grow
+  (RE_combo3 +62.5 → +72.6 ps over RA at ±10 %). Hold stays clean.
+* **Crosstalk (E13, done).** About 40 % of clock-net capacitance is coupling.
+  In a worst-case bound (clock coupling ×2 on late paths, ×0 on early),
+  NDR full loses 35 ps instead of 60 ps, so its advantage over the default
+  grows from +30.7 to +55.1 ps. The default NDR `half` misses the root net
+  of the gated subtree. OpenSTA's `read_spef -coupling_reduction_factor`
+  only works for 0 and 1 (the member is declared `bool`), so scaled SPEF
+  copies were used.
+* **OpenSTA anomalies (E15, done).** Both are explained from the source with
+  minimal reproductions. `arrival_max_rise` includes data tags that a full
+  search propagates through the latch-based clock gate onto 943 CK pins.
+  Path objects are freed by the next query's preamble, so a held handle
+  segfaults. No reported number changes.
+* **In progress:**
+  * E14: noise distribution from 10 routing probes.
+  * E16: automated select → build → route useful-skew loop, whose guard
+    includes the shared-net side effect.
+  * E17: Ibex on ASAP7, implemented at TT and signed off at FF/TT/SS.
+  * E18: ariane133, about 10.7× Ibex, with the same three CTS settings.
