@@ -1,0 +1,5 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/E16r_2/results/nangate45/ibex/base/6_final.odb
+read_sdc /work/runs/E16r_2/results/nangate45/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+Elapsed time: 0:04.11[h:]min:sec. CPU time: user 4.54 sys 0.24 (116%). Peak memory: 237256KB.

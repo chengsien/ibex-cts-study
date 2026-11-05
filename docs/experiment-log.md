@@ -1380,6 +1380,28 @@ kept none.
    iteration keeps no new move. That change went into the auto-commit
    `5a90195` together with the E16 results.
 
+**Follow-up: relaxed guard (E16r, `E16_WNS_TOL=0.002`).** Here each move
+may cost up to 2 ps of post-CTS WNS. Everything else is unchanged, and the
+new stopping rule is in place.
+
+| run | new moves kept | post-CTS WNS | post-route WNS |
+|---|---|---|---|
+| E16r_1 | 7 of 16 tries: as E16_1 plus `[3]` | +77.8 | +20.4 |
+| E16r_2 | 1 of 4: `[21]` | +78.7 | **+22.3** |
+| E16r_3 | 0 of 3 (stop: same tree as E16r_2) | +78.7 | +23.1 (noise) |
+
+The extra moves were bought with the tolerance. `[21]`, rejected in
+iteration 1 for its J, was accepted in iteration 2 after the threshold was
+re-calibrated on routed timing. `[4]` and `[30]` stayed rejected on J
+even with the tolerance. The result, +22.3 ps, is the same as the strict
+guard's +21.8 ps within noise. Three identical-tree pairs now show the
+revert-induced noise: E16_1/E16_2 4.5 ps, E16r_2/E16r_3 0.8 ps. **Guard
+strictness at the 0–2 ps level is therefore not what separates the loop
+from RE_full.** The remaining suspect is the one move both automated
+versions make and RE_full does not: `[15]` two levels up onto the root
+trunk, which delays `[20]` after routing (finding 2). A one-level-only run
+(`e16_maxlev 1`) would test that; it was not run.
+
 **Learned.** Automating the loop is easy. The hard part is the model the
 guard uses: post-CTS placement RC is optimistic and does not show the
 routed side effects, and the routing noise (E14) is as large as the

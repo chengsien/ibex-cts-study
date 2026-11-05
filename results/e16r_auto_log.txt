@@ -1,0 +1,12 @@
+[E16r] start from RA  WNS=-0.0143
+E16SEL candidates=9 setup_wns=-0.0143
+[E16r_1] rc=0 wall=746s
+[E16r_1] post-route WNS=0.0204 (prev -0.0143)  registers moved=6  # E16 E16r_1 end: tries=16 kept=7 wns=0.07776512767065924 hold=0.08534370432577987 J=-1.4286659791005167 n=78
+E16SEL candidates=3 setup_wns=0.0204
+[E16r_2] rc=0 wall=745s
+[E16r_2] post-route WNS=0.0223 (prev 0.0204)  registers moved=7  # E16 E16r_2 end: tries=4 kept=1 wns=0.07873501850497178 hold=0.08534370432577987 J=-1.4507008177986733 n=85
+E16SEL candidates=3 setup_wns=0.0223
+[E16r_3] rc=0 wall=779s
+[E16r_3] post-route WNS=0.0231 (prev 0.0223)  registers moved=7  # E16 E16r_3 end: tries=3 kept=0 wns=0.07873501850497178 hold=0.08534370432577987 J=-1.377475424059392 n=73
+[E16r] stop: iteration 3 kept no new move (same tree as E16r_2; WNS 0.0231 vs 0.0223 is noise; best E16r_2, 0.0223)
+E16_DONE best=E16r_2 wns=0.0223
