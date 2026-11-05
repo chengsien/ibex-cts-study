@@ -1,0 +1,10 @@
+# E14 partial (probes finished so far); full set is auto-committed as results/e14_noise.csv when E14 ends
+RA: WNS -14.3 ps, 31 failing endpoints
+N_gr44   adj=0.44  WNS  -18.8 (d   -4.5)  31-ep dslack  -5.22 = clock +0.04 + data  -5.26  (n=31)
+N_gr46   adj=0.46  WNS  -15.6 (d   -1.3)  31-ep dslack  -1.13 = clock -0.13 + data  -1.00  (n=31)
+N_gr48   adj=0.48  WNS  -13.9 (d   +0.4)  31-ep dslack  +0.41 = clock +0.72 + data  -0.31  (n=31)
+N_gr52   adj=0.52  WNS    6.3 (d  +20.6)  31-ep dslack +26.82 = clock -0.91 + data +27.74  (n=31)
+dwns_ps                  n=4 mean=+3.80 sd=11.38 min=-4.50 max=+20.60
+ra_fail_dclock_mean_ps   n=4 mean=-0.07 sd=0.67 min=-0.91 max=+0.72
+ra_fail_ddata_mean_ps    n=4 mean=+5.29 sd=15.12 min=-5.26 max=+27.74
+wrote /home/user/ibex-cts-study/results/e14_noise.csv and results/e14_noise.png

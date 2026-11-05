@@ -1,0 +1,53 @@
+# E18 partial: ariane133 A_default, POST-CTS clock report (placement-estimated RC; not post-route).
+# insertion_delay_max/spread are polluted by latch G pins driven by logic (data arrival, see E15); min/mean are clock latencies.
+parasitics=placement_estimate
+clock_nets=3795
+clock_buffers=3794
+clock_inverters=0
+clock_gates=0
+clock_other_drivers=0
+clock_buffer_area_um2=20213.872
+clock_buffer_masters=BUF_X16:1,BUF_X8:1,CLKBUF_X3:3792
+cts_dummy_loads=2800
+cts_delay_buffers=0
+hold_buffers_by_name=0
+clock_sinks=20772
+insertion_delay_min_ns=0.4921
+insertion_delay_max_ns=3.1776
+insertion_delay_mean_ns=0.5693
+insertion_delay_spread_ns=2.6855
+insertion_delay_min_pin=i_cache_subsystem.i_nbdcache/sram_block_2__data_sram.genblk1_1__i_ram/macro_mem_3/clk
+insertion_delay_max_pin=ex_stage_i/lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_/G
+skew_setup_ns=0.1011
+skew_hold_ns=0.1011
+setup_wns_ns=-0.2745
+setup_tns_ns=-336.3670
+hold_wns_ns=0.0302
+hold_tns_ns=0.0000
+setup_viol_endpoints=2057
+hold_viol_endpoints=0
+power_sequential_w=5.021756e-02
+power_combinational_w=7.474617e-03
+power_clock_w=3.802832e-02
+power_macro_w=1.435450e-01
+power_pad_w=0.000000e+00
+power_total_w=2.393146e-01
+std_cell_instances=168116
+
+# CTS log (A_default)
+[INFO CTS-0011]  Clock net "clk_i" for macros has 132 sinks.
+[INFO CTS-0011]  Clock net "clk_i_regs" for registers has 20636 sinks.
+[INFO CTS-0019]  Total number of sinks after clustering: 39.
+[INFO CTS-0019]  Total number of sinks after clustering: 3340.
+[INFO CTS-0018]     Created 100 clock buffers.
+[INFO CTS-0018]     Created 3691 clock buffers.
+[INFO CTS-0098] Clock net "clk_i"
+[INFO CTS-0099]  Sinks 132
+[INFO CTS-0100]  Leaf buffers 39
+[INFO CTS-0101]  Average sink wire length 2063.54 um
+[INFO CTS-0102]  Path depth 7 - 7
+[INFO CTS-0098] Clock net "clk_i_regs"
+[INFO CTS-0099]  Sinks 23423
+[INFO CTS-0100]  Leaf buffers 3340
+[INFO CTS-0101]  Average sink wire length 934.64 um
+[INFO CTS-0102]  Path depth 7 - 8
