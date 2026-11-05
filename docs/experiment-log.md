@@ -768,11 +768,13 @@ re_launch_early_pass2.rpt`; allowed relaxed to 95 ps on request).
 | hold slack into `[20]` (ns) | 0.258 | 0.269 | 0.273 | 0.266 |
 | **setup WNS (ns)** | −0.0143 | +0.0316 | **+0.0246** | **+0.0362** |
 | worst path | [20]→rf[991] | [20]→rf[991] | **[12]→[20]/D** | [15]→rf[991] |
-| launch slack [15] / [12] / [14] / [31] (ps) | +9.7 / +58.5 / – / +31.3 | +37.6 / +53.1 / +58.4 / +59.3 | +43.6 / **+24.6** / **+30.1** / **+32.8** | +36.2 / +53.7 / +56.1 / +63.9 |
+| launch slack [15] / [12] / [14] / [31] (ps) | +9.7 / +58.5 / – / +31.3 | +37.6 / +53.1 / +58.4 / +59.3 | +43.6 / **+24.6** / **+30.1** / **+32.8** | +36.2 / +50.0† / +56.1 / +63.9 |
 | other 1 937 flops, Δlatency vs RE_full (ps) | – | – | −5.4 … +3.5 (median +0.3) | −5.3 … +3.5 (median +0.8) |
 | clock buffers / clock power (mW) | 316 / 4.158 | 316 / 4.162 | 316 / 4.156 | 317 / 4.159 |
 | design hold WNS (ns) / hold-fix cells | +0.0854 / 0 | +0.0855 / 0 | +0.0854 / 0 | +0.0855 / 0 |
 | DRC | 0 | 0 | 0 | 0 |
+
+†Corrected in E11 (was +53.7). `ir_launch_scan.tcl` took the first path returned by `find_timing_paths -from <bit>` without `-sort_by_slack`, i.e. the worst path of the first path group only. `[12]`'s true worst path in RE_full2b goes to the output port `instr_addr_o[30]` (+50.0 ps). After the fix, no other value in E9/E10 changed except bit `[7]` (≈ +470 ps, far from critical).
 
 **Findings.**
 1. **A full second level overshoots, exactly as predicted.** `[20]` moves
@@ -803,3 +805,104 @@ the into-`[20]` slack (≈ +23 ps predicted, +24.6 ps measured) were both
 accurate. The next lever is now `[15]` (+36.2 ps). It would need either a
 second level or capture-side help (as in RE_combo3), each with the same
 into/launch balance check.
+
+---
+
+## E11 — The same balance check for `[15]`
+
+**Question.** RE_full2b (best launch-only result, +36.2 ps) is limited by
+`instr_rdata_id_o[15]`. Does moving `[15]` a second clock level up, the same
+check as E10, help further?
+
+**Prediction (from RE_full2b post-route, before running).**
+* `[15]` sits on `clknet_4_2_0_clk` (16 sinks; its driver is only about 8 µm
+  away). The next net up is again the gated-tree root trunk `clknet_0_clk`,
+  whose driver is about 47 µm away.
+* Expected extra shift: 77.8 ps (arrival 0.2638 → 0.1861 ns).
+* Unlike `[20]`, the paths *into* `[15]` have a lot of room (+128.3 ps), so
+  `[15]` would end at about +114 ps launch / +50 ps into: still not the
+  limiter. The balance point is (128.3 − 36.2)/2 ≈ 46 ps.
+* `re_select.tcl` (RE_MODE=launch, RE_T=0.040) **accepted** the move this time
+  (expected 77.8 ps ≤ allowed 80 ps), so no relaxation was needed.
+* With `[15]` out of the way, WNS should be set by the next bits, `[16]`
+  (+46.2) and `[21]` (+47.6), i.e. about +46 ps.
+* Hold: `[15]`'s worst hold paths (from and into) were identical (0.154 ns),
+  which points to its own enable loop Q → D, which moves with the flop.
+
+**Method.** Both runs branch from R0a: RE_full2b's passes, then a third
+`re_launch_early.tcl` pass for `[15]` (`re_launch_early_pass3.rpt`).
+* **RE_full3** (`scripts/re_full3.tcl`): `[15]` onto `clknet_0_clk`.
+* **RE_full3b** (`scripts/re_full3b.tcl`): the same, then one `CLKBUF_X1` in
+  front of `[15]`. The buffer insertion is now a reusable proc,
+  `scripts/re_add_launch_buffer.tcl`. At CTS stage the move gave 78.2 ps and
+  the buffer added back 45.2 ps.
+
+**Result** (post-route, OpenRCX).
+
+| metric | RE_full2b | **RE_full3** | **RE_full3b** |
+|---|---|---|---|
+| `[15]` CK arrival (ns) | 0.264 | 0.191 | 0.236 (via CLKBUF_X1) |
+| `[15]` launch / into setup slack (ps) | +36.2 / +128.3 | +111.5 / +49.7 | +75.7 / +94.9 |
+| `[15]` hold from / into (ns) | 0.154 / 0.154 | 0.160 / 0.160 | 0.148 / 0.148 |
+| **setup WNS (ns)** | +0.0362 | **+0.0372** | **+0.0405** |
+| worst path | [15] → rf[991] | **[12]** → rf[91] | **[12]** → rf[91] |
+| clock buffers / clock power (mW) | 317 / 4.159 | 317 / 4.163 | 318 / 4.167 |
+| total power (mW) / cell area (µm²) | 12.708 / 29 020 | 12.713 / 29 020 | 12.716 / 29 020 |
+| design hold WNS (ns) / hold-fix cells | +0.0855 / 0 | +0.0855 / 0 | +0.0854 / 0 |
+| endpoints < 0 / DRC | 0 / 0 | 0 / 0 | 0 / 0 |
+
+Why WNS gained only +1.0 / +4.3 ps instead of about +10 ps. The launch slack
+of the next bits (ps, from the fixed `ir_launch_scan.tcl`) is split into the
+bit's own launch-clock change and the rest (capture clock + data path):
+
+| bit | RE_full2b | RE_full3 | ΔCK launch | rest | RE_full3b | ΔCK launch | rest |
+|---|---|---|---|---|---|---|---|
+| [12] | +50.0 | +37.2 | +3.4 | −9.4 | +40.5 | +4.2 | −5.3 |
+| [16] | +46.2 | +38.9 | +4.1 | −3.3 | +45.6 | +4.8 | +4.1 |
+| [25] | +60.9 | +42.7 | +4.5 | −13.6 | +56.1 | +5.1 | +0.3 |
+| [29] | +58.8 | +43.0 | +4.5 | −11.3 | +54.4 | +5.1 | +0.7 |
+| [27] | +59.6 | +43.6 | +4.5 | −11.5 | +55.0 | +5.1 | +0.5 |
+| [21] | +47.6 | +57.5 | +4.4 | +14.3 | +49.1 | +5.2 | +6.6 |
+
+**Findings.**
+1. **The balance check on `[15]` itself worked as predicted.** The full level
+   gave +111.5 / +49.7 ps (predicted ≈ +114 / +50). The buffered version
+   gave +75.7 / +94.9 ps. In both, `[15]` is no longer critical, and its
+   hold is unchanged (the enable loop moves with it).
+2. **But the WNS gain is small, for two reasons.**
+   * *A real clock side effect.* Putting `[15]` on the root trunk adds one
+     more load there. Every unmoved instruction-register bit's clock became
+     3.4–5.4 ps later, while their register-file captures moved only about
+     1 ps. That costs about 4 ps on all those paths.
+   * *Data-path changes within the noise band.* In RE_full3 the remaining
+     part dropped by a further 9–14 ps for `[12]`/`[25]`/`[29]`/`[27]`. In
+     RE_full3b it is about 0 for most of them. The capture clocks did not
+     move, so this is the data path. The GRT-stage repair had a different
+     worst endpoint in each run (paths into `[15]` in RE_full3,
+     `instr_addr_o[30]` in RE_full3b), and these 9–14 ps lie inside the
+     ≈ 28 ps data-part noise band measured in E5. They cannot be attributed
+     further.
+3. **The buffered version is the better one again.** As with `[20]`, a level
+   plus one `CLKBUF_X1` keeps both sides of the moved flop comfortable. The
+   full level leaves the paths into `[15]` at +49.7 ps, right next to the new
+   wall. RE_full3b reaches **+40.5 ps**, the best launch-side-only result:
+   9 pin moves, two moved two levels, and 2 added cells, for +0.2 % clock
+   power versus RA.
+4. **The launch side is now flat.** The next bits are within a few ps of
+   each other: `[12]` +40.5, `[16]` +45.6, `[21]` +49.1, `[31]` +51.6,
+   `[14]` +51.6. Each further move adds load to the shared trunk (about
+   +4 ps on everyone else) and re-rolls the routing noise. Further
+   single-flop moves would return about as much as the noise.
+
+**Bug found and fixed here.** `scripts/ir_launch_scan.tcl` took the first path
+returned by `find_timing_paths -from <bit> -group_path_count 1`, which is the
+worst path of the first path group, not of all groups. It now uses
+`-sort_by_slack`. All 12 runs that use the scan were re-run. The only changes
+were `[12]` in RE_full2b (+53.7 → +50.0 ps; its worst path goes to an output
+port) and bit `[7]` (≈ +470 ps, irrelevant). E10 is corrected accordingly.
+
+**Learned.** The balance check predicts the moved flop itself very well
+(within about 3 ps in both E10 and E11). What it does not predict is the
+side effect on other flops through the shared trunk, and the routing re-roll.
+When the remaining launch bits are this close together, those two effects are
+as large as the gain.

@@ -9,6 +9,9 @@ read_spef $::env(RESULTS_DIR)/6_final.spef
 for {set b 0} {$b < 32} {incr b} {
   set c [get_cells -quiet "if_stage_i.instr_rdata_id_o\[$b\]\$_DFFE_PP_"]
   if { $c == "" } { continue }
-  set s [sta::format_time [[lindex [find_timing_paths -path_delay max -from $c -group_path_count 1] 0] slack] 5]
+  # -sort_by_slack: without it the first returned path is the worst of the
+  # first path group only (reg->reg) and misses e.g. paths to output ports
+  # (bug found in E11: [12] showed +53.7 ps, its true worst was +50.0 ps).
+  set s [sta::format_time [[lindex [find_timing_paths -path_delay max -from $c -group_path_count 1 -sort_by_slack] 0] slack] 5]
   puts "IR $b $s"
 }

@@ -47,6 +47,8 @@ to about 28 ps is not.
 | **RE_full** | launch-early: 9 instruction-register bits moved one stage up (0 cells) | +45.8 | **+41.9** | +3.9 | **+0.0316** | 0 | 0.312 | 316 | +0.0855 / 0 | 4.162 / 12.710 | 29 018 |
 | RE_full2 | RE_full + `[20]` a second level up (onto the root trunk) | – | – | – | +0.0246 | 0 | 0.313 | 316 | +0.0854 / 0 | 4.156 / 12.705 | 29 019 |
 | **RE_full2b** | RE_full2 + 1 `CLKBUF_X1` in front of `[20]` (net extra shift 33 ps) | – | – | – | **+0.0362** | 0 | 0.314 | 317 | +0.0855 / 0 | 4.159 / 12.708 | 29 020 |
+| RE_full3 | RE_full2b + `[15]` a second level up | – | – | – | +0.0372 | 0 | 0.320 | 317 | +0.0855 / 0 | 4.163 / 12.713 | 29 020 |
+| **RE_full3b** | RE_full3 + 1 `CLKBUF_X1` in front of `[15]` | – | – | – | **+0.0405** | 0 | 0.320 | 318 | +0.0854 / 0 | 4.167 / 12.716 | 29 020 |
 | **RE_combo3** | RD_phys2 + 10 launch moves | **+98.4** | **+84.7** | +11.6 | **+0.0482** | 0 | 0.352 | 352 | +0.0854 / 0 | 4.243 / 12.794 | 29 047 |
 | N_gr48 | **noise probe** (routing only) | +0.4 | +0.7 | −0.3 | −0.0139 | −0.347 | 0.311 | 316 | +0.0855 / 0 | 4.158 / 12.706 | 29 018 |
 | N_gr52 | **noise probe** (routing only) | +26.8 | −0.9 | **+27.7** | +0.0063 | 0 | 0.315 | 316 | +0.0855 / 0 | 4.158 / 12.702 | 29 019 |
@@ -200,7 +202,11 @@ At 2.2 ns, ranked by post-route WNS and by cost:
    cell**. With `[20]` moved a second level and one `CLKBUF_X1` added back
    to balance it (RE_full2b, E10): **+36.2 ps** for one cell. Moving `[20]` a
    full second level without the buffer overshoots: the paths into `[20]`
-   become critical and WNS falls to +24.6 ps. Nine instruction-register flops are moved one clock stage
+   become critical and WNS falls to +24.6 ps. The same check on `[15]`
+   (RE_full3b, E11) gives **+40.5 ps** with 2 added cells. The gain is
+   smaller than predicted: each move onto the shared root trunk makes
+   every other launch bit about 4 ps later, and the remaining bits are
+   now within a few ps of each other. Nine instruction-register flops are moved one clock stage
    earlier, for +0.1 % clock power. This is the most cost-effective result
    of the study.
 3. **Useful skew, capture side (RD_phys / RD_phys2): WNS +18.5 / +23.5 ps**.

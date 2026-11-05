@@ -9,12 +9,12 @@ IR 3 0.06821
 IR 4 0.07134
 IR 5 0.05972
 IR 6 0.07121
-IR 7 0.47012
+IR 7 0.46366
 IR 8 0.48454
 IR 9 0.47254
 IR 10 0.41513
 IR 11 0.42395
-IR 12 0.05367
+IR 12 0.04999
 IR 13 0.05931
 IR 14 0.05614
 IR 15 0.03616
@@ -34,4 +34,4 @@ IR 28 0.07737
 IR 29 0.05882
 IR 30 0.07988
 IR 31 0.06387
-Elapsed time: 0:06.17[h:]min:sec. CPU time: user 11.57 sys 1.46 (211%). Peak memory: 244248KB.
+Elapsed time: 0:06.57[h:]min:sec. CPU time: user 12.05 sys 1.39 (204%). Peak memory: 244308KB.
