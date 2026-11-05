@@ -1,0 +1,23 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/nangate45/lef/NangateOpenCellLibrary.tech.lef, created 22 layers, 27 vias
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/nangate45/lef/NangateOpenCellLibrary.macro.mod.lef, created 135 library cells
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/nangate45/lef/fakeram45_256x16.lef, created 1 library cells
+link_design ariane
+read_sdc /work/runs_big/syn_ariane133/results/nangate45/ariane133/base/1_2_yosys.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+eliminate_dead_logic
+Removed 4777 unused instances and 4923 unused nets.
+Design area 710135 um^2 100% utilization.
+write_db /work/runs_big/syn_ariane133/results/nangate45/ariane133/base/1_synth.odb
+write_sdc -no_timestamp /work/runs_big/syn_ariane133/results/nangate45/ariane133/base/1_synth.sdc
+Elapsed time: 0:05.50[h:]min:sec. CPU time: user 5.08 sys 0.37 (99%). Peak memory: 525856KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_synth                .odb          5        5     0.99      513 3fd3e02010
+1_synth                .sdc                                       f691ea8fd0

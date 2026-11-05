@@ -1,0 +1,6 @@
+[A_default] clock reports done
+[B_nocl] clock reports done
+E18_DONE
+[C_ndrfull] rc=0 wall=4319s
+[C_ndrfull] clock reports done
+E18_DONE

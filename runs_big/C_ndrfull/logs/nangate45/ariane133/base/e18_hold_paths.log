@@ -1,0 +1,30 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib
+read_db /work/runs_big/C_ndrfull/results/nangate45/ariane133/base/6_final.odb
+read_sdc /work/runs_big/C_ndrfull/results/nangate45/ariane133/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+HOLD 0.0202 {i_cache_subsystem.i_nbdcache/master_ports_2__i_cache_ctrl.mem_req_q_wdata__18_$_DFFE_PN0P_/Q} {i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_0__i_ram/macro_mem_1/wd_in[2]} 0.5932
+HOLD 0.0232 {i_cache_subsystem.i_nbdcache/master_ports_2__i_cache_ctrl.mem_req_q_wdata__21_$_DFFE_PN0P_/Q} {i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_0__i_ram/macro_mem_1/wd_in[5]} 0.5932
+HOLD 0.0242 {i_cache_subsystem.i_nbdcache/master_ports_2__i_cache_ctrl.mem_req_q_wdata__17_$_DFFE_PN0P_/Q} {i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_0__i_ram/macro_mem_1/wd_in[1]} 0.5932
+HOLD 0.0257 {i_cache_subsystem.i_nbdcache/master_ports_2__i_cache_ctrl.mem_req_q_wdata__31_$_DFFE_PN0P_/Q} {i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_0__i_ram/macro_mem_1/wd_in[15]} 0.5932
+HOLD 0.0277 {i_cache_subsystem.i_nbdcache/master_ports_2__i_cache_ctrl.mem_req_q_wdata__23_$_DFFE_PN0P_/Q} {i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_0__i_ram/macro_mem_1/wd_in[7]} 0.5932
+HOLD 0.0290 {i_cache_subsystem.i_nbdcache/master_ports_2__i_cache_ctrl.mem_req_q_wdata__29_$_DFFE_PN0P_/Q} {i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_0__i_ram/macro_mem_1/wd_in[13]} 0.5932
+HOLD 0.0306 {i_cache_subsystem.i_nbdcache/master_ports_2__i_cache_ctrl.mem_req_q_wdata__26_$_DFFE_PN0P_/Q} {i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_0__i_ram/macro_mem_1/wd_in[10]} 0.5932
+HOLD 0.0307 {i_cache_subsystem.i_nbdcache/master_ports_2__i_cache_ctrl.mem_req_q_wdata__22_$_DFFE_PN0P_/Q} {i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_0__i_ram/macro_mem_1/wd_in[6]} 0.5932
+HOLD 0.5669 rst_ni {i_perf_counters/perf_counter_q[873]$_DFF_PN0_/RN} 0.5335
+HOLD 0.5672 rst_ni {i_perf_counters/perf_counter_q[874]$_DFF_PN0_/RN} 0.5336
+HOLD 0.5696 rst_ni {i_perf_counters/perf_counter_q[875]$_DFF_PN0_/RN} 0.5336
+HOLD 0.5763 rst_ni {issue_stage_i.i_scoreboard/mem_q[464]$_DFF_PN0_/RN} 0.5542
+HOLD 0.5770 rst_ni {issue_stage_i.i_scoreboard/mem_q[834]$_DFF_PN0_/RN} 0.5542
+HOLD 0.5782 rst_ni {issue_stage_i.i_scoreboard/mem_q[461]$_DFF_PN0_/RN} 0.5506
+HOLD 0.5787 rst_ni {issue_stage_i.i_scoreboard/mem_q[467]$_DFF_PN0_/RN} 0.5502
+HOLD 0.5809 rst_ni {issue_stage_i.i_scoreboard/mem_q[824]$_DFF_PN0_/RN} 0.5505
+HOLD 0.7763 {i_cache_subsystem.i_nbdcache/i_miss_handler/i_bypass_arbiter.req_q[134]$_DFFE_PN0N_/Q} {axi_req_o[269]} 0.5350
+HOLD 0.7766 {i_cache_subsystem.i_nbdcache/i_miss_handler/i_bypass_arbiter.req_q[136]$_DFFE_PN0N_/Q} {axi_req_o[271]} 0.5350
+HOLD 0.7778 {i_cache_subsystem.i_nbdcache/i_miss_handler/i_bypass_arbiter.req_q[98]$_DFFE_PN0N_/Q} {axi_req_o[54]} 0.5350
+HOLD 0.7779 {i_cache_subsystem.i_nbdcache/i_miss_handler/i_bypass_arbiter.req_q[131]$_DFFE_PN0N_/Q} {axi_req_o[266]} 0.5350
+HOLD 0.7803 {i_cache_subsystem.i_nbdcache/i_miss_handler/i_bypass_arbiter.req_q[137]$_DFFE_PN0N_/Q} {axi_req_o[272]} 0.5350
+HOLD 0.7835 {i_cache_subsystem.i_nbdcache/i_miss_handler/i_bypass_arbiter.req_q[103]$_DFFE_PN0N_/Q} {axi_req_o[59]} 0.5350
+HOLD 0.7862 {i_cache_subsystem.i_nbdcache/i_miss_handler/i_bypass_arbiter.req_q[138]$_DFFE_PN0N_/Q} {axi_req_o[273]} 0.5350
+HOLD 0.7868 {i_cache_subsystem.i_nbdcache/i_miss_handler/i_bypass_arbiter.req_q[101]$_DFFE_PN0N_/Q} {axi_req_o[236]} 0.5350
+Elapsed time: 0:55.77[h:]min:sec. CPU time: user 66.99 sys 3.11 (125%). Peak memory: 1697836KB.

@@ -1,0 +1,14 @@
+run_name=C_ndrfull
+date_utc=2026-11-05T11:20:53Z
+design=nangate45/ariane133
+cts_args_override=-sink_clustering_enable -repair_clock_nets -apply_ndr full
+base_run=A_default
+target=finish
+resume=0
+image=openroad/orfs:26Q4-260-gc9ac73efc
+makevar=DESIGN_CONFIG=./designs/nangate45/ariane133/config.mk
+makevar=WORK_HOME=/work/runs_big/C_ndrfull
+makevar=CTS_ARGS=-sink_clustering_enable -repair_clock_nets -apply_ndr full
+makevar=LEC_CHECK=0
+exit_code=0
+wall_seconds=4319

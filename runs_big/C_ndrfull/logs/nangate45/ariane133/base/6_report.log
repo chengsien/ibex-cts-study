@@ -1,0 +1,85 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib
+read_db /work/runs_big/C_ndrfull/results/nangate45/ariane133/base/6_1_fill.odb
+read_sdc /work/runs_big/C_ndrfull/results/nangate45/ariane133/base/6_1_fill.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+write_db /work/runs_big/C_ndrfull/results/nangate45/ariane133/base/6_final.odb
+write_sdc -no_timestamp /work/runs_big/C_ndrfull/results/nangate45/ariane133/base/6_final.sdc
+Deleted 0 routing obstructions
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+[INFO RCX-0435] Reading extraction model file /OpenROAD-flow-scripts/flow/platforms/nangate45/rcx_patterns.rules ...
+[INFO RCX-0436] RC segment generation ariane (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 850392 rc segments
+[INFO RCX-0439] Coupling Cap extraction ariane ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 5% of 1320993 wires extracted
+[INFO RCX-0442] 10% of 1320993 wires extracted
+[INFO RCX-0442] 17% of 1320993 wires extracted
+[INFO RCX-0442] 24% of 1320993 wires extracted
+[INFO RCX-0442] 31% of 1320993 wires extracted
+[INFO RCX-0442] 38% of 1320993 wires extracted
+[INFO RCX-0442] 48% of 1320993 wires extracted
+[INFO RCX-0442] 54% of 1320993 wires extracted
+[INFO RCX-0442] 60% of 1320993 wires extracted
+[INFO RCX-0442] 67% of 1320993 wires extracted
+[INFO RCX-0442] 75% of 1320993 wires extracted
+[INFO RCX-0442] 83% of 1320993 wires extracted
+[INFO RCX-0442] 91% of 1320993 wires extracted
+[INFO RCX-0442] 97% of 1320993 wires extracted
+[INFO RCX-0442] 100% of 1320993 wires extracted
+[INFO RCX-0045] Extract 184476 nets, 1014339 rsegs, 1014339 caps, 2195072 ccs
+[INFO RCX-0042] 100000 nets finished
+[INFO RCX-0443] 184476 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+########## IR report #################
+Net              : VDD
+Corner           : default
+Total power      : 2.40e-01 W
+Supply voltage   : 1.10e+00 V
+Worstcase voltage: 1.09e+00 V
+Average voltage  : 1.10e+00 V
+Average IR drop  : 5.36e-04 V
+Worstcase IR drop: 7.29e-03 V
+Percentage drop  : 0.66 %
+######################################
+[INFO PSM-0040] All shapes on net VSS are connected.
+########## IR report #################
+Net              : VSS
+Corner           : default
+Total power      : 2.40e-01 W
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 3.52e-03 V
+Average voltage  : 5.19e-04 V
+Average IR drop  : 5.19e-04 V
+Worstcase IR drop: 3.52e-03 V
+Percentage drop  : 0.32 %
+######################################
+Cell type report:                        Count         Area
+  Macro                                    132    416463.43
+  Fill cell                             269291    667207.00
+  Tap cell                                9874      2626.48
+  Clock buffer                            5242      6229.19
+  Timing Repair Buffer                   11181     13652.72
+  Inverter                                6551      3511.20
+  Clock inverter                          1352       932.60
+  Sequential cell                        20640    109817.04
+  Multi-Input combinational cell        113342    171233.78
+  Total                                 437605   1391673.43
+Report metrics stage 6, finish...
+
+==========================================================================
+finish report_design_area
+--------------------------------------------------------------------------
+Design area 724466 um^2 51% utilization.
+Elapsed time: 5:52.14[h:]min:sec. CPU time: user 499.33 sys 19.82 (147%). Peak memory: 4654008KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+6_report                           352      519     1.47     4544 N/A

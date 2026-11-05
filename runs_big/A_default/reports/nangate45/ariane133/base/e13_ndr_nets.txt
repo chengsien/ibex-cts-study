@@ -1,0 +1,17 @@
+clk_i CTS_NDR_0
+clk_i_regs CTS_NDR_0
+clknet_0_clk_i CTS_NDR_0
+clknet_0_clk_i_regs CTS_NDR_0
+clknet_1_0_0_clk_i CTS_NDR_0
+clknet_1_0_0_clk_i_regs CTS_NDR_0
+clknet_1_1_0_clk_i CTS_NDR_0
+clknet_1_1_0_clk_i_regs CTS_NDR_0
+clknet_2_0_0_clk_i CTS_NDR_0
+clknet_2_0_0_clk_i_regs CTS_NDR_0
+clknet_2_1_0_clk_i CTS_NDR_0
+clknet_2_1_0_clk_i_regs CTS_NDR_0
+clknet_2_2_0_clk_i CTS_NDR_0
+clknet_2_2_0_clk_i_regs CTS_NDR_0
+clknet_2_3_0_clk_i CTS_NDR_0
+clknet_2_3_0_clk_i_regs CTS_NDR_0
+net34299 CTS_NDR_0

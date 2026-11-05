@@ -89,7 +89,7 @@ def main():
                 "insertion_mean_ps": round(1e3 * f("insertion_delay_mean_ns"), 1),
                 "insertion_max_ps": round(1e3 * f("insertion_delay_max_ns"), 1),
                 "insertion_spread_ps": round(1e3 * f("insertion_delay_spread_ns"), 1),
-                "skew_setup_ps": round(1e3 * f("skew_setup_ns"), 1),
+                "skew_setup_ps": round(1e3 * abs(f("skew_setup_ns")), 1),  # |worst pair| (sign = which side is late)
                 "clock_wl_um": k.get("clock_routed_wirelength_um"),
                 "clock_power_mw": round(1e3 * f("power_clock_w"), 3),
                 "total_power_mw": round(1e3 * f("power_total_w"), 3),
