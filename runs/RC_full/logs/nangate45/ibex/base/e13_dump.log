@@ -1,0 +1,17 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RC_full/results/nangate45/ibex/base/6_final.odb
+read_sdc /work/runs/RC_full/results/nangate45/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+E13 clock_nets=318
+E13 ndr CTS_NDR_0 metal1 width=140 spacing=280 (default width=140 spacing=130)
+E13 ndr CTS_NDR_0 metal2 width=140 spacing=480 (default width=140 spacing=140)
+E13 ndr CTS_NDR_0 metal3 width=140 spacing=280 (default width=140 spacing=140)
+E13 ndr CTS_NDR_0 metal4 width=280 spacing=560 (default width=280 spacing=280)
+E13 ndr CTS_NDR_0 metal5 width=280 spacing=560 (default width=280 spacing=280)
+E13 ndr CTS_NDR_0 metal6 width=280 spacing=560 (default width=280 spacing=280)
+E13 ndr CTS_NDR_0 metal7 width=800 spacing=1600 (default width=800 spacing=800)
+E13 ndr CTS_NDR_0 metal8 width=800 spacing=1600 (default width=800 spacing=800)
+E13 ndr CTS_NDR_0 metal9 width=1600 spacing=3200 (default width=1600 spacing=1600)
+E13 ndr CTS_NDR_0 metal10 width=1600 spacing=3200 (default width=1600 spacing=1600)
+E13 ndr_nets=9
+Elapsed time: 0:00.52[h:]min:sec. CPU time: user 0.43 sys 0.08 (99%). Peak memory: 135332KB.

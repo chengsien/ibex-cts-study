@@ -1,0 +1,36 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RA/results/nangate45/ibex/base/6_final.odb
+read_sdc /work/runs/RA/results/nangate45/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+E15 clock_gate=_26153_ (AND2_X1) clk_in=_26153_/A2 enable_in=_26153_/A1 enable_driver=core_clock_gate_i.en_latch$_DLATCH_N_/Q (DLL_X1)
+E15 before: cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK arrival_max_rise=0.296907 ns
+E15 --- tag arrivals at cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK BEFORE full search ---
+Vertex cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK
+Group 388
+ ^ min 0.30 / -INF 3012 default core_clock ^ (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z min prev clkbuf_leaf_42_clk/Z ^ default/min 74 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ ^ max 0.30 / INF 3014 default core_clock ^ (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z max prev clkbuf_leaf_42_clk/Z ^ default/max 78 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ v min 1.41 / -INF 3017 default core_clock v (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z min prev clkbuf_leaf_42_clk/Z v default/min 77 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+ v max 1.41 / INF 3019 default core_clock v (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z max prev clkbuf_leaf_42_clk/Z v default/max 81 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+E15 after_worst_slack clk:changed clk:total clk_i_regs:total -> 943/943/995 example: cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK 0.296907->1.730380 ns
+E15 after: cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK arrival_max_rise=1.730380 arrival_min_rise=0.296699 ns
+E15 --- tag arrivals at cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK AFTER full search ---
+Vertex cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK
+Group 3521
+ ^ min 0.30 / -INF 3012 default core_clock ^ (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z min prev clkbuf_leaf_42_clk/Z ^ default/min 74 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ ^ max 0.30 / INF 3014 default core_clock ^ (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z max prev clkbuf_leaf_42_clk/Z ^ default/max 78 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ v min 1.41 / -INF 3017 default core_clock v (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z min prev clkbuf_leaf_42_clk/Z v default/min 77 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+ ^ min 1.73 / -INF 3964 default core_clock v clk_src clk_i crpr_pin clkbuf_leaf_68_clk_i_regs/Z min prev clkbuf_leaf_42_clk/Z ^ default/min 3964 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ v min 1.75 / -INF 3965 default core_clock v clk_src clk_i crpr_pin clkbuf_leaf_68_clk_i_regs/Z min prev clkbuf_leaf_42_clk/Z v default/min 3965 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+ v max 1.41 / INF 3019 default core_clock v (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z max prev clkbuf_leaf_42_clk/Z v default/max 81 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+ ^ max 1.73 / INF 3966 default core_clock v clk_src clk_i crpr_pin clkbuf_leaf_68_clk_i_regs/Z max prev clkbuf_leaf_42_clk/Z ^ default/max 3966 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ v max 1.75 / INF 3967 default core_clock v clk_src clk_i crpr_pin clkbuf_leaf_68_clk_i_regs/Z max prev clkbuf_leaf_42_clk/Z v default/max 3967 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+E15 --- tag arrivals at core_busy_q$_DFF_PN0_/CK (clk_i_regs tree) AFTER full search ---
+Vertex core_busy_q$_DFF_PN0_/CK
+Group 97
+ ^ min 0.29 / -INF 1264 default core_clock ^ (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_59_clk_i_regs/Z min prev clkbuf_leaf_59_clk_i_regs/Z ^ default/min 74 clkbuf_leaf_59_clk_i_regs/Z ^ -> core_busy_q$_DFF_PN0_/CK ^
+ ^ max 0.29 / INF 1266 default core_clock ^ (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_59_clk_i_regs/Z max prev clkbuf_leaf_59_clk_i_regs/Z ^ default/max 78 clkbuf_leaf_59_clk_i_regs/Z ^ -> core_busy_q$_DFF_PN0_/CK ^
+ v min 1.40 / -INF 1269 default core_clock v (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_59_clk_i_regs/Z min prev clkbuf_leaf_59_clk_i_regs/Z v default/min 77 clkbuf_leaf_59_clk_i_regs/Z v -> core_busy_q$_DFF_PN0_/CK v
+ v max 1.40 / INF 1271 default core_clock v (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_59_clk_i_regs/Z max prev clkbuf_leaf_59_clk_i_regs/Z v default/max 81 clkbuf_leaf_59_clk_i_regs/Z v -> core_busy_q$_DFF_PN0_/CK v
+E15 control_disabled_enable_arc_after_worst_slack clk:total clk_i_regs:total -> 943/995 example: 
+E15 setup_wns normal=-0.0143 with_enable_arc_disabled=-0.0141
+Elapsed time: 0:07.88[h:]min:sec. CPU time: user 7.50 sys 1.48 (113%). Peak memory: 282448KB.

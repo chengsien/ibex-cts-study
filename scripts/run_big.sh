@@ -13,25 +13,32 @@
 #   -b BASE     reuse synth/floorplan/place of runs_big/BASE, restart at CTS
 #   -e VAR=VAL  extra ORFS make variable (repeatable)
 #   -T TARGET   make target (default: finish; e.g. synth to stop after synthesis)
+#   -R          resume in an existing runs_big/NAME (make continues from the
+#               newest stage result; used to continue a -T synth run)
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ORFS_IMAGE="${ORFS_IMAGE:-openroad/orfs:26Q4-260-gc9ac73efc}"
 
-NAME="" DESIGN="" CTS_ARGS_OVR="" BASE="" TARGET="finish"; EXTRA=()
-while getopts "n:D:c:b:e:T:h" o; do
+NAME="" DESIGN="" CTS_ARGS_OVR="" BASE="" TARGET="finish" RESUME=0; EXTRA=()
+while getopts "n:D:c:b:e:T:Rh" o; do
   case "$o" in
     n) NAME="$OPTARG" ;; D) DESIGN="$OPTARG" ;; c) CTS_ARGS_OVR="$OPTARG" ;;
-    b) BASE="$OPTARG" ;; e) EXTRA+=("$OPTARG") ;; T) TARGET="$OPTARG" ;;
-    h|*) sed -n '2,18p' "$0"; exit 1 ;;
+    b) BASE="$OPTARG" ;; e) EXTRA+=("$OPTARG") ;; T) TARGET="$OPTARG" ;; R) RESUME=1 ;;
+    h|*) sed -n '2,20p' "$0"; exit 1 ;;
   esac
 done
 [[ -n "$NAME" && -n "$DESIGN" ]] || { echo "need -n run_name and -D platform/design" >&2; exit 1; }
 
 RUN="$REPO/runs_big/$NAME"
-if [[ -e "$RUN/logs" ]]; then echo "runs_big/$NAME already exists" >&2; exit 1; fi
+if [[ -e "$RUN/logs" && $RESUME -eq 0 ]]; then echo "runs_big/$NAME already exists" >&2; exit 1; fi
 
-if [[ -n "$BASE" ]]; then
+if [[ $RESUME -eq 1 ]]; then
+  [[ -d "$RUN" ]] || { echo "-R: runs_big/$NAME does not exist" >&2; exit 1; }
+  n=1; while [[ -e "$RUN/run_config.prev$n.txt" ]]; do n=$((n+1)); done
+  [[ -f "$RUN/run_config.txt" ]] && mv "$RUN/run_config.txt" "$RUN/run_config.prev$n.txt"
+  [[ -f "$RUN/flow.log" ]] && mv "$RUN/flow.log" "$RUN/flow.prev$n.log"
+elif [[ -n "$BASE" ]]; then
   B="$REPO/runs_big/$BASE"
   bdir=$(dirname "$(find "$B/results" -name 3_place.odb | head -1)")
   [[ -f "$bdir/3_place.odb" ]] || { echo "base run $BASE has no 3_place.odb" >&2; exit 1; }
@@ -60,7 +67,7 @@ MAKEVARS+=("${EXTRA[@]}")
 {
   echo "run_name=$NAME"; echo "date_utc=$(date -u +%FT%TZ)"
   echo "design=$DESIGN"; echo "cts_args_override=$CTS_ARGS_OVR"
-  echo "base_run=$BASE"; echo "target=$TARGET"; echo "image=$ORFS_IMAGE"
+  echo "base_run=$BASE"; echo "target=$TARGET"; echo "resume=$RESUME"; echo "image=$ORFS_IMAGE"
   printf 'makevar=%s\n' "${MAKEVARS[@]}"
 } > "$RUN/run_config.txt"
 

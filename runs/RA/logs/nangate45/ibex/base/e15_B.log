@@ -1,0 +1,12 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RA/results/nangate45/ibex/base/6_final.odb
+read_sdc /work/runs/RA/results/nangate45/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+E15 clock_gate=_26153_ (AND2_X1) clk_in=_26153_/A2 enable_in=_26153_/A1 enable_driver=core_clock_gate_i.en_latch$_DLATCH_N_/Q (DLL_X1)
+E15B handle=_e041fd7c1f720000_p_PathEnd slack_read_immediately=-0.0133
+E15B intervening query done (slack_max on clock gate output = -0.014270)
+Signal 11 received
+Stack trace:
+ 0# 0x0000000001FEA185 in /OpenROAD-flow-scripts/tools/install/OpenROAD/bin/openroad
+ 1# 0x0000000000045CB0 in /usr/lib/x86_64-linux-gnu/libc.so.6
+Elapsed time: 0:04.26[h:]min:sec. CPU time: user 4.71 sys 0.47 (121%). Peak memory: 233900KB.

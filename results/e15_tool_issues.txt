@@ -1,0 +1,36 @@
+# E13/E15 tool-behaviour evidence (all on runs/RA post-route: 6_final.odb + 6_final.spef)
+# 1) read_spef -coupling_reduction_factor k : only k=0 changes anything (bool member)
+E13 single_k0 maxk=0 mink=1 setup_wns=0.1283 setup_tns=0.0000 setup_viol=0 hold_wns=0.0848 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2513/0.2623/0.2707 ck_early_min/mean/max=0.2512/0.2623/0.2
+E13 single_k0.5 maxk=0.5 mink=1 setup_wns=-0.0143 setup_tns=-0.3602 setup_viol=31 hold_wns=0.0855 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2723/0.2913/0.3122 ck_early_min/mean/max=0.2723/0.2
+E13 mm11 maxk=1 mink=1 setup_wns=-0.0143 setup_tns=-0.3602 setup_viol=31 hold_wns=0.0855 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2723/0.2913/0.3122 ck_early_min/mean/max=0.2723/0.2912/0.312
+E13 single_k1.5 maxk=1.5 mink=1 setup_wns=-0.0143 setup_tns=-0.3602 setup_viol=31 hold_wns=0.0855 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2723/0.2913/0.3122 ck_early_min/mean/max=0.2723/0.2
+E13 single_k2 maxk=2 mink=1 setup_wns=-0.0143 setup_tns=-0.3602 setup_viol=31 hold_wns=0.0855 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2723/0.2913/0.3122 ck_early_min/mean/max=0.2723/0.2912/
+E13 first_try_bound(read_spef -max -coupling_reduction_factor 2, -min ... 0) maxk=2 mink=0 setup_wns=-0.0329 setup_tns=-0.9532 setup_viol=31 hold_wns=0.0846 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2723/0.2913/0.3122 ck_early_min/mean/max=0.2512/0.2623/
+E13 rewrite_all_x1 maxk=1 mink=1 setup_wns=-0.0143 setup_tns=-0.3602 setup_viol=31 hold_wns=0.0855 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2723/0.2913/0.3122 ck_early_min/mean/max=0.2723/0.
+E13 rewrite_all_x2 maxk=1 mink=1 setup_wns=-0.1666 setup_tns=-153.7196 setup_viol=1552 hold_wns=0.0862 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2852/0.3197/0.3605 ck_early_min/mean/max=0.285
+
+# 2) arrival_max_rise on register CK pins before/after a full search (E15 part A)
+E15 clock_gate=_26153_ (AND2_X1) clk_in=_26153_/A2 enable_in=_26153_/A1 enable_driver=core_clock_gate_i.en_latch$_DLATCH_N_/Q (DLL_X1)
+E15 before: cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK arrival_max_rise=0.296907 ns
+E15 after_worst_slack clk:changed clk:total clk_i_regs:total -> 943/943/995 example: cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK 0.296907->1.730380 ns
+E15 after: cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK arrival_max_rise=1.730380 arrival_min_rise=0.296699 ns
+E15 control_disabled_enable_arc_after_worst_slack clk:total clk_i_regs:total -> 943/995 example: 
+E15 setup_wns normal=-0.0143 with_enable_arc_disabled=-0.0141
+
+# tag arrivals at the example CK pin after the full search (data tags = no '(clock prop)')
+E15 --- tag arrivals at cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK AFTER full search ---
+Vertex cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK
+Group 3521
+ ^ min 0.30 / -INF 3012 default core_clock ^ (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z min prev clkbuf_leaf_42_clk/Z ^ default/min 74 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ ^ max 0.30 / INF 3014 default core_clock ^ (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z max prev clkbuf_leaf_42_clk/Z ^ default/max 78 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ v min 1.41 / -INF 3017 default core_clock v (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z min prev clkbuf_leaf_42_clk/Z v default/min 77 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+ ^ min 1.73 / -INF 3964 default core_clock v clk_src clk_i crpr_pin clkbuf_leaf_68_clk_i_regs/Z min prev clkbuf_leaf_42_clk/Z ^ default/min 3964 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ v min 1.75 / -INF 3965 default core_clock v clk_src clk_i crpr_pin clkbuf_leaf_68_clk_i_regs/Z min prev clkbuf_leaf_42_clk/Z v default/min 3965 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+ v max 1.41 / INF 3019 default core_clock v (clock prop) clk_src clk_i crpr_pin clkbuf_leaf_42_clk/Z max prev clkbuf_leaf_42_clk/Z v default/max 81 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+ ^ max 1.73 / INF 3966 default core_clock v clk_src clk_i crpr_pin clkbuf_leaf_68_clk_i_regs/Z max prev clkbuf_leaf_42_clk/Z ^ default/max 3966 clkbuf_leaf_42_clk/Z ^ -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK ^
+ v max 1.75 / INF 3967 default core_clock v clk_src clk_i crpr_pin clkbuf_leaf_68_clk_i_regs/Z max prev clkbuf_leaf_42_clk/Z v default/max 3967 clkbuf_leaf_42_clk/Z v -> cs_registers_i.mcountinhibit_q[0]$_DFFE_PN0P_/CK v
+
+# 3) path handle used after an intervening query (E15 part B)
+E15B handle=_e041fd7c1f720000_p_PathEnd slack_read_immediately=-0.0133
+E15B intervening query done (slack_max on clock gate output = -0.014270)
+Signal 11 received

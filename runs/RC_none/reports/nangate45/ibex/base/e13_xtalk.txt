@@ -1,0 +1,12 @@
+E13 clock_nets=318
+scaled coupling x2.0 on 15233 all nets of RC_none -> runs/RC_none/results/nangate45/ibex/base/e13_all_x2.spef
+scaled coupling x2.0 on 318 clock nets of RC_none -> runs/RC_none/results/nangate45/ibex/base/e13_clk_x2.spef
+scaled coupling x0.0 on 318 clock nets of RC_none -> runs/RC_none/results/nangate45/ibex/base/e13_clk_x0.spef
+E13 nom maxk=1 mink=1 setup_wns=-0.0090 setup_tns=-0.2134 setup_viol=31 hold_wns=0.0855 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2791/0.2926/0.3107 ck_early_min/mean/max=0.2791/0.2925/0.3104 n_ck=1938
+E13 nom worst_setup slack=-0.0090 capture_clk_delay=0.2862 endpoint=gen_regfile_ff.register_file_i.rf_reg[991]$_DFFE_PN0P_/D startpoint=if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/Q
+E13 clk_x2 maxk=1 mink=1 setup_wns=-0.0221 setup_tns=-0.6205 setup_viol=32 hold_wns=0.0858 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2989/0.3243/0.3580 ck_early_min/mean/max=0.2989/0.3242/0.3578 n_ck=1938
+E13 clk_x2 worst_setup slack=-0.0221 capture_clk_delay=0.3108 endpoint=gen_regfile_ff.register_file_i.rf_reg[799]$_DFFE_PN0P_/D startpoint=if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/Q
+E13 clk_bound maxk=1 mink=1 setup_wns=-0.0745 setup_tns=-9.8969 setup_viol=523 hold_wns=0.0642 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2989/0.3243/0.3580 ck_early_min/mean/max=0.2510/0.2604/0.2706 n_ck=1938
+E13 clk_bound worst_setup slack=-0.0745 capture_clk_delay=0.2603 endpoint=gen_regfile_ff.register_file_i.rf_reg[991]$_DFFE_PN0P_/D startpoint=if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/Q
+E13 all_bound maxk=1 mink=0 setup_wns=-0.2060 setup_tns=-227.5961 setup_viol=1574 hold_wns=0.0628 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2989/0.3244/0.3583 ck_early_min/mean/max=0.2510/0.2604/0.2706 n_ck=1938
+E13 all_bound worst_setup slack=-0.2060 capture_clk_delay=0.2601 endpoint=gen_regfile_ff.register_file_i.rf_reg[638]$_DFFE_PN0P_/D startpoint=if_stage_i.instr_rdata_id_o[31]$_DFFE_PP_/Q

@@ -1,0 +1,7 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/RB_s4/results/nangate45/ibex/base/6_final.odb
+read_sdc /work/runs/RB_s4/results/nangate45/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+E13 clk_bound maxk=1 mink=1 setup_wns=-0.0229 setup_tns=-1.0517 setup_viol=62 hold_wns=0.0813 hold_tns=0.0000 hold_viol=0 ck_late_min/mean/max=0.2919/0.3125/0.3353 ck_early_min/mean/max=0.2701/0.2831/0.2943 n_ck=1938
+E13 clk_bound worst_setup slack=-0.0229 capture_clk_delay=0.2838 endpoint=gen_regfile_ff.register_file_i.rf_reg[319]$_DFFE_PN0P_/D startpoint=if_stage_i.instr_rdata_id_o[20]$_DFFE_PP_/Q
+Elapsed time: 0:05.98[h:]min:sec. CPU time: user 7.43 sys 0.42 (131%). Peak memory: 339968KB.

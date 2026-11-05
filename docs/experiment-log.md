@@ -981,3 +981,226 @@ derate (±5–10 %), not by something larger, because these strategies change
 only tens of ps of clock delay. CRPR is crucial for hold sign-off of
 self-loop paths but irrelevant for this design's critical setup path,
 because its launch and capture sit in different subtrees.
+
+---
+
+## E13 — Crosstalk proxy: coupling caps and Miller factor (limitation: "no crosstalk analysis")
+
+**Question.** OpenSTA as used by ORFS has no signal-integrity engine, so every
+earlier number ignores crosstalk delta delay. How much of the clock wiring is
+coupling capacitance? Does NDR actually reduce it? Does the strategy ranking
+survive a worst-case crosstalk bound?
+
+**Method.** STA and SPEF only; no re-implementation.
+1. **SPEF accounting** (`scripts/e13_spef_coupling.py`). Each `*D_NET` has
+   grounded caps (`id node value`) and coupling caps (`id node1 node2 value`).
+   OpenRCX lists every coupling cap in *both* nets' sections (checked on RA:
+   189,223 of 189,223 pairs). Clock nets are found by walking from `clk_i`
+   through combinational cells up to liberty clock pins
+   (`scripts/e13_xtalk.tcl`, `E13_MODE=dump`). That gives 318 nets in RA,
+   the same as the nets the ODB marks `CLOCK`. Useful-skew delay-buffer nets
+   count as clock nets.
+2. **Miller-factor STA** (`scripts/e13_run.sh`). A coupling cap is scaled by
+   *k*: *k* = 0 means the aggressor switches the same way, *k* = 2 means it
+   switches the opposite way. Scenarios:
+   * `nom`: original SPEF.
+   * `clk_x2`: clock-net coupling ×2 for early and late paths alike.
+   * `clk_bound`: the max (late) parasitics have clock-net coupling ×2 and the
+     min (early) parasitics have ×0. Every late path sees worst-case clock
+     crosstalk and every early path best-case. For setup this means a slow
+     launch clock and a fast capture clock; for hold, the reverse. CRPR is on.
+   * `all_bound`: the same with *all* nets' coupling (data nets too).
+3. **Tool bug found on the way.** `read_spef -coupling_reduction_factor`
+   only works for 0 and 1. Factors 0.5, 1.5 and 2 give exactly the *k* = 1
+   numbers (`results/e15_tool_issues.txt`). The cause is in OpenSTA's
+   `parasitics/SpefReaderPvt.hh`: the member is declared
+   `bool coupling_cap_factor_;`, so `cap * coupling_cap_factor_` multiplies
+   by 1 for any nonzero factor. This holds on master as of 2026-11-04 and in
+   the image. The workaround is to write SPEF copies with the coupling values
+   already scaled. Rewriting at ×1 reproduces nominal exactly; ×2 changes
+   timing as expected.
+
+**Result 1: coupling share of wire capacitance** (`results/e13_coupling.csv`).
+
+| run | clock nets | clock wire cap (pF) | coupling share, clock nets | coupling share, other nets |
+|---|---|---|---|---|
+| RC_none (NDR none) | 318 | 1.299 | 40.7 % | 48.3 % |
+| RA (default, NDR half) | 318 | 1.295 | 40.0 % | 48.3 % |
+| RC_full (NDR full) | 318 | 1.269 | 37.9 % | 48.4 % |
+| RB_nocl | 297 | 1.214 | 37.2 % | 48.2 % |
+| RB_s4 | 592 | 1.470 | 38.6 % | 48.2 % |
+| RD_phys2 | 354 | 1.309 | 40.2 % | 48.4 % |
+| RE_combo3 | 354 | 1.311 | 40.2 % | 48.5 % |
+
+Trunk nets only: the 9 nets that carry NDR in RC_full are `clk`, `clk_i`,
+`clk_i_regs`, `clknet_0_*` (3 nets), `clknet_1_0__leaf_clk_i` and two
+`delaynet_*`. The NDR rule `CTS_NDR_0` doubles spacing on every layer and
+keeps the default width.
+
+| run | trunk coupling (fF) | trunk coupling share | `clknet_0_clk` coupling share |
+|---|---|---|---|
+| RC_none | 53.7 | 37.0 % | 51.3 % |
+| RA | 47.2 | 32.9 % | 54.6 % (no NDR on this net) |
+| RC_full | 21.7 | 17.1 % | 21.5 % |
+
+**Result 2: timing** (`results/e13_xtalk.csv`, `results/e13_xtalk.png`;
+setup WNS in ps; Δ = clk_bound − nom).
+
+| run | nom | clk_x2 | clk_bound (Δ) | all_bound | mean CK latency, nom → clock ×2 | hold WNS clk_bound / all_bound |
+|---|---|---|---|---|---|---|
+| RC_none | −9.0 | −22.1 | −74.5 (−65.5) | −206.0 | 292.6 → 324.3 (+31.7) | 64.2 / 62.8 |
+| RA | −14.3 | −36.9 | −74.0 (−59.7) | −201.5 | 291.3 → 319.6 (+28.3) | 73.2 / 71.7 |
+| RC_full | +16.4 | +15.3 | −18.9 (−35.3) | −202.6 | 283.5 → 299.7 (+16.2) | 85.0 / 83.9 |
+| RB_nocl | +4.3 | −5.4 | −25.5 (−29.8) | −157.1 | 274.9 → 287.7 (+12.8) | 84.8 / 84.1 |
+| RB_s4 | +10.2 | −0.8 | −22.9 (−33.1) | −173.9 | 297.9 → 312.5 (+14.6) | 81.3 / 79.7 |
+| RD_phys2 | +23.5 | −1.0 | −37.9 (−61.4) | −213.5 | 292.4 → 320.5 (+28.1) | 80.6 / 79.2 |
+| RE_combo3 | +48.2 | +24.1 | −3.0 (−51.2) | −189.0 | 292.5 → 320.3 (+27.8) | 82.8 / 80.1 |
+
+**Findings.**
+1. **Clock nets are nearly as exposed as data nets.** About 40 % of clock
+   wire cap is coupling, against 48 % for data nets. NDR full lowers the
+   clock total only to 37.9 %. NDR goes on 9 of 318 clock nets. The other
+   309 clock nets (lower tree levels and leaves), which hold 89 % of clock
+   wire cap, never get it.
+2. **On the trunk, NDR is effective, and the default `half` misses the most
+   important net.** NDR full cuts trunk coupling from 53.7 to 21.7 fF
+   (−60 %). The difference between `half` and `full` is `clk` and
+   `clknet_0_clk`, the root of the *gated* subtree. That subtree holds the
+   critical launch flop `[20]` (E12 finding 3), and its root net is the
+   largest single clock net (about 62 fF, 55 % coupling).
+3. **Because of that, NDR full halves the clock-crosstalk sensitivity.** With
+   clock coupling ×2, mean latency rises +16 ps instead of +28 to +32 ps. In
+   the bound, setup loses 35 ps instead of 60 to 66 ps.
+   * RC_full's advantage over RA grows from +30.7 ps (nominal) to +55.1 ps
+     (clk_bound).
+   * RC_full (−18.9) overtakes RD_phys2 (−37.9) in the bound.
+   * The E5 statement "only the clock half can be credited to NDR"
+     undersold NDR: its main value, crosstalk immunity, is invisible to
+     nominal STA.
+4. **Useful-skew runs lose as much as the default** (−51 to −61 ps). They keep
+   NDR `half` and add clock-net length (delay buffers, moved pins).
+   RE_combo3 still ranks first in the bound (−3.0 ps) because it starts
+   62 ps ahead. Combining it with NDR full is the obvious next step and was
+   not run.
+5. **Clustering-off and cluster-4 lose only about 30 ps.** RB_nocl has the
+   lowest latency of all (274.9 ps), so there is less clock delay to
+   perturb. RB_s4 has the *highest* latency (297.9 ps) and still loses only
+   33 ps. Its smaller clusters mean shorter leaf nets, which may be the
+   reason, but I did not check this per path.
+6. **Hold stays clean in every bound.** The lowest hold WNS is 62.8 ps
+   (RC_none, all_bound).
+7. **The all-net bound is dominated by data-net coupling and swamps every CTS
+   difference.** Setup WNS is −157 to −214 ps with about 1,560 violating
+   endpoints. It assumes every aggressor of every net switches against its
+   victim at the same time, with no timing windows. A real SI engine with
+   timing windows and slew-dependent coupling would give much less. It is a
+   bracket, not an estimate.
+
+**Learned.** Nominal STA shows only the nominal-RC part of NDR's benefit and
+none of its crosstalk benefit. A coupling-scaled SPEF is a cheap bound when
+the STA has no SI engine. Check first that the option you rely on does
+anything: here `-coupling_reduction_factor 2` silently did nothing.
+
+---
+
+## E15 — Root causes of the two OpenSTA anomalies (limitation: "worked around, not explained")
+
+**Question.** Two OpenSTA behaviours had only been worked around:
+* (a) the pin property `arrival_max_rise` on some register CK pins changed
+  from 0.291 to 1.745 ns after `find_timing_paths` (E0);
+* (b) a path object from `find_timing_paths` crashed OpenROAD when used after
+  another query.
+
+Why do these happen, and do they make any earlier number wrong?
+
+**Method.** I read the OpenSTA source: master `deeff1d`, 2026-11-04. The image
+reports OpenROAD version "unknown", so it may lag master, but both behaviours
+reproduce in the image. I wrote minimal reproductions in
+`scripts/e15_repro.tcl` on RA's post-route database (`E15_PART=A|B`; logs
+`runs/RA/logs/.../e15_A.log` and `e15_B.log`). The key lines are collected
+in `results/e15_tool_issues.txt`.
+
+**Result (a): the arrival property.**
+* Ibex's core clock gate is the latch `core_clock_gate_i.en_latch`
+  (DLL_X1, transparent while the clock is low) plus AND2_X1 `_26153_`. Its
+  A2 input is the clock and its A1 input is the latch Q. The AND2 drives
+  `clk`, the gated subtree, which holds 943 of the 1,938 register clock pins.
+  The other 995 are on `clk_i_regs`.
+* Before any full search, `arrival_max_rise` at
+  `cs_registers_i.mcountinhibit_q[0]/CK` is 0.296907 ns. After
+  `sta::worst_slack_cmd max` it is 1.730380 ns.
+* **All 943 gated-subtree pins change; none of the 995 `clk_i_regs` pins
+  do.** `arrival_min_rise` stays at 0.2967 ns.
+* `report_tag_arrivals` explains the change. After the full search the CK
+  vertex carries four extra tags (1.73 / 1.75 ns), launched by
+  `core_clock v` (the falling edge that opens the latch) and **without
+  `(clock prop)`**, i.e. **data** tags.
+* Control: `set_disable_timing` on the AND2 A1→ZN arc, then repeat. After
+  the full search no CK pin changes by more than 1 ps.
+
+The mechanism, from the source:
+1. `Properties::pinArrival` calls `Sta::arrival(pin)`, which returns the max
+   over **all** paths (tags) at the vertex, clock and data alike. Only
+   generated-clock source paths are excluded (`search/Sta.cc`).
+2. `Sta::arrival` first runs `Search::findArrivals(level)`, a **single**
+   arrival pass. In that pass latch D→Q propagation is postponed
+   (`postponeLatchDataOutputs` / `pending_arrivals_`, `search/Search.cc`), so
+   the latch Q has no data arrival yet.
+3. `find_timing_paths` and `worst_slack` run
+   `findAllArrivals(thru_latches=true)`, which repeats passes until latch
+   outputs settle. The latch Q data arrival then flows through AND2 A1→ZN
+   into the whole gated clock tree as data tags.
+
+So the property is order-dependent: it gives the clock latency before a full
+search and the latest data arrival after one. Setup and hold checks are not
+affected, because they use the clock tags. Only scripts that read pin
+arrivals as "clock latency" are:
+* `clock_report.tcl`
+* `dump_ck_arrivals.tcl`
+* `worst_paths.tcl`
+* `rd_*`
+* `re_select.tcl`
+* `e13_xtalk.tcl`
+
+All of them sample before any full search, so no reported number is
+affected. For example, RA's reported insertion-delay maximum is 0.3122 ns,
+not about 1.7 ns. `arrival_min_rise` is a safe alternative here, because
+the gate's data arrives later than the clock.
+
+**Result (b): dangling path objects.**
+* `find_timing_paths` returns SWIG handles to `PathEnd` objects owned by the
+  mode's `PathGroups` (`Mode::makePathGroups`).
+* **Every** query starts with `Sta::searchPreamble()`, which calls
+  `search_->deletePathGroups()`. The source comment reads: "Delete results
+  from last findPathEnds because they point to filtered arrivals". That
+  frees all `PathEnd`s.
+* Reproduction:
+  1. Hold the handle of the 2nd-worst path; its slack, −13.3 ps, reads fine.
+  2. Run one `get_property … slack_max` on a pin.
+  3. Read the handle again: `Signal 11 received` (SIGSEGV), and OpenROAD
+     exits.
+* Consequence: any pin slack or arrival query inside a `foreach` over
+  `find_timing_paths` results leaves the rest of the list dangling. The safe
+  pattern, used since the crash, is to extract every needed value from
+  every path first and only then make other queries.
+
+**Findings.**
+1. Neither anomaly is a timing-engine error. (a) is a query-order-dependent
+   property: a single-pass search with no latch iteration, combined with a
+   max over clock *and* data tags. It shows up only on clock pins
+   downstream of a latch-based clock gate. (b) is an ownership rule
+   (results freed at the next query) that surfaces as a crash instead of an
+   error.
+2. Together with the `bool coupling_cap_factor_` bug from E13, these are
+   three OpenSTA issues worth reporting upstream: (a) as a documentation or
+   consistency issue, (b) as a usability issue (invalidate handles instead
+   of crashing), and the coupling factor as a plain bug.
+3. No number in this study changes. The affected scripts already sampled
+   before path enumeration and extracted path values at once.
+
+**Learned.** If a tool value changes depending on what you asked before,
+look for lazy or partial evaluation (here a single pass versus iterated
+latch passes). If an object crashes after a later call, look for ownership
+(here results freed by the next query's preamble). Reading the source and
+writing a minimal reproduction settled both faster than more workarounds
+would have.
