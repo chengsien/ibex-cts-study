@@ -57,8 +57,8 @@ for ax, key, title in [(axs[0], "hold_wns_ps", "hold WNS (ps)"),
     ax.set_title(title, fontsize=10); ax.grid(axis="y", alpha=0.3)
 axs[0].legend(fontsize=8)
 ss = {r["run"]: r["setup_wns_ps"] for r in rows if r["corner"] == "WC"}
-axs[1].text(0.02, 0.95, "SS setup WNS: " + ", ".join(f"{k[-1]} {v:.0f}" for k, v in ss.items()),
-            transform=axs[1].transAxes, fontsize=7, va="top")
+axs[1].text(0.55, 0.55, "SS (not drawn):\n" + "setup WNS " + ", ".join(f"{k[-1]} {v:.0f}" for k, v in ss.items()),
+            transform=axs[1].transAxes, fontsize=8, va="top")
 fig.suptitle("E17: Ibex on ASAP7, implemented at TT (1468 ps), post-route sign-off at three corners")
 fig.tight_layout(); fig.savefig(REPO / "results" / "e17_corners.png", dpi=150)
 for r in rows:
