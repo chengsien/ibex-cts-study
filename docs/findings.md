@@ -167,44 +167,42 @@ clock power, targeted physical useful skew is by far the most efficient:
    effects are only identifiable because the slack was split into a clock
    part and a data part.
 
-## 4. What would change if the design were 10× larger?
+## 4. What changes when the design is 10× larger? (measured, E18)
 
-The following is a reasoned **expectation**, not a measurement.
-Assumptions: about 20 000 sinks at the same utilization, so the core edge
-grows by about √10 ≈ 3.2× (≈ 750 µm), possibly with SRAM macros.
+The first version of this answer was an expectation. It has since been
+measured with **nangate45/ariane133**: 160k cells, 20.8k flops and 132 SRAM
+macros, about 10.7× Ibex in standard-cell area and flop count. It ran with
+its own 3.0 ns SDC and the same three CTS settings (default, clustering off,
+NDR full), each through route + RCX. Details are in experiment-log E18,
+with data in `results/e18_10x.csv`.
 
-* **Insertion delay and skew grow with wire length.** The tree needs about
-  3–4 more levels, and latency would roughly double to ~0.5–0.7 ns. That is
-  a much larger share of the period. Skew would be tens of ps even when
-  "balanced", so the differences between strategies should grow from
-  ~1 % to several % of the period.
-* **Sink clustering becomes necessary.** An H-tree built directly to 20 k
-  sinks (the RB_nocl approach) would need many more levels and buffers near
-  the root. The cluster-offset effect seen in RB_nocl vs RA probably
-  stays, but it is averaged over many more critical paths.
-* **NDR matters more, and costs more.** Trunk wires would be hundreds of µm
-  long and the upper-level net count grows, so `half` and `full` would
-  cover a meaningful fraction of the tree. Their track cost would compete
-  with signal routing in congested areas.
-* **Clock power share stays high or rises**, so RB_s4-type choices
-  (+26 % clock power) become very expensive in absolute terms.
-* **Useful skew becomes more valuable and harder to do by hand.** There are
-  more critical path families with different slack profiles, and so more
-  room to borrow time. But the RD_phys recipe (one fixed buffer per leaf
-  group) would conflict across path families: a flop that captures one
-  critical path usually launches another. Hold at a fast corner becomes the
-  limit. A real latency-scheduling engine would matter more than any
-  TritonCTS option tested here.
-  Whether the launch side stays the cheap lever (as in RE_full) depends on
-  the cone shape. A few launch flops feeding many captures favours it, but
-  in a bigger design more flops are both launch and capture of different
-  critical paths, and moving them earlier costs setup on their own inputs.
-* **Under OCV derates**, which a real 10× design would be signed off with,
-  a shorter tree with more shared top-level paths (CRPR) would dominate. That
-  favours lower latency (RB_nocl-like, NDR on the trunk). It penalises
-  useful-skew buffers slightly, because each one adds an unshared stage.
-* **Noise.** The ±20–28 ps routing noise would probably not scale with the
-  design, while the clock effects should. The ranking would become clearer.
+| expectation (written before E18) | measured |
+|---|---|
+| tree 3–4 levels deeper, latency about doubles (0.5–0.7 ns) | 7–8 levels (Ibex 2–3); latency 549 ps = 1.9×, 18 % of the period (Ibex 13 %) — **confirmed** |
+| skew tens of ps even when balanced | 107 ps setup skew, 137 ps spread (Ibex 40 / 40 ps) — **worse** |
+| differences between strategies grow | clock part over the 2,060 failing endpoints: clustering off +8.7 ps, NDR full +1.6 ps (Ibex +18.9 / +13.9) — **they shrink** |
+| sink clustering becomes necessary | without it: −16 % buffers and −16 % clock power, but skew 287 ps and **hold fails at typical (−8.5 ps, 4 endpoints)** — necessary, for skew/hold rather than buffer count |
+| NDR covers a meaningful fraction and matters more | `full`: 129 nets, 13.4 % of clock wire (Ibex 11.2 %); default `half` only 2.5 %. Nominal gain small (+1.6 ps clock part, −14 ps latency); crosstalk benefit not measured at 10× — **partly** |
+| clock power share stays high or rises | 15.9 % (Ibex 32.7 %) — **wrong**: logic and SRAMs grow faster than the clock tree |
+| useful skew more valuable but harder; OCV favours short trees; noise stops scaling | **not measured** at 10× |
+
+What the measurement adds that was not expected:
+
+* **Hold becomes the constraint, and it depends on CTS.**
+  * The typical-corner hold margin drops from +85 ps (Ibex) to +24 ps.
+  * The binding paths are register → SRAM write-data pins, whose margin
+    depends on how late individual macro clocks are.
+  * Clustering off spreads the 132 macro clock latencies over 306 ps
+    (0.43–0.74 ns, against 137 ps with clustering). That turns the margin
+    negative.
+  * On Ibex (and on ASAP7-Ibex, E17) hold was independent of the tree.
+* **A balance-oriented knob moves a large design's average less.** Ibex's
+  31 failing endpoints all came from one launch flop, so one cluster
+  offset moved them all. ariane133's 2,060 come from many start points, and
+  the knobs mostly reshuffle.
+* **The cheapest knob on Ibex is not cheap at 10×.** Clustering off was the
+  best, nearly free setting on Ibex. On ariane133 it is a power saving that
+  costs skew and hold. On ASAP7-Ibex it doubled clock power (E17).
 
 ## Bottom line
 
