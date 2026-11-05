@@ -1,0 +1,380 @@
+Yosys 0.68+post (git sha1 UNKNOWN, Release, GNU /usr/local/bin/wrapped-cc/g++ 15.2.0)
+Using ABC speed script.
+1. Executing RTLIL frontend.
+2. Executing HIERARCHY pass (managing design hierarchy).
+2.1. Analyzing design hierarchy..
+2.2. Analyzing design hierarchy..
+3. Executing SYNTH pass.
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+3.1.1. Analyzing design hierarchy..
+3.1.2. Analyzing design hierarchy..
+3.2. Executing PROC pass (convert processes to netlists).
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+3.3. Executing CHECK pass (checking for obvious problems).
+3.4. Executing FLATTEN pass (flatten design).
+3.5. Executing OPT_EXPR pass (perform const folding).
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.7. Executing CHECK pass (checking for obvious problems).
+3.8. Executing OPT pass (performing simple optimizations).
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+3.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.8. Executing OPT_EXPR pass (perform const folding).
+3.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.12. Executing OPT_MERGE pass (detect identical cells).
+3.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.15. Executing OPT_EXPR pass (perform const folding).
+3.8.16. Rerunning OPT passes. (Maybe there is more to do..)
+3.8.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.19. Executing OPT_MERGE pass (detect identical cells).
+3.8.20. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.22. Executing OPT_EXPR pass (perform const folding).
+3.8.23. Finished fast OPT passes. (There is nothing left to do.)
+3.9. Executing FSM pass (extract and optimize FSM).
+3.9.1. Executing FSM_DETECT pass (finding FSMs in design).
+3.9.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+3.9.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+3.9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.9.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+3.9.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+3.9.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+3.9.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+3.10. Executing OPT pass (performing simple optimizations).
+3.10.1. Executing OPT_EXPR pass (perform const folding).
+3.10.2. Executing OPT_MERGE pass (detect identical cells).
+3.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.10.5. Executing OPT_MERGE pass (detect identical cells).
+3.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.10.8. Executing OPT_EXPR pass (perform const folding).
+3.10.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.10.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.10.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.10.12. Executing OPT_MERGE pass (detect identical cells).
+3.10.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.10.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.10.15. Executing OPT_EXPR pass (perform const folding).
+3.10.16. Rerunning OPT passes. (Maybe there is more to do..)
+3.10.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.10.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.10.19. Executing OPT_MERGE pass (detect identical cells).
+3.10.20. Executing OPT_DFF pass (perform DFF optimizations).
+3.10.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.10.22. Executing OPT_EXPR pass (perform const folding).
+3.10.23. Rerunning OPT passes. (Maybe there is more to do..)
+3.10.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.10.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.10.26. Executing OPT_MERGE pass (detect identical cells).
+3.10.27. Executing OPT_DFF pass (perform DFF optimizations).
+3.10.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.10.29. Executing OPT_EXPR pass (perform const folding).
+3.10.30. Finished fast OPT passes. (There is nothing left to do.)
+3.11. Executing WREDUCE pass (reducing word size of cells).
+3.12. Executing PEEPOPT pass (run peephole optimizers).
+3.13. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.14. Executing ALUMACC pass (create $alu and $macc cells).
+3.15. Executing SHARE pass (SAT-based resource sharing).
+3.16. Executing OPT pass (performing simple optimizations).
+3.16.1. Executing OPT_EXPR pass (perform const folding).
+3.16.2. Executing OPT_MERGE pass (detect identical cells).
+3.16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.16.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.16.5. Executing OPT_MERGE pass (detect identical cells).
+3.16.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.16.8. Executing OPT_EXPR pass (perform const folding).
+3.16.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.16.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.16.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.16.12. Executing OPT_MERGE pass (detect identical cells).
+3.16.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.16.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.16.15. Executing OPT_EXPR pass (perform const folding).
+3.16.16. Finished fast OPT passes. (There is nothing left to do.)
+3.17. Executing MEMORY pass.
+3.17.1. Executing OPT_MEM pass (optimize memories).
+3.17.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+3.17.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+3.17.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+3.17.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+3.17.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.17.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+3.17.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+3.17.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.17.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+3.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+4. Executing TRIBUF pass.
+5. Executing OPT_CLEAN pass (remove unused cells and wires).
+source /OpenROAD-flow-scripts/flow/scripts/synth_wrap_operators.tcl
+6. Executing TECHMAP pass (map to technology primitives).
+6.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+6.2. Continuing TECHMAP pass.
+7. Generating architectural options for $alu
+7.1. Executing WRAPCELL pass. (wrap selected cells)
+7.2. Executing TECHMAP pass (map to technology primitives).
+7.2.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.2.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v
+7.2.3. Continuing TECHMAP pass.
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100010.\j [4:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100010.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$50799': $auto$proc_dlatch.cc:545:proc_dlatch$52119
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100010.\j [31:5]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100010.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$50799': $auto$proc_dlatch.cc:547:proc_dlatch$52122
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100001.\j [4:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100001.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$52667': $auto$proc_dlatch.cc:545:proc_dlatch$53927
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100001.\j [31:5]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100001.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$52667': $auto$proc_dlatch.cc:547:proc_dlatch$53930
+7.3. Executing TECHMAP pass (map to technology primitives).
+7.3.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.3.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/kogge-stone.v
+7.3.3. Continuing TECHMAP pass.
+7.4. Executing TECHMAP pass (map to technology primitives).
+7.4.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.4.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/sklansky.v
+7.4.3. Continuing TECHMAP pass.
+7.5. Executing TECHMAP pass (map to technology primitives).
+7.5.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.5.2. Continuing TECHMAP pass.
+8. Generating architectural options for $macc
+8.1. Executing WRAPCELL pass. (wrap selected cells)
+8.2. Executing TECHMAP pass (map to technology primitives).
+8.2.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+8.2.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/scripts/synth_wrap_operators-booth.v
+8.2.3. Continuing TECHMAP pass.
+8.3. Executing TECHMAP pass (map to technology primitives).
+8.3.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+8.3.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v
+8.3.3. Continuing TECHMAP pass.
+9. Executing OPT pass (performing simple optimizations).
+9.1. Executing OPT_EXPR pass (perform const folding).
+9.2. Executing OPT_MERGE pass (detect identical cells).
+9.3. Executing OPT_DFF pass (perform DFF optimizations).
+9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+9.5. Rerunning OPT passes. (Removed registers in this run.)
+9.6. Executing OPT_EXPR pass (perform const folding).
+9.7. Executing OPT_MERGE pass (detect identical cells).
+9.8. Executing OPT_DFF pass (perform DFF optimizations).
+9.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+9.10. Finished fast OPT passes.
+10. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+11. Executing OPT pass (performing simple optimizations).
+11.1. Executing OPT_EXPR pass (perform const folding).
+11.2. Executing OPT_MERGE pass (detect identical cells).
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+11.5. Executing OPT_MERGE pass (detect identical cells).
+11.6. Executing OPT_SHARE pass.
+11.7. Executing OPT_DFF pass (perform DFF optimizations).
+11.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+11.9. Executing OPT_EXPR pass (perform const folding).
+11.10. Rerunning OPT passes. (Maybe there is more to do..)
+11.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+11.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+11.13. Executing OPT_MERGE pass (detect identical cells).
+11.14. Executing OPT_SHARE pass.
+11.15. Executing OPT_DFF pass (perform DFF optimizations).
+11.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+11.17. Executing OPT_EXPR pass (perform const folding).
+11.18. Rerunning OPT passes. (Maybe there is more to do..)
+11.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+11.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+11.21. Executing OPT_MERGE pass (detect identical cells).
+11.22. Executing OPT_SHARE pass.
+11.23. Executing OPT_DFF pass (perform DFF optimizations).
+11.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+11.25. Executing OPT_EXPR pass (perform const folding).
+11.26. Finished fast OPT passes. (There is nothing left to do.)
+12. Executing TECHMAP pass (map to technology primitives).
+12.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+12.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v
+12.3. Continuing TECHMAP pass.
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000001.\j' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000001.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$62200': $auto$proc_dlatch.cc:545:proc_dlatch$62238
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000010.\j' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000010.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$62250': $auto$proc_dlatch.cc:545:proc_dlatch$62303
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011111.\j [3:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011111.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$62375': $auto$proc_dlatch.cc:545:proc_dlatch$63551
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011111.\j [31:4]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011111.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$62375': $auto$proc_dlatch.cc:547:proc_dlatch$63554
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000001000000.\j [4:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000001000000.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$63815': $auto$proc_dlatch.cc:545:proc_dlatch$66530
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000001000000.\j [31:5]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000001000000.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$63815': $auto$proc_dlatch.cc:547:proc_dlatch$66533
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000101.\j [1:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000101.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$66808': $auto$proc_dlatch.cc:545:proc_dlatch$66964
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000101.\j [31:2]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000101.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$66808': $auto$proc_dlatch.cc:547:proc_dlatch$66967
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011110.\j [3:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011110.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$67040': $auto$proc_dlatch.cc:545:proc_dlatch$68183
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011110.\j [31:4]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011110.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$67040': $auto$proc_dlatch.cc:547:proc_dlatch$68186
+Took 6 seconds: source /OpenROAD-flow-scripts/flow/scripts/synth_wrap_operators.tcl
+13. Executing OPT pass (performing simple optimizations).
+13.1. Executing OPT_EXPR pass (perform const folding).
+13.2. Executing OPT_MERGE pass (detect identical cells).
+13.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+13.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+13.5. Executing OPT_MERGE pass (detect identical cells).
+13.6. Executing OPT_DFF pass (perform DFF optimizations).
+13.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+13.8. Executing OPT_EXPR pass (perform const folding).
+13.9. Rerunning OPT passes. (Maybe there is more to do..)
+13.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+13.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+13.12. Executing OPT_MERGE pass (detect identical cells).
+13.13. Executing OPT_DFF pass (perform DFF optimizations).
+13.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+13.15. Executing OPT_EXPR pass (perform const folding).
+13.16. Finished fast OPT passes. (There is nothing left to do.)
+14. Executing EXTRACT_FA pass (find and extract full/half adders).
+15. Executing TECHMAP pass (map to technology primitives).
+15.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/yoSys/cells_adders_R.v
+15.2. Continuing TECHMAP pass.
+16. Executing TECHMAP pass (map to technology primitives).
+16.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+16.2. Continuing TECHMAP pass.
+17. Executing OPT pass (performing simple optimizations).
+17.1. Executing OPT_EXPR pass (perform const folding).
+17.2. Executing OPT_MERGE pass (detect identical cells).
+17.3. Executing OPT_DFF pass (perform DFF optimizations).
+17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+17.5. Finished fast OPT passes.
+18. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+19. Executing TECHMAP pass (map to technology primitives).
+19.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/yoSys/cells_latch_R.v
+19.2. Continuing TECHMAP pass.
+20. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+20.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+21. Executing OPT pass (performing simple optimizations).
+21.1. Executing OPT_EXPR pass (perform const folding).
+21.2. Executing OPT_MERGE pass (detect identical cells).
+21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+21.5. Executing OPT_MERGE pass (detect identical cells).
+21.6. Executing OPT_DFF pass (perform DFF optimizations).
+21.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+21.8. Executing OPT_EXPR pass (perform const folding).
+21.9. Rerunning OPT passes. (Maybe there is more to do..)
+21.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+21.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+21.12. Executing OPT_MERGE pass (detect identical cells).
+21.13. Executing OPT_DFF pass (perform DFF optimizations).
+21.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+21.15. Executing OPT_EXPR pass (perform const folding).
+21.16. Finished fast OPT passes. (There is nothing left to do.)
+22. Executing SETUNDEF pass (replace undef values with defined constants).
+abc_new -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz -dont_use *x1p*_ASAP7* -dont_use *xp*_ASAP7* -dont_use SDF* -dont_use ICG* -constr /work/runs_big/asap7_A/objects/asap7/ibex/base/abc.constr
+Warning: Feature 'abc_new' is experimental.
+23. Executing ABC_NEW pass.
+23.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.2. Executing BOX_DERIVE pass. (derive modules for boxes)
+23.3. Executing ABC9_OPS pass (helper functions for ABC9).
+23.4. Executing ABC9_OPS pass (helper functions for ABC9).
+23.5. Mapping module 'ALU_33_0_33_0_33_unused_CO_X_Y[0]_HAN_CARLSON'.
+23.5.1. Executing ABC9_OPS pass (helper functions for ABC9).
+Warning: Feature 'write_xaiger2' is experimental.
+23.5.2. Executing XAIGER2 backend.
+23.5.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.5.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-UCzrYk/abc.script 2>&1" failed: return code 134.
+Warning: Feature 'read_xaiger2' is experimental.
+23.5.5. Executing XAIGER2 frontend.
+23.6. Executing PORTARCS pass. (derive propagation arcs)
+23.7. Executing ABC9_OPS pass (helper functions for ABC9).
+23.8. Mapping module 'ALU_34_0_34_0_34_HAN_CARLSON'.
+23.8.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.8.2. Executing XAIGER2 backend.
+23.8.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.8.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-O23H0O/abc.script 2>&1" failed: return code 134.
+23.8.5. Executing XAIGER2 frontend.
+23.9. Executing PORTARCS pass. (derive propagation arcs)
+23.10. Executing ABC9_OPS pass (helper functions for ABC9).
+23.11. Mapping module 'ibex_core'.
+23.11.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.11.2. Executing XAIGER2 backend.
+23.11.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.11.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-ETLkMy/abc.script 2>&1" failed: return code 134.
+23.11.5. Executing XAIGER2 frontend.
+23.12. Mapping module 'ALU_34_0_34_0_34_BRENT_KUNG'.
+23.12.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.12.2. Executing XAIGER2 backend.
+23.12.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.12.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-Rnhhpm/abc.script 2>&1" failed: return code 134.
+23.12.5. Executing XAIGER2 frontend.
+23.13. Executing PORTARCS pass. (derive propagation arcs)
+23.14. Executing ABC9_OPS pass (helper functions for ABC9).
+23.15. Mapping module 'ALU_34_0_34_0_34_SKLANSKY'.
+23.15.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.15.2. Executing XAIGER2 backend.
+23.15.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.15.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-mo8kXy/abc.script 2>&1" failed: return code 134.
+23.15.5. Executing XAIGER2 frontend.
+23.16. Executing PORTARCS pass. (derive propagation arcs)
+23.17. Executing ABC9_OPS pass (helper functions for ABC9).
+23.18. Mapping module 'ALU_34_0_34_0_34_KOGGE_STONE'.
+23.18.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.18.2. Executing XAIGER2 backend.
+23.18.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.18.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-RGacCu/abc.script 2>&1" failed: return code 134.
+23.18.5. Executing XAIGER2 frontend.
+23.19. Executing PORTARCS pass. (derive propagation arcs)
+23.20. Executing ABC9_OPS pass (helper functions for ABC9).
+23.21. Mapping module 'ALU_33_0_33_0_33_unused_CO_X_Y[0]_BRENT_KUNG'.
+23.21.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.21.2. Executing XAIGER2 backend.
+23.21.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.21.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-sH0NiO/abc.script 2>&1" failed: return code 134.
+23.21.5. Executing XAIGER2 frontend.
+23.22. Executing PORTARCS pass. (derive propagation arcs)
+23.23. Executing ABC9_OPS pass (helper functions for ABC9).
+23.24. Mapping module 'ALU_33_0_33_0_33_unused_CO_X_Y[0]_SKLANSKY'.
+23.24.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.24.2. Executing XAIGER2 backend.
+23.24.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.24.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-I6ivKZ/abc.script 2>&1" failed: return code 134.
+23.24.5. Executing XAIGER2 frontend.
+23.25. Executing PORTARCS pass. (derive propagation arcs)
+23.26. Executing ABC9_OPS pass (helper functions for ABC9).
+23.27. Mapping module 'ALU_33_0_33_0_33_unused_CO_X_Y[0]_KOGGE_STONE'.
+23.27.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.27.2. Executing XAIGER2 backend.
+23.27.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.27.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-K8Lt2k/abc.script 2>&1" failed: return code 134.
+23.27.5. Executing XAIGER2 frontend.
+23.28. Executing PORTARCS pass. (derive propagation arcs)
+23.29. Executing ABC9_OPS pass (helper functions for ABC9).
+23.30. Executing ABC9_OPS pass (helper functions for ABC9).
+Took 53 seconds: abc_new -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz -dont_use *x1p*_ASAP7* -dont_use *xp*_ASAP7* -dont_use SDF* -dont_use ICG* -constr /work/runs_big/asap7_A/objects/asap7/ibex/base/abc.constr
+24. Executing SPLITNETS pass (splitting up multi-bit signals).
+25. Executing OPT_CLEAN pass (remove unused cells and wires).
+26. Executing HILOMAP pass (mapping to constant drivers).
+27. Executing INSBUF pass (insert buffer cells for connected wires).
+28. Executing CHECK pass (checking for obvious problems).
+29. Printing statistics.
+30. Executing CHECK pass (checking for obvious problems).
+31. Executing Verilog backend.
+31.1. Executing BMUXMAP pass.
+31.2. Executing DEMUXMAP pass.
+Warnings: 26 unique messages, 26 total
+Warnings: 3 experimental features used (not excluded with -x).
+End of script. Logfile hash: b295c31518, time: 71.56s, user: 20.48s, system: 0.50s, MEM: 198.21 MB peak
+Yosys 0.68+post (git sha1 UNKNOWN, Release, GNU /usr/local/bin/wrapped-cc/g++ 15.2.0)
+Time spent: 70% 9x abc9_exe (50 sec), 7% 1x extract_fa (5 sec), ...
+Elapsed time: 1:11.63[h:]min:sec. CPU time: user 70.48 sys 0.68 (99%). Peak memory: 204588KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_2_yosys              .v           71       71     0.99      199 dda1201786

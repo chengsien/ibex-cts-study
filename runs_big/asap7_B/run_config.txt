@@ -1,0 +1,15 @@
+run_name=asap7_B
+date_utc=2026-11-05T09:28:11Z
+design=asap7/ibex
+cts_args_override=-repair_clock_nets
+base_run=asap7_A
+target=finish
+resume=0
+image=openroad/orfs:26Q4-260-gc9ac73efc
+makevar=DESIGN_CONFIG=./designs/asap7/ibex/config.mk
+makevar=WORK_HOME=/work/runs_big/asap7_B
+makevar=CTS_ARGS=-repair_clock_nets
+makevar=CORNER=TC
+makevar=SDC_FILE=./designs/asap7/ibex/constraint_pos_slack.sdc
+exit_code=0
+wall_seconds=1163

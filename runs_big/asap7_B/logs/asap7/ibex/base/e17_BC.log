@@ -1,0 +1,12 @@
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_FF_nldm_220123.lib
+read_db -hier /work/runs_big/asap7_B/results/asap7/ibex/base/6_final.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_B/results/asap7/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+E17 corner=BC setup_wns=225.03 setup_tns=0.00 setup_viol=0 hold_wns=35.01 hold_tns=0.00 hold_viol=0 ck_lat_min/mean/max=137.24/147.02/154.51 n_ck=1939 (times in library units: ps for ASAP7)
+Elapsed time: 0:08.14[h:]min:sec. CPU time: user 9.23 sys 0.39 (118%). Peak memory: 436940KB.

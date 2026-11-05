@@ -1,0 +1,182 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/1_synth.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/1_synth.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+
+==========================================================================
+Floorplan check_setup
+--------------------------------------------------------------------------
+number instances in verilog is 16700
+initialize_floorplan -utilization 40 -aspect_ratio 1 -core_space 2 -site asap7sc7p5t
+[INFO IFP-0107] Defining die area using utilization: 40.00% and aspect ratio: 1.
+[WARNING IFP-0028] Core area lower left (2.000, 2.000) snapped to (2.052, 2.160).
+[INFO IFP-0001] Added 268 rows of 1345 site asap7sc7p5t.
+[INFO IFP-0100] Die BBox:  (  0.000  0.000 ) ( 76.726 76.726 ) um
+[INFO IFP-0101] Core BBox: (  2.052  2.160 ) ( 74.682 74.520 ) um
+[INFO IFP-0102] Core area:                         5255.507 um^2
+[INFO IFP-0103] Total instances area:              2115.660 um^2
+[INFO IFP-0104] Effective utilization:                0.403
+[INFO IFP-0105] Number of instances:                  16698
+source /OpenROAD-flow-scripts/flow/platforms/asap7/openRoad/make_tracks.tcl
+source /OpenROAD-flow-scripts/flow/platforms/asap7/fastroute.tcl
+set_dont_use "*x1p*_ASAP7* *xp*_ASAP7* SDF* ICG*"
+repair_tie_fanout -separation 0 asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120/TIELOx1_ASAP7_75t_R/L
+[INFO RSZ-0042] Inserted 15 tie TIELOx1_ASAP7_75t_R instances.
+repair_tie_fanout -separation 0 asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120/TIEHIx1_ASAP7_75t_R/H
+[INFO RSZ-0042] Inserted 1666 tie TIEHIx1_ASAP7_75t_R instances.
+replace_arith_modules
+replace_arith_modules -path_count 1000 -target setup -slack_threshold 0.0
+[INFO RSZ-0151] Starting arithmetic module replacement to optimize 'setup' target
+[INFO RSZ-0152] Analyzing 1000 critical paths with slack < 0.00
+[INFO RSZ-0153] Identified 1970 violating endpoints
+[INFO RSZ-0154] Identified 2 critical arithmetic instances
+[INFO ODB-0496] swapMaster sanity check passed (0 failures)
+[INFO ODB-0496] swapMaster sanity check passed (0 failures)
+[INFO RSZ-0160] 2 arithmetic instances have swapped to improve 'setup' target
+repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -setup -skip_last_gasp -sequence unbuffer,sizeup,swap,vt_swap -verbose
+[WARNING EST-0027] no estimated parasitics. Using wire load models.
+[WARNING RSZ-2024] Experimental repair setup policy 'SetupParallelEvalPolicy' selected. Do not use this for production.
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpoint
+------------------------------------------------------------------------------------------------------------------------------
+       0* |       0 |       0 |        0 |      0 |     0 |    +0.0% | -5112.568 | -8836875.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.err_q\[1\]$_DFFE_PP_/D
+       1* |       0 |      40 |        0 |      0 |    22 |    +0.1% | -5000.570 | -8730341.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.err_q\[1\]$_DFFE_PP_/D
+       2* |       0 |      65 |        0 |      0 |    60 |    +0.1% | -4850.581 | -8703495.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       3* |       0 |      76 |        0 |      0 |    77 |    +0.1% | -4858.400 | -8673813.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       4* |       0 |      89 |        0 |      0 |    94 |    +0.1% | -4851.943 | -8668605.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       5* |       0 |      92 |        0 |      0 |   107 |    +0.1% | -4850.874 | -8666911.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       6* |       0 |      99 |        0 |      0 |   116 |    +0.1% | -4847.216 | -8663461.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       7* |       0 |     103 |        0 |      0 |   128 |    +0.1% | -4846.110 | -8661622.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       8* |       0 |     108 |        0 |      0 |   139 |    +0.1% | -4845.421 | -8659964.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       9* |       0 |     112 |        0 |      0 |   151 |    +0.2% | -4844.511 | -8660666.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      10* |       0 |     120 |        0 |      0 |   159 |    +0.2% | -4843.599 | -8656544.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      11* |       0 |     120 |        0 |      0 |   159 |    +0.2% | -4843.599 | -8656544.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      12* |       0 |     125 |        0 |      0 |   161 |    +0.2% | -4843.599 | -8656327.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      13* |       0 |     130 |        0 |      0 |   172 |    +0.2% | -4842.686 | -8654895.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      14* |       0 |     135 |        0 |      0 |   183 |    +0.2% | -4841.774 | -8654111.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      15* |       0 |     144 |        0 |      0 |   190 |    +0.2% | -4844.022 | -8653775.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      16* |       0 |     154 |        0 |      0 |   196 |    +0.2% | -4844.052 | -8646901.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      17* |       0 |     162 |        0 |      0 |   204 |    +0.2% | -4843.110 | -8643156.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      18* |       0 |     169 |        0 |      0 |   213 |    +0.3% | -4842.134 | -8641488.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      19* |       0 |     174 |        0 |      0 |   224 |    +0.3% | -4841.190 | -8639962.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      20* |       0 |     181 |        0 |      0 |   233 |    +0.3% | -4840.048 | -8638030.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      21* |       0 |     189 |        0 |      0 |   241 |    +0.3% | -4838.926 | -8637826.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      22* |       0 |     198 |        0 |      0 |   248 |    +0.3% | -4838.074 | -8637119.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      23* |       0 |     207 |        0 |      0 |   255 |    +0.3% | -4835.993 | -8635477.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      24* |       0 |     214 |        0 |      0 |   264 |    +0.3% | -4834.871 | -8634006.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      25* |       0 |     220 |        0 |      0 |   274 |    +0.3% | -4833.748 | -8632622.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      26* |       0 |     220 |        0 |      0 |   274 |    +0.3% | -4833.748 | -8632622.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      27* |       0 |     220 |        0 |      0 |   275 |    +0.3% | -4833.089 | -8632398.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      28* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      29* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      30* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      31* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      32* |       0 |     222 |        0 |      0 |   276 |    +0.3% | -4836.135 | -8633137.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      33* |       0 |     223 |        0 |      0 |   276 |    +0.3% | -4832.646 | -8632118.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      34* |       0 |     223 |        0 |      0 |   277 |    +0.3% | -4832.496 | -8632064.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      35* |       0 |     223 |        0 |      0 |   278 |    +0.3% | -4832.673 | -8632126.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      36* |       0 |     224 |        0 |      0 |   278 |    +0.3% | -4831.584 | -8631780.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      37* |       0 |     224 |        0 |      0 |   279 |    +0.3% | -4830.793 | -8631499.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      38* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      39* |       0 |     221 |        0 |      0 |   277 |    +0.3% | -4830.241 | -8631433.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      40* |       0 |     221 |        0 |      0 |   279 |    +0.3% | -4829.471 | -8631173.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      41* |       0 |     222 |        0 |      0 |   282 |    +0.3% | -4814.498 | -8638803.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      42* |       0 |     222 |        0 |      0 |   283 |    +0.3% | -4814.675 | -8638865.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      43* |       0 |     222 |        0 |      0 |   284 |    +0.3% | -4814.475 | -8638640.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      44* |       0 |     222 |        0 |      0 |   285 |    +0.3% | -4813.809 | -8638686.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      45* |       0 |     222 |        0 |      0 |   286 |    +0.3% | -4813.309 | -8638632.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      46* |       0 |     222 |        0 |      0 |   287 |    +0.3% | -4815.590 | -8639217.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      47* |       0 |     221 |        0 |      0 |   279 |    +0.3% | -4829.471 | -8631173.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      48* |       0 |     222 |        0 |      0 |   279 |    +0.3% | -4834.113 | -8632573.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      49* |       0 |     223 |        0 |      0 |   279 |    +0.3% | -4832.647 | -8632134.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      50* |       0 |     224 |        0 |      0 |   279 |    +0.3% | -4831.558 | -8631788.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      51* |       0 |     225 |        0 |      0 |   279 |    +0.3% | -4831.372 | -8631745.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      52* |       0 |     225 |        0 |      0 |   280 |    +0.3% | -4831.203 | -8631688.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      53* |       0 |     225 |        0 |      0 |   281 |    +0.3% | -4829.485 | -8631193.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      54* |       0 |     225 |        0 |      0 |   282 |    +0.3% | -4828.954 | -8631024.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      55* |       0 |     226 |        0 |      0 |   283 |    +0.3% | -4826.765 | -8630153.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      56* |       0 |     227 |        0 |      0 |   284 |    +0.3% | -4806.665 | -8628651.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      57* |       0 |     227 |        0 |      0 |   285 |    +0.3% | -4805.830 | -8628405.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      58* |       0 |     227 |        0 |      0 |   285 |    +0.3% | -4805.830 | -8628405.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      59* |       0 |     227 |        0 |      0 |   286 |    +0.3% | -4805.703 | -8628410.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      60* |       0 |     227 |        0 |      0 |   287 |    +0.3% | -4805.576 | -8628414.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      61* |       0 |     227 |        0 |      0 |   288 |    +0.3% | -4805.450 | -8628418.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      62* |       0 |     227 |        0 |      0 |   289 |    +0.3% | -4805.323 | -8628423.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      63* |       0 |     227 |        0 |      0 |   290 |    +0.3% | -4805.196 | -8628427.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      64* |       0 |     227 |        0 |      0 |   291 |    +0.3% | -4805.070 | -8628432.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      65* |       0 |     232 |        0 |      0 |   302 |    +0.3% | -4804.943 | -8627073.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      66* |       0 |     239 |        0 |      0 |   311 |    +0.4% | -4804.816 | -8626777.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      67* |       0 |     239 |        0 |      0 |   317 |    +0.4% | -4804.816 | -8626550.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      68* |       0 |     239 |        0 |      0 |   319 |    +0.4% | -4804.816 | -8624909.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      69* |       0 |     239 |        0 |      0 |   327 |    +0.4% | -4804.816 | -8624611.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      70* |       0 |     239 |        0 |      0 |   332 |    +0.4% | -4804.816 | -8624951.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      71* |       0 |     239 |        0 |      0 |   333 |    +0.4% | -4804.816 | -8625097.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      72* |       0 |     239 |        0 |      0 |   334 |    +0.4% | -4804.816 | -8625190.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      73* |       0 |     239 |        0 |      0 |   335 |    +0.4% | -4804.816 | -8624821.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+    final |       0 |     239 |        0 |      0 |   327 |    +0.4% | -4804.816 | -8624611.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0051] Resized 239 instances: 239 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 327 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0505] Runtime: 46.55s
+Took 46 seconds: repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -setup -skip_last_gasp -sequence unbuffer,sizeup,swap,vt_swap -verbose
+Default units for flow
+ time 1ps
+ capacitance 1fF
+ resistance 1kohm
+ voltage 1v
+ current 1mA
+ power 1pW
+ distance 1um
+   Layer   | Unit Resistance | Unit Capacitance 
+           |       (kohm/um) |          (fF/um)
+------------------------------------------------
+        M1 |        7.04e-02 |         1.00e-10
+        M2 |        2.97e-02 |         1.75e-01
+        M3 |        3.13e-02 |         1.56e-01
+        M4 |        1.80e-02 |         1.78e-01
+        M5 |        1.90e-02 |         1.64e-01
+        M6 |        1.19e-02 |         1.87e-01
+        M7 |        1.25e-02 |         1.63e-01
+        M8 |        8.45e-03 |         1.04e-01
+        M9 |        8.90e-03 |         9.28e-02
+       Pad |        0.00e+00 |         0.00e+00
+------------------------------------------------
+
+   Layer   | Via Resistance 
+           |         (kohm) 
+----------------------------
+        V1 |       1.72e-02 
+        V2 |       1.72e-02 
+        V3 |       1.72e-02 
+        V4 |       1.18e-02 
+        V5 |       1.18e-02 
+        V6 |       8.20e-03 
+        V7 |       8.20e-03 
+        V8 |       6.30e-03 
+        V9 |       6.30e-03 
+----------------------------
+Report metrics stage 2, floorplan final...
+
+==========================================================================
+floorplan final report_design_area
+--------------------------------------------------------------------------
+Design area 2216 um^2 42% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.odb
+write_sdc -no_timestamp /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.sdc
+Elapsed time: 0:56.31[h:]min:sec. CPU time: user 63.25 sys 2.49 (116%). Peak memory: 273824KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+2_1_floorplan          .odb         56       66     1.17      267 40dd306611
+2_1_floorplan          .sdc                                       eb5a41d3b5

@@ -1,0 +1,100 @@
+parasitics                           rcx_spef
+clock_nets                           342
+clock_buffers                        340
+clock_inverters                      0
+clock_gates                          0
+clock_other_drivers                  1
+clock_buffer_area_um2                132.795
+clock_routed_wirelength_um           3796.5
+clock_buffer_masters                 BUFx16f_ASAP7_75t_R:134,BUFx24_ASAP7_75t_R:205,BUFx6f_ASAP7_75t_R:1
+cts_dummy_loads                      171
+cts_delay_buffers                    3
+hold_buffers_by_name                 0
+clock_sinks                          1939
+insertion_delay_min_ns               176.6922
+insertion_delay_max_ns               195.0257
+insertion_delay_mean_ns              186.7279
+insertion_delay_spread_ns            18.3335
+insertion_delay_min_pin              gen_regfile_ff.register_file_i.rf_reg[47]$_DFFE_PN0P_/CLK
+insertion_delay_max_pin              if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q[70]$_DFFE_PP_/CLK
+
+--- report_clock_skew -setup
+Clock core_clock
+193.3555 source latency id_stage_i.imd_val_q_ex_o[42]$_DFFE_PN0P_/CLK ^
+-166.5220 target latency gen_regfile_ff.register_file_i.rf_reg[47]$_DFFE_PN0P_/CLK ^
+ 0.0000 CRPR
+--------------
+26.8335 setup skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_setup_ns                        26.8335
+
+--- report_clock_skew -hold
+Clock core_clock
+174.6515 source latency if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.valid_q[1]$_DFF_PN0_/CLK ^
+-195.0257 target latency if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q[70]$_DFFE_PP_/CLK ^
+-7.9243 CRPR
+--------------
+-28.2985 hold skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_hold_ns                         -28.2985
+
+--- report_clock_latency
+Clock core_clock
+rise -> rise
+    min     max
+ 0.0000  0.0000 source latency
+166.5220         network latency gen_regfile_ff.register_file_i.rf_reg[47]$_DFFE_PN0P_/CLK
+        195.0257 network latency if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q[70]$_DFFE_PP_/CLK
+---------------
+166.5220 195.0257 latency
+        28.5037 skew
+
+fall -> fall
+    min     max
+ 0.0000  0.0000 source latency
+178.2233         network latency gen_regfile_ff.register_file_i.rf_reg[47]$_DFFE_PN0P_/CLK
+        204.8470 network latency if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q[70]$_DFFE_PP_/CLK
+---------------
+178.2233 204.8470 latency
+        26.6238 skew
+
+
+Clock vclk_core_clock
+
+
+setup_wns_ns                         15.1056
+setup_tns_ns                         0.0000
+hold_wns_ns                          51.5790
+hold_tns_ns                          0.0000
+setup_viol_endpoints                 0
+hold_viol_endpoints                  0
+
+--- report_power
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           1.505319e-03 1.240626e-04 4.097014e-07 1.629791e-03  24.4%
+Combinational        7.903723e-04 1.196525e-03 1.594109e-06 1.988492e-03  29.8%
+Clock                2.245318e-03 8.140386e-04 2.446720e-07 3.059601e-03  45.8%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.541010e-03 2.134626e-03 2.248454e-06 6.677885e-03 100.0%
+                            68.0%        32.0%         0.0%
+
+power_sequential_w                   1.629791e-03
+power_combinational_w                1.988492e-03
+power_clock_w                        3.059601e-03
+power_macro_w                        0.000000e+00
+power_pad_w                          0.000000e+00
+power_total_w                        6.677885e-03
+std_cell_instances                   48170

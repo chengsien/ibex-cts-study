@@ -1,0 +1,141 @@
+[2026-11-05 09:05:48.252] [miter_logger] [info] MiterStrategy::run starting
+[2026-11-05 09:05:48.252] [miter_logger] [info] Collecting POs for design 0: ibex_core
+
+[2026-11-05 09:05:48.318] [miter_logger] [info] Collected 3778 PIs for design 0
+
+[2026-11-05 09:05:48.318] [miter_logger] [info] Collected 7314 POs for design 0
+
+[2026-11-05 09:05:48.319] [miter_logger] [info] design 0 PI summary by model/term (3778 total terminals, 26 unique rows):
+| Model                   | Term           | Count |
+|-------------------------|----------------|-------|
+| TIEHIx1_ASAP7_75t_R     | H              |  1666 |
+| DFFASRHQNx1_ASAP7_75t_R | QN             |  1665 |
+| DFFHQNx1_ASAP7_75t_R    | QN             |   272 |
+| ibex_core               | boot_addr_i    |    32 |
+| ibex_core               | data_rdata_i   |    32 |
+| ibex_core               | hart_id_i      |    32 |
+| ibex_core               | instr_rdata_i  |    32 |
+| TIELOx1_ASAP7_75t_R     | L              |    15 |
+| ibex_core               | irq_fast_i     |    15 |
+| DFFHQNx2_ASAP7_75t_R    | QN             |     1 |
+| DLLx1_ASAP7_75t_R       | Q              |     1 |
+| ibex_core               | clk_i          |     1 |
+| ibex_core               | data_err_i     |     1 |
+| ibex_core               | data_gnt_i     |     1 |
+| ibex_core               | data_rvalid_i  |     1 |
+| ibex_core               | debug_req_i    |     1 |
+| ibex_core               | fetch_enable_i |     1 |
+| ibex_core               | instr_err_i    |     1 |
+| ibex_core               | instr_gnt_i    |     1 |
+| ibex_core               | instr_rvalid_i |     1 |
+| ibex_core               | irq_external_i |     1 |
+| ibex_core               | irq_nm_i       |     1 |
+| ibex_core               | irq_software_i |     1 |
+| ibex_core               | irq_timer_i    |     1 |
+| ibex_core               | rst_ni         |     1 |
+| ibex_core               | test_en_i      |     1 |
+
+[2026-11-05 09:05:48.319] [miter_logger] [info] design 0 PO summary by model/term (7314 total terminals, 20 unique rows):
+| Model                   | Term          | Count |
+|-------------------------|---------------|-------|
+| DFFASRHQNx1_ASAP7_75t_R | CLK           |  1665 |
+| DFFASRHQNx1_ASAP7_75t_R | D             |  1665 |
+| DFFASRHQNx1_ASAP7_75t_R | RESETN        |  1665 |
+| DFFASRHQNx1_ASAP7_75t_R | SETN          |  1665 |
+| DFFHQNx1_ASAP7_75t_R    | CLK           |   272 |
+| DFFHQNx1_ASAP7_75t_R    | D             |   272 |
+| ibex_core               | data_addr_o   |    32 |
+| ibex_core               | data_wdata_o  |    32 |
+| ibex_core               | instr_addr_o  |    32 |
+| ibex_core               | data_be_o     |     4 |
+| DFFHQNx2_ASAP7_75t_R    | CLK           |     1 |
+| DFFHQNx2_ASAP7_75t_R    | D             |     1 |
+| DLLx1_ASAP7_75t_R       | CLK           |     1 |
+| DLLx1_ASAP7_75t_R       | D             |     1 |
+| ibex_core               | alert_major_o |     1 |
+| ibex_core               | alert_minor_o |     1 |
+| ibex_core               | core_sleep_o  |     1 |
+| ibex_core               | data_req_o    |     1 |
+| ibex_core               | data_we_o     |     1 |
+| ibex_core               | instr_req_o   |     1 |
+
+[2026-11-05 09:05:48.320] [miter_logger] [info] Collecting POs for design 1: ibex_core
+
+[2026-11-05 09:05:48.382] [miter_logger] [info] size of common inputs: 2096
+[2026-11-05 09:05:48.382] [miter_logger] [info] size of diff0 inputs: 0
+[2026-11-05 09:05:48.382] [miter_logger] [info] size of diff1 inputs: 0
+[2026-11-05 09:05:48.382] [miter_logger] [info] Collected 3778 PIs for design 1
+
+[2026-11-05 09:05:48.382] [miter_logger] [info] Collected 7314 POs for design 1
+
+[2026-11-05 09:05:48.383] [miter_logger] [info] design 1 PI summary by model/term (3778 total terminals, 26 unique rows):
+| Model                   | Term           | Count |
+|-------------------------|----------------|-------|
+| TIEHIx1_ASAP7_75t_R     | H              |  1666 |
+| DFFASRHQNx1_ASAP7_75t_R | QN             |  1665 |
+| DFFHQNx1_ASAP7_75t_R    | QN             |   272 |
+| ibex_core               | boot_addr_i    |    32 |
+| ibex_core               | data_rdata_i   |    32 |
+| ibex_core               | hart_id_i      |    32 |
+| ibex_core               | instr_rdata_i  |    32 |
+| TIELOx1_ASAP7_75t_R     | L              |    15 |
+| ibex_core               | irq_fast_i     |    15 |
+| DFFHQNx2_ASAP7_75t_R    | QN             |     1 |
+| DLLx1_ASAP7_75t_R       | Q              |     1 |
+| ibex_core               | clk_i          |     1 |
+| ibex_core               | data_err_i     |     1 |
+| ibex_core               | data_gnt_i     |     1 |
+| ibex_core               | data_rvalid_i  |     1 |
+| ibex_core               | debug_req_i    |     1 |
+| ibex_core               | fetch_enable_i |     1 |
+| ibex_core               | instr_err_i    |     1 |
+| ibex_core               | instr_gnt_i    |     1 |
+| ibex_core               | instr_rvalid_i |     1 |
+| ibex_core               | irq_external_i |     1 |
+| ibex_core               | irq_nm_i       |     1 |
+| ibex_core               | irq_software_i |     1 |
+| ibex_core               | irq_timer_i    |     1 |
+| ibex_core               | rst_ni         |     1 |
+| ibex_core               | test_en_i      |     1 |
+
+[2026-11-05 09:05:48.383] [miter_logger] [info] design 1 PO summary by model/term (7314 total terminals, 20 unique rows):
+| Model                   | Term          | Count |
+|-------------------------|---------------|-------|
+| DFFASRHQNx1_ASAP7_75t_R | CLK           |  1665 |
+| DFFASRHQNx1_ASAP7_75t_R | D             |  1665 |
+| DFFASRHQNx1_ASAP7_75t_R | RESETN        |  1665 |
+| DFFASRHQNx1_ASAP7_75t_R | SETN          |  1665 |
+| DFFHQNx1_ASAP7_75t_R    | CLK           |   272 |
+| DFFHQNx1_ASAP7_75t_R    | D             |   272 |
+| ibex_core               | data_addr_o   |    32 |
+| ibex_core               | data_wdata_o  |    32 |
+| ibex_core               | instr_addr_o  |    32 |
+| ibex_core               | data_be_o     |     4 |
+| DFFHQNx2_ASAP7_75t_R    | CLK           |     1 |
+| DFFHQNx2_ASAP7_75t_R    | D             |     1 |
+| DLLx1_ASAP7_75t_R       | CLK           |     1 |
+| DLLx1_ASAP7_75t_R       | D             |     1 |
+| ibex_core               | alert_major_o |     1 |
+| ibex_core               | alert_minor_o |     1 |
+| ibex_core               | core_sleep_o  |     1 |
+| ibex_core               | data_req_o    |     1 |
+| ibex_core               | data_we_o     |     1 |
+| ibex_core               | instr_req_o   |     1 |
+
+[2026-11-05 09:05:48.383] [miter_logger] [info] normalizeInputs: starting
+[2026-11-05 09:05:48.389] [miter_logger] [info] size of common inputs: 3778
+[2026-11-05 09:05:48.389] [miter_logger] [info] size of diff0 inputs: 0
+[2026-11-05 09:05:48.389] [miter_logger] [info] size of diff1 inputs: 0
+[2026-11-05 09:05:48.390] [miter_logger] [info] normalizeOutputs: starting
+[2026-11-05 09:05:48.406] [miter_logger] [info] size of common outputs: 7314
+[2026-11-05 09:05:48.406] [miter_logger] [info] size of diff0 outputs: 0
+[2026-11-05 09:05:48.406] [miter_logger] [info] size of diff1 outputs: 0
+[2026-11-05 09:05:48.408] [miter_logger] [info] size of PIs in circuit 0: 3778
+[2026-11-05 09:05:48.408] [miter_logger] [info] size of PIs in circuit 1: 3778
+[2026-11-05 09:05:48.408] [miter_logger] [info] size of POs in circuit 0: 7314
+[2026-11-05 09:05:48.408] [miter_logger] [info] size of POs in circuit 1: 7314
+[2026-11-05 09:05:48.957] [miter_logger] [info] Building miter expression
+[2026-11-05 09:05:48.958] [miter_logger] [info] Finished building miter expression
+[2026-11-05 09:05:48.958] [miter_logger] [info] Starting solver
+[2026-11-05 09:05:48.958] [miter_logger] [info] SAT solver finished: UNSAT
+[2026-11-05 09:05:48.958] [miter_logger] [info] Circuits are IDENTICAL

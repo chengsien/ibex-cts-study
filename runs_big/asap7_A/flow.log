@@ -1,0 +1,2425 @@
+/OpenROAD-flow-scripts/flow/scripts/synth.sh /OpenROAD-flow-scripts/flow/scripts/synth_canonicalize.tcl /work/runs_big/asap7_A/logs/asap7/ibex/base/1_1_yosys_canonicalize.log
+Using ABC speed script.
+1. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+2. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+3. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+4. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+5. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+6. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+7. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+8. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+9. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+10. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+11. Executing SLANG frontend.
+11.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+11.2. Executing TRIBUF pass.
+11.3. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+11.4. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+11.5. Executing PROC_INIT pass (extract init attributes).
+11.6. Executing PROC_ROM pass (convert switches to ROMs).
+11.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+11.8. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+11.9. Executing OPT_EXPR pass (perform const folding).
+12. Executing HIERARCHY pass (managing design hierarchy).
+12.1. Analyzing design hierarchy..
+12.2. Analyzing design hierarchy..
+13. Executing OPT_CLEAN pass (remove unused cells and wires).
+14. Executing RTLIL backend.
+End of script. Logfile hash: b5b0d56cda, time: 2.90s, user: 1.00s, system: 0.08s, MEM: 87.38 MB peak
+Yosys 0.68+post (git sha1 UNKNOWN, Release, GNU /usr/local/bin/wrapped-cc/g++ 15.2.0)
+Time spent: 71% 12x read_liberty (0 sec), 9% 2x read_slang (0 sec), ...
+Elapsed time: 0:02.93[h:]min:sec. CPU time: user 1.03 sys 0.10 (38%). Peak memory: 89596KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_1_yosys_canonicalize .rtlil        2        1     0.39       87 2f6df0cc9c
+/OpenROAD-flow-scripts/flow/scripts/synth.sh /OpenROAD-flow-scripts/flow/scripts/synth.tcl /work/runs_big/asap7_A/logs/asap7/ibex/base/1_2_yosys.log
+Using ABC speed script.
+1. Executing RTLIL frontend.
+2. Executing HIERARCHY pass (managing design hierarchy).
+2.1. Analyzing design hierarchy..
+2.2. Analyzing design hierarchy..
+3. Executing SYNTH pass.
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+3.1.1. Analyzing design hierarchy..
+3.1.2. Analyzing design hierarchy..
+3.2. Executing PROC pass (convert processes to netlists).
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+3.3. Executing CHECK pass (checking for obvious problems).
+3.4. Executing FLATTEN pass (flatten design).
+3.5. Executing OPT_EXPR pass (perform const folding).
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.7. Executing CHECK pass (checking for obvious problems).
+3.8. Executing OPT pass (performing simple optimizations).
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+3.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.8. Executing OPT_EXPR pass (perform const folding).
+3.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.12. Executing OPT_MERGE pass (detect identical cells).
+3.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.15. Executing OPT_EXPR pass (perform const folding).
+3.8.16. Rerunning OPT passes. (Maybe there is more to do..)
+3.8.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.19. Executing OPT_MERGE pass (detect identical cells).
+3.8.20. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.22. Executing OPT_EXPR pass (perform const folding).
+3.8.23. Finished fast OPT passes. (There is nothing left to do.)
+3.9. Executing FSM pass (extract and optimize FSM).
+3.9.1. Executing FSM_DETECT pass (finding FSMs in design).
+3.9.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+3.9.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+3.9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.9.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+3.9.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+3.9.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+3.9.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+3.10. Executing OPT pass (performing simple optimizations).
+3.10.1. Executing OPT_EXPR pass (perform const folding).
+3.10.2. Executing OPT_MERGE pass (detect identical cells).
+3.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.10.5. Executing OPT_MERGE pass (detect identical cells).
+3.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.10.8. Executing OPT_EXPR pass (perform const folding).
+3.10.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.10.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.10.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.10.12. Executing OPT_MERGE pass (detect identical cells).
+3.10.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.10.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.10.15. Executing OPT_EXPR pass (perform const folding).
+3.10.16. Rerunning OPT passes. (Maybe there is more to do..)
+3.10.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.10.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.10.19. Executing OPT_MERGE pass (detect identical cells).
+3.10.20. Executing OPT_DFF pass (perform DFF optimizations).
+3.10.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.10.22. Executing OPT_EXPR pass (perform const folding).
+3.10.23. Rerunning OPT passes. (Maybe there is more to do..)
+3.10.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.10.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.10.26. Executing OPT_MERGE pass (detect identical cells).
+3.10.27. Executing OPT_DFF pass (perform DFF optimizations).
+3.10.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.10.29. Executing OPT_EXPR pass (perform const folding).
+3.10.30. Finished fast OPT passes. (There is nothing left to do.)
+3.11. Executing WREDUCE pass (reducing word size of cells).
+3.12. Executing PEEPOPT pass (run peephole optimizers).
+3.13. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.14. Executing ALUMACC pass (create $alu and $macc cells).
+3.15. Executing SHARE pass (SAT-based resource sharing).
+3.16. Executing OPT pass (performing simple optimizations).
+3.16.1. Executing OPT_EXPR pass (perform const folding).
+3.16.2. Executing OPT_MERGE pass (detect identical cells).
+3.16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.16.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.16.5. Executing OPT_MERGE pass (detect identical cells).
+3.16.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.16.8. Executing OPT_EXPR pass (perform const folding).
+3.16.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.16.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.16.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.16.12. Executing OPT_MERGE pass (detect identical cells).
+3.16.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.16.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.16.15. Executing OPT_EXPR pass (perform const folding).
+3.16.16. Finished fast OPT passes. (There is nothing left to do.)
+3.17. Executing MEMORY pass.
+3.17.1. Executing OPT_MEM pass (optimize memories).
+3.17.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+3.17.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+3.17.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+3.17.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+3.17.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.17.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+3.17.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+3.17.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.17.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+3.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+4. Executing TRIBUF pass.
+5. Executing OPT_CLEAN pass (remove unused cells and wires).
+source /OpenROAD-flow-scripts/flow/scripts/synth_wrap_operators.tcl
+6. Executing TECHMAP pass (map to technology primitives).
+6.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+6.2. Continuing TECHMAP pass.
+7. Generating architectural options for $alu
+7.1. Executing WRAPCELL pass. (wrap selected cells)
+7.2. Executing TECHMAP pass (map to technology primitives).
+7.2.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.2.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v
+7.2.3. Continuing TECHMAP pass.
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100010.\j [4:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100010.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$50799': $auto$proc_dlatch.cc:545:proc_dlatch$52119
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100010.\j [31:5]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100010.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$50799': $auto$proc_dlatch.cc:547:proc_dlatch$52122
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100001.\j [4:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100001.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$52667': $auto$proc_dlatch.cc:545:proc_dlatch$53927
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100001.\j [31:5]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000100001.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$52667': $auto$proc_dlatch.cc:547:proc_dlatch$53930
+7.3. Executing TECHMAP pass (map to technology primitives).
+7.3.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.3.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/kogge-stone.v
+7.3.3. Continuing TECHMAP pass.
+7.4. Executing TECHMAP pass (map to technology primitives).
+7.4.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.4.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/sklansky.v
+7.4.3. Continuing TECHMAP pass.
+7.5. Executing TECHMAP pass (map to technology primitives).
+7.5.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.5.2. Continuing TECHMAP pass.
+8. Generating architectural options for $macc
+8.1. Executing WRAPCELL pass. (wrap selected cells)
+8.2. Executing TECHMAP pass (map to technology primitives).
+8.2.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+8.2.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/scripts/synth_wrap_operators-booth.v
+8.2.3. Continuing TECHMAP pass.
+8.3. Executing TECHMAP pass (map to technology primitives).
+8.3.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+8.3.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v
+8.3.3. Continuing TECHMAP pass.
+9. Executing OPT pass (performing simple optimizations).
+9.1. Executing OPT_EXPR pass (perform const folding).
+9.2. Executing OPT_MERGE pass (detect identical cells).
+9.3. Executing OPT_DFF pass (perform DFF optimizations).
+9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+9.5. Rerunning OPT passes. (Removed registers in this run.)
+9.6. Executing OPT_EXPR pass (perform const folding).
+9.7. Executing OPT_MERGE pass (detect identical cells).
+9.8. Executing OPT_DFF pass (perform DFF optimizations).
+9.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+9.10. Finished fast OPT passes.
+10. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+11. Executing OPT pass (performing simple optimizations).
+11.1. Executing OPT_EXPR pass (perform const folding).
+11.2. Executing OPT_MERGE pass (detect identical cells).
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+11.5. Executing OPT_MERGE pass (detect identical cells).
+11.6. Executing OPT_SHARE pass.
+11.7. Executing OPT_DFF pass (perform DFF optimizations).
+11.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+11.9. Executing OPT_EXPR pass (perform const folding).
+11.10. Rerunning OPT passes. (Maybe there is more to do..)
+11.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+11.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+11.13. Executing OPT_MERGE pass (detect identical cells).
+11.14. Executing OPT_SHARE pass.
+11.15. Executing OPT_DFF pass (perform DFF optimizations).
+11.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+11.17. Executing OPT_EXPR pass (perform const folding).
+11.18. Rerunning OPT passes. (Maybe there is more to do..)
+11.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+11.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+11.21. Executing OPT_MERGE pass (detect identical cells).
+11.22. Executing OPT_SHARE pass.
+11.23. Executing OPT_DFF pass (perform DFF optimizations).
+11.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+11.25. Executing OPT_EXPR pass (perform const folding).
+11.26. Finished fast OPT passes. (There is nothing left to do.)
+12. Executing TECHMAP pass (map to technology primitives).
+12.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+12.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v
+12.3. Continuing TECHMAP pass.
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000001.\j' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000001.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$62200': $auto$proc_dlatch.cc:545:proc_dlatch$62238
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000010.\j' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000010.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$62250': $auto$proc_dlatch.cc:545:proc_dlatch$62303
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011111.\j [3:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011111.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$62375': $auto$proc_dlatch.cc:545:proc_dlatch$63551
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011111.\j [31:4]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011111.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$62375': $auto$proc_dlatch.cc:547:proc_dlatch$63554
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000001000000.\j [4:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000001000000.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$63815': $auto$proc_dlatch.cc:545:proc_dlatch$66530
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000001000000.\j [31:5]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000001000000.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$63815': $auto$proc_dlatch.cc:547:proc_dlatch$66533
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000101.\j [1:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000101.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$66808': $auto$proc_dlatch.cc:545:proc_dlatch$66964
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000101.\j [31:2]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000000101.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$66808': $auto$proc_dlatch.cc:547:proc_dlatch$66967
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011110.\j [3:0]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011110.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$67040': $auto$proc_dlatch.cc:545:proc_dlatch$68183
+Warning: Latch inferred for signal `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011110.\j [31:4]' from process `$paramod\_80_lcu_han_carlson\WIDTH=32'00000000000000000000000000011110.$proc$/OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/choices/han-carlson.v:18$67040': $auto$proc_dlatch.cc:547:proc_dlatch$68186
+Took 6 seconds: source /OpenROAD-flow-scripts/flow/scripts/synth_wrap_operators.tcl
+13. Executing OPT pass (performing simple optimizations).
+13.1. Executing OPT_EXPR pass (perform const folding).
+13.2. Executing OPT_MERGE pass (detect identical cells).
+13.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+13.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+13.5. Executing OPT_MERGE pass (detect identical cells).
+13.6. Executing OPT_DFF pass (perform DFF optimizations).
+13.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+13.8. Executing OPT_EXPR pass (perform const folding).
+13.9. Rerunning OPT passes. (Maybe there is more to do..)
+13.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+13.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+13.12. Executing OPT_MERGE pass (detect identical cells).
+13.13. Executing OPT_DFF pass (perform DFF optimizations).
+13.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+13.15. Executing OPT_EXPR pass (perform const folding).
+13.16. Finished fast OPT passes. (There is nothing left to do.)
+14. Executing EXTRACT_FA pass (find and extract full/half adders).
+15. Executing TECHMAP pass (map to technology primitives).
+15.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/yoSys/cells_adders_R.v
+15.2. Continuing TECHMAP pass.
+16. Executing TECHMAP pass (map to technology primitives).
+16.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+16.2. Continuing TECHMAP pass.
+17. Executing OPT pass (performing simple optimizations).
+17.1. Executing OPT_EXPR pass (perform const folding).
+17.2. Executing OPT_MERGE pass (detect identical cells).
+17.3. Executing OPT_DFF pass (perform DFF optimizations).
+17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+17.5. Finished fast OPT passes.
+18. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+19. Executing TECHMAP pass (map to technology primitives).
+19.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/yoSys/cells_latch_R.v
+19.2. Continuing TECHMAP pass.
+20. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+20.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+21. Executing OPT pass (performing simple optimizations).
+21.1. Executing OPT_EXPR pass (perform const folding).
+21.2. Executing OPT_MERGE pass (detect identical cells).
+21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+21.5. Executing OPT_MERGE pass (detect identical cells).
+21.6. Executing OPT_DFF pass (perform DFF optimizations).
+21.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+21.8. Executing OPT_EXPR pass (perform const folding).
+21.9. Rerunning OPT passes. (Maybe there is more to do..)
+21.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+21.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+21.12. Executing OPT_MERGE pass (detect identical cells).
+21.13. Executing OPT_DFF pass (perform DFF optimizations).
+21.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+21.15. Executing OPT_EXPR pass (perform const folding).
+21.16. Finished fast OPT passes. (There is nothing left to do.)
+22. Executing SETUNDEF pass (replace undef values with defined constants).
+abc_new -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz -dont_use *x1p*_ASAP7* -dont_use *xp*_ASAP7* -dont_use SDF* -dont_use ICG* -constr /work/runs_big/asap7_A/objects/asap7/ibex/base/abc.constr
+Warning: Feature 'abc_new' is experimental.
+23. Executing ABC_NEW pass.
+23.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.2. Executing BOX_DERIVE pass. (derive modules for boxes)
+23.3. Executing ABC9_OPS pass (helper functions for ABC9).
+23.4. Executing ABC9_OPS pass (helper functions for ABC9).
+23.5. Mapping module 'ALU_33_0_33_0_33_unused_CO_X_Y[0]_HAN_CARLSON'.
+23.5.1. Executing ABC9_OPS pass (helper functions for ABC9).
+Warning: Feature 'write_xaiger2' is experimental.
+23.5.2. Executing XAIGER2 backend.
+23.5.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.5.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-UCzrYk/abc.script 2>&1" failed: return code 134.
+Warning: Feature 'read_xaiger2' is experimental.
+23.5.5. Executing XAIGER2 frontend.
+23.6. Executing PORTARCS pass. (derive propagation arcs)
+23.7. Executing ABC9_OPS pass (helper functions for ABC9).
+23.8. Mapping module 'ALU_34_0_34_0_34_HAN_CARLSON'.
+23.8.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.8.2. Executing XAIGER2 backend.
+23.8.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.8.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-O23H0O/abc.script 2>&1" failed: return code 134.
+23.8.5. Executing XAIGER2 frontend.
+23.9. Executing PORTARCS pass. (derive propagation arcs)
+23.10. Executing ABC9_OPS pass (helper functions for ABC9).
+23.11. Mapping module 'ibex_core'.
+23.11.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.11.2. Executing XAIGER2 backend.
+23.11.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.11.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-ETLkMy/abc.script 2>&1" failed: return code 134.
+23.11.5. Executing XAIGER2 frontend.
+23.12. Mapping module 'ALU_34_0_34_0_34_BRENT_KUNG'.
+23.12.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.12.2. Executing XAIGER2 backend.
+23.12.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.12.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-Rnhhpm/abc.script 2>&1" failed: return code 134.
+23.12.5. Executing XAIGER2 frontend.
+23.13. Executing PORTARCS pass. (derive propagation arcs)
+23.14. Executing ABC9_OPS pass (helper functions for ABC9).
+23.15. Mapping module 'ALU_34_0_34_0_34_SKLANSKY'.
+23.15.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.15.2. Executing XAIGER2 backend.
+23.15.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.15.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-mo8kXy/abc.script 2>&1" failed: return code 134.
+23.15.5. Executing XAIGER2 frontend.
+23.16. Executing PORTARCS pass. (derive propagation arcs)
+23.17. Executing ABC9_OPS pass (helper functions for ABC9).
+23.18. Mapping module 'ALU_34_0_34_0_34_KOGGE_STONE'.
+23.18.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.18.2. Executing XAIGER2 backend.
+23.18.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.18.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-RGacCu/abc.script 2>&1" failed: return code 134.
+23.18.5. Executing XAIGER2 frontend.
+23.19. Executing PORTARCS pass. (derive propagation arcs)
+23.20. Executing ABC9_OPS pass (helper functions for ABC9).
+23.21. Mapping module 'ALU_33_0_33_0_33_unused_CO_X_Y[0]_BRENT_KUNG'.
+23.21.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.21.2. Executing XAIGER2 backend.
+23.21.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.21.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-sH0NiO/abc.script 2>&1" failed: return code 134.
+23.21.5. Executing XAIGER2 frontend.
+23.22. Executing PORTARCS pass. (derive propagation arcs)
+23.23. Executing ABC9_OPS pass (helper functions for ABC9).
+23.24. Mapping module 'ALU_33_0_33_0_33_unused_CO_X_Y[0]_SKLANSKY'.
+23.24.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.24.2. Executing XAIGER2 backend.
+23.24.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.24.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-I6ivKZ/abc.script 2>&1" failed: return code 134.
+23.24.5. Executing XAIGER2 frontend.
+23.25. Executing PORTARCS pass. (derive propagation arcs)
+23.26. Executing ABC9_OPS pass (helper functions for ABC9).
+23.27. Mapping module 'ALU_33_0_33_0_33_unused_CO_X_Y[0]_KOGGE_STONE'.
+23.27.1. Executing ABC9_OPS pass (helper functions for ABC9).
+23.27.2. Executing XAIGER2 backend.
+23.27.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+23.27.4. Executing ABC9.
+Warning: ABC: execution of command ""/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys-abc" -s -f /tmp/yosys-abc-K8Lt2k/abc.script 2>&1" failed: return code 134.
+23.27.5. Executing XAIGER2 frontend.
+23.28. Executing PORTARCS pass. (derive propagation arcs)
+23.29. Executing ABC9_OPS pass (helper functions for ABC9).
+23.30. Executing ABC9_OPS pass (helper functions for ABC9).
+Took 53 seconds: abc_new -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib -liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz -dont_use *x1p*_ASAP7* -dont_use *xp*_ASAP7* -dont_use SDF* -dont_use ICG* -constr /work/runs_big/asap7_A/objects/asap7/ibex/base/abc.constr
+24. Executing SPLITNETS pass (splitting up multi-bit signals).
+25. Executing OPT_CLEAN pass (remove unused cells and wires).
+26. Executing HILOMAP pass (mapping to constant drivers).
+27. Executing INSBUF pass (insert buffer cells for connected wires).
+28. Executing CHECK pass (checking for obvious problems).
+29. Printing statistics.
+30. Executing CHECK pass (checking for obvious problems).
+31. Executing Verilog backend.
+31.1. Executing BMUXMAP pass.
+31.2. Executing DEMUXMAP pass.
+Warnings: 26 unique messages, 26 total
+Warnings: 3 experimental features used (not excluded with -x).
+End of script. Logfile hash: b295c31518, time: 71.56s, user: 20.48s, system: 0.50s, MEM: 198.21 MB peak
+Yosys 0.68+post (git sha1 UNKNOWN, Release, GNU /usr/local/bin/wrapped-cc/g++ 15.2.0)
+Time spent: 70% 9x abc9_exe (50 sec), 7% 1x extract_fa (5 sec), ...
+Elapsed time: 1:11.63[h:]min:sec. CPU time: user 70.48 sys 0.68 (99%). Peak memory: 204588KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_2_yosys              .v           71       71     0.99      199 dda1201786
+cp ./designs/asap7/ibex/constraint_pos_slack.sdc /work/runs_big/asap7_A/results/asap7/ibex/base/1_2_yosys.sdc
+touch -r ./designs/asap7/ibex/constraint_pos_slack.sdc /work/runs_big/asap7_A/results/asap7/ibex/base/1_2_yosys.sdc
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+mkdir -p /work/runs_big/asap7_A/objects/asap7/ibex/base
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 1_synth synth_odb
+Running synth_odb.tcl, stage 1_synth
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7_tech_1x_201209.lef, created 30 layers, 9 vias
+[WARNING ODB-1220] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7_tech_1x_201209.lef, rounded 36 conversions that are not on the 1000 DBU/micron grid (first: 0.01825 um -> 18 DBU near line 126). 4000 DBU/micron would represent them exactly.
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7sc7p5t_28_R_1x_220121a.lef, created 212 library cells
+link_design -hier ibex_core
+[WARNING ORD-0011] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/1_2_yosys.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+eliminate_dead_logic
+Removed 45 unused instances and 48 unused nets.
+Design area 2116 um^2 100% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/1_synth.odb
+write_sdc -no_timestamp /work/runs_big/asap7_A/results/asap7/ibex/base/1_synth.sdc
+Elapsed time: 0:02.17[h:]min:sec. CPU time: user 1.97 sys 0.15 (97%). Peak memory: 211372KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_synth                .odb          2        2     0.98      206 0e8d77bfe6
+1_synth                .sdc                                       eb5a41d3b5
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 2_1_floorplan floorplan
+Running floorplan.tcl, stage 2_1_floorplan
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/1_synth.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/1_synth.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+
+==========================================================================
+Floorplan check_setup
+--------------------------------------------------------------------------
+number instances in verilog is 16700
+initialize_floorplan -utilization 40 -aspect_ratio 1 -core_space 2 -site asap7sc7p5t
+[INFO IFP-0107] Defining die area using utilization: 40.00% and aspect ratio: 1.
+[WARNING IFP-0028] Core area lower left (2.000, 2.000) snapped to (2.052, 2.160).
+[INFO IFP-0001] Added 268 rows of 1345 site asap7sc7p5t.
+[INFO IFP-0100] Die BBox:  (  0.000  0.000 ) ( 76.726 76.726 ) um
+[INFO IFP-0101] Core BBox: (  2.052  2.160 ) ( 74.682 74.520 ) um
+[INFO IFP-0102] Core area:                         5255.507 um^2
+[INFO IFP-0103] Total instances area:              2115.660 um^2
+[INFO IFP-0104] Effective utilization:                0.403
+[INFO IFP-0105] Number of instances:                  16698
+source /OpenROAD-flow-scripts/flow/platforms/asap7/openRoad/make_tracks.tcl
+source /OpenROAD-flow-scripts/flow/platforms/asap7/fastroute.tcl
+set_dont_use "*x1p*_ASAP7* *xp*_ASAP7* SDF* ICG*"
+repair_tie_fanout -separation 0 asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120/TIELOx1_ASAP7_75t_R/L
+[INFO RSZ-0042] Inserted 15 tie TIELOx1_ASAP7_75t_R instances.
+repair_tie_fanout -separation 0 asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120/TIEHIx1_ASAP7_75t_R/H
+[INFO RSZ-0042] Inserted 1666 tie TIEHIx1_ASAP7_75t_R instances.
+replace_arith_modules
+replace_arith_modules -path_count 1000 -target setup -slack_threshold 0.0
+[INFO RSZ-0151] Starting arithmetic module replacement to optimize 'setup' target
+[INFO RSZ-0152] Analyzing 1000 critical paths with slack < 0.00
+[INFO RSZ-0153] Identified 1970 violating endpoints
+[INFO RSZ-0154] Identified 2 critical arithmetic instances
+[INFO ODB-0496] swapMaster sanity check passed (0 failures)
+[INFO ODB-0496] swapMaster sanity check passed (0 failures)
+[INFO RSZ-0160] 2 arithmetic instances have swapped to improve 'setup' target
+repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -setup -skip_last_gasp -sequence unbuffer,sizeup,swap,vt_swap -verbose
+[WARNING EST-0027] no estimated parasitics. Using wire load models.
+[WARNING RSZ-2024] Experimental repair setup policy 'SetupParallelEvalPolicy' selected. Do not use this for production.
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpoint
+------------------------------------------------------------------------------------------------------------------------------
+       0* |       0 |       0 |        0 |      0 |     0 |    +0.0% | -5112.568 | -8836875.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.err_q\[1\]$_DFFE_PP_/D
+       1* |       0 |      40 |        0 |      0 |    22 |    +0.1% | -5000.570 | -8730341.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.err_q\[1\]$_DFFE_PP_/D
+       2* |       0 |      65 |        0 |      0 |    60 |    +0.1% | -4850.581 | -8703495.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       3* |       0 |      76 |        0 |      0 |    77 |    +0.1% | -4858.400 | -8673813.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       4* |       0 |      89 |        0 |      0 |    94 |    +0.1% | -4851.943 | -8668605.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       5* |       0 |      92 |        0 |      0 |   107 |    +0.1% | -4850.874 | -8666911.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       6* |       0 |      99 |        0 |      0 |   116 |    +0.1% | -4847.216 | -8663461.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       7* |       0 |     103 |        0 |      0 |   128 |    +0.1% | -4846.110 | -8661622.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       8* |       0 |     108 |        0 |      0 |   139 |    +0.1% | -4845.421 | -8659964.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+       9* |       0 |     112 |        0 |      0 |   151 |    +0.2% | -4844.511 | -8660666.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      10* |       0 |     120 |        0 |      0 |   159 |    +0.2% | -4843.599 | -8656544.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      11* |       0 |     120 |        0 |      0 |   159 |    +0.2% | -4843.599 | -8656544.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      12* |       0 |     125 |        0 |      0 |   161 |    +0.2% | -4843.599 | -8656327.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      13* |       0 |     130 |        0 |      0 |   172 |    +0.2% | -4842.686 | -8654895.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      14* |       0 |     135 |        0 |      0 |   183 |    +0.2% | -4841.774 | -8654111.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      15* |       0 |     144 |        0 |      0 |   190 |    +0.2% | -4844.022 | -8653775.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      16* |       0 |     154 |        0 |      0 |   196 |    +0.2% | -4844.052 | -8646901.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      17* |       0 |     162 |        0 |      0 |   204 |    +0.2% | -4843.110 | -8643156.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      18* |       0 |     169 |        0 |      0 |   213 |    +0.3% | -4842.134 | -8641488.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      19* |       0 |     174 |        0 |      0 |   224 |    +0.3% | -4841.190 | -8639962.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      20* |       0 |     181 |        0 |      0 |   233 |    +0.3% | -4840.048 | -8638030.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      21* |       0 |     189 |        0 |      0 |   241 |    +0.3% | -4838.926 | -8637826.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      22* |       0 |     198 |        0 |      0 |   248 |    +0.3% | -4838.074 | -8637119.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      23* |       0 |     207 |        0 |      0 |   255 |    +0.3% | -4835.993 | -8635477.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      24* |       0 |     214 |        0 |      0 |   264 |    +0.3% | -4834.871 | -8634006.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      25* |       0 |     220 |        0 |      0 |   274 |    +0.3% | -4833.748 | -8632622.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      26* |       0 |     220 |        0 |      0 |   274 |    +0.3% | -4833.748 | -8632622.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      27* |       0 |     220 |        0 |      0 |   275 |    +0.3% | -4833.089 | -8632398.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      28* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      29* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      30* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      31* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      32* |       0 |     222 |        0 |      0 |   276 |    +0.3% | -4836.135 | -8633137.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      33* |       0 |     223 |        0 |      0 |   276 |    +0.3% | -4832.646 | -8632118.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      34* |       0 |     223 |        0 |      0 |   277 |    +0.3% | -4832.496 | -8632064.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      35* |       0 |     223 |        0 |      0 |   278 |    +0.3% | -4832.673 | -8632126.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      36* |       0 |     224 |        0 |      0 |   278 |    +0.3% | -4831.584 | -8631780.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      37* |       0 |     224 |        0 |      0 |   279 |    +0.3% | -4830.793 | -8631499.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      38* |       0 |     221 |        0 |      0 |   276 |    +0.3% | -4830.713 | -8631519.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      39* |       0 |     221 |        0 |      0 |   277 |    +0.3% | -4830.241 | -8631433.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      40* |       0 |     221 |        0 |      0 |   279 |    +0.3% | -4829.471 | -8631173.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      41* |       0 |     222 |        0 |      0 |   282 |    +0.3% | -4814.498 | -8638803.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      42* |       0 |     222 |        0 |      0 |   283 |    +0.3% | -4814.675 | -8638865.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      43* |       0 |     222 |        0 |      0 |   284 |    +0.3% | -4814.475 | -8638640.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      44* |       0 |     222 |        0 |      0 |   285 |    +0.3% | -4813.809 | -8638686.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      45* |       0 |     222 |        0 |      0 |   286 |    +0.3% | -4813.309 | -8638632.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      46* |       0 |     222 |        0 |      0 |   287 |    +0.3% | -4815.590 | -8639217.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      47* |       0 |     221 |        0 |      0 |   279 |    +0.3% | -4829.471 | -8631173.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      48* |       0 |     222 |        0 |      0 |   279 |    +0.3% | -4834.113 | -8632573.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      49* |       0 |     223 |        0 |      0 |   279 |    +0.3% | -4832.647 | -8632134.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      50* |       0 |     224 |        0 |      0 |   279 |    +0.3% | -4831.558 | -8631788.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      51* |       0 |     225 |        0 |      0 |   279 |    +0.3% | -4831.372 | -8631745.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      52* |       0 |     225 |        0 |      0 |   280 |    +0.3% | -4831.203 | -8631688.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      53* |       0 |     225 |        0 |      0 |   281 |    +0.3% | -4829.485 | -8631193.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      54* |       0 |     225 |        0 |      0 |   282 |    +0.3% | -4828.954 | -8631024.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      55* |       0 |     226 |        0 |      0 |   283 |    +0.3% | -4826.765 | -8630153.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      56* |       0 |     227 |        0 |      0 |   284 |    +0.3% | -4806.665 | -8628651.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      57* |       0 |     227 |        0 |      0 |   285 |    +0.3% | -4805.830 | -8628405.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      58* |       0 |     227 |        0 |      0 |   285 |    +0.3% | -4805.830 | -8628405.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      59* |       0 |     227 |        0 |      0 |   286 |    +0.3% | -4805.703 | -8628410.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      60* |       0 |     227 |        0 |      0 |   287 |    +0.3% | -4805.576 | -8628414.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      61* |       0 |     227 |        0 |      0 |   288 |    +0.3% | -4805.450 | -8628418.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      62* |       0 |     227 |        0 |      0 |   289 |    +0.3% | -4805.323 | -8628423.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      63* |       0 |     227 |        0 |      0 |   290 |    +0.3% | -4805.196 | -8628427.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      64* |       0 |     227 |        0 |      0 |   291 |    +0.3% | -4805.070 | -8628432.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      65* |       0 |     232 |        0 |      0 |   302 |    +0.3% | -4804.943 | -8627073.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      66* |       0 |     239 |        0 |      0 |   311 |    +0.4% | -4804.816 | -8626777.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      67* |       0 |     239 |        0 |      0 |   317 |    +0.4% | -4804.816 | -8626550.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      68* |       0 |     239 |        0 |      0 |   319 |    +0.4% | -4804.816 | -8624909.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      69* |       0 |     239 |        0 |      0 |   327 |    +0.4% | -4804.816 | -8624611.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      70* |       0 |     239 |        0 |      0 |   332 |    +0.4% | -4804.816 | -8624951.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      71* |       0 |     239 |        0 |      0 |   333 |    +0.4% | -4804.816 | -8625097.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      72* |       0 |     239 |        0 |      0 |   334 |    +0.4% | -4804.816 | -8625190.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+      73* |       0 |     239 |        0 |      0 |   335 |    +0.4% | -4804.816 | -8624821.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+    final |       0 |     239 |        0 |      0 |   327 |    +0.4% | -4804.816 | -8624611.0 |   1970 | if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.rdata_q\[32\]$_DFFE_PP_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0051] Resized 239 instances: 239 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 327 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0505] Runtime: 46.55s
+Took 46 seconds: repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -setup -skip_last_gasp -sequence unbuffer,sizeup,swap,vt_swap -verbose
+Default units for flow
+ time 1ps
+ capacitance 1fF
+ resistance 1kohm
+ voltage 1v
+ current 1mA
+ power 1pW
+ distance 1um
+   Layer   | Unit Resistance | Unit Capacitance 
+           |       (kohm/um) |          (fF/um)
+------------------------------------------------
+        M1 |        7.04e-02 |         1.00e-10
+        M2 |        2.97e-02 |         1.75e-01
+        M3 |        3.13e-02 |         1.56e-01
+        M4 |        1.80e-02 |         1.78e-01
+        M5 |        1.90e-02 |         1.64e-01
+        M6 |        1.19e-02 |         1.87e-01
+        M7 |        1.25e-02 |         1.63e-01
+        M8 |        8.45e-03 |         1.04e-01
+        M9 |        8.90e-03 |         9.28e-02
+       Pad |        0.00e+00 |         0.00e+00
+------------------------------------------------
+
+   Layer   | Via Resistance 
+           |         (kohm) 
+----------------------------
+        V1 |       1.72e-02 
+        V2 |       1.72e-02 
+        V3 |       1.72e-02 
+        V4 |       1.18e-02 
+        V5 |       1.18e-02 
+        V6 |       8.20e-03 
+        V7 |       8.20e-03 
+        V8 |       6.30e-03 
+        V9 |       6.30e-03 
+----------------------------
+Report metrics stage 2, floorplan final...
+
+==========================================================================
+floorplan final report_design_area
+--------------------------------------------------------------------------
+Design area 2216 um^2 42% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.odb
+write_sdc -no_timestamp /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.sdc
+Elapsed time: 0:56.31[h:]min:sec. CPU time: user 63.25 sys 2.49 (116%). Peak memory: 273824KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+2_1_floorplan          .odb         56       66     1.17      267 40dd306611
+2_1_floorplan          .sdc                                       eb5a41d3b5
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 2_2_floorplan_macro macro_place
+Running macro_place.tcl, stage 2_2_floorplan_macro
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+No macros found: Skipping macro_placement
+Design area 2216 um^2 42% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/2_2_floorplan_macro.odb
+Elapsed time: 0:01.88[h:]min:sec. CPU time: user 1.69 sys 0.13 (96%). Peak memory: 193040KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+2_2_floorplan_macro    .odb          1        2     0.97      188 40dd306611
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 2_3_floorplan_tapcell tapcell
+Running tapcell.tcl, stage 2_3_floorplan_tapcell
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/2_2_floorplan_macro.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+Tap and End Cap cell insertion
+  TAP Cell          : TAPCELL_ASAP7_75t_R
+  ENDCAP Cell       : TAPCELL_ASAP7_75t_R
+  Halo Around Macro : 2 2
+  TAP Cell Distance : 25
+[INFO TAP-0004] Inserted 536 endcaps.
+[INFO TAP-0005] Inserted 270 tapcells.
+Design area 2239 um^2 43% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/2_3_floorplan_tapcell.odb
+Elapsed time: 0:02.38[h:]min:sec. CPU time: user 1.69 sys 0.56 (94%). Peak memory: 191252KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+2_3_floorplan_tapcell  .odb          2        2     0.95      186 387cd95548
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 2_4_floorplan_pdn pdn
+Running pdn.tcl, stage 2_4_floorplan_pdn
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/2_3_floorplan_tapcell.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+[WARNING PDN-1051] No instances found for grid (CORE_macro_grid_1).
+[WARNING PDN-1051] No instances found for grid (CORE_macro_grid_2).
+[INFO PDN-0001] Inserting grid: top
+[INFO PDN-0500] Runtime: 0.11s
+check_placement -fixed -verbose
+Design area 2239 um^2 43% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/2_4_floorplan_pdn.odb
+Elapsed time: 0:02.57[h:]min:sec. CPU time: user 2.33 sys 0.14 (96%). Peak memory: 216568KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+2_4_floorplan_pdn      .odb          2        2     0.96      211 a487244831
+cp /work/runs_big/asap7_A/results/asap7/ibex/base/2_4_floorplan_pdn.odb /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.odb
+cp /work/runs_big/asap7_A/results/asap7/ibex/base/2_1_floorplan.sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.sdc
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 3_1_place_gp_skip_io global_place_skip_io
+Running global_place_skip_io.tcl, stage 3_1_place_gp_skip_io
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+[INFO GPL-0022] Initialize gpl and calculate uniform density.
+Placement density is 0.5939999914169312, computed from PLACE_DENSITY_LB_ADDON  0.20 and lower bound 0.47999998927116394
+global_placement -skip_io -density 0.5939999914169312 -pad_left 0 -pad_right 0
+[INFO GPL-0001] ---- Initialize GPL Main Data Structures
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: (  0.054  0.270 ) um
+[INFO GPL-0004] CoreBBox: (  2.052  2.160 ) ( 74.682 74.520 ) um
+[INFO GPL-0016] Core area:                    5255.507 um^2
+[INFO GPL-0036] Movable instances area:       2215.825 um^2
+[INFO GPL-0037] Total instances area:         2239.328 um^2
+[INFO GPL-0035] Pin density area adjust:       269.260 um^2
+[INFO GPL-0032] ---- Initialize Region: Top-level
+[INFO GPL-0006] Number of instances:             19388
+[INFO GPL-0007] Movable instances:               18582
+[INFO GPL-0008] Fixed instances:                   806
+[INFO GPL-0009] Dummy instances:                     0
+[INFO GPL-0010] Number of nets:                  19418
+[INFO GPL-0011] Number of pins:                  65770
+[INFO GPL-0012] Die BBox:       (  0.000  0.000 ) ( 76.726 76.726 ) um
+[INFO GPL-0013] Placement BBox: (  2.052  2.160 ) ( 74.682 74.520 ) um
+[INFO GPL-0014] Region name: top-level.
+[INFO GPL-0015] Region area:                  5255.507 um^2
+[INFO GPL-0017] Fixed instances area:           23.503 um^2
+[INFO GPL-0018] Movable instances area:       2485.085 um^2
+[INFO GPL-0019] Utilization:                    47.498 %
+[INFO GPL-0020] Standard cells area:          2485.085 um^2
+[INFO GPL-0021] Large instances area:            0.000 um^2
+[INFO GPL-0005] ---- Execute Conjugate Gradient Initial Placement.
+[INFO GPL-0051] Source of initial instance position counters:
+	Odb location = 0	Core center = 18582	Region center = 0
+[INFO GPL-0033] ---- Initialize Nesterov Region: Top-level
+[INFO GPL-0023] Placement target density:       0.5940
+[INFO GPL-0024] Movable insts average area:      0.134 um^2
+[INFO GPL-0025] Ideal bin area:                  0.225 um^2
+[INFO GPL-0026] Ideal bin count:                 23342
+[INFO GPL-0027] Total bin area:               5255.507 um^2
+[INFO GPL-0028] Bin count (X, Y):         128 ,    128
+[INFO GPL-0029] Bin size (W * H):       0.567 *  0.565 um
+[INFO GPL-0030] Number of bins:                  16384
+[INFO GPL-0084] ---- Execute Nesterov Global Placement.
+[INFO GPL-0031] HPWL: Half-Perimeter Wirelength
+Iteration | Overflow |     HPWL (um) |  HPWL(%) |   Penalty | Group
+---------------------------------------------------------------
+        0 |   0.9970 |  5.109957e+03 |   +0.00% |  3.55e-14 |      
+       10 |   0.9971 |  3.824804e+03 |  -25.15% |  5.79e-14 |      
+       20 |   0.9970 |  3.773902e+03 |   -1.33% |  9.42e-14 |      
+       30 |   0.9970 |  3.761591e+03 |   -0.33% |  1.54e-13 |      
+       40 |   0.9970 |  3.747928e+03 |   -0.36% |  2.50e-13 |      
+       50 |   0.9970 |  3.739352e+03 |   -0.23% |  4.07e-13 |      
+       60 |   0.9969 |  3.730756e+03 |   -0.23% |  6.63e-13 |      
+       70 |   0.9968 |  3.725367e+03 |   -0.14% |  1.08e-12 |      
+       80 |   0.9968 |  3.725552e+03 |   +0.00% |  1.76e-12 |      
+       90 |   0.9968 |  3.739485e+03 |   +0.37% |  2.87e-12 |      
+      100 |   0.9967 |  3.787285e+03 |   +1.28% |  4.67e-12 |      
+      110 |   0.9965 |  3.903507e+03 |   +3.07% |  7.61e-12 |      
+      120 |   0.9960 |  4.107269e+03 |   +5.22% |  1.24e-11 |      
+      130 |   0.9954 |  4.428107e+03 |   +7.81% |  2.02e-11 |      
+      140 |   0.9946 |  4.973972e+03 |  +12.33% |  3.29e-11 |      
+      150 |   0.9922 |  6.006331e+03 |  +20.76% |  5.35e-11 |      
+      160 |   0.9873 |  7.789247e+03 |  +29.68% |  8.72e-11 |      
+      170 |   0.9796 |  9.926536e+03 |  +27.44% |  1.42e-10 |      
+      180 |   0.9692 |  1.178196e+04 |  +18.69% |  2.31e-10 |      
+      190 |   0.9574 |  1.372418e+04 |  +16.48% |  3.77e-10 |      
+      200 |   0.9448 |  1.601789e+04 |  +16.71% |  6.13e-10 |      
+      210 |   0.9269 |  1.877192e+04 |  +17.19% |  9.99e-10 |      
+      220 |   0.9026 |  2.187193e+04 |  +16.51% |  1.63e-09 |      
+      230 |   0.8732 |  2.503760e+04 |  +14.47% |  2.65e-09 |      
+      240 |   0.8431 |  2.805049e+04 |  +12.03% |  4.31e-09 |      
+      250 |   0.8085 |  3.119786e+04 |  +11.22% |  7.02e-09 |      
+      260 |   0.7673 |  3.427549e+04 |   +9.86% |  1.14e-08 |      
+      270 |   0.7224 |  3.689279e+04 |   +7.64% |  1.86e-08 |      
+      280 |   0.6761 |  3.938394e+04 |   +6.75% |  3.03e-08 |      
+      290 |   0.6287 |  4.168229e+04 |   +5.84% |  4.94e-08 |      
+      300 |   0.5801 |  4.360140e+04 |   +4.60% |  8.04e-08 |      
+      310 |   0.5316 |  4.532062e+04 |   +3.94% |  1.31e-07 |      
+      320 |   0.4878 |  4.665900e+04 |   +2.95% |  2.13e-07 |      
+      330 |   0.4475 |  4.749511e+04 |   +1.79% |  3.47e-07 |      
+      340 |   0.3994 |  4.806006e+04 |   +1.19% |  5.66e-07 |      
+      350 |   0.3651 |  4.845735e+04 |   +0.83% |  9.22e-07 |      
+      360 |   0.3266 |  4.842068e+04 |   -0.08% |  1.43e-06 |      
+      370 |   0.2992 |  4.835974e+04 |   -0.13% |  2.10e-06 |      
+      380 |   0.2680 |  4.843270e+04 |   +0.15% |  3.10e-06 |      
+      390 |   0.2393 |  4.837945e+04 |   -0.11% |  4.56e-06 |      
+      400 |   0.2107 |  4.837895e+04 |   -0.00% |  6.72e-06 |      
+      410 |   0.1829 |  4.833523e+04 |   -0.09% |  9.90e-06 |      
+      420 |   0.1574 |  4.832170e+04 |   -0.03% |  1.46e-05 |      
+      430 |   0.1392 |  4.833957e+04 |   +0.04% |  2.15e-05 |      
+      440 |   0.1199 |  4.835959e+04 |   +0.04% |  3.17e-05 |      
+      450 |   0.1030 |  4.840308e+04 |   +0.09% |  4.66e-05 |      
+      453 |   0.0989 |  4.841867e+04 |          |  5.45e-05 |      
+---------------------------------------------------------------
+[INFO GPL-1001] Global placement finished at iteration 453
+[INFO GPL-1002] Placed Cell Area             2485.0845
+[INFO GPL-1003] Available Free Area          5232.0038
+[INFO GPL-1004] Minimum Feasible Density        0.4800 (cell_area / free_area)
+[INFO GPL-1006]   Suggested Target Densities:
+[INFO GPL-1007]     - For 90% usage of free space: 0.5278
+[INFO GPL-1008]     - For 80% usage of free space: 0.5937
+[INFO GPL-1009]     - For 50% usage of free space: 0.9500
+[INFO GPL-1014] Final placement area: 2485.08 (+0.00%)
+[INFO GPL-1018] Final HPWL (um): 48653.16
+Took 7 seconds: global_placement -skip_io -density 0.5939999914169312 -pad_left 0 -pad_right 0
+Design area 2239 um^2 43% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/3_1_place_gp_skip_io.odb
+Elapsed time: 0:08.47[h:]min:sec. CPU time: user 8.87 sys 0.46 (110%). Peak memory: 236368KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+3_1_place_gp_skip_io   .odb          8        9     1.10      230 ead6e143b3
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 3_2_place_iop io_placement
+Running io_placement.tcl, stage 3_2_place_iop
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/3_1_place_gp_skip_io.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+place_pins -hor_layers M4 -ver_layers M5
+Found 0 macro blocks.
+Using 2 tracks default min distance between IO pins.
+[INFO PPL-0001] Number of available slots 3132
+[INFO PPL-0002] Number of I/O             264
+[INFO PPL-0003] Number of I/O w/sink      256
+[INFO PPL-0004] Number of I/O w/o sink    8
+[INFO PPL-0005] Slots per section         200
+[INFO PPL-0008] Successfully assigned pins to sections.
+[INFO PPL-0012] I/O nets HPWL: 6430.35 um.
+Design area 2239 um^2 43% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/3_2_place_iop.odb
+Elapsed time: 0:01.81[h:]min:sec. CPU time: user 1.69 sys 0.08 (97%). Peak memory: 195932KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+3_2_place_iop          .odb          1        2     0.98      191 6f279c4dc2
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 3_3_place_gp global_place
+Running global_place.tcl, stage 3_3_place_gp
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/3_2_place_iop.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+[INFO RSZ-0026] Removed 6 buffers.
+Perform port buffering...
+[INFO RSZ-0027] Inserted 149 BUFx3_ASAP7_75t_R input buffers.
+[INFO RSZ-0028] Inserted 100 BUFx3_ASAP7_75t_R output buffers.
+[INFO GPL-0022] Initialize gpl and calculate uniform density.
+Placement density is 0.5939999914169312, computed from PLACE_DENSITY_LB_ADDON  0.20 and lower bound 0.47999998927116394
+global_placement -density 0.5939999914169312 -pad_left 0 -pad_right 0 -routability_driven -timing_driven -force_center_initial_place -min_phi_coef 0.95 -max_phi_coef 1.05
+[INFO GPL-0001] ---- Initialize GPL Main Data Structures
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: (  0.054  0.270 ) um
+[INFO GPL-0004] CoreBBox: (  2.052  2.160 ) ( 74.682 74.520 ) um
+[INFO GPL-0016] Core area:                    5255.507 um^2
+[INFO GPL-0036] Movable instances area:       2237.170 um^2
+[INFO GPL-0037] Total instances area:         2260.673 um^2
+[INFO GPL-0035] Pin density area adjust:       269.827 um^2
+[INFO GPL-0032] ---- Initialize Region: Top-level
+[INFO GPL-0006] Number of instances:             19631
+[INFO GPL-0007] Movable instances:               18825
+[INFO GPL-0008] Fixed instances:                   806
+[INFO GPL-0009] Dummy instances:                     0
+[INFO GPL-0010] Number of nets:                  19661
+[INFO GPL-0011] Number of pins:                  66520
+[INFO GPL-0012] Die BBox:       (  0.000  0.000 ) ( 76.726 76.726 ) um
+[INFO GPL-0013] Placement BBox: (  2.052  2.160 ) ( 74.682 74.520 ) um
+[INFO GPL-0014] Region name: top-level.
+[INFO GPL-0015] Region area:                  5255.507 um^2
+[INFO GPL-0017] Fixed instances area:           23.503 um^2
+[INFO GPL-0018] Movable instances area:       2506.996 um^2
+[INFO GPL-0019] Utilization:                    47.917 %
+[INFO GPL-0020] Standard cells area:          2506.996 um^2
+[INFO GPL-0021] Large instances area:            0.000 um^2
+[INFO GPL-0005] ---- Execute Conjugate Gradient Initial Placement.
+[INFO GPL-0051] Source of initial instance position counters:
+	Odb location = 0	Core center = 18825	Region center = 0
+[InitialPlace]  Iter: 1 conjugate gradient residual: 0.00017533 HPWL: 70611880
+[InitialPlace]  Iter: 2 conjugate gradient residual: 0.00001802 HPWL: 34006292
+[InitialPlace]  Iter: 3 conjugate gradient residual: 0.00000619 HPWL: 33792489
+[InitialPlace]  Iter: 4 conjugate gradient residual: 0.00000647 HPWL: 33837495
+[InitialPlace]  Iter: 5 conjugate gradient residual: 0.00000408 HPWL: 33746006
+[INFO GPL-0033] ---- Initialize Nesterov Region: Top-level
+[INFO GPL-0023] Placement target density:       0.5940
+[INFO GPL-0024] Movable insts average area:      0.133 um^2
+[INFO GPL-0025] Ideal bin area:                  0.224 um^2
+[INFO GPL-0026] Ideal bin count:                 23441
+[INFO GPL-0027] Total bin area:               5255.507 um^2
+[INFO GPL-0028] Bin count (X, Y):         128 ,    128
+[INFO GPL-0029] Bin size (W * H):       0.567 *  0.565 um
+[INFO GPL-0030] Number of bins:                  16384
+[INFO GPL-0084] ---- Execute Nesterov Global Placement.
+[INFO GPL-0031] HPWL: Half-Perimeter Wirelength
+Iteration | Overflow |     HPWL (um) |  HPWL(%) |   Penalty | Group
+---------------------------------------------------------------
+        0 |   0.9704 |  1.782800e+04 |   +0.00% |  4.02e-14 |      
+       10 |   0.9393 |  2.179125e+04 |  +22.23% |  6.55e-14 |      
+       20 |   0.9210 |  2.350262e+04 |   +7.85% |  1.07e-13 |      
+       30 |   0.9111 |  2.414581e+04 |   +2.74% |  1.74e-13 |      
+       40 |   0.9070 |  2.448180e+04 |   +1.39% |  2.83e-13 |      
+       50 |   0.9051 |  2.461640e+04 |   +0.55% |  4.61e-13 |      
+       60 |   0.9045 |  2.452891e+04 |   -0.36% |  7.51e-13 |      
+       70 |   0.9041 |  2.449719e+04 |   -0.13% |  1.22e-12 |      
+       80 |   0.9037 |  2.452846e+04 |   +0.13% |  1.99e-12 |      
+       90 |   0.9035 |  2.458069e+04 |   +0.21% |  3.25e-12 |      
+      100 |   0.9033 |  2.459310e+04 |   +0.05% |  5.29e-12 |      
+      110 |   0.9035 |  2.456480e+04 |   -0.12% |  8.61e-12 |      
+      120 |   0.9037 |  2.453502e+04 |   -0.12% |  1.40e-11 |      
+      130 |   0.9035 |  2.454586e+04 |   +0.04% |  2.29e-11 |      
+      140 |   0.9030 |  2.464211e+04 |   +0.39% |  3.72e-11 |      
+      150 |   0.9022 |  2.486281e+04 |   +0.90% |  6.06e-11 |      
+      160 |   0.9004 |  2.525332e+04 |   +1.57% |  9.88e-11 |      
+      170 |   0.8981 |  2.583440e+04 |   +2.30% |  1.61e-10 |      
+      180 |   0.8943 |  2.663968e+04 |   +3.12% |  2.62e-10 |      
+      190 |   0.8882 |  2.775424e+04 |   +4.18% |  4.27e-10 |      
+      200 |   0.8791 |  2.927182e+04 |   +5.47% |  6.95e-10 |      
+      210 |   0.8665 |  3.124467e+04 |   +6.74% |  1.13e-09 |      
+      220 |   0.8475 |  3.355589e+04 |   +7.40% |  1.84e-09 |      
+      230 |   0.8253 |  3.598443e+04 |   +7.24% |  3.00e-09 |      
+      240 |   0.7998 |  3.846571e+04 |   +6.90% |  4.89e-09 |      
+      250 |   0.7667 |  4.092534e+04 |   +6.39% |  7.96e-09 |      
+      260 |   0.7287 |  4.311594e+04 |   +5.35% |  1.30e-08 |      
+      270 |   0.6870 |  4.499557e+04 |   +4.36% |  2.11e-08 |      
+      280 |   0.6433 |  4.713602e+04 |   +4.76% |  3.44e-08 |      
+[INFO GPL-0100] Timing-driven iteration 1/2, virtual: false.
+[INFO GPL-0101]    Iter: 283, overflow: 0.634, keep resizer changes at: 1, HPWL: 47508597
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     19661
+    final |     +1.3% |       3 |     271 |           101 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0034] Found 74 slew violations.
+[INFO RSZ-0035] Found 61 fanout violations.
+[INFO RSZ-0036] Found 12 capacitance violations.
+[INFO RSZ-0039] Resized 3 instances.
+[INFO RSZ-0038] Inserted 271 buffers in 101 nets.
+   Iter   |    Area   | Removed | Inserted |   Pins
+          |           | Buffers | Buffers  | Remaining
+-------------------------------------------------------
+        0 |     +0.0% |       0 |        0 |     17804
+     1700 |     +0.4% |       7 |       78 |     16104
+     3400 |     +0.7% |      12 |      171 |     14404
+     5100 |     +2.3% |      63 |      536 |     12704
+     6800 |     +3.4% |      81 |      806 |     11004
+     8500 |     +4.0% |      91 |      970 |      9304
+    10200 |     +4.6% |     100 |     1123 |      7604
+    11900 |     +5.7% |     112 |     1424 |      5904
+    13600 |     +5.8% |     117 |     1453 |      4204
+    15300 |     +6.6% |     227 |     1724 |      2504
+    17000 |     +6.6% |     231 |     1732 |       804
+    final |     +6.7% |     271 |     1780 |         0
+-------------------------------------------------------
+[INFO GPL-0106] Timing-driven: worst slack 1.0679402e-10
+[INFO GPL-0107] Timing-driven: repair_design delta area: 183.431 um^2 (+7.32%)
+[INFO GPL-0108] Timing-driven: repair_design, gpl delta gcells: 1780 (+9.46%)
+[INFO GPL-0109] Timing-driven: repair_design, gcells created: 2051, deleted: 271
+[INFO GPL-0110] Timing-driven: new target density: 0.6290593
+[INFO GPL-0111] Timing-driven: restarting Nesterov momentum.
+Iteration | Overflow |     HPWL (um) |  HPWL(%) |   Penalty | Group
+---------------------------------------------------------------
+      290 |   0.6306 |  5.309325e+04 |  +12.64% |  5.60e-08 |      
+      300 |   0.6082 |  5.445149e+04 |   +2.56% |  9.11e-08 |      
+[INFO GPL-0038] Routability snapshot saved at iter = 304
+      303 |   0.5963 |  5.508542e+04 |          |           |      
+      310 |   0.5591 |  5.679100e+04 |   +4.30% |  1.48e-07 |      
+      320 |   0.4965 |  5.925208e+04 |   +4.33% |  2.42e-07 |      
+      330 |   0.4467 |  6.171990e+04 |   +4.16% |  3.94e-07 |      
+      340 |   0.3998 |  6.396658e+04 |   +3.64% |  6.41e-07 |      
+      350 |   0.3600 |  6.507569e+04 |   +1.73% |  1.04e-06 |      
+      360 |   0.3209 |  6.500288e+04 |   -0.11% |  1.60e-06 |      
+[INFO GPL-0040] Routability pass 1: weighted congestion 0.5795 (target 1.0100), 0 of 8269 actionable tiles overflowed (0.0%).
+[INFO GPL-0050] Weighted routing congestion is lower than target routing congestion(1.0100), end routability optimization.
+[INFO GPL-0090] Routability finished. Target routing congestion achieved succesfully.
+Iteration | Overflow |     HPWL (um) |  HPWL(%) |   Penalty | Group
+---------------------------------------------------------------
+      370 |   0.2871 |  6.439569e+04 |   -0.93% |  2.36e-06 |      
+      380 |   0.2585 |  6.470797e+04 |   +0.48% |  3.47e-06 |      
+      390 |   0.2285 |  6.508548e+04 |   +0.58% |  5.12e-06 |      
+      400 |   0.2013 |  6.502985e+04 |   -0.09% |  7.54e-06 |      
+[INFO GPL-0100] Timing-driven iteration 2/2, virtual: false.
+[INFO GPL-0101]    Iter: 404, overflow: 0.193, keep resizer changes at: 1, HPWL: 65012590
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     21441
+    final |     +0.0% |       0 |       3 |             2 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0036] Found 2 capacitance violations.
+[INFO RSZ-0038] Inserted 3 buffers in 2 nets.
+   Iter   |    Area   | Removed | Inserted |   Pins
+          |           | Buffers | Buffers  | Remaining
+-------------------------------------------------------
+        0 |     +0.0% |       0 |        0 |     17804
+     1700 |     -0.3% |      78 |       13 |     16104
+     3400 |     -0.7% |     171 |       20 |     14404
+     5100 |     -2.2% |     536 |       78 |     12704
+     6800 |     -3.3% |     806 |      100 |     11004
+     8500 |     -3.8% |     972 |      130 |      9304
+    10200 |     -4.3% |    1126 |      154 |      7604
+    11900 |     -5.2% |    1427 |      206 |      5904
+    13600 |     -5.3% |    1456 |      214 |      4204
+    15300 |     -5.6% |    1727 |      411 |      2504
+    17000 |     -5.6% |    1735 |      423 |       804
+    final |     -5.6% |    1783 |      470 |         0
+-------------------------------------------------------
+[INFO GPL-0106] Timing-driven: worst slack -2.4611313e-11
+[INFO GPL-0107] Timing-driven: repair_design delta area: -136.935 um^2 (-5.09%)
+[INFO GPL-0108] Timing-driven: repair_design, gpl delta gcells: -1310 (-6.36%)
+[INFO GPL-0109] Timing-driven: repair_design, gcells created: 473, deleted: 1783
+[INFO GPL-0110] Timing-driven: new target density: 0.60288674
+[INFO GPL-0111] Timing-driven: restarting Nesterov momentum.
+Iteration | Overflow |     HPWL (um) |  HPWL(%) |   Penalty | Group
+---------------------------------------------------------------
+      410 |   0.1902 |  6.142937e+04 |   -5.54% |  1.11e-05 |      
+      420 |   0.1619 |  6.128603e+04 |   -0.23% |  1.64e-05 |      
+      430 |   0.1385 |  6.118828e+04 |   -0.16% |  2.41e-05 |      
+      440 |   0.1190 |  6.118641e+04 |   -0.00% |  3.55e-05 |      
+      450 |   0.1032 |  6.119180e+04 |   +0.01% |  5.23e-05 |      
+      453 |   0.0989 |  6.120334e+04 |          |  6.11e-05 |      
+---------------------------------------------------------------
+[INFO GPL-1001] Global placement finished at iteration 453
+[INFO GPL-1017] Routability mode iteration count: 62
+[INFO GPL-1005] Routability final weighted congestion: 0.4988
+[INFO GPL-1002] Placed Cell Area             2553.4917
+[INFO GPL-1003] Available Free Area          5232.0038
+[INFO GPL-1004] Minimum Feasible Density        0.4800 (cell_area / free_area)
+[INFO GPL-1006]   Suggested Target Densities:
+[INFO GPL-1007]     - For 90% usage of free space: 0.5423
+[INFO GPL-1008]     - For 80% usage of free space: 0.6101
+[INFO GPL-1009]     - For 50% usage of free space: 0.9761
+[INFO GPL-1011] Original area (um^2): 2507.00
+[INFO GPL-1012] Total routability artificial inflation: 0.00 (+0.00%)
+[INFO GPL-1013] Total timing-driven delta area: 46.50 (+1.85%)
+[INFO GPL-1014] Final placement area: 2553.49 (+1.85%)
+[INFO GPL-1018] Final HPWL (um): 61439.24
+Took 26 seconds: global_placement -density 0.5939999914169312 -pad_left 0 -pad_right 0 -routability_driven -timing_driven -force_center_initial_place -min_phi_coef 0.95 -max_phi_coef 1.05
+estimate_parasitics -placement
+Report metrics stage 3, global place...
+
+==========================================================================
+global place report_design_area
+--------------------------------------------------------------------------
+Design area 2307 um^2 44% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/3_3_place_gp.odb
+Elapsed time: 0:36.22[h:]min:sec. CPU time: user 40.62 sys 1.64 (116%). Peak memory: 619348KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+3_3_place_gp           .odb         36       42     1.17      604 01de3a1b8a
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 3_4_place_resized resize
+Running resize.tcl, stage 3_4_place_resized
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/3_3_place_gp.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+estimate_parasitics -placement
+[INFO GPL-0098] Initialize gpl and estimate target density.
+replace_arith_modules
+replace_arith_modules -path_count 1000 -target setup -slack_threshold 0.0
+[INFO RSZ-0151] Starting arithmetic module replacement to optimize 'setup' target
+[INFO RSZ-0152] Analyzing 1000 critical paths with slack < 0.00
+[INFO RSZ-0153] Identified 0 violating endpoints
+[INFO RSZ-0154] Identified 0 critical arithmetic instances
+global_placement -incremental -density 0.599915623664856
+[INFO GPL-0083] Execute incremental mode global placement.
+[INFO GPL-0001] ---- Initialize GPL Main Data Structures
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: (  0.054  0.270 ) um
+[INFO GPL-0004] CoreBBox: (  2.052  2.160 ) ( 74.682 74.520 ) um
+[INFO GPL-0016] Core area:                    5255.507 um^2
+[INFO GPL-0036] Movable instances area:       2283.636 um^2
+[INFO GPL-0037] Total instances area:         2307.139 um^2
+[INFO GPL-0035] Pin density area adjust:       272.088 um^2
+[INFO GPL-0032] ---- Initialize Region: Top-level
+[INFO GPL-0006] Number of instances:             20101
+[INFO GPL-0007] Movable instances:               19295
+[INFO GPL-0008] Fixed instances:                   806
+[INFO GPL-0009] Dummy instances:                     0
+[INFO GPL-0010] Number of nets:                  20131
+[INFO GPL-0011] Number of pins:                  67460
+[INFO GPL-0012] Die BBox:       (  0.000  0.000 ) ( 76.726 76.726 ) um
+[INFO GPL-0013] Placement BBox: (  2.052  2.160 ) ( 74.682 74.520 ) um
+[INFO GPL-0014] Region name: top-level.
+[INFO GPL-0015] Region area:                  5255.507 um^2
+[INFO GPL-0017] Fixed instances area:           23.503 um^2
+[INFO GPL-0018] Movable instances area:       2555.725 um^2
+[INFO GPL-0019] Utilization:                    48.848 %
+[INFO GPL-0020] Standard cells area:          2555.725 um^2
+[INFO GPL-0021] Large instances area:            0.000 um^2
+[INFO GPL-0154] Identified 19295 placed instances
+[INFO GPL-0155] Identified 0 not placed instances
+[INFO GPL-0156] Identified all instances as placed. Skipping incremental mode
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     20131
+     1000 |     +0.0% |       0 |       4 |             3 |     19131
+     2000 |     +0.0% |       0 |       4 |             3 |     18131
+     3000 |     +0.0% |       0 |       4 |             3 |     17131
+     4000 |     +0.0% |       0 |       4 |             3 |     16131
+     5000 |     +0.0% |       0 |       4 |             3 |     15131
+     6000 |     +0.0% |       0 |       4 |             3 |     14131
+     7000 |     +0.0% |       0 |       4 |             3 |     13131
+     8000 |     +0.0% |       0 |       5 |             4 |     12131
+     9000 |     +0.0% |       0 |       5 |             4 |     11131
+    10000 |     +0.0% |       0 |       5 |             4 |     10131
+    11000 |     +0.0% |       0 |       5 |             4 |      9131
+    12000 |     +0.0% |       0 |       5 |             4 |      8131
+    13000 |     +0.0% |       0 |       5 |             4 |      7131
+    14000 |     +0.0% |       0 |       5 |             4 |      6131
+    15000 |     +0.0% |       0 |       5 |             4 |      5131
+    16000 |     +0.0% |       0 |       5 |             4 |      4131
+    17000 |     +0.0% |       0 |       5 |             4 |      3131
+    18000 |     +0.0% |       0 |       5 |             4 |      2131
+    19000 |     +0.0% |       0 |       5 |             4 |      1131
+    20000 |     +0.0% |       0 |       5 |             4 |       131
+    final |     +0.0% |       0 |       5 |             4 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0036] Found 4 capacitance violations.
+[INFO RSZ-0038] Inserted 5 buffers in 4 nets.
+[INFO RSZ-0504] Runtime: 1.62s
+Floating nets: 
+Report metrics stage 3, resizer...
+
+==========================================================================
+resizer report_design_area
+--------------------------------------------------------------------------
+Design area 2308 um^2 44% utilization.
+Instance count before 20101, after 20106
+Pin count before 67196, after 67206
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/3_4_place_resized.odb
+Elapsed time: 0:17.79[h:]min:sec. CPU time: user 19.66 sys 0.51 (113%). Peak memory: 400528KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+3_4_place_resized      .odb         17       20     1.13      391 1fdea14a0b
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 3_5_place_dp detail_place
+Running detail_place.tcl, stage 3_5_place_dp
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/3_4_place_resized.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+detailed_placement
+[INFO DPL-0006] Core area: 5255.51 um^2
+[INFO DPL-0007] Movable instances area: 2284.48 um^2
+[INFO DPL-0008] Fixed instances area within core: 23.50 um^2
+[INFO DPL-0009] Utilization: 43.9%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1102] Legalizing using negotiation legalizer.
+[INFO DPL-1103] Negotiation base search window: +/-20 sites horizontally, +/-5 rows vertically 
+	Automatic search window extension enabled.
+	Search window extendable up to the max displacement cap of +/-500 sites, +/-100 rows near walls.
+[INFO DPL-1104] NegotiationLegalizer DRC penalty: 5.
+[INFO DPL-0392] Negotiation cell height distribution (1 unique row-count(s)):
+[INFO DPL-0393]   height 1 row(s): 20106 cells
+          |      Total |  Illegal |  Illegal
+Iteration | Violations |    Cells |    Sites
+---------------------------------------------
+        0 |       2053 |       555 |      1498
+        1 |          0 |         0 |         0
+Negotiation phase 1 converged at iteration 1.
+[INFO DPL-0500] Runtime: 0.42s
+Detailed Placement Analysis
+---------------------------------
+legalizer            negotiation
+total moves               19571
+total displacement       4975.5 u
+average displacement        0.2 u
+max displacement            1.1 u
+original HPWL           61488.0 u
+legalized HPWL          64769.2 u
+delta HPWL                    5 %
+
+optimize_mirroring
+[INFO DPL-0020] Mirrored 7766 instances
+[INFO DPL-0021] HPWL before           64769.2 u
+[INFO DPL-0022] HPWL after            63454.1 u
+[INFO DPL-0023] HPWL delta               -2.0 %
+[INFO FLW-0012] Placement violations .
+estimate_parasitics -placement
+Report metrics stage 3, detailed place...
+
+==========================================================================
+detailed place report_design_area
+--------------------------------------------------------------------------
+Design area 2308 um^2 44% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/3_5_place_dp.odb
+write_sdc -no_timestamp /work/runs_big/asap7_A/results/asap7/ibex/base/3_place.sdc
+Elapsed time: 0:16.68[h:]min:sec. CPU time: user 18.44 sys 0.55 (113%). Peak memory: 411140KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+3_5_place_dp           .odb         16       19     1.14      401 d6645d33b9
+cp /work/runs_big/asap7_A/results/asap7/ibex/base/3_5_place_dp.odb /work/runs_big/asap7_A/results/asap7/ibex/base/3_place.odb
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 4_1_cts cts
+Running cts.tcl, stage 4_1_cts
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/3_place.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/3_place.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is BUFx16f_ASAP7_75t_R.
+[INFO CTS-0051] Sink buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    BUFx16f_ASAP7_75t_R
+                    BUFx24_ASAP7_75t_R
+[INFO CTS-0049] Characterization buffer is BUFx24_ASAP7_75t_R.
+[INFO CTS-0007] Net "clk_i" found for clock "core_clock".
+[INFO CTS-0011]  Clock net "clk_i" for macros has 1 sinks.
+[INFO CTS-0011]  Clock net "clk_i_regs" for registers has 995 sinks.
+[INFO CTS-0010]  Clock net "_07890_" has 944 sinks.
+[INFO CTS-0008] TritonCTS found 3 clock nets.
+[INFO CTS-0097] Characterization used 2 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_i.
+[INFO CTS-0028]  Total number of sinks: 1.
+[INFO CTS-0060]  Macro  sinks will be clustered in groups of up to 4 and based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0023]  Original sink region: [(46927, 30531), (46927, 30531)].
+[INFO CTS-0024]  Normalized sink region: [(34.7607, 22.6156), (34.7607, 22.6156)].
+[INFO CTS-0025]     Width:  0.0000.
+[INFO CTS-0026]     Height: 0.0000.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 1
+    Sub-region size: 0.0000 X 0.0000
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (162.640 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 1.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clk_i_regs.
+[INFO CTS-0028]  Total number of sinks: 995.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0206] Best clustering solution was found from max clustering size of 25 and max clustering diameter of 21.
+[INFO CTS-0019]  Total number of sinks after clustering: 48.
+[INFO CTS-0024]  Normalized sink region: [(2.28236, 9.02425), (28.5896, 51.7838)].
+[INFO CTS-0025]     Width:  26.3073.
+[INFO CTS-0026]     Height: 42.7596.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 24
+    Sub-region size: 26.3073 X 21.3798
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Horizontal
+    Sinks per sub-region: 12
+    Sub-region size: 13.1536 X 21.3798
+[INFO CTS-0034]     Segment length (rounded): 6.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (162.640 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 48.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net _07890_.
+[INFO CTS-0028]  Total number of sinks: 944.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 1350  dbu (1 um).
+[INFO CTS-0206] Best clustering solution was found from max clustering size of 22 and max clustering diameter of 27.
+[INFO CTS-0019]  Total number of sinks after clustering: 53.
+[INFO CTS-0024]  Normalized sink region: [(15.6726, 3.53), (53.3685, 41.2175)].
+[INFO CTS-0025]     Width:  37.6958.
+[INFO CTS-0026]     Height: 37.6875.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 27
+    Sub-region size: 18.8479 X 37.6875
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 14
+    Sub-region size: 18.8479 X 18.8437
+[INFO CTS-0034]     Segment length (rounded): 10.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (162.640 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 53.
+[INFO CTS-0018]     Created 2 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 2 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 1:1..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 53 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 53 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 9:1, 10:1, 11:1, 13:1, 14:2, 17:1, 18:3, 19:7, 20:4, 21:11, 22:8, 23:8, 24:3, 25:1..
+[INFO CTS-0017]     Max level of the clock tree: 2.
+[INFO CTS-0018]     Created 58 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
+[INFO CTS-0015]     Created 58 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 9:1, 10:1, 12:5, 13:1, 14:1, 15:3, 16:5, 17:5, 18:9, 19:9, 20:10, 21:6, 22:1..
+[INFO CTS-0017]     Max level of the clock tree: 2.
+[INFO CTS-0124] Clock net "clk_i"
+[INFO CTS-0125]  Sinks 1
+[INFO CTS-0098] Clock net "clk_i_regs"
+[INFO CTS-0099]  Sinks 1040
+[INFO CTS-0100]  Leaf buffers 48
+[INFO CTS-0101]  Average sink wire length 39.53 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 45
+[INFO CTS-0098] Clock net "_07890_"
+[INFO CTS-0099]  Sinks 995
+[INFO CTS-0100]  Leaf buffers 53
+[INFO CTS-0101]  Average sink wire length 39.76 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 51
+[INFO CTS-0033] Balancing latency for clock core_clock
+[INFO CTS-0036]  inserted 2 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 2
+[INFO CTS-0500] Runtime: 2.73s
+estimate_parasitics -placement
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 7865 moves: displacement total 2802.1 u, max 2.6 u; HPWL 65223.2 -> 66635.0 u (+2.2 %).
+[INFO DPL-0500] Runtime: 0.24s
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -verbose
+[WARNING RSZ-2024] Experimental repair setup policy 'SetupParallelEvalPolicy' selected. Do not use this for production.
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpoint
+------------------------------------------------------------------------------------------------------------------------------
+       0* |       0 |       0 |        0 |      0 |     0 |    +0.0% |   -3.231 |       -4.5 |      2 | instr_addr_o[29]
+    final |       0 |       4 |       19 |      0 |     0 |    +0.1% |    4.879 |        0.0 |      0 | gen_regfile_ff.register_file_i.rf_reg\[539\]$_DFFE_PN0P_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0045] Inserted 19 buffers, 1 to split loads.
+[INFO RSZ-0051] Resized 4 instances: 4 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0505] Runtime: 3.08s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.10s
+Elapsed time: 0:02.67[h:]min:sec. CPU time: user 2.98 sys 0.09 (114%). Peak memory: 136532KB.
+Repair timing output passed lec test
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 744 moves: displacement total 12.1 u, max 0.8 u; HPWL 66699.3 -> 66706.5 u (+0.0 %).
+[INFO DPL-0500] Runtime: 0.27s
+check_placement -placeable -verbose
+estimate_parasitics -placement
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 2375 um^2 45% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/4_1_cts.odb
+write_sdc -no_timestamp /work/runs_big/asap7_A/results/asap7/ibex/base/4_cts.sdc
+Elapsed time: 0:41.41[h:]min:sec. CPU time: user 59.92 sys 1.14 (147%). Peak memory: 461844KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+4_1_cts                .odb          2        3     1.15      133 5a5f94a215
+cp /work/runs_big/asap7_A/results/asap7/ibex/base/4_1_cts.odb /work/runs_big/asap7_A/results/asap7/ibex/base/4_cts.odb
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 5_1_grt global_route
+Running global_route.tcl, stage 5_1_grt
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/4_cts.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/4_cts.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+pin_access
+[INFO DRT-0149] Reading tech and libs.
+
+Units:                1000
+Number of layers:     21
+Number of macros:     212
+Number of vias:       14
+Number of viarulegen: 11
+
+[INFO DRT-0150] Reading design.
+
+Design:                   ibex_core
+Die area:                 ( 0 0 ) ( 76726 76726 )
+Number of track patterns: 32
+Number of DEF vias:       0
+Number of components:     20337
+Number of terminals:      266
+Number of snets:          2
+Number of nets:           20271
+
+[INFO DRT-0167] List of default vias:
+  Layer V2
+    default via: VIA23
+  Layer V3
+    default via: VIA34
+  Layer V4
+    default via: VIA45
+  Layer V5
+    default via: VIA56
+  Layer V6
+    default via: VIA67
+  Layer V7
+    default via: VIA78
+  Layer V8
+    default via: VIA89
+  Layer V9
+    default via: VIA9Pad
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 269.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete Active.
+[INFO DRT-0024]   Complete V0.
+[INFO DRT-0024]   Complete M1.
+[INFO DRT-0024]   Complete V1.
+[INFO DRT-0024]   Complete M2.
+[INFO DRT-0024]   Complete V2.
+[INFO DRT-0024]   Complete M3.
+[INFO DRT-0024]   Complete V3.
+[INFO DRT-0024]   Complete M4.
+[INFO DRT-0024]   Complete V4.
+[INFO DRT-0024]   Complete M5.
+[INFO DRT-0024]   Complete V5.
+[INFO DRT-0024]   Complete M6.
+[INFO DRT-0024]   Complete V6.
+[INFO DRT-0024]   Complete M7.
+[INFO DRT-0024]   Complete V7.
+[INFO DRT-0024]   Complete M8.
+[INFO DRT-0024]   Complete V8.
+[INFO DRT-0024]   Complete M9.
+[INFO DRT-0024]   Complete V9.
+[INFO DRT-0024]   Complete Pad.
+[INFO DRT-0033] Active shape region query size = 0.
+[INFO DRT-0033] V0 shape region query size = 0.
+[INFO DRT-0033] M1 shape region query size = 330004.
+[INFO DRT-0033] V1 shape region query size = 583782.
+[INFO DRT-0033] M2 shape region query size = 19821.
+[INFO DRT-0033] V2 shape region query size = 11298.
+[INFO DRT-0033] M3 shape region query size = 11298.
+[INFO DRT-0033] V3 shape region query size = 7532.
+[INFO DRT-0033] M4 shape region query size = 7651.
+[INFO DRT-0033] V4 shape region query size = 7532.
+[INFO DRT-0033] M5 shape region query size = 4331.
+[INFO DRT-0033] V5 shape region query size = 784.
+[INFO DRT-0033] M6 shape region query size = 448.
+[INFO DRT-0033] V6 shape region query size = 0.
+[INFO DRT-0033] M7 shape region query size = 0.
+[INFO DRT-0033] V7 shape region query size = 0.
+[INFO DRT-0033] M8 shape region query size = 0.
+[INFO DRT-0033] V8 shape region query size = 0.
+[INFO DRT-0033] M9 shape region query size = 0.
+[INFO DRT-0033] V9 shape region query size = 0.
+[INFO DRT-0033] Pad shape region query size = 0.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0076]   Complete 1000 pins.
+[INFO DRT-0078]   Complete 1549 pins.
+[INFO DRT-0079]   Complete 100 unique inst patterns.
+[INFO DRT-0079]   Complete 200 unique inst patterns.
+[INFO DRT-0081]   Complete 269 unique inst patterns.
+[INFO DRT-0082]   Complete 10000 groups.
+[INFO DRT-0084]   Complete 13696 groups.
+#scanned instances     = 20337
+#unique  instances     = 269
+#stdCellGenAp          = 7771
+#stdCellValidPlanarAp  = 74
+#stdCellValidViaAp     = 6355
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 65891
+#instTermValidViaApCnt = 0
+#macroGenAp            = 0
+#macroValidPlanarAp    = 0
+#macroValidViaAp       = 0
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:02:57, elapsed time = 00:01:30, memory = 266.24 (MB), peak = 276.52 (MB)
+Took 91 seconds: pin_access
+global_route -congestion_report_file /work/runs_big/asap7_A/reports/asap7/ibex/base/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
+[INFO GRT-0020] Min routing layer: M2
+[INFO GRT-0021] Max routing layer: M7
+[INFO GRT-0022] Global adjustment: 0%
+[INFO GRT-0023] Grid origin: (0, 0)
+[INFO GRT-0088] Layer M1      Track-Pitch = 0.0360  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M2      Track-Pitch = 0.0390  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M3      Track-Pitch = 0.0360  line-2-Via Pitch: 0.0360
+[INFO GRT-0088] Layer M4      Track-Pitch = 0.0480  line-2-Via Pitch: 0.0480
+[INFO GRT-0088] Layer M5      Track-Pitch = 0.0480  line-2-Via Pitch: 0.0480
+[INFO GRT-0088] Layer M6      Track-Pitch = 0.0640  line-2-Via Pitch: 0.0640
+[INFO GRT-0088] Layer M7      Track-Pitch = 0.0640  line-2-Via Pitch: 0.0640
+[INFO GRT-0003] Macros: 0
+[INFO GRT-0004] Blockages: 10812
+[INFO GRT-0019] Found 118 clock nets.
+[INFO GRT-0001] Minimum degree: 2
+[INFO GRT-0002] Maximum degree: 51
+
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+M1         Vertical            0             0          0.00%
+M2         Horizontal     232616        166165          28.57%
+M3         Vertical       273601        203440          25.64%
+M4         Horizontal     209756        156024          25.62%
+M5         Vertical       202838        150632          25.74%
+M6         Horizontal     141419         95816          32.25%
+M7         Vertical       159467        107464          32.61%
+---------------------------------------------------------------
+
+[INFO GRT-0197] Via related to pin nodes: 135173
+[INFO GRT-0198] Via related Steiner nodes: 4002
+[INFO GRT-0199] Via filling finished.
+[INFO GRT-0111] Final number of vias: 179576
+[INFO GRT-0112] Final usage 3D: 687459
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Congestion
+---------------------------------------------------------------------------------------
+M1                   0             0            0.00%             0 /  0 /  0
+M2              166165         54096           32.56%             0 /  0 /  0
+M3              203440         62180           30.56%             0 /  0 /  0
+M4              156024         12496            8.01%             0 /  0 /  0
+M5              150632          7248            4.81%             0 /  0 /  0
+M6               95816          6560            6.85%             0 /  0 /  0
+M7              107464          6151            5.72%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total           879541        148731           16.91%             0 /  0 /  0
+
+[INFO GRT-0018] Total wirelength: 116142 um
+[INFO GRT-0014] Routed nets: 20180
+[INFO GRT-0303] Global routing runtime = 00:00:11
+Took 11 seconds: global_route -congestion_report_file /work/runs_big/asap7_A/reports/asap7/ibex/base/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose -resistance_aware
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+estimate_parasitics -global_routing
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     20367
+     1000 |     +0.0% |       0 |       0 |             0 |     19367
+[WARNING RSZ-0104] Net _17482_/CO[33] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/CO[22] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/CO[20] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/CO[8] only has one pin. Check if it is intended to be dangling.
+     2000 |     +0.0% |       0 |       0 |             0 |     18367
+[WARNING RSZ-0104] Net _17482_/X[25] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[30] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[28] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[33] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[31] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[29] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[27] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[26] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[24] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[22] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[20] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[19] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[18] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[17] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[16] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[15] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[14] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[13] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[12] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[11] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[10] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[8] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[7] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[6] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[5] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[4] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _17482_/X[3] only has one pin. Check if it is intended to be dangling.
+     3000 |     +0.0% |       0 |       0 |             0 |     17367
+     4000 |     +0.0% |       0 |       0 |             0 |     16367
+[WARNING RSZ-0104] Net _03102_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03100_ only has one pin. Check if it is intended to be dangling.
+     5000 |     +0.0% |       0 |       0 |             0 |     15367
+[WARNING RSZ-0104] Net _02925_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02927_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02929_ only has one pin. Check if it is intended to be dangling.
+     6000 |     +0.0% |       0 |       0 |             0 |     14367
+[WARNING RSZ-0104] Net _17482_/X[1] only has one pin. Check if it is intended to be dangling.
+     7000 |     +0.0% |       0 |       0 |             0 |     13367
+[WARNING RSZ-0104] Net _17482_/X[0] only has one pin. Check if it is intended to be dangling.
+     8000 |     +0.0% |       0 |       1 |             1 |     12367
+[WARNING RSZ-0104] Net _03035_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03032_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03029_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03026_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03005_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03002_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02999_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02996_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02993_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02990_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02987_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02984_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02978_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02975_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02972_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02969_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02966_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02963_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02960_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02957_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02954_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02951_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02948_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03105_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03038_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03020_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03017_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03014_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03008_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02981_ only has one pin. Check if it is intended to be dangling.
+     9000 |     +0.0% |       0 |       1 |             1 |     11367
+[WARNING RSZ-0104] Net _03023_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _03011_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02839_ only has one pin. Check if it is intended to be dangling.
+    10000 |     +0.0% |       0 |       1 |             1 |     10367
+[WARNING RSZ-0104] Net _02862_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02860_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02864_ only has one pin. Check if it is intended to be dangling.
+    11000 |     +0.0% |       0 |       1 |             1 |      9367
+[WARNING RSZ-0104] Net _02907_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02904_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02902_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02906_ only has one pin. Check if it is intended to be dangling.
+    12000 |     +0.0% |       0 |       1 |             1 |      8367
+    13000 |     +0.0% |       0 |       1 |             1 |      7367
+    14000 |     +0.0% |       0 |       1 |             1 |      6367
+[WARNING RSZ-0104] Net _02775_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02773_ only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net _02771_ only has one pin. Check if it is intended to be dangling.
+    15000 |     +0.0% |       0 |       1 |             1 |      5367
+    16000 |     +0.0% |       0 |       1 |             1 |      4367
+    17000 |     +0.0% |       0 |       1 |             1 |      3367
+    18000 |     +0.0% |       0 |       1 |             1 |      2367
+    19000 |     +0.0% |       0 |       1 |             1 |      1367
+    20000 |     +0.0% |       0 |       1 |             1 |       367
+[WARNING RSZ-0104] Net boot_addr_i[7] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net boot_addr_i[6] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net boot_addr_i[5] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net boot_addr_i[4] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net boot_addr_i[3] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net boot_addr_i[2] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net boot_addr_i[1] only has one pin. Check if it is intended to be dangling.
+[WARNING RSZ-0104] Net boot_addr_i[0] only has one pin. Check if it is intended to be dangling.
+    final |     +0.0% |       0 |       1 |             1 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0036] Found 1 capacitance violations.
+[INFO RSZ-0038] Inserted 1 buffers in 1 nets.
+[INFO RSZ-0504] Runtime: 3.27s
+global_route -start_incremental
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 55 moves: displacement total 0.6 u, max 0.3 u; HPWL 66710.8 -> 66711.0 u (+0.0 %).
+[INFO DPL-0500] Runtime: 0.17s
+global_route -end_incremental -resistance_aware -congestion_report_file /work/runs_big/asap7_A/reports/asap7/ibex/base/congestion_post_repair_design.rpt
+Repair setup and hold violations...
+estimate_parasitics -global_routing
+repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -verbose
+[WARNING RSZ-2024] Experimental repair setup policy 'SetupParallelEvalPolicy' selected. Do not use this for production.
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpoint
+------------------------------------------------------------------------------------------------------------------------------
+       0* |       0 |       0 |        0 |      0 |     0 |    +0.0% |  -20.390 |    -1718.4 |    180 | gen_regfile_ff.register_file_i.rf_reg\[433\]$_DFFE_PN0P_/D
+       1* |       0 |       8 |       17 |      0 |     0 |    +0.1% |  -11.245 |     -154.4 |     16 | gen_regfile_ff.register_file_i.rf_reg\[186\]$_DFFE_PN0P_/D
+    final |       0 |      11 |       24 |      0 |     0 |    +0.1% |    2.017 |        0.0 |      0 | gen_regfile_ff.register_file_i.rf_reg\[795\]$_DFFE_PN0P_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0045] Inserted 24 buffers, 4 to split loads.
+[INFO RSZ-0051] Resized 11 instances: 11 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0505] Runtime: 6.70s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.20s
+Took 7 seconds: repair_timing -setup_margin 0 -hold_margin 0 -phases PARALLEL_EVAL -repair_tns 100 -verbose
+global_route -start_incremental
+detailed_placement -quiet
+[INFO DPL-0501] Legalized with 834 moves: displacement total 14.3 u, max 0.8 u; HPWL 66863.8 -> 66869.6 u (+0.0 %).
+[INFO DPL-0500] Runtime: 0.17s
+check_placement -placeable -verbose
+global_route -end_incremental -resistance_aware -congestion_report_file /work/runs_big/asap7_A/reports/asap7/ibex/base/congestion_post_repair_timing.rpt
+estimate_parasitics -global_routing
+repair_timing -setup -sequence "vt_swap reroute" -skip_last_gasp -repair_tns 0 -verbose
+[INFO RSZ-0100] Repair move sequence: RerouteMove 
+[INFO RSZ-0098] No setup violations found
+[INFO RSZ-0505] Runtime: 1.72s
+Repair antennas...
+[WARNING GRT-0246] No diode with LEF class CORE ANTENNACELL found.
+check_placement -placeable -verbose
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Estimate parasitics...
+estimate_parasitics -global_routing
+Report metrics stage 5, global route...
+
+==========================================================================
+global route report_design_area
+--------------------------------------------------------------------------
+Design area 2378 um^2 45% utilization.
+[INFO FLW-0007] clock core_clock period 1468.000000
+[WARNING FLW-0010] more than one clock found. Skipping sdc update.
+[INFO FLW-0011] Path endpoint path count 3892
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/5_1_grt.odb
+write_sdc -no_timestamp /work/runs_big/asap7_A/results/asap7/ibex/base/5_1_grt.sdc
+Elapsed time: 2:38.80[h:]min:sec. CPU time: user 280.95 sys 3.03 (178%). Peak memory: 667264KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+5_1_grt                .odb        158      284     1.79      651 3697ac90e1
+5_1_grt                .sdc                                       dc8f05363a
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 5_2_route detail_route
+Running detail_route.tcl, stage 5_2_route
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/5_1_grt.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/5_1_grt.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+detailed_route -output_drc /work/runs_big/asap7_A/reports/asap7/ibex/base/5_route_drc.rpt -output_maze /work/runs_big/asap7_A/results/asap7/ibex/base/maze.log -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
+[INFO DRT-0149] Reading tech and libs.
+
+Units:                1000
+Number of layers:     21
+Number of macros:     212
+Number of vias:       14
+Number of viarulegen: 11
+
+[INFO DRT-0150] Reading design.
+
+Design:                   ibex_core
+Die area:                 ( 0 0 ) ( 76726 76726 )
+Number of track patterns: 32
+Number of DEF vias:       0
+Number of components:     20362
+Number of terminals:      266
+Number of snets:          2
+Number of nets:           20296
+
+[INFO DRT-0167] List of default vias:
+  Layer V2
+    default via: VIA23
+  Layer V3
+    default via: VIA34
+  Layer V4
+    default via: VIA45
+  Layer V5
+    default via: VIA56
+  Layer V6
+    default via: VIA67
+  Layer V7
+    default via: VIA78
+  Layer V8
+    default via: VIA89
+  Layer V9
+    default via: VIA9Pad
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 272.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete Active.
+[INFO DRT-0024]   Complete V0.
+[INFO DRT-0024]   Complete M1.
+[INFO DRT-0024]   Complete V1.
+[INFO DRT-0024]   Complete M2.
+[INFO DRT-0024]   Complete V2.
+[INFO DRT-0024]   Complete M3.
+[INFO DRT-0024]   Complete V3.
+[INFO DRT-0024]   Complete M4.
+[INFO DRT-0024]   Complete V4.
+[INFO DRT-0024]   Complete M5.
+[INFO DRT-0024]   Complete V5.
+[INFO DRT-0024]   Complete M6.
+[INFO DRT-0024]   Complete V6.
+[INFO DRT-0024]   Complete M7.
+[INFO DRT-0024]   Complete V7.
+[INFO DRT-0024]   Complete M8.
+[INFO DRT-0024]   Complete V8.
+[INFO DRT-0024]   Complete M9.
+[INFO DRT-0024]   Complete V9.
+[INFO DRT-0024]   Complete Pad.
+[INFO DRT-0033] Active shape region query size = 0.
+[INFO DRT-0033] V0 shape region query size = 0.
+[INFO DRT-0033] M1 shape region query size = 330325.
+[INFO DRT-0033] V1 shape region query size = 583782.
+[INFO DRT-0033] M2 shape region query size = 19821.
+[INFO DRT-0033] V2 shape region query size = 11298.
+[INFO DRT-0033] M3 shape region query size = 11298.
+[INFO DRT-0033] V3 shape region query size = 7532.
+[INFO DRT-0033] M4 shape region query size = 7651.
+[INFO DRT-0033] V4 shape region query size = 7532.
+[INFO DRT-0033] M5 shape region query size = 4331.
+[INFO DRT-0033] V5 shape region query size = 784.
+[INFO DRT-0033] M6 shape region query size = 448.
+[INFO DRT-0033] V6 shape region query size = 0.
+[INFO DRT-0033] M7 shape region query size = 0.
+[INFO DRT-0033] V7 shape region query size = 0.
+[INFO DRT-0033] M8 shape region query size = 0.
+[INFO DRT-0033] V8 shape region query size = 0.
+[INFO DRT-0033] M9 shape region query size = 0.
+[INFO DRT-0033] V9 shape region query size = 0.
+[INFO DRT-0033] Pad shape region query size = 0.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0076]   Complete 1000 pins.
+[INFO DRT-0078]   Complete 1568 pins.
+[INFO DRT-0079]   Complete 100 unique inst patterns.
+[INFO DRT-0079]   Complete 200 unique inst patterns.
+[INFO DRT-0081]   Complete 272 unique inst patterns.
+[INFO DRT-0082]   Complete 10000 groups.
+[INFO DRT-0084]   Complete 13692 groups.
+#scanned instances     = 20362
+#unique  instances     = 272
+#stdCellGenAp          = 7871
+#stdCellValidPlanarAp  = 74
+#stdCellValidViaAp     = 6452
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 65941
+#instTermValidViaApCnt = 0
+#macroGenAp            = 0
+#macroValidPlanarAp    = 0
+#macroValidViaAp       = 0
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:03:05, elapsed time = 00:01:34, memory = 437.98 (MB), peak = 451.01 (MB)
+[INFO DRT-0156] guideIn read 100000 guides.
+
+[INFO DRT-0157] Number of guides:     184989
+
+[INFO DRT-0169] Post process guides.
+[INFO DRT-0176] GCELLGRID X 0 DO 134 STEP 570 ;
+[INFO DRT-0177] GCELLGRID Y 0 DO 134 STEP 570 ;
+[INFO DRT-0026]   Complete 100000 origin guides.
+[INFO DRT-0028]   Complete Active.
+[INFO DRT-0028]   Complete V0.
+[INFO DRT-0028]   Complete M1.
+[INFO DRT-0028]   Complete V1.
+[INFO DRT-0028]   Complete M2.
+[INFO DRT-0028]   Complete V2.
+[INFO DRT-0028]   Complete M3.
+[INFO DRT-0028]   Complete V3.
+[INFO DRT-0028]   Complete M4.
+[INFO DRT-0028]   Complete V4.
+[INFO DRT-0028]   Complete M5.
+[INFO DRT-0028]   Complete V5.
+[INFO DRT-0028]   Complete M6.
+[INFO DRT-0028]   Complete V6.
+[INFO DRT-0028]   Complete M7.
+[INFO DRT-0028]   Complete V7.
+[INFO DRT-0028]   Complete M8.
+[INFO DRT-0028]   Complete V8.
+[INFO DRT-0028]   Complete M9.
+[INFO DRT-0028]   Complete V9.
+[INFO DRT-0028]   Complete Pad.
+[INFO DRT-0178] Init guide query.
+[INFO DRT-0035]   Complete Active (guide).
+[INFO DRT-0035]   Complete V0 (guide).
+[INFO DRT-0035]   Complete M1 (guide).
+[INFO DRT-0035]   Complete V1 (guide).
+[INFO DRT-0035]   Complete M2 (guide).
+[INFO DRT-0035]   Complete V2 (guide).
+[INFO DRT-0035]   Complete M3 (guide).
+[INFO DRT-0035]   Complete V3 (guide).
+[INFO DRT-0035]   Complete M4 (guide).
+[INFO DRT-0035]   Complete V4 (guide).
+[INFO DRT-0035]   Complete M5 (guide).
+[INFO DRT-0035]   Complete V5 (guide).
+[INFO DRT-0035]   Complete M6 (guide).
+[INFO DRT-0035]   Complete V6 (guide).
+[INFO DRT-0035]   Complete M7 (guide).
+[INFO DRT-0035]   Complete V7 (guide).
+[INFO DRT-0035]   Complete M8 (guide).
+[INFO DRT-0035]   Complete V8 (guide).
+[INFO DRT-0035]   Complete M9 (guide).
+[INFO DRT-0035]   Complete V9 (guide).
+[INFO DRT-0035]   Complete Pad (guide).
+[INFO DRT-0036] Active guide region query size = 0.
+[INFO DRT-0036] V0 guide region query size = 0.
+[INFO DRT-0036] M1 guide region query size = 54630.
+[INFO DRT-0036] V1 guide region query size = 0.
+[INFO DRT-0036] M2 guide region query size = 51959.
+[INFO DRT-0036] V2 guide region query size = 0.
+[INFO DRT-0036] M3 guide region query size = 28252.
+[INFO DRT-0036] V3 guide region query size = 0.
+[INFO DRT-0036] M4 guide region query size = 5466.
+[INFO DRT-0036] V4 guide region query size = 0.
+[INFO DRT-0036] M5 guide region query size = 3939.
+[INFO DRT-0036] V5 guide region query size = 0.
+[INFO DRT-0036] M6 guide region query size = 2804.
+[INFO DRT-0036] V6 guide region query size = 0.
+[INFO DRT-0036] M7 guide region query size = 1439.
+[INFO DRT-0036] V7 guide region query size = 0.
+[INFO DRT-0036] M8 guide region query size = 0.
+[INFO DRT-0036] V8 guide region query size = 0.
+[INFO DRT-0036] M9 guide region query size = 0.
+[INFO DRT-0036] V9 guide region query size = 0.
+[INFO DRT-0036] Pad guide region query size = 0.
+[INFO DRT-0179] Init gr pin query.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 506.41 (MB), peak = 506.16 (MB)
+[INFO DRT-0245] skipped writing guide updates to database.
+[INFO DRT-0181] Start track assignment.
+[INFO DRT-0184] Done with 88260 vertical wires in 3 frboxes and 60229 horizontal wires in 3 frboxes.
+[INFO DRT-0186] Done with 8951 vertical wires in 3 frboxes and 14041 horizontal wires in 3 frboxes.
+[INFO DRT-0182] Complete track assignment.
+[INFO DRT-0267] cpu time = 00:00:13, elapsed time = 00:00:08, memory = 714.70 (MB), peak = 774.07 (MB)
+[INFO DRT-0187] Start routing data preparation.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 714.76 (MB), peak = 774.07 (MB)
+[INFO DRT-0194] Start detail routing.
+[INFO DRT-0195] Start 0th optimization iteration.
+    Completing 10% with 0 violations.
+    elapsed time = 00:00:29, memory = 1320.09 (MB).
+    Completing 20% with 0 violations.
+    elapsed time = 00:00:51, memory = 1844.64 (MB).
+    Completing 30% with 1222 violations.
+    elapsed time = 00:01:21, memory = 1715.00 (MB).
+    Completing 40% with 1222 violations.
+    elapsed time = 00:01:45, memory = 1850.88 (MB).
+    Completing 50% with 1222 violations.
+    elapsed time = 00:02:21, memory = 2471.68 (MB).
+    Completing 60% with 2231 violations.
+    elapsed time = 00:02:55, memory = 2221.34 (MB).
+    Completing 70% with 2231 violations.
+    elapsed time = 00:03:32, memory = 2344.39 (MB).
+    Completing 80% with 3211 violations.
+    elapsed time = 00:04:13, memory = 2498.07 (MB).
+    Completing 90% with 3211 violations.
+    elapsed time = 00:04:41, memory = 2498.14 (MB).
+    Completing 100% with 4138 violations.
+    elapsed time = 00:05:27, memory = 2691.26 (MB).
+[INFO DRT-0199]   Number of violations = 5742.
+Viol/Layer          M1     M2     V2     M3     V3     M4     V4     M5     V5     M6     V6     M7
+CutSpcTbl            0      0      0      0     41      0     11      0      8      0     12      0
+EOL                  0    332      0     58      0     19      0      0      0      0      0      0
+Metal Spacing      291    140      0    295      0      7      0      4      0     26      0      1
+Recheck              2    682      0    527      0    230      0    105      0     50      0      8
+Short               50    440      3     75      2     11      5     23      6     26      0      1
+eolKeepOut           0   1965      0    193      0     87      0      6      0      0      0      0
+[INFO DRT-0267] cpu time = 00:10:48, elapsed time = 00:05:29, memory = 2613.50 (MB), peak = 2894.94 (MB)
+Total wire length = 88133 um.
+Total wire length on LAYER M1 = 0 um.
+Total wire length on LAYER M2 = 26028 um.
+Total wire length on LAYER M3 = 37931 um.
+Total wire length on LAYER M4 = 13673 um.
+Total wire length on LAYER M5 = 3990 um.
+Total wire length on LAYER M6 = 3408 um.
+Total wire length on LAYER M7 = 3100 um.
+Total wire length on LAYER M8 = 0 um.
+Total wire length on LAYER M9 = 0 um.
+Total wire length on LAYER Pad = 0 um.
+Total number of vias = 208941.
+Up-via summary (total 208941):
+
+-----------------
+ Active         0
+     M1     62872
+     M2    114602
+     M3     21726
+     M4      4977
+     M5      2692
+     M6      2072
+     M7         0
+     M8         0
+     M9         0
+-----------------
+       208941
+
+
+[INFO DRT-0195] Start 1st optimization iteration.
+    Completing 10% with 5742 violations.
+    elapsed time = 00:00:29, memory = 2572.18 (MB).
+    Completing 20% with 5742 violations.
+    elapsed time = 00:00:58, memory = 2588.35 (MB).
+    Completing 30% with 4114 violations.
+    elapsed time = 00:01:28, memory = 2673.91 (MB).
+    Completing 40% with 4114 violations.
+    elapsed time = 00:01:55, memory = 2674.29 (MB).
+    Completing 50% with 4114 violations.
+    elapsed time = 00:02:28, memory = 2884.07 (MB).
+    Completing 60% with 2969 violations.
+    elapsed time = 00:02:59, memory = 2742.30 (MB).
+    Completing 70% with 2969 violations.
+    elapsed time = 00:03:22, memory = 2742.31 (MB).
+    Completing 80% with 1647 violations.
+    elapsed time = 00:03:55, memory = 2771.06 (MB).
+    Completing 90% with 1647 violations.
+    elapsed time = 00:04:17, memory = 2771.07 (MB).
+    Completing 100% with 580 violations.
+    elapsed time = 00:04:52, memory = 2808.18 (MB).
+[INFO DRT-0199]   Number of violations = 589.
+Viol/Layer          M1     M2     V2     M3     V3     M4     V4     M5     M6     V6
+CutSpcTbl            0      0      0      0      9      0      7      0      0      5
+EOL                  0     63      0      5      0      2      0      0      0      0
+Metal Spacing       38      9      0     92      0      0      0      1      1      0
+Recheck              0      2      0      6      0      1      0      0      0      0
+Short                3     26      1     15      0      0      0      0      0      0
+eolKeepOut           0    273      0     22      0      8      0      0      0      0
+[INFO DRT-0267] cpu time = 00:09:32, elapsed time = 00:04:53, memory = 2764.77 (MB), peak = 2900.65 (MB)
+Total wire length = 87420 um.
+Total wire length on LAYER M1 = 0 um.
+Total wire length on LAYER M2 = 25558 um.
+Total wire length on LAYER M3 = 37845 um.
+Total wire length on LAYER M4 = 13921 um.
+Total wire length on LAYER M5 = 3888 um.
+Total wire length on LAYER M6 = 3297 um.
+Total wire length on LAYER M7 = 2909 um.
+Total wire length on LAYER M8 = 0 um.
+Total wire length on LAYER M9 = 0 um.
+Total wire length on LAYER Pad = 0 um.
+Total number of vias = 198886.
+Up-via summary (total 198886):
+
+-----------------
+ Active         0
+     M1     62854
+     M2    107690
+     M3     19823
+     M4      4420
+     M5      2393
+     M6      1706
+     M7         0
+     M8         0
+     M9         0
+-----------------
+       198886
+
+
+[INFO DRT-0195] Start 2nd optimization iteration.
+    Completing 10% with 589 violations.
+    elapsed time = 00:00:14, memory = 2728.80 (MB).
+    Completing 20% with 589 violations.
+    elapsed time = 00:00:37, memory = 2728.81 (MB).
+    Completing 30% with 547 violations.
+    elapsed time = 00:00:56, memory = 2666.81 (MB).
+    Completing 40% with 547 violations.
+    elapsed time = 00:01:11, memory = 2666.81 (MB).
+    Completing 50% with 547 violations.
+    elapsed time = 00:01:38, memory = 2666.81 (MB).
+    Completing 60% with 537 violations.
+    elapsed time = 00:01:56, memory = 2620.81 (MB).
+    Completing 70% with 537 violations.
+    elapsed time = 00:02:09, memory = 2620.81 (MB).
+    Completing 80% with 456 violations.
+    elapsed time = 00:02:27, memory = 2576.81 (MB).
+    Completing 90% with 456 violations.
+    elapsed time = 00:02:38, memory = 2576.81 (MB).
+    Completing 100% with 386 violations.
+    elapsed time = 00:03:06, memory = 2566.81 (MB).
+[INFO DRT-0199]   Number of violations = 397.
+Viol/Layer          M1     M2     M3     V3     M4     V4     M6     V6
+CutSpcTbl            0      0      0      2      0      3      0      2
+EOL                  0     41      1      0      0      0      0      0
+Metal Spacing       30      6     57      0      1      0      1      0
+Recheck              0      8      3      0      0      0      0      0
+Short                0     15     19      0      0      0      0      0
+eolKeepOut           0    201      7      0      0      0      0      0
+[INFO DRT-0267] cpu time = 00:06:11, elapsed time = 00:03:08, memory = 2564.93 (MB), peak = 2900.65 (MB)
+Total wire length = 87221 um.
+Total wire length on LAYER M1 = 0 um.
+Total wire length on LAYER M2 = 25631 um.
+Total wire length on LAYER M3 = 37786 um.
+Total wire length on LAYER M4 = 13715 um.
+Total wire length on LAYER M5 = 3893 um.
+Total wire length on LAYER M6 = 3305 um.
+Total wire length on LAYER M7 = 2888 um.
+Total wire length on LAYER M8 = 0 um.
+Total wire length on LAYER M9 = 0 um.
+Total wire length on LAYER Pad = 0 um.
+Total number of vias = 197102.
+Up-via summary (total 197102):
+
+-----------------
+ Active         0
+     M1     62854
+     M2    106560
+     M3     19254
+     M4      4400
+     M5      2356
+     M6      1678
+     M7         0
+     M8         0
+     M9         0
+-----------------
+       197102
+
+
+[INFO DRT-0195] Start 3rd optimization iteration.
+    Completing 10% with 397 violations.
+    elapsed time = 00:00:06, memory = 2564.93 (MB).
+    Completing 20% with 397 violations.
+    elapsed time = 00:00:12, memory = 2564.93 (MB).
+    Completing 30% with 289 violations.
+    elapsed time = 00:00:19, memory = 2562.51 (MB).
+    Completing 40% with 289 violations.
+    elapsed time = 00:00:26, memory = 2562.51 (MB).
+    Completing 50% with 289 violations.
+    elapsed time = 00:00:32, memory = 2562.51 (MB).
+    Completing 60% with 194 violations.
+    elapsed time = 00:00:38, memory = 2554.51 (MB).
+    Completing 70% with 194 violations.
+    elapsed time = 00:00:42, memory = 2611.71 (MB).
+    Completing 80% with 96 violations.
+    elapsed time = 00:00:49, memory = 2603.71 (MB).
+    Completing 90% with 96 violations.
+    elapsed time = 00:00:54, memory = 2603.71 (MB).
+    Completing 100% with 6 violations.
+    elapsed time = 00:01:02, memory = 2610.66 (MB).
+[INFO DRT-0199]   Number of violations = 6.
+Viol/Layer          M2     M3
+Metal Spacing        0      2
+Short                1      0
+eolKeepOut           3      0
+[INFO DRT-0267] cpu time = 00:02:01, elapsed time = 00:01:03, memory = 2613.82 (MB), peak = 2900.65 (MB)
+Total wire length = 87216 um.
+Total wire length on LAYER M1 = 0 um.
+Total wire length on LAYER M2 = 25361 um.
+Total wire length on LAYER M3 = 37743 um.
+Total wire length on LAYER M4 = 13984 um.
+Total wire length on LAYER M5 = 3941 um.
+Total wire length on LAYER M6 = 3305 um.
+Total wire length on LAYER M7 = 2879 um.
+Total wire length on LAYER M8 = 0 um.
+Total wire length on LAYER M9 = 0 um.
+Total wire length on LAYER Pad = 0 um.
+Total number of vias = 197102.
+Up-via summary (total 197102):
+
+-----------------
+ Active         0
+     M1     62854
+     M2    106079
+     M3     19698
+     M4      4452
+     M5      2347
+     M6      1672
+     M7         0
+     M8         0
+     M9         0
+-----------------
+       197102
+
+
+[INFO DRT-0195] Start 4th guides tiles iteration.
+    Completing 10% with 6 violations.
+    elapsed time = 00:00:00, memory = 2613.82 (MB).
+    Completing 20% with 6 violations.
+    elapsed time = 00:00:00, memory = 2613.82 (MB).
+    Completing 40% with 6 violations.
+    elapsed time = 00:00:00, memory = 2613.82 (MB).
+    Completing 50% with 6 violations.
+    elapsed time = 00:00:00, memory = 2613.82 (MB).
+    Completing 70% with 0 violations.
+    elapsed time = 00:00:00, memory = 2611.82 (MB).
+    Completing 80% with 0 violations.
+    elapsed time = 00:00:00, memory = 2611.82 (MB).
+    Completing 100% with 0 violations.
+    elapsed time = 00:00:00, memory = 2611.82 (MB).
+[INFO DRT-0199]   Number of violations = 0.
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:01, memory = 2636.86 (MB), peak = 2900.65 (MB)
+Total wire length = 87216 um.
+Total wire length on LAYER M1 = 0 um.
+Total wire length on LAYER M2 = 25359 um.
+Total wire length on LAYER M3 = 37740 um.
+Total wire length on LAYER M4 = 13986 um.
+Total wire length on LAYER M5 = 3943 um.
+Total wire length on LAYER M6 = 3305 um.
+Total wire length on LAYER M7 = 2879 um.
+Total wire length on LAYER M8 = 0 um.
+Total wire length on LAYER M9 = 0 um.
+Total wire length on LAYER Pad = 0 um.
+Total number of vias = 197102.
+Up-via summary (total 197102):
+
+-----------------
+ Active         0
+     M1     62854
+     M2    106069
+     M3     19706
+     M4      4454
+     M5      2347
+     M6      1672
+     M7         0
+     M8         0
+     M9         0
+-----------------
+       197102
+
+
+[INFO DRT-0198] Complete detail routing.
+Total wire length = 87216 um.
+Total wire length on LAYER M1 = 0 um.
+Total wire length on LAYER M2 = 25359 um.
+Total wire length on LAYER M3 = 37740 um.
+Total wire length on LAYER M4 = 13986 um.
+Total wire length on LAYER M5 = 3943 um.
+Total wire length on LAYER M6 = 3305 um.
+Total wire length on LAYER M7 = 2879 um.
+Total wire length on LAYER M8 = 0 um.
+Total wire length on LAYER M9 = 0 um.
+Total wire length on LAYER Pad = 0 um.
+Total number of vias = 197102.
+Up-via summary (total 197102):
+
+-----------------
+ Active         0
+     M1     62854
+     M2    106069
+     M3     19706
+     M4      4454
+     M5      2347
+     M6      1672
+     M7         0
+     M8         0
+     M9         0
+-----------------
+       197102
+
+
+[INFO DRT-0267] cpu time = 00:28:34, elapsed time = 00:14:35, memory = 2636.93 (MB), peak = 2900.65 (MB)
+
+[INFO DRT-0180] Post processing.
+[INFO DRT-0501] Runtime: 980.00s
+Took 980 seconds: detailed_route -output_drc /work/runs_big/asap7_A/reports/asap7/ibex/base/5_route_drc.rpt -output_maze /work/runs_big/asap7_A/results/asap7/ibex/base/maze.log -droute_end_iter 64 -verbose 1 -drc_report_iter_step 5
+[WARNING GRT-0246] No diode with LEF class CORE ANTENNACELL found.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Design area 2378 um^2 45% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/5_2_route.odb
+Elapsed time: 16:49.21[h:]min:sec. CPU time: user 1963.38 sys 6.40 (195%). Peak memory: 2970268KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+5_2_route              .odb       1009     1970     1.95     2900 9f98471e66
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 5_3_fillcell fillcell
+Running fillcell.tcl, stage 5_3_fillcell
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/5_2_route.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/5_1_grt.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+filler_placement "FILLERxp5_ASAP7_75t_R FILLER_ASAP7_75t_R DECAPx1_ASAP7_75t_R DECAPx2_ASAP7_75t_R DECAPx4_ASAP7_75t_R DECAPx6_ASAP7_75t_R DECAPx10_ASAP7_75t_R"
+[INFO DPL-0001] Placed 27889 filler instances.
+Design area 2378 um^2 45% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/5_3_fillcell.odb
+Elapsed time: 0:02.52[h:]min:sec. CPU time: user 2.26 sys 0.20 (97%). Peak memory: 274176KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+5_3_fillcell           .odb          2        2     0.98      267 37d7bd7168
+cp /work/runs_big/asap7_A/results/asap7/ibex/base/5_3_fillcell.odb /work/runs_big/asap7_A/results/asap7/ibex/base/5_route.odb
+cp /work/runs_big/asap7_A/results/asap7/ibex/base/5_1_grt.sdc /work/runs_big/asap7_A/results/asap7/ibex/base/5_route.sdc
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 6_1_fill density_fill
+Running density_fill.tcl, stage 6_1_fill
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/5_route.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/5_route.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+exec cp /work/runs_big/asap7_A/results/asap7/ibex/base/5_route.odb /work/runs_big/asap7_A/results/asap7/ibex/base/6_1_fill.odb
+Elapsed time: 0:01.92[h:]min:sec. CPU time: user 1.77 sys 0.13 (98%). Peak memory: 230556KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+6_1_fill               .odb          1        2     0.99      225 37d7bd7168
+cp /work/runs_big/asap7_A/results/asap7/ibex/base/5_route.sdc /work/runs_big/asap7_A/results/asap7/ibex/base/6_1_fill.sdc
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 6_report final_report
+Running final_report.tcl, stage 6_report
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/6_1_fill.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/6_1_fill.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/6_final.odb
+write_sdc -no_timestamp /work/runs_big/asap7_A/results/asap7/ibex/base/6_final.sdc
+Deleted 0 routing obstructions
+Elapsed time: 1:17.54[h:]min:sec. CPU time: user 76.57 sys 0.32 (99%). Peak memory: 291264KB.
+Global output passed lec test
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+[INFO RCX-0435] Reading extraction model file /OpenROAD-flow-scripts/flow/platforms/asap7/rcx_patterns.rules ...
+[INFO RCX-0436] RC segment generation ibex_core (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 153221 rc segments
+[INFO RCX-0439] Coupling Cap extraction ibex_core ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 28% of 162374 wires extracted
+[INFO RCX-0442] 54% of 162374 wires extracted
+[INFO RCX-0442] 75% of 162374 wires extracted
+[INFO RCX-0442] 100% of 162374 wires extracted
+[INFO RCX-0045] Extract 20296 nets, 173417 rsegs, 173417 caps, 233255 ccs
+[INFO RCX-0443] 20296 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+########## IR report #################
+Net              : VDD
+Corner           : default
+Total power      : 5.11e-03 W
+Supply voltage   : 7.00e-01 V
+Worstcase voltage: 6.99e-01 V
+Average voltage  : 7.00e-01 V
+Average IR drop  : 1.98e-04 V
+Worstcase IR drop: 1.33e-03 V
+Percentage drop  : 0.19 %
+######################################
+[INFO PSM-0040] All shapes on net VSS are connected.
+########## IR report #################
+Net              : VSS
+Corner           : default
+Total power      : 5.11e-03 W
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 1.42e-03 V
+Average voltage  : 1.96e-04 V
+Average IR drop  : 1.96e-04 V
+Worstcase IR drop: 1.42e-03 V
+Percentage drop  : 0.20 %
+######################################
+Cell type report:                       Count       Area
+  Fill cell                             27889    2877.07
+  Tap cell                                806      23.50
+  Tie cell                               1681      73.53
+  Clock buffer                            166      57.17
+  Timing Repair Buffer                    768      73.95
+  Inverter                               2200      97.42
+  Clock inverter                           46       8.03
+  Sequential cell                        1939     711.01
+  Multi-Input combinational cell        12756    1333.82
+  Total                                 48251    5255.51
+Report metrics stage 6, finish...
+
+==========================================================================
+finish report_design_area
+--------------------------------------------------------------------------
+Design area 2378 um^2 45% utilization.
+Elapsed time: 2:10.84[h:]min:sec. CPU time: user 143.75 sys 1.89 (111%). Peak memory: 703052KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+6_report                            77       77     0.99      284 N/A
+cp /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7_tech_1x_201209.lef /work/runs_big/asap7_A/objects/asap7/ibex/base/klayout_tech.lef
+/usr/bin/python3 /OpenROAD-flow-scripts/flow/util/generate_klayout_tech.py \
+	--template /OpenROAD-flow-scripts/flow/platforms/asap7/KLayout/asap7.lyt \
+	--output /work/runs_big/asap7_A/objects/asap7/ibex/base/klayout.lyt \
+	--lef-files /work/runs_big/asap7_A/objects/asap7/ibex/base/klayout_tech.lef /OpenROAD-flow-scripts/flow/platforms/asap7/lef/asap7sc7p5t_28_R_1x_220121a.lef   \
+	   \
+	--map-files 
+/usr/bin/python3 /OpenROAD-flow-scripts/flow/scripts/run_command.py --log /work/runs_big/asap7_A/logs/asap7/ibex/base/6_1_merge.log --tee -- \
+        /OpenROAD-flow-scripts/flow/scripts/klayout.sh -zz -rd design_name=ibex_core \
+        -rd in_def=/work/runs_big/asap7_A/results/asap7/ibex/base/6_final.def \
+        -rd in_files="/OpenROAD-flow-scripts/flow/platforms/asap7/gds/asap7sc7p5t_28_R_220121a.gds  " \
+        -rd seal_file="" \
+        -rd out_file=/work/runs_big/asap7_A/results/asap7/ibex/base/6_1_merged.gds \
+        -rd tech_file=/work/runs_big/asap7_A/objects/asap7/ibex/base/klayout.lyt \
+        -rd layer_map= \
+        -r /OpenROAD-flow-scripts/flow/util/def2stream.py
+KLayout 0.30.12
+Warning: DEF UNITS does not match reader DBU (DEF UNITS is 1000 and corresponds to a DBU of 0.001, but reader DBU is set to 0.00025) (line=5, cell=, file=6_final.def)
+[INFO] Reporting cells prior to loading DEF ...
+	/OpenROAD-flow-scripts/flow/platforms/asap7/gds/asap7sc7p5t_28_R_220121a.gds
+[INFO] GDS_ALLOW_EMPTY=fakeram.*
+[INFO] All LEF cells have matching GDS/OAS cells
+[INFO] No orphan cells in the final layout
+Elapsed time: 0:04.07[h:]min:sec. CPU time: user 3.49 sys 0.34 (94%). Peak memory: 528636KB.
+cp /work/runs_big/asap7_A/results/asap7/ibex/base/6_1_merged.gds /work/runs_big/asap7_A/results/asap7/ibex/base/6_final.gds
+/work/runs_big/asap7_A/logs/asap7/ibex/base
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_1_yosys_canonicalize .rtlil        2        1     0.39       87 2f6df0cc9c
+1_2_yosys              .v           71       71     0.99      199 dda1201786
+1_2_yosys              .sdc                                       6865a7026a
+1_synth                .odb          2        2     0.98      206 0e8d77bfe6
+1_synth                .sdc                                       eb5a41d3b5
+2_1_floorplan          .odb         56       66     1.17      267 40dd306611
+2_1_floorplan          .sdc                                       eb5a41d3b5
+2_2_floorplan_macro    .odb          1        2     0.97      188 40dd306611
+2_3_floorplan_tapcell  .odb          2        2     0.95      186 387cd95548
+2_4_floorplan_pdn      .odb          2        2     0.96      211 a487244831
+3_1_place_gp_skip_io   .odb          8        9     1.10      230 ead6e143b3
+3_2_place_iop          .odb          1        2     0.98      191 6f279c4dc2
+3_3_place_gp           .odb         36       42     1.17      604 01de3a1b8a
+3_4_place_resized      .odb         17       20     1.13      391 1fdea14a0b
+3_5_place_dp           .odb         16       19     1.14      401 d6645d33b9
+4_1_cts                .odb          2        3     1.15      133 5a5f94a215
+4_rsz_lec                            2        3     1.15      133 N/A
+5_1_grt                .odb        158      284     1.79      651 3697ac90e1
+5_1_grt                .sdc                                       dc8f05363a
+5_2_route              .odb       1009     1970     1.95     2900 9f98471e66
+5_3_fillcell           .odb          2        2     0.98      267 37d7bd7168
+6_1_fill               .odb          1        2     0.99      225 37d7bd7168
+6_1_fill               .sdc                                       dc8f05363a
+6_1_merge                            4        4     0.94      516 N/A
+6_final_lec            .v           77       77     0.99      284 402a43fa34
+6_report                            77       77     0.99      284 N/A
+Total                             1467     2581     1.75     2900

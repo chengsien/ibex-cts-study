@@ -1,0 +1,65 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/3_4_place_resized.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+detailed_placement
+[INFO DPL-0006] Core area: 5255.51 um^2
+[INFO DPL-0007] Movable instances area: 2284.48 um^2
+[INFO DPL-0008] Fixed instances area within core: 23.50 um^2
+[INFO DPL-0009] Utilization: 43.9%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1102] Legalizing using negotiation legalizer.
+[INFO DPL-1103] Negotiation base search window: +/-20 sites horizontally, +/-5 rows vertically 
+	Automatic search window extension enabled.
+	Search window extendable up to the max displacement cap of +/-500 sites, +/-100 rows near walls.
+[INFO DPL-1104] NegotiationLegalizer DRC penalty: 5.
+[INFO DPL-0392] Negotiation cell height distribution (1 unique row-count(s)):
+[INFO DPL-0393]   height 1 row(s): 20106 cells
+          |      Total |  Illegal |  Illegal
+Iteration | Violations |    Cells |    Sites
+---------------------------------------------
+        0 |       2053 |       555 |      1498
+        1 |          0 |         0 |         0
+Negotiation phase 1 converged at iteration 1.
+[INFO DPL-0500] Runtime: 0.42s
+Detailed Placement Analysis
+---------------------------------
+legalizer            negotiation
+total moves               19571
+total displacement       4975.5 u
+average displacement        0.2 u
+max displacement            1.1 u
+original HPWL           61488.0 u
+legalized HPWL          64769.2 u
+delta HPWL                    5 %
+
+optimize_mirroring
+[INFO DPL-0020] Mirrored 7766 instances
+[INFO DPL-0021] HPWL before           64769.2 u
+[INFO DPL-0022] HPWL after            63454.1 u
+[INFO DPL-0023] HPWL delta               -2.0 %
+[INFO FLW-0012] Placement violations .
+estimate_parasitics -placement
+Report metrics stage 3, detailed place...
+
+==========================================================================
+detailed place report_design_area
+--------------------------------------------------------------------------
+Design area 2308 um^2 44% utilization.
+write_db /work/runs_big/asap7_A/results/asap7/ibex/base/3_5_place_dp.odb
+write_sdc -no_timestamp /work/runs_big/asap7_A/results/asap7/ibex/base/3_place.sdc
+Elapsed time: 0:16.68[h:]min:sec. CPU time: user 18.44 sys 0.55 (113%). Peak memory: 411140KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+3_5_place_dp           .odb         16       19     1.14      401 d6645d33b9

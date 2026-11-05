@@ -1,0 +1,34 @@
+Yosys 0.68+post (git sha1 UNKNOWN, Release, GNU /usr/local/bin/wrapped-cc/g++ 15.2.0)
+Using ABC speed script.
+1. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+2. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+3. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+4. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+5. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+6. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+7. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+8. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+9. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+10. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+11. Executing SLANG frontend.
+11.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+11.2. Executing TRIBUF pass.
+11.3. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+11.4. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+11.5. Executing PROC_INIT pass (extract init attributes).
+11.6. Executing PROC_ROM pass (convert switches to ROMs).
+11.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+11.8. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+11.9. Executing OPT_EXPR pass (perform const folding).
+12. Executing HIERARCHY pass (managing design hierarchy).
+12.1. Analyzing design hierarchy..
+12.2. Analyzing design hierarchy..
+13. Executing OPT_CLEAN pass (remove unused cells and wires).
+14. Executing RTLIL backend.
+End of script. Logfile hash: b5b0d56cda, time: 2.90s, user: 1.00s, system: 0.08s, MEM: 87.38 MB peak
+Yosys 0.68+post (git sha1 UNKNOWN, Release, GNU /usr/local/bin/wrapped-cc/g++ 15.2.0)
+Time spent: 71% 12x read_liberty (0 sec), 9% 2x read_slang (0 sec), ...
+Elapsed time: 0:02.93[h:]min:sec. CPU time: user 1.03 sys 0.10 (38%). Peak memory: 89596KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_1_yosys_canonicalize .rtlil        2        1     0.39       87 2f6df0cc9c

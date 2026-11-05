@@ -1,0 +1,3 @@
+E17 corner=BC setup_wns=225.03 setup_tns=0.00 setup_viol=0 hold_wns=35.01 hold_tns=0.00 hold_viol=0 ck_lat_min/mean/max=137.24/147.02/154.51 n_ck=1939 (times in library units: ps for ASAP7)
+E17 corner=TC setup_wns=15.11 setup_tns=0.00 setup_viol=0 hold_wns=51.58 hold_tns=0.00 hold_viol=0 ck_lat_min/mean/max=176.69/186.73/195.03 n_ck=1939 (times in library units: ps for ASAP7)
+E17 corner=WC setup_wns=-714.21 setup_tns=-852316.62 setup_viol=1837 hold_wns=76.40 hold_tns=0.00 hold_viol=0 ck_lat_min/mean/max=245.04/255.50/265.28 n_ck=1939 (times in library units: ps for ASAP7)
