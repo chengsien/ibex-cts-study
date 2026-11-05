@@ -1608,10 +1608,13 @@ Worst hold paths (`runs_big/*/reports/.../e18_hold_paths.txt`):
    * Without clustering the H-tree to 20k sinks uses 16 % *fewer* buffers
      and 16 % less clock power, at the same depth. So clustering is not
      needed for buffer count.
-   * But skew triples (287 ps), and the 132 SRAM macros, hung directly on a
-     5-level tree with about 1,900 µm per sink, end up 130 ps later than
-     the registers. Hold then fails at the typical corner (4 endpoints,
-     −8.5 ps).
+   * But skew triples (287 ps). The 132 SRAM macros hang directly on a
+     5-level tree with about 1,900 µm per sink, and their clock latencies
+     spread over 306 ps (0.429–0.735 ns, against 0.468–0.605 ns in A). On
+     average they are no later than the registers (0.576 vs 0.586 ns), but
+     the latest macros are about 150 ps later than the average register.
+     Hold then fails at the typical corner (4 endpoints, −8.5 ps) on paths
+     into those macros.
    * On Ibex clustering off was the best and nearly free knob. At 10× it
      trades power for skew and a hold violation.
 5. **“NDR matters more and covers a meaningful fraction”: partly.**
@@ -1626,9 +1629,9 @@ Worst hold paths (`runs_big/*/reports/.../e18_hold_paths.txt`):
    power faster than the clock tree grows.
 7. **Not predicted: hold becomes the constraint, and it depends on CTS.**
    * The typical-corner hold margin drops from +85 ps to +24 ps.
-   * The binding paths are register → SRAM write data, whose margin is set
-     by the macro-tree vs register-tree latency gap. That is exactly what
-     the CTS setting changes.
+   * The binding paths are register → SRAM write data. Their margin is set
+     by how late individual macro clocks are relative to the launching
+     registers, which is exactly what the CTS setting changes.
    * On Ibex and ASAP7-Ibex (E17) hold was CTS-independent. At 10× it is
      not, and a fast corner would cut the remaining 20–24 ps further
      (Nangate45 has no fast library to check).
@@ -1639,4 +1642,4 @@ Worst hold paths (`runs_big/*/reports/.../e18_hold_paths.txt`):
 broke most strategy-level expectations: the clock-part gains shrank, the
 clock-power share fell, and the cheapest knob on Ibex became a hold risk.
 The risk moves from setup to hold, and from flop-to-flop balance to the
-macro-tree vs register-tree balance.
+balance of the macro clock pins.
