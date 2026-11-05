@@ -64,7 +64,9 @@ if [[ -n "$BASE" ]]; then
     find "$RUN/$d" -path '*/base/*' \( -name '4_*' -o -name '5_*' -o -name '6_*' \
       -o -name 'clock_*' -o -name 'route.guide' -o -name 'final_*' -o -name 'drt*' \
       -o -name '*.png' -o -name '*.webp' -o -name 'metadata*' -o -name 'VDD.rpt' -o -name 'VSS.rpt' \
-      -o -name 'congestion*' -o -name 'antenna*' -o -name 'synth_check*' \) -prune -exec rm -rf {} +
+      -o -name 'congestion*' -o -name 'antenna*' -o -name 'synth_check*' \
+      -o -name 'ck_arrivals_*' -o -name 'endpoint_slack_*' -o -name 'worst_paths*' \
+      -o -name 'ir_launch_scan*' -o -name 'e1[2-9]_*' -o -name 'grt_antennas*' \) -prune -exec rm -rf {} +
   done
   # the SDC used by CTS onward is 3_place.sdc copied from base; refuse if the
   # requested period differs from the base period (would silently mismatch)

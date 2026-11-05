@@ -30,15 +30,18 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-SUB = Path("nangate45/ibex/base")
+# other designs: RUNS_DIR=runs_big E13_SUB=nangate45/ariane133/base E13_OUT=...
+import os
+RUNS = os.environ.get("RUNS_DIR", "runs")
+SUB = Path(os.environ.get("E13_SUB", "nangate45/ibex/base"))
 
 
 def spef_path(run):
-    return REPO / "runs" / run / "results" / SUB / "6_final.spef"
+    return REPO / RUNS / run / "results" / SUB / "6_final.spef"
 
 
 def clock_nets(run):
-    p = REPO / "runs" / run / "reports" / SUB / "e13_clock_nets.txt"
+    p = REPO / RUNS / run / "reports" / SUB / "e13_clock_nets.txt"
     return {l.strip() for l in p.read_text().splitlines() if l.strip()}
 
 
@@ -194,7 +197,7 @@ def main():
     for r in sys.argv[1:]:
         rows += summarize(r)
         print(rows[-2]); print(rows[-1])
-    out = REPO / "results" / "e13_coupling.csv"
+    out = REPO / "results" / os.environ.get("E13_OUT", "e13_coupling.csv")
     with open(out, "w", newline="") as f:
         wr = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         wr.writeheader(); wr.writerows(rows)
