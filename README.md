@@ -143,6 +143,10 @@ Plots: [`results/cts_comparison.png`](results/cts_comparison.png),
 † within the data-part noise band (up to +27.7 ps, N_gr52), so not
 credited to CTS. The clock part moves by ≤ 0.9 ps in the noise probes, so it
 is the trustworthy column.
+*Corrected by E14 (10 probes): the clock part also moves, by up to
+7.85 ps (sd 3.3 ps), because global route re-routes the clock nets. The
+clock-part gains of +13.9 to +18.9 ps stay above that floor; NDR none
+(+4.6 ps) does not.*
 
 **Takeaways** (details in [`docs/findings.md`](docs/findings.md) and
 [`docs/experiment-log.md`](docs/experiment-log.md)):
@@ -208,8 +212,10 @@ one by one (details in `docs/experiment-log.md`):
   search propagates through the latch-based clock gate onto 943 CK pins.
   Path objects are freed by the next query's preamble, so a held handle
   segfaults. No reported number changes.
+* **Noise (E14, done).** With 10 routing-only probes (9 independent), WNS
+  moves by −4.5 to +31.0 ps (sd 12 ps) and 4 of 10 close timing. Even the
+  clock part moves by up to 7.85 ps, not ≤ 0.9 ps as two samples suggested.
 * **In progress:**
-  * E14: noise distribution from 10 routing probes.
   * E16: automated select → build → route useful-skew loop, whose guard
     includes the shared-net side effect.
   * E17: Ibex on ASAP7, implemented at TT and signed off at FF/TT/SS.

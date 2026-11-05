@@ -323,6 +323,12 @@ RA): N_gr48 Δslack +0.4 ps = clock +0.7 / data −0.3. **N_gr52 Δslack +26.8 p
 = clock −0.9 / data +27.7.** The noise band for the data part is therefore
 up to about 28 ps. The clock part stays within 1 ps.
 
+> **Corrected by E14 (10 probes).** The clock part is *not* within 1 ps.
+> Global route also re-routes the clock nets, so clock arrivals move by up
+> to about 9 ps with an identical tree. The clock-part noise of the
+> 31-endpoint split reaches +7.85 ps (sd 3.3 ps over 9 independent probes).
+> The consequences listed below are re-judged in E14.
+
 **Learned / consequence for E3–E4.**
 * A data-path change of up to about 28 ps is **noise**. The data parts of
   RB_s4 (+12.7) and RC_full (+16.7) are not credited.
@@ -1204,3 +1210,88 @@ latch passes). If an object crashes after a later call, look for ownership
 (here results freed by the next query's preamble). Reading the source and
 writing a minimal reproduction settled both faster than more workarounds
 would have.
+
+---
+
+## E14 — Routing-noise distribution from 10 probes (limitation: "only 2 noise samples")
+
+**Question.** E5 had two routing-only probes, a lower bound rather than a
+distribution. How large is the noise really, and in particular the noise in
+the *clock* part, which E5 put at ≤ 0.9 ps and which all CTS-knob
+conclusions rely on?
+
+**Method.** The same probe as E5 with 8 more values (`scripts/e14_noise.sh`).
+Each probe branches from R0a with the default CTS, so the clock tree is
+identical to RA. A `PRE_GLOBAL_ROUTE_TCL` hook sets the metal2–metal3
+global-routing capacity adjustment to one of 0.44, 0.46, 0.47, 0.49, 0.51,
+0.53, 0.54, 0.56 (RA = 0.50; E5 had 0.48 and 0.52). Each run is checked for
+the hook's `FLW-0911` log line. Then the per-endpoint split of E7 over RA's
+31 failing endpoints is computed (`scripts/e14_noise.py`; data
+`results/e14_noise.csv`, plot `results/e14_noise.png`).
+
+Fix found on the way: a branch run inherited the base run's
+`ck_arrivals_final.csv` / `endpoint_slack_final.csv` from the copy, so a
+probe could look complete before its own dumps existed. `run.sh` and
+`run_big.sh` now delete these files when branching. No earlier number is
+affected: every Phase 2 run had its dumps regenerated before analysis.
+
+**Result** (Δ vs RA, ps; split = mean over the 31 endpoints).
+
+| probe | adjustment | WNS (ps) | ΔWNS | Δslack | clock part | data part |
+|---|---|---|---|---|---|---|
+| N_gr44 | 0.44 | −18.8 | −4.5 | −5.22 | +0.04 | −5.26 |
+| N_gr46 | 0.46 | −15.6 | −1.3 | −1.13 | −0.13 | −1.00 |
+| N_gr47 | 0.47 | −9.3 | +5.0 | +4.90 | +2.50 | +2.40 |
+| N_gr48 | 0.48 | −13.9 | +0.4 | +0.41 | +0.72 | −0.31 |
+| N_gr49 | 0.49 | −14.3 | 0.0 | 0.00 | 0.00 | 0.00 |
+| N_gr51 | 0.51 | +4.0 | +18.3 | +24.21 | −2.42 | +26.63 |
+| N_gr52 | 0.52 | +6.3 | +20.6 | +26.82 | −0.91 | +27.74 |
+| N_gr53 | 0.53 | +16.7 | **+31.0** | +30.79 | **+7.85** | +22.94 |
+| N_gr54 | 0.54 | +5.2 | +19.5 | +19.89 | +2.79 | +17.11 |
+| N_gr56 | 0.56 | −2.6 | +11.7 | +12.38 | +5.61 | +6.77 |
+
+N_gr49 is bit-identical to RA (same clock report and endpoint dump), so
+0.49 apparently rounds to the same track capacity as 0.50. That leaves **9
+independent probes**:
+
+| quantity | mean | sd | min | max |
+|---|---|---|---|---|
+| ΔWNS (ps) | +11.2 | 12.0 | −4.5 | +31.0 |
+| clock part (ps) | +1.8 | 3.3 | −2.4 | +7.9 |
+| data part (ps) | +10.8 | 12.9 | −5.3 | +27.7 |
+
+In all three probes with a large clock part, the worst path to each of the
+31 endpoints still starts at the same flop, so the clock part is real and
+not a startpoint artifact. The CK arrivals themselves move. In N_gr53,
+`[20]`'s CK arrival is 7.7 ps earlier, and the 1,938 CK pins move by −8.9
+to +3.6 ps. In N_gr47 they move by −4.6 to −0.3 ps.
+
+**Findings.**
+1. **The clock-part noise floor is about 8 ps, not 1 ps.** Global route
+   re-routes the clock nets as well, so a routing-only change moves clock
+   latencies by several ps. E5's "≤ 0.9 ps" came from two samples that
+   happened to be quiet.
+2. **The CTS-knob conclusions, re-judged against an 8 ps / sd 3.3 ps clock
+   floor:**
+   * clustering off, clock part +18.9 ps: still clearly real, 2.4× the
+     largest noise;
+   * cluster size 4, +14.6 ps, and NDR full, +13.9 ps: real but only
+     about 1.8× the largest noise (about 4σ);
+   * NDR none, +4.6 ps: **inside the noise; no longer credited.**
+
+   The useful-skew gains (+46 to +62 ps over RA) are far above the noise.
+3. **WNS noise is large and one-sided relative to RA.** RA is a below-median
+   draw: 4 of the 10 routing-only variants close timing at 2.2 ns, and the
+   median ΔWNS is +5 ps. Any single-run WNS difference below about 30 ps
+   between strategies could be routing luck. The per-endpoint split
+   remains the right tool, but its clock part now needs about 8 ps of
+   margin rather than 1 ps.
+4. **The probe values are not a monotonic knob.** 0.44–0.49 stay near RA,
+   0.51–0.54 all improve by 18–31 ps, and 0.56 by 12 ps. This is
+   consistent with noise (a different detour set per capacity value), not
+   with a trend that would justify tuning the adjustment.
+
+**Learned.** Two samples can badly understate a noise floor. Here they did
+for the one quantity, the clock part, that the conclusions leaned on. A
+"clock-tree-only" comparison is never purely about the tree, because the
+tree's wires are routed together with everything else.

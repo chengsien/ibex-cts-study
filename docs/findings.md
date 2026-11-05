@@ -24,6 +24,10 @@ to another flop, which happens in RD_phys. The two routing-only
 **noise probes** (N_gr48/N_gr52: placement and clock tree identical to RA,
 global-routing capacity changed by ±0.02) set the noise floor. They move the
 **data part by up to +27.7 ps** but the **clock part by only ≤ 0.9 ps**.
+*Corrected by E14 (10 probes): the clock part moves by up to +7.85 ps
+(sd 3.3 ps), because the clock nets are re-routed too. NDR none's +4.6 ps is
+therefore inside the noise; the other clock-part gains (+13.9 to +18.9 ps)
+remain above it.*
 So a clock-part change is a real CTS effect, and a data-part change of up
 to about 28 ps is not.
 
@@ -75,7 +79,8 @@ clock part of the slack on the critical endpoints, i.e. latency/skew.**
   drivers. Clock power is already 33 % of total power in the default run.
 * **The clock part of the critical-endpoint slack** is the timing quantity
   that differs most among strategies (0 to +85 ps), and it is the one that
-  can be trusted (noise ≤ 0.9 ps).
+  can be trusted (noise ≤ 0.9 ps in E5; E14 with 10 probes raised this to
+  ≤ 7.85 ps, sd 3.3 ps, which still leaves +13.9 to +18.9 ps clearly above it).
   * The largest come from **physically built useful skew**. On the capture
     side: +36.3 ps after one round (RD_phys), +45.7 ps after two (RD_phys2).
     On the **launch side** (9 instruction-register flops moved one clock
@@ -151,8 +156,10 @@ clock power, targeted physical useful skew is by far the most efficient:
      coupling bounded at ×2 late / ×0 early, NDR full's advantage over the
      default grows from +30.7 to +55.1 ps. Nominal STA understates NDR.
 7. **The noise floor is comparable to the effects.** A routing-only
-   perturbation moves WNS by up to 20.6 ps, and the data part of the
-   critical-endpoint slack by up to 27.7 ps. The repeat noise is 0 because
+   perturbation moves WNS by up to 31.0 ps (E14, 9 independent probes,
+   sd 12 ps), the data part of the critical-endpoint slack by up to 27.7 ps,
+   and even the clock part by up to 7.85 ps. 4 of 10 routing-only
+   variants close timing. The repeat noise is 0 because
    the flow is deterministic, but that hides the real sensitivity. The CTS
    effects are only identifiable because the slack was split into a clock
    part and a data part.
