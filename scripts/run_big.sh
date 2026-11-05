@@ -44,7 +44,9 @@ elif [[ -n "$BASE" ]]; then
   [[ -f "$bdir/3_place.odb" ]] || { echo "base run $BASE has no 3_place.odb" >&2; exit 1; }
   # copy the whole base run (timestamps preserved), drop stage 4 onward
   mkdir -p "$REPO/runs_big"
-  cp -a "$B" "$RUN"
+  # a failed copy (e.g. disk full) must not leave a directory that looks
+  # like a finished run: it would contain the base run's results
+  cp -a "$B" "$RUN" || { rm -rf "$RUN"; echo "copy of $BASE failed; removed runs_big/$NAME" >&2; exit 1; }
   rm -f "$RUN/flow.log" "$RUN/run_config.txt" "$RUN"/clock_report_*.log
   for d in results logs reports objects; do
     find "$RUN/$d" -path '*/base/*' \( -name '4_*' -o -name '5_*' -o -name '6_*' \

@@ -15,11 +15,16 @@ cd "$(dirname "$0")/.."
 D=nangate45/ariane133
 DEF="-sink_clustering_enable -repair_clock_nets"
 R=runs_big; SUB=nangate45/ariane133/base
+# a run counts as finished only if ITS OWN run_config says so: a branch whose
+# copy of the base run failed half-way (disk full) still contains the base
+# run's 6_final.odb and run_config.txt
+ok() { local c=$R/$1/run_config.txt; [[ -f $R/$1/results/$SUB/6_final.odb && -f $c ]] && \
+       grep -qx "run_name=$1" $c && grep -qx "exit_code=0" $c; }
 [[ -f $R/A_default/results/$SUB/6_final.odb ]] || { echo "A_default not finished"; exit 1; }
-[[ -f $R/B_nocl/results/$SUB/6_final.odb ]] || scripts/run_big.sh -n B_nocl -D $D -b A_default -c "-repair_clock_nets" -e LEC_CHECK=0
-[[ -f $R/C_ndrfull/results/$SUB/6_final.odb ]] || scripts/run_big.sh -n C_ndrfull -D $D -b A_default -c "$DEF -apply_ndr full" -e LEC_CHECK=0
-for r in A_default B_nocl C_ndrfull; do
-  [[ -f $R/$r/results/$SUB/6_final.odb ]] || { echo "[$r] missing 6_final.odb"; continue; }
+[[ -n ${E18_SKIP_FLOWS:-} ]] || ok B_nocl || scripts/run_big.sh -n B_nocl -D $D -b A_default -c "-repair_clock_nets" -e LEC_CHECK=0
+[[ -n ${E18_SKIP_FLOWS:-} ]] || ok C_ndrfull || scripts/run_big.sh -n C_ndrfull -D $D -b A_default -c "$DEF -apply_ndr full" -e LEC_CHECK=0
+for r in ${E18_ANALYSE:-A_default B_nocl C_ndrfull}; do
+  ok $r || { echo "[$r] not a finished run of its own: skipped"; continue; }
   RUNS_DIR=$R scripts/post_reports.sh $r || echo "[$r] post_reports failed"
   for s in endpoint_slack dump_ck_arrivals; do
     RUNS_DIR=$R scripts/sta_run.sh $r scripts/$s.tcl $s >/dev/null 2>&1 || echo "[$r] $s failed"
