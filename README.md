@@ -228,5 +228,14 @@ one by one (details in `docs/experiment-log.md`):
   every CTS setting, and identical across settings. Clustering off costs
   2.9× the clock buffers and +104 % clock power on ASAP7, against −7 %
   buffers on Nangate45, so CTS conclusions do not transfer across PDKs.
-* **In progress:** E18, ariane133 (about 10.7× Ibex) with the same three CTS
-  settings. The default run is done; the other two are running.
+* **10× design (E18, done).** This was measured with ariane133 (160k cells,
+  20.8k flops, 132 SRAMs; about 10.7× Ibex).
+  * The tree is 7–8 levels deep, and latency doubles (549 ps, 18 % of the
+    period). Skew is about 100 ps.
+  * The clock-part gains of the CTS knobs *shrink* (clustering off +8.7 ps,
+    NDR full +1.6 ps, against +18.9 / +13.9 on Ibex), and the clock power
+    share falls to 16 %.
+  * Hold becomes the constraint, and it depends on CTS. Clustering off
+    saves 16 % clock power but spreads the SRAM clock latencies over 306 ps
+    and fails hold at the typical corner. findings Q4 now holds the
+    measurement in place of the expectation.

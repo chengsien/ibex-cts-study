@@ -231,7 +231,7 @@ The TritonCTS settings, by clock-part gain on the 31 critical endpoints:
 * Sink clustering **off: +19 ps** (+2.1 % clock power).
 * Cluster size 4: +15 ps (+26 % clock power, not worth it).
 * NDR **full: +14 ps** (≈ free here).
-* NDR none: +5 ps.
+* NDR none: +5 ps, inside the clock-part routing noise (up to 7.85 ps, E14), so not a demonstrated effect.
 
 Cluster size 20 and NDR root_only are no-ops. The useful-skew result is the
 one that cannot be had from TritonCTS settings: OpenROAD has no useful-skew
@@ -243,3 +243,22 @@ launch-side result depended on selecting by each register's own launch
 slack. Path enumeration per endpoint missed launch flops twice (E9). For this
 small, shallow-tree design the clock tree is not the main bottleneck. The
 data path and the GRT-vs-RCX correlation gap (E1) are.
+
+## What is still not verified (after E12–E18)
+
+* **OCV, crosstalk and fast-corner hold** were checked only partially.
+  * OCV is a flat derate (E12). Crosstalk is a coupling-cap bound, not an
+    SI engine (E13).
+  * Fast-corner hold was checked on ASAP7, not on Nangate45 (E17).
+* **10× design:**
+  * ariane133 was run only at its own failing 3.0 ns, with one placement.
+  * Useful skew, OCV, crosstalk and routing noise were not measured there.
+  * Its hold margin at a fast corner is unknown (no fast library).
+* **Noise:** 9 independent routing probes, all of one kind (metal2–metal3
+  capacity). Placement or seed noise was not sampled.
+* **Automated useful skew (E16):**
+  * The guard judges moves on placement RC.
+  * A one-level-only variant, which would test the `[15]` two-level
+    suspect, was not run.
+* **Tool issues found but not reported upstream:** the three OpenSTA issues
+  of E13/E15. Reporting them needs the owner's consent.
