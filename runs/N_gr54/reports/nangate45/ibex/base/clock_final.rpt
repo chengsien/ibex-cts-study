@@ -1,0 +1,100 @@
+parasitics                           rcx_spef
+clock_nets                           318
+clock_buffers                        316
+clock_inverters                      0
+clock_gates                          0
+clock_other_drivers                  1
+clock_buffer_area_um2                1681.120
+clock_routed_wirelength_um           12582.7
+clock_buffer_masters                 CLKBUF_X3:316
+cts_dummy_loads                      232
+cts_delay_buffers                    2
+hold_buffers_by_name                 0
+clock_sinks                          1938
+insertion_delay_min_ns               0.2709
+insertion_delay_max_ns               0.3128
+insertion_delay_mean_ns              0.2909
+insertion_delay_spread_ns            0.0419
+insertion_delay_min_pin              gen_regfile_ff.register_file_i.rf_reg[180]$_DFFE_PN0P_/CK
+insertion_delay_max_pin              cs_registers_i.u_mstack_epc_csr.rd_data_o[21]$_DFFE_PN0P_/CK
+
+--- report_clock_skew -setup
+Clock core_clock
+ 0.3126 source latency cs_registers_i.u_depc_csr.rd_data_o[20]$_DFFE_PN0P_/CK ^
+-0.2709 target latency gen_regfile_ff.register_file_i.rf_reg[180]$_DFFE_PN0P_/CK ^
+ 0.0000 CRPR
+--------------
+ 0.0417 setup skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_setup_ns                        0.0417
+
+--- report_clock_skew -hold
+Clock core_clock
+ 0.2709 source latency gen_regfile_ff.register_file_i.rf_reg[180]$_DFFE_PN0P_/CK ^
+-0.3127 target latency cs_registers_i.u_dscratch1_csr.rd_data_o[25]$_DFFE_PN0P_/CK ^
+ 0.0000 CRPR
+--------------
+-0.0418 hold skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_hold_ns                         -0.0418
+
+--- report_clock_latency
+Clock core_clock
+rise -> rise
+    min     max
+ 0.0000  0.0000 source latency
+ 0.2709         network latency gen_regfile_ff.register_file_i.rf_reg[180]$_DFFE_PN0P_/CK
+         0.3128 network latency cs_registers_i.u_mstack_epc_csr.rd_data_o[21]$_DFFE_PN0P_/CK
+---------------
+ 0.2709  0.3128 latency
+         0.0419 skew
+
+fall -> fall
+    min     max
+ 0.0000  0.0000 source latency
+ 0.2823         network latency gen_regfile_ff.register_file_i.rf_reg[180]$_DFFE_PN0P_/CK
+         0.3239 network latency cs_registers_i.u_mstack_epc_csr.rd_data_o[21]$_DFFE_PN0P_/CK
+---------------
+ 0.2823  0.3239 latency
+         0.0416 skew
+
+
+Clock vclk_core_clock
+
+
+setup_wns_ns                         0.0052
+setup_tns_ns                         0.0000
+hold_wns_ns                          0.0854
+hold_tns_ns                          0.0000
+setup_viol_endpoints                 0
+hold_viol_endpoints                  0
+
+--- report_power
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           6.166625e-03 9.505300e-05 1.542057e-04 6.415884e-03  50.5%
+Combinational        7.085577e-04 1.047032e-03 3.735685e-04 2.129158e-03  16.8%
+Clock                1.906316e-03 2.234811e-03 1.466978e-05 4.155797e-03  32.7%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                8.781386e-03 3.376900e-03 5.424432e-04 1.270073e-02 100.0%
+                            69.1%        26.6%         4.3%
+
+power_sequential_w                   6.415884e-03
+power_combinational_w                2.129158e-03
+power_clock_w                        4.155797e-03
+power_macro_w                        0.000000e+00
+power_pad_w                          0.000000e+00
+power_total_w                        1.270073e-02
+std_cell_instances                   31488

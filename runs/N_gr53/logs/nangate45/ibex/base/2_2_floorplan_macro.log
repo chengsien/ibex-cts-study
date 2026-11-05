@@ -1,0 +1,16 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_db /work/runs/R0a/results/nangate45/ibex/base/2_1_floorplan.odb
+read_sdc /work/runs/R0a/results/nangate45/ibex/base/2_1_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+No macros found: Skipping macro_placement
+Design area 28227 um^2 50% utilization.
+write_db /work/runs/R0a/results/nangate45/ibex/base/2_2_floorplan_macro.odb
+Elapsed time: 0:00.35[h:]min:sec. CPU time: user 0.28 sys 0.06 (98%). Peak memory: 112504KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+2_2_floorplan_macro    .odb          0        0     0.97      109 b8addd5a99
