@@ -98,6 +98,19 @@ def main():
                 "hold_wns_ps": round(1e3 * f("hold_wns_ns"), 1), "hold_viol": k.get("hold_viol_endpoints"),
                 "wall_s": rc.get("wall_seconds"),
             }
+            # clock-tree sinks only: CK pins whose driver is a clock buffer.
+            # ariane133 has synthesized latches whose G pin is driven by logic;
+            # their "arrival" is a data arrival (E15) and pollutes max/spread.
+            ca = rows_csv(rd / "reports" / dd["sub"] / "ck_arrivals_final.csv", "instance")
+            ct = sorted(float(v["arrival_ns"]) for v in ca.values()
+                        if v["ck_driver_cell"].startswith(("CLKBUF", "BUF")) and v["arrival_ns"] not in ("", "INF"))
+            if ct:
+                row["ct_sinks"] = len(ct); row["non_ct_sinks_excluded"] = len(ca) - len(ct)
+                row["insertion_min_ps"] = round(1e3 * ct[0], 1)
+                row["insertion_mean_ps"] = round(1e3 * sum(ct) / len(ct), 1)
+                row["insertion_max_ps"] = round(1e3 * ct[-1], 1)
+                row["insertion_spread_ps"] = round(1e3 * (ct[-1] - ct[0]), 1)
+                row["insertion_p99_minus_p1_ps"] = round(1e3 * (ct[int(0.99 * (len(ct) - 1))] - ct[int(0.01 * (len(ct) - 1))]), 1)
             row["insertion_mean_pct_period"] = round(100 * row["insertion_mean_ps"] / (1e3 * dd["period_ns"]), 1)
             row["clock_power_share_pct"] = round(100 * row["clock_power_mw"] / row["total_power_mw"], 1)
             if base is None:
@@ -122,7 +135,7 @@ def main():
     print("wrote", p)
     for r in out:
         print({k2: r.get(k2) for k2 in ("design", "setting", "clock_sinks", "clock_buffers", "insertion_mean_ps",
-                                        "insertion_mean_pct_period", "skew_setup_ps", "clock_power_share_pct",
+                                        "insertion_mean_pct_period", "insertion_spread_ps", "non_ct_sinks_excluded", "skew_setup_ps", "clock_power_share_pct",
                                         "setup_wns_ps", "setup_viol", "hold_wns_ps", "dwns_vs_default_ps",
                                         "fail_dclock_ps", "fail_ddata_ps", "fail_n_split", "dclockpower_vs_default_pct")})
 
