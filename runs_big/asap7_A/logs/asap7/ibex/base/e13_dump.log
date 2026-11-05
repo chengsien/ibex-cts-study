@@ -1,0 +1,23 @@
+source /OpenROAD-flow-scripts/flow/platforms/asap7/liberty_suppressions.tcl
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_220122.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.lib.gz
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.lib.gz
+read_db -hier /work/runs_big/asap7_A/results/asap7/ibex/base/6_final.odb
+[WARNING ORD-0012] Hierarchical flow (-hier) is currently in development and may cause multiple issues. Do not use in production environments.
+read_sdc /work/runs_big/asap7_A/results/asap7/ibex/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/asap7/setRC.tcl
+E13 clock_nets=118
+E13 ndr CTS_NDR_0 M1 width=18 spacing=36 (default width=18 spacing=18)
+E13 ndr CTS_NDR_0 M2 width=18 spacing=36 (default width=18 spacing=18)
+E13 ndr CTS_NDR_0 M3 width=18 spacing=36 (default width=18 spacing=18)
+E13 ndr CTS_NDR_0 M4 width=24 spacing=48 (default width=24 spacing=24)
+E13 ndr CTS_NDR_0 M5 width=24 spacing=48 (default width=24 spacing=24)
+E13 ndr CTS_NDR_0 M6 width=32 spacing=64 (default width=32 spacing=32)
+E13 ndr CTS_NDR_0 M7 width=32 spacing=64 (default width=32 spacing=32)
+E13 ndr CTS_NDR_0 M8 width=40 spacing=80 (default width=40 spacing=40)
+E13 ndr CTS_NDR_0 M9 width=40 spacing=80 (default width=40 spacing=40)
+E13 ndr CTS_NDR_0 Pad width=40 spacing=80 (default width=40 spacing=2000)
+E13 ndr_nets=7
+Elapsed time: 0:02.55[h:]min:sec. CPU time: user 2.33 sys 0.15 (96%). Peak memory: 232652KB.
