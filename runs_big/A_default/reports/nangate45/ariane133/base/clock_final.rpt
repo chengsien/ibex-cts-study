@@ -1,0 +1,127 @@
+parasitics                           rcx_spef
+clock_nets                           3795
+clock_buffers                        3794
+clock_inverters                      0
+clock_gates                          0
+clock_other_drivers                  0
+clock_buffer_area_um2                20213.872
+clock_routed_wirelength_um           184598.7
+clock_buffer_masters                 BUF_X16:1,BUF_X8:1,CLKBUF_X3:3792
+cts_dummy_loads                      2800
+cts_delay_buffers                    0
+hold_buffers_by_name                 0
+clock_sinks                          20772
+insertion_delay_min_ns               0.4682
+insertion_delay_max_ns               3.1678
+insertion_delay_mean_ns              0.5487
+insertion_delay_spread_ns            2.6996
+insertion_delay_min_pin              i_cache_subsystem.i_nbdcache/sram_block_7__data_sram.genblk1_0__i_ram/macro_mem_2/clk
+insertion_delay_max_pin              ex_stage_i/lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_/G
+
+--- report_clock_skew -setup
+Clock core_clock
+ 0.5752 source latency csr_regfile_i/en_ld_st_translation_o$_DFF_PN0_/CK ^
+-0.4682 target latency i_cache_subsystem.i_nbdcache/sram_block_7__data_sram.genblk1_0__i_ram/macro_mem_2/clk ^
+ 0.0000 CRPR
+--------------
+ 0.1070 setup skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_setup_ns                        0.1070
+
+--- report_clock_skew -hold
+Clock core_clock
+ 0.5752 source latency csr_regfile_i/en_ld_st_translation_o$_DFF_PN0_/CK ^
+-0.4682 target latency i_cache_subsystem.i_nbdcache/sram_block_7__data_sram.genblk1_0__i_ram/macro_mem_2/clk ^
+ 0.0000 CRPR
+--------------
+ 0.1070 hold skew
+
+Clock vclk_core_clock
+No launch/capture paths found.
+
+
+skew_hold_ns                         0.1070
+
+--- report_clock_latency
+Clock core_clock
+rise -> rise
+    min     max
+ 0.0000  0.0000 source latency
+ 0.4682         network latency i_cache_subsystem.i_nbdcache/sram_block_7__data_sram.genblk1_0__i_ram/macro_mem_2/clk
+         3.1678 network latency ex_stage_i/lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_/G
+---------------
+ 0.4682  3.1678 latency
+         2.6996 skew
+
+rise -> fall
+    min     max
+ 0.0000  0.0000 source latency
+ 0.6642         network latency i_cache_subsystem.i_nbdcache/i_miss_handler/active_serving_o[0]$_DLATCH_P_/G
+         3.1719 network latency ex_stage_i/lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_/G
+---------------
+ 0.6642  3.1719 latency
+         2.5078 skew
+
+fall -> fall
+    min     max
+ 0.0000  0.0000 source latency
+ 0.4981         network latency i_cache_subsystem.i_nbdcache/sram_block_7__data_sram.genblk1_0__i_ram/macro_mem_2/clk
+         0.6466 network latency i_cache_subsystem.i_nbdcache/sram_block_0__data_sram.genblk1_1__i_ram/macro_mem_1/clk
+---------------
+ 0.4981  0.6466 latency
+         0.1485 skew
+
+
+Clock vclk_core_clock
+rise -> rise
+    min     max
+ 0.0000  0.0000 source latency
+ 1.7370         network latency ex_stage_i/lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_/G
+         2.7352 network latency ex_stage_i/lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_/G
+---------------
+ 1.7370  2.7352 latency
+         0.9982 skew
+
+rise -> fall
+    min     max
+ 0.0000  0.0000 source latency
+ 1.7271         network latency ex_stage_i/lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_/G
+         2.7393 network latency ex_stage_i/lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_/G
+---------------
+ 1.7271  2.7393 latency
+         1.0122 skew
+
+
+
+setup_wns_ns                         -0.2799
+setup_tns_ns                         -337.1074
+hold_wns_ns                          0.0243
+hold_tns_ns                          0.0000
+setup_viol_endpoints                 2060
+hold_viol_endpoints                  0
+
+--- report_power
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           4.816966e-02 4.187209e-04 1.648453e-03 5.023683e-02  20.9%
+Combinational        9.421419e-04 2.604092e-03 4.017598e-03 7.563833e-03   3.2%
+Clock                1.658110e-02 2.138353e-02 1.642869e-04 3.812892e-02  15.9%
+Macro                1.196930e-01 1.724048e-03 2.241138e-02 1.438284e-01  60.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                1.854174e-01 2.613031e-02 2.825983e-02 2.398076e-01 100.0%
+                            77.3%        10.9%        11.8%
+
+power_sequential_w                   5.023683e-02
+power_combinational_w                7.563833e-03
+power_clock_w                        3.812892e-02
+power_macro_w                        1.438284e-01
+power_pad_w                          0.000000e+00
+power_total_w                        2.398076e-01
+std_cell_instances                   437681

@@ -1,0 +1,14 @@
+run_name=B_nocl
+date_utc=2026-11-05T09:46:38Z
+design=nangate45/ariane133
+cts_args_override=-repair_clock_nets
+base_run=A_default
+target=finish
+resume=0
+image=openroad/orfs:26Q4-260-gc9ac73efc
+makevar=DESIGN_CONFIG=./designs/nangate45/ariane133/config.mk
+makevar=WORK_HOME=/work/runs_big/B_nocl
+makevar=CTS_ARGS=-repair_clock_nets
+makevar=LEC_CHECK=0
+exit_code=0
+wall_seconds=5512

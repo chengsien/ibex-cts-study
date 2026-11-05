@@ -1,0 +1,1233 @@
+/OpenROAD-flow-scripts/flow/scripts/synth.sh /OpenROAD-flow-scripts/flow/scripts/synth_canonicalize.tcl /work/runs_big/syn_ariane133/logs/nangate45/ariane133/base/1_1_yosys_canonicalize.log
+Using ABC speed script.
+1. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+2. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib
+3. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+4. Executing Liberty frontend: /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib
+5. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v
+6. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/designs/nangate45/ariane133/macros.v
+7. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/nangate45/cells_clkgate.v
+8. Executing HIERARCHY pass (managing design hierarchy).
+9. Executing AST frontend in derive mode using pre-parsed AST for module `\ariane'.
+9.1. Analyzing design hierarchy..
+9.2. Executing AST frontend in derive mode using pre-parsed AST for module `\std_cache_subsystem_0000000080000000'.
+9.3. Executing AST frontend in derive mode using pre-parsed AST for module `\controller'.
+9.4. Executing AST frontend in derive mode using pre-parsed AST for module `\perf_counters'.
+9.5. Executing AST frontend in derive mode using pre-parsed AST for module `\csr_regfile_0000000000000000_1'.
+9.6. Executing AST frontend in derive mode using pre-parsed AST for module `\commit_stage'.
+9.7. Executing AST frontend in derive mode using pre-parsed AST for module `\ex_stage'.
+9.8. Executing AST frontend in derive mode using pre-parsed AST for module `\issue_stage_NR_ENTRIES8_NR_WB_PORTS4'.
+9.9. Executing AST frontend in derive mode using pre-parsed AST for module `\id_stage'.
+9.10. Executing AST frontend in derive mode using pre-parsed AST for module `\frontend_0000000000000000'.
+9.11. Analyzing design hierarchy..
+9.12. Executing AST frontend in derive mode using pre-parsed AST for module `\fifo_v2_DEPTH8'.
+9.13. Executing AST frontend in derive mode using pre-parsed AST for module `\instr_scan'.
+9.14. Executing AST frontend in derive mode using pre-parsed AST for module `\bht_NR_ENTRIES128'.
+9.15. Executing AST frontend in derive mode using pre-parsed AST for module `\btb_NR_ENTRIES64'.
+9.16. Executing AST frontend in derive mode using pre-parsed AST for module `\ras_DEPTH2'.
+9.17. Executing AST frontend in derive mode using pre-parsed AST for module `\decoder'.
+9.18. Executing AST frontend in derive mode using pre-parsed AST for module `\compressed_decoder'.
+9.19. Executing AST frontend in derive mode using pre-parsed AST for module `\instr_realigner'.
+9.20. Executing AST frontend in derive mode using pre-parsed AST for module `\issue_read_operands'.
+9.21. Executing AST frontend in derive mode using pre-parsed AST for module `\scoreboard_00000008_00000004'.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78800.10-78800.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78801.10-78801.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78802.10-78802.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78803.10-78803.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78804.10-78804.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78805.10-78805.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78806.10-78806.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78807.10-78807.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78808.10-78808.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78809.10-78809.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78810.10-78810.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78811.10-78811.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78812.10-78812.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78813.10-78813.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78814.10-78814.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78815.10-78815.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78816.10-78816.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78817.10-78817.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78818.10-78818.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78819.10-78819.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78820.10-78820.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78821.10-78821.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78822.10-78822.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78823.10-78823.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78824.10-78824.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78825.10-78825.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78826.10-78826.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78827.10-78827.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78828.10-78828.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78829.10-78829.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78830.10-78830.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78831.10-78831.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78832.10-78832.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78833.10-78833.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78834.10-78834.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78835.10-78835.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78836.10-78836.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78837.10-78837.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78838.10-78838.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78839.10-78839.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78840.10-78840.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78841.10-78841.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78842.10-78842.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78843.10-78843.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78844.10-78844.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78845.10-78845.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78846.10-78846.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78847.10-78847.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78848.10-78848.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78849.10-78849.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78850.10-78850.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78851.10-78851.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78852.10-78852.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78853.10-78853.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78854.10-78854.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78855.10-78855.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78856.10-78856.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78857.10-78857.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78858.10-78858.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78859.10-78859.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78860.10-78860.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78861.10-78861.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78862.10-78862.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78863.10-78863.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78864.10-78864.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78865.10-78865.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78866.10-78866.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78867.10-78867.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78868.10-78868.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78869.10-78869.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78870.10-78870.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78871.10-78871.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78872.10-78872.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78873.10-78873.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78874.10-78874.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78875.10-78875.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78876.10-78876.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78877.10-78877.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78878.10-78878.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78879.10-78879.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78880.10-78880.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78881.10-78881.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78882.10-78882.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78883.10-78883.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78884.10-78884.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78885.10-78885.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78886.10-78886.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78887.10-78887.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78888.10-78888.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78889.10-78889.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78890.10-78890.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78891.10-78891.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78892.10-78892.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78893.10-78893.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78894.10-78894.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78895.10-78895.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78896.10-78896.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78897.10-78897.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78898.10-78898.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78899.10-78899.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78900.10-78900.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78901.10-78901.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78902.10-78902.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78903.10-78903.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78904.10-78904.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78905.10-78905.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78906.10-78906.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78907.10-78907.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78908.10-78908.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78909.10-78909.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78910.10-78910.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78911.10-78911.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78912.10-78912.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78913.10-78913.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78914.10-78914.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78915.10-78915.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78916.10-78916.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78917.10-78917.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78918.10-78918.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78919.10-78919.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78920.10-78920.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78921.10-78921.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78922.10-78922.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78923.10-78923.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78924.10-78924.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78925.10-78925.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78926.10-78926.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78927.10-78927.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78928.10-78928.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78929.10-78929.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78930.10-78930.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78931.10-78931.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78932.10-78932.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78933.10-78933.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78934.10-78934.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78935.10-78935.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78936.10-78936.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78937.10-78937.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78938.10-78938.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78939.10-78939.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78940.10-78940.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78941.10-78941.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78942.10-78942.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78943.10-78943.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78944.10-78944.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78945.10-78945.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78946.10-78946.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78947.10-78947.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78948.10-78948.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78949.10-78949.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78950.10-78950.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78951.10-78951.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78952.10-78952.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78953.10-78953.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78954.10-78954.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78955.10-78955.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78956.10-78956.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78957.10-78957.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78958.10-78958.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78959.10-78959.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78960.10-78960.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78961.10-78961.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78962.10-78962.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78963.10-78963.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78964.10-78964.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78965.10-78965.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78966.10-78966.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78967.10-78967.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78968.10-78968.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78969.10-78969.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78970.10-78970.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78971.10-78971.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78972.10-78972.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78973.10-78973.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78974.10-78974.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78975.10-78975.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78976.10-78976.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78977.10-78977.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78978.10-78978.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78979.10-78979.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78980.10-78980.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78981.10-78981.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78982.10-78982.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78983.10-78983.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78984.10-78984.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78985.10-78985.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78986.10-78986.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78987.10-78987.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78988.10-78988.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78989.10-78989.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78990.10-78990.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78991.10-78991.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78992.10-78992.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78993.10-78993.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78994.10-78994.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78995.10-78995.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78996.10-78996.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78997.10-78997.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78998.10-78998.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:78999.10-78999.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79000.10-79000.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79001.10-79001.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79002.10-79002.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79003.10-79003.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79004.10-79004.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79005.10-79005.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79006.10-79006.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79007.10-79007.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79008.10-79008.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79009.10-79009.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79010.10-79010.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79011.10-79011.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79012.10-79012.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79013.10-79013.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79014.10-79014.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79015.10-79015.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79016.10-79016.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79017.10-79017.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79018.10-79018.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79019.10-79019.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79020.10-79020.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79021.10-79021.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79022.10-79022.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79023.10-79023.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79024.10-79024.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79025.10-79025.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79026.10-79026.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79027.10-79027.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79028.10-79028.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79029.10-79029.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79030.10-79030.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79031.10-79031.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79032.10-79032.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79033.10-79033.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79034.10-79034.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79035.10-79035.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79036.10-79036.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79037.10-79037.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79038.10-79038.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79039.10-79039.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79040.10-79040.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79041.10-79041.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79042.10-79042.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79043.10-79043.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79044.10-79044.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79045.10-79045.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79046.10-79046.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79047.10-79047.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79048.10-79048.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79049.10-79049.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79050.10-79050.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79051.10-79051.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79052.10-79052.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79053.10-79053.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79054.10-79054.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79055.10-79055.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79056.10-79056.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79057.10-79057.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79058.10-79058.51.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79059.10-79059.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79060.10-79060.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79061.10-79061.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79062.10-79062.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79063.10-79063.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79064.10-79064.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79065.10-79065.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79066.10-79066.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79067.10-79067.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79068.10-79068.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79069.10-79069.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79070.10-79070.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79071.10-79071.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79072.10-79072.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79073.10-79073.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79074.10-79074.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79075.10-79075.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79076.10-79076.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79077.10-79077.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79078.10-79078.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79079.10-79079.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79080.10-79080.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79081.10-79081.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79082.10-79082.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79083.10-79083.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79084.10-79084.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79085.10-79085.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79086.10-79086.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79087.10-79087.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79088.10-79088.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79089.10-79089.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79090.10-79090.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79091.10-79091.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79092.10-79092.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79093.10-79093.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79094.10-79094.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79095.10-79095.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79096.10-79096.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79097.10-79097.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79098.10-79098.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79099.10-79099.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79100.10-79100.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79101.10-79101.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79102.10-79102.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79103.10-79103.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79104.10-79104.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79105.10-79105.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79106.10-79106.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79107.10-79107.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79108.10-79108.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79109.10-79109.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79110.10-79110.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79111.10-79111.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79112.10-79112.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79113.10-79113.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79114.10-79114.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79115.10-79115.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79116.10-79116.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79117.10-79117.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79118.10-79118.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79119.10-79119.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79120.10-79120.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79121.10-79121.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79122.10-79122.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79123.10-79123.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79124.10-79124.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79125.10-79125.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79126.10-79126.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79127.10-79127.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79128.10-79128.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79129.10-79129.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79130.10-79130.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79131.10-79131.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79132.10-79132.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79133.10-79133.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79134.10-79134.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79135.10-79135.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79136.10-79136.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79137.10-79137.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79138.10-79138.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79139.10-79139.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79140.10-79140.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79141.10-79141.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79142.10-79142.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79143.10-79143.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79144.10-79144.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79145.10-79145.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79146.10-79146.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79147.10-79147.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79148.10-79148.49.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79149.10-79149.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79150.10-79150.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79151.10-79151.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79152.10-79152.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79153.10-79153.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79154.10-79154.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79155.10-79155.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79156.10-79156.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79157.10-79157.47.
+Warning: reg '\issue_instr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:79158.10-79158.47.
+9.22. Executing AST frontend in derive mode using pre-parsed AST for module `\re_name'.
+9.23. Executing AST frontend in derive mode using pre-parsed AST for module `\load_store_unit'.
+9.24. Executing AST frontend in derive mode using pre-parsed AST for module `\mult'.
+9.25. Executing AST frontend in derive mode using pre-parsed AST for module `\csr_buffer'.
+9.26. Executing AST frontend in derive mode using pre-parsed AST for module `\branch_unit'.
+9.27. Executing AST frontend in derive mode using pre-parsed AST for module `\alu'.
+9.28. Executing AST frontend in derive mode using pre-parsed AST for module `\stream_demux_N_OUP3'.
+9.29. Executing AST frontend in derive mode using pre-parsed AST for module `\stream_mux_N_INP3'.
+9.30. Executing AST frontend in derive mode using pre-parsed AST for module `\fifo_v3_DATA_WIDTH2_DEPTH4'.
+9.31. Executing AST frontend in derive mode using pre-parsed AST for module `\stream_arbiter_N_INP3_1'.
+9.32. Executing AST frontend in derive mode using pre-parsed AST for module `\stream_arbiter_N_INP3'.
+9.33. Executing AST frontend in derive mode using pre-parsed AST for module `\std_nbdcache_0000000080000000'.
+9.34. Executing AST frontend in derive mode using pre-parsed AST for module `\std_icache'.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228909.10-228909.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228910.10-228910.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228911.10-228911.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228912.10-228912.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228913.10-228913.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228914.10-228914.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228915.10-228915.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228916.10-228916.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228917.10-228917.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228918.10-228918.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228919.10-228919.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228920.10-228920.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228921.10-228921.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228922.10-228922.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228923.10-228923.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228924.10-228924.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228925.10-228925.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228926.10-228926.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228927.10-228927.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228928.10-228928.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228929.10-228929.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228930.10-228930.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228931.10-228931.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228932.10-228932.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228933.10-228933.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228934.10-228934.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228935.10-228935.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228936.10-228936.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228937.10-228937.35.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228938.10-228938.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228939.10-228939.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228940.10-228940.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228941.10-228941.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228942.10-228942.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228943.10-228943.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228944.10-228944.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228945.10-228945.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228946.10-228946.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228947.10-228947.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228948.10-228948.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228949.10-228949.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228950.10-228950.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228951.10-228951.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228952.10-228952.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228953.10-228953.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228954.10-228954.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228955.10-228955.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228956.10-228956.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228957.10-228957.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228958.10-228958.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228959.10-228959.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228960.10-228960.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228961.10-228961.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228962.10-228962.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228963.10-228963.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228964.10-228964.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228965.10-228965.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228966.10-228966.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228967.10-228967.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228968.10-228968.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228969.10-228969.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228970.10-228970.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228971.10-228971.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228972.10-228972.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228973.10-228973.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228974.10-228974.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228975.10-228975.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228976.10-228976.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228977.10-228977.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228978.10-228978.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228979.10-228979.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228980.10-228980.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228981.10-228981.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228982.10-228982.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228983.10-228983.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228984.10-228984.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228985.10-228985.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228986.10-228986.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228987.10-228987.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228988.10-228988.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228989.10-228989.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228990.10-228990.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228991.10-228991.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228992.10-228992.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228993.10-228993.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228994.10-228994.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228995.10-228995.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228996.10-228996.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228997.10-228997.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228998.10-228998.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:228999.10-228999.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229000.10-229000.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229001.10-229001.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229002.10-229002.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229003.10-229003.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229004.10-229004.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229005.10-229005.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229006.10-229006.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229007.10-229007.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229008.10-229008.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229009.10-229009.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229010.10-229010.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229011.10-229011.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229012.10-229012.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229013.10-229013.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229014.10-229014.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229015.10-229015.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229016.10-229016.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229017.10-229017.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229018.10-229018.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229019.10-229019.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229020.10-229020.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229021.10-229021.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229022.10-229022.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229023.10-229023.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229024.10-229024.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229025.10-229025.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229026.10-229026.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229027.10-229027.33.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229028.10-229028.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229029.10-229029.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229030.10-229030.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229031.10-229031.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229032.10-229032.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229033.10-229033.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229034.10-229034.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229035.10-229035.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229036.10-229036.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:229037.10-229037.31.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230753.10-230754.45.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230761.10-230762.43.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230839.10-230839.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230840.10-230840.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230841.10-230841.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230842.10-230842.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230843.10-230843.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230844.10-230844.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230845.10-230845.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230846.10-230846.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230847.10-230847.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230848.10-230848.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230849.10-230849.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230850.10-230850.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230851.10-230851.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230852.10-230852.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230853.10-230853.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230854.10-230854.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230855.10-230855.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230856.10-230856.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230857.10-230857.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230858.10-230858.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230859.10-230859.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230860.10-230860.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230861.10-230861.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230862.10-230862.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230863.10-230863.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230864.10-230864.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230865.10-230865.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230866.10-230866.42.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230867.10-230867.41.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230868.10-230868.41.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230869.10-230869.41.
+Warning: reg '\dreq_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:230870.10-230870.41.
+9.35. Analyzing design hierarchy..
+9.36. Executing AST frontend in derive mode using pre-parsed AST for module `\lfsr_8bit_00000004'.
+9.37. Executing AST frontend in derive mode using pre-parsed AST for module `\lzc_00000004'.
+9.38. Executing AST frontend in derive mode using pre-parsed AST for module `\sram_00000080_00000100'.
+9.39. Executing AST frontend in derive mode using pre-parsed AST for module `\sram_0000002d_00000100'.
+9.40. Executing AST frontend in derive mode using pre-parsed AST for module `\tag_cmp_4_0000000c_00000008'.
+9.41. Executing AST frontend in derive mode using pre-parsed AST for module `\sram_00000040_256'.
+9.42. Executing AST frontend in derive mode using pre-parsed AST for module `\sram_0000002c_256'.
+9.43. Executing AST frontend in derive mode using pre-parsed AST for module `\miss_handler_NR_PORTS3'.
+9.44. Executing AST frontend in derive mode using pre-parsed AST for module `\cache_ctrl_0000000080000000'.
+9.45. Executing AST frontend in derive mode using pre-parsed AST for module `\rrarbiter_NUM_REQ3_LOCK_IN1'.
+9.46. Executing AST frontend in derive mode using pre-parsed AST for module `\serdiv_WIDTH64'.
+9.47. Executing AST frontend in derive mode using pre-parsed AST for module `\multiplier'.
+9.48. Executing AST frontend in derive mode using pre-parsed AST for module `\lsu_bypass'.
+9.49. Executing AST frontend in derive mode using pre-parsed AST for module `\pipe_reg_simple_Depth0'.
+9.50. Executing AST frontend in derive mode using pre-parsed AST for module `\pipe_reg_simple_Depth1'.
+9.51. Executing AST frontend in derive mode using pre-parsed AST for module `\load_unit'.
+9.52. Executing AST frontend in derive mode using pre-parsed AST for module `\store_unit'.
+9.53. Executing AST frontend in derive mode using pre-parsed AST for module `\mmu_16_16_00000001'.
+Warning: reg '\lsu_paddr_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:170449.10-170450.57.
+9.54. Executing AST frontend in derive mode using pre-parsed AST for module `\ariane_regfile_64_2_00000002_1'.
+9.55. Executing AST frontend in derive mode using pre-parsed AST for module `\fifo_v3_0_00000020_00000008'.
+9.56. Analyzing design hierarchy..
+9.57. Executing AST frontend in derive mode using pre-parsed AST for module `\ptw_s00000001'.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165859.10-165859.30.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165860.10-165860.30.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165861.10-165861.30.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165862.10-165862.30.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165863.10-165863.30.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165864.10-165864.30.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165865.10-165865.30.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165866.10-165866.30.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165867.10-165867.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165868.10-165868.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165869.10-165869.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165870.10-165870.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165871.10-165871.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165872.10-165872.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165873.10-165873.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165874.10-165874.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165875.10-165875.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165876.10-165876.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165877.10-165877.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165878.10-165878.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165879.10-165879.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165880.10-165880.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165881.10-165881.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165882.10-165882.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165883.10-165883.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165884.10-165884.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165885.10-165885.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165886.10-165886.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165887.10-165887.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165888.10-165888.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165889.10-165889.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165890.10-165890.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165891.10-165891.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165892.10-165892.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165893.10-165893.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165894.10-165894.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165895.10-165895.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165896.10-165896.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165897.10-165897.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165898.10-165898.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165899.10-165899.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165900.10-165900.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165901.10-165901.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165902.10-165902.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165903.10-165903.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165904.10-165904.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165905.10-165905.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165906.10-165906.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165907.10-165907.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165908.10-165908.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165909.10-165909.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165910.10-165910.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165911.10-165911.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165912.10-165912.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165913.10-165913.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165914.10-165914.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165915.10-165915.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165916.10-165916.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165917.10-165917.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165918.10-165918.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165919.10-165919.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165920.10-165920.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165921.10-165921.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165922.10-165922.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165923.10-165923.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165924.10-165924.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165925.10-165925.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165926.10-165926.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165927.10-165927.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165928.10-165928.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165929.10-165929.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165930.10-165930.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165931.10-165931.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165932.10-165932.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165933.10-165933.31.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:165934.10-165934.30.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166000.10-166000.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166002.10-166002.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166004.10-166004.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166006.10-166006.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166008.10-166008.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166010.10-166010.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166012.10-166012.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166014.10-166014.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166016.10-166016.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166018.10-166018.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166020.10-166020.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166022.10-166022.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166024.10-166024.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166026.10-166026.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166028.10-166028.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166030.10-166030.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166032.10-166032.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166034.10-166034.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166036.10-166036.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166038.10-166038.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166040.10-166040.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166042.10-166042.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166044.10-166044.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166046.10-166046.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166048.10-166048.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166050.10-166050.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:166052.10-166052.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:167590.10-167590.35.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:167592.10-167592.35.
+Warning: reg '\req_port_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:167746.10-167751.45.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:167758.10-167763.48.
+Warning: reg '\itlb_update_o' is assigned in a continuous assignment at /OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:167780.10-167780.54.
+9.58. Executing AST frontend in derive mode using pre-parsed AST for module `\tlb_00000010_00000001'.
+9.59. Executing AST frontend in derive mode using pre-parsed AST for module `\amo_buffer'.
+9.60. Executing AST frontend in derive mode using pre-parsed AST for module `\store_buffer'.
+9.61. Executing AST frontend in derive mode using pre-parsed AST for module `\lzc_WIDTH64_MODE1'.
+9.62. Executing AST frontend in derive mode using pre-parsed AST for module `\lzc_00000003'.
+9.63. Executing AST frontend in derive mode using pre-parsed AST for module `\amo_alu'.
+9.64. Executing AST frontend in derive mode using pre-parsed AST for module `\lfsr_8bit_00000008'.
+9.65. Executing AST frontend in derive mode using pre-parsed AST for module `\axi_adapter_00000080_4_00000004'.
+9.66. Executing AST frontend in derive mode using pre-parsed AST for module `\axi_adapter_64_4_00000004'.
+9.67. Executing AST frontend in derive mode using pre-parsed AST for module `\arbiter_00000003_64'.
+9.68. Executing AST frontend in derive mode using pre-parsed AST for module `\SyncSpRamBeNx64_00000008_00000100_0_2'.
+9.69. Executing AST frontend in derive mode using pre-parsed AST for module `\SyncSpRamBeNx64_00000008_00000100_0_2_d44'.
+9.70. Executing AST frontend in derive mode using pre-parsed AST for module `\limping_SyncSpRamBeNx64_00000008_00000100_0_2'.
+9.71. Executing AST frontend in derive mode using pre-parsed AST for module `\SyncSpRamBeNx64_00000008_00000100_0_2_d45'.
+9.72. Analyzing design hierarchy..
+9.73. Executing AST frontend in derive mode using pre-parsed AST for module `\fifo_v2_DEPTH1_ALM_EMPTY_TH0_ALM_FULL_TH0'.
+9.74. Analyzing design hierarchy..
+9.75. Executing AST frontend in derive mode using pre-parsed AST for module `\fifo_v3_0_00000020_00000001'.
+9.76. Analyzing design hierarchy..
+9.77. Analyzing design hierarchy..
+10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Warning: Ignoring module arbiter_00000003_64 because it contains processes (run 'proc' command first).
+Warning: Ignoring module axi_adapter_64_4_00000004 because it contains processes (run 'proc' command first).
+Warning: Ignoring module axi_adapter_00000080_4_00000004 because it contains processes (run 'proc' command first).
+Warning: Ignoring module lfsr_8bit_00000008 because it contains processes (run 'proc' command first).
+Warning: Ignoring module store_buffer because it contains processes (run 'proc' command first).
+Warning: Ignoring module tlb_00000010_00000001 because it contains processes (run 'proc' command first).
+Warning: Ignoring module ptw_s00000001 because it contains processes (run 'proc' command first).
+Warning: Ignoring module fifo_v3_0_00000020_00000008 because it contains processes (run 'proc' command first).
+Warning: Ignoring module ariane_regfile_64_2_00000002_1 because it contains processes (run 'proc' command first).
+Warning: Ignoring module mmu_16_16_00000001 because it contains processes (run 'proc' command first).
+Warning: Ignoring module store_unit because it contains processes (run 'proc' command first).
+Warning: Ignoring module load_unit because it contains processes (run 'proc' command first).
+Warning: Ignoring module pipe_reg_simple_Depth1 because it contains processes (run 'proc' command first).
+Warning: Ignoring module lsu_bypass because it contains processes (run 'proc' command first).
+Warning: Ignoring module multiplier because it contains processes (run 'proc' command first).
+Warning: Ignoring module serdiv_WIDTH64 because it contains processes (run 'proc' command first).
+Warning: Ignoring module rrarbiter_NUM_REQ3_LOCK_IN1 because it contains processes (run 'proc' command first).
+Warning: Ignoring module cache_ctrl_0000000080000000 because it contains processes (run 'proc' command first).
+Warning: Ignoring module miss_handler_NR_PORTS3 because it contains processes (run 'proc' command first).
+Warning: Ignoring module tag_cmp_4_0000000c_00000008 because it contains processes (run 'proc' command first).
+Warning: Ignoring module lfsr_8bit_00000004 because it contains processes (run 'proc' command first).
+Warning: Ignoring module std_icache because it contains processes (run 'proc' command first).
+Warning: Ignoring module fifo_v3_DATA_WIDTH2_DEPTH4 because it contains processes (run 'proc' command first).
+Warning: Ignoring module csr_buffer because it contains processes (run 'proc' command first).
+Warning: Ignoring module mult because it contains processes (run 'proc' command first).
+Warning: Ignoring module scoreboard_00000008_00000004 because it contains processes (run 'proc' command first).
+Warning: Ignoring module issue_read_operands because it contains processes (run 'proc' command first).
+Warning: Ignoring module instr_realigner because it contains processes (run 'proc' command first).
+Warning: Ignoring module ras_DEPTH2 because it contains processes (run 'proc' command first).
+Warning: Ignoring module btb_NR_ENTRIES64 because it contains processes (run 'proc' command first).
+Warning: Ignoring module bht_NR_ENTRIES128 because it contains processes (run 'proc' command first).
+Warning: Ignoring module frontend_0000000000000000 because it contains processes (run 'proc' command first).
+Warning: Ignoring module id_stage because it contains processes (run 'proc' command first).
+Warning: Ignoring module csr_regfile_0000000000000000_1 because it contains processes (run 'proc' command first).
+Warning: Ignoring module perf_counters because it contains processes (run 'proc' command first).
+Warning: Ignoring module controller because it contains processes (run 'proc' command first).
+Warning: Ignoring module fifo_v3_0_00000020_00000001 because it contains processes (run 'proc' command first).
+11. Executing RTLIL backend.
+Warnings: 668 unique messages, 668 total
+End of script. Logfile hash: 7bbb8b9bfc, time: 19.62s, user: 12.67s, system: 5.42s, MEM: 1147.61 MB peak
+Yosys 0.68+post (git sha1 UNKNOWN, Release, GNU /usr/local/bin/wrapped-cc/g++ 15.2.0)
+Time spent: 54% 1x hierarchy (9 sec), 39% 6x read_verilog (7 sec), ...
+Elapsed time: 0:20.12[h:]min:sec. CPU time: user 13.17 sys 5.48 (92%). Peak memory: 1178808KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_1_yosys_canonicalize .rtlil       20       19     0.93     1151 7aa530f9d2
+/OpenROAD-flow-scripts/flow/scripts/synth.sh /OpenROAD-flow-scripts/flow/scripts/synth.tcl /work/runs_big/syn_ariane133/logs/nangate45/ariane133/base/1_2_yosys.log
+Using ABC speed script.
+1. Executing RTLIL frontend.
+2. Executing HIERARCHY pass (managing design hierarchy).
+2.1. Analyzing design hierarchy..
+2.2. Analyzing design hierarchy..
+3. Executing SYNTH pass.
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+3.1.1. Analyzing design hierarchy..
+3.1.2. Analyzing design hierarchy..
+3.2. Executing PROC pass (convert processes to netlists).
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+Warning: Latch inferred for signal `\load_unit.\n__tmp493' from process `\load_unit.$proc$/OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:191493$52491': $auto$proc_dlatch.cc:543:proc_dlatch$98394
+Warning: Latch inferred for signal `\miss_handler_NR_PORTS3.\active_serving_o [0]' from process `\miss_handler_NR_PORTS3.$proc$/OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:242298$48146': $auto$proc_dlatch.cc:547:proc_dlatch$98405
+Warning: Latch inferred for signal `\miss_handler_NR_PORTS3.\active_serving_o [1]' from process `\miss_handler_NR_PORTS3.$proc$/OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:242291$48145': $auto$proc_dlatch.cc:547:proc_dlatch$98416
+Warning: Latch inferred for signal `\miss_handler_NR_PORTS3.\active_serving_o [2]' from process `\miss_handler_NR_PORTS3.$proc$/OpenROAD-flow-scripts/flow/designs/src/ariane133/ariane.sv2v.v:242284$48144': $auto$proc_dlatch.cc:547:proc_dlatch$98427
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+3.3. Executing OPT_EXPR pass (perform const folding).
+3.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.5. Executing CHECK pass (checking for obvious problems).
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_63 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_62 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_61 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_60 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_59 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_58 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_55 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_54 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_53 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_52 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_51 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_50 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_47 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_46 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_45 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_44 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_43 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_42 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_39 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_38 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_37 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_36 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_35 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_34 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_31 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_30 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_29 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_28 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_27 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_26 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_23 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_22 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_21 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_20 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_19 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_18 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_15 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_14 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_13 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_12 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_11 is used but has no driver.
+Warning: Wire std_nbdcache_0000000080000000.\dirty_wdata_10 is used but has no driver.
+3.6. Executing OPT pass (performing simple optimizations).
+3.6.1. Executing OPT_EXPR pass (perform const folding).
+3.6.2. Executing OPT_MERGE pass (detect identical cells).
+3.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.6.5. Executing OPT_MERGE pass (detect identical cells).
+3.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.6.8. Executing OPT_EXPR pass (perform const folding).
+3.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.6.12. Executing OPT_MERGE pass (detect identical cells).
+3.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.6.15. Executing OPT_EXPR pass (perform const folding).
+3.6.16. Rerunning OPT passes. (Maybe there is more to do..)
+3.6.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.6.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.6.19. Executing OPT_MERGE pass (detect identical cells).
+3.6.20. Executing OPT_DFF pass (perform DFF optimizations).
+3.6.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.6.22. Executing OPT_EXPR pass (perform const folding).
+3.6.23. Finished fast OPT passes. (There is nothing left to do.)
+3.7. Executing FSM pass (extract and optimize FSM).
+3.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+3.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+3.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+3.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+3.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+3.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+3.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+3.8. Executing OPT pass (performing simple optimizations).
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+3.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.8. Executing OPT_EXPR pass (perform const folding).
+3.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.12. Executing OPT_MERGE pass (detect identical cells).
+3.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.15. Executing OPT_EXPR pass (perform const folding).
+3.8.16. Rerunning OPT passes. (Maybe there is more to do..)
+3.8.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.8.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.8.19. Executing OPT_MERGE pass (detect identical cells).
+3.8.20. Executing OPT_DFF pass (perform DFF optimizations).
+3.8.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.8.22. Executing OPT_EXPR pass (perform const folding).
+3.8.23. Finished fast OPT passes. (There is nothing left to do.)
+3.9. Executing WREDUCE pass (reducing word size of cells).
+3.10. Executing PEEPOPT pass (run peephole optimizers).
+3.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.12. Executing ALUMACC pass (create $alu and $macc cells).
+3.13. Executing SHARE pass (SAT-based resource sharing).
+3.14. Executing OPT pass (performing simple optimizations).
+3.14.1. Executing OPT_EXPR pass (perform const folding).
+3.14.2. Executing OPT_MERGE pass (detect identical cells).
+3.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.14.5. Executing OPT_MERGE pass (detect identical cells).
+3.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+3.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.14.8. Executing OPT_EXPR pass (perform const folding).
+3.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+3.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+3.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+3.14.12. Executing OPT_MERGE pass (detect identical cells).
+3.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+3.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.14.15. Executing OPT_EXPR pass (perform const folding).
+3.14.16. Finished fast OPT passes. (There is nothing left to do.)
+3.15. Executing MEMORY pass.
+3.15.1. Executing OPT_MEM pass (optimize memories).
+3.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+3.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+3.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+3.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+3.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+3.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+3.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+3.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+3.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Keep modules above estimated size of
+      10000 gate equivalents
+4. Executing CELLMATCH pass. (match cells)
+Warning: Ignoring blackbox module CLKGATE_X8.
+Warning: Ignoring blackbox module CLKGATE_X4.
+Warning: Ignoring blackbox module CLKGATE_X2.
+Warning: Ignoring blackbox module CLKGATE_X1.
+Warning: Ignoring blackbox module CLKGATETST_X8.
+Warning: Ignoring blackbox module CLKGATETST_X4.
+Warning: Ignoring blackbox module CLKGATETST_X2.
+Warning: Ignoring blackbox module CLKGATETST_X1.
+Warning: Ignoring blackbox module fakeram45_256x16.
+5. Executing KEEP_HIERARCHY pass.
+6. Executing SYNTH pass.
+6.1. Executing PROC pass (convert processes to netlists).
+6.1.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+6.1.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+6.1.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+6.1.4. Executing PROC_INIT pass (extract init attributes).
+6.1.5. Executing PROC_ARST pass (detect async resets in processes).
+6.1.6. Executing PROC_ROM pass (convert switches to ROMs).
+6.1.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+6.1.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+6.1.9. Executing PROC_DFF pass (convert process syncs to FFs).
+6.1.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+6.1.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+6.1.12. Executing OPT_EXPR pass (perform const folding).
+6.2. Executing CHECK pass (checking for obvious problems).
+6.3. Executing FLATTEN pass (flatten design).
+6.4. Executing OPT_EXPR pass (perform const folding).
+6.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.6. Executing CHECK pass (checking for obvious problems).
+6.7. Executing OPT pass (performing simple optimizations).
+6.7.1. Executing OPT_EXPR pass (perform const folding).
+6.7.2. Executing OPT_MERGE pass (detect identical cells).
+6.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.7.5. Executing OPT_MERGE pass (detect identical cells).
+6.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.8. Executing OPT_EXPR pass (perform const folding).
+6.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+6.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.7.12. Executing OPT_MERGE pass (detect identical cells).
+6.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+6.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.15. Executing OPT_EXPR pass (perform const folding).
+6.7.16. Finished fast OPT passes. (There is nothing left to do.)
+6.8. Executing FSM pass (extract and optimize FSM).
+6.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+6.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+6.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+6.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+6.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+6.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+6.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+6.9. Executing OPT pass (performing simple optimizations).
+6.9.1. Executing OPT_EXPR pass (perform const folding).
+6.9.2. Executing OPT_MERGE pass (detect identical cells).
+6.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.9.5. Executing OPT_MERGE pass (detect identical cells).
+6.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.9.8. Executing OPT_EXPR pass (perform const folding).
+6.9.9. Finished fast OPT passes. (There is nothing left to do.)
+6.10. Executing WREDUCE pass (reducing word size of cells).
+6.11. Executing PEEPOPT pass (run peephole optimizers).
+6.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.13. Executing ALUMACC pass (create $alu and $macc cells).
+6.14. Executing SHARE pass (SAT-based resource sharing).
+6.15. Executing OPT pass (performing simple optimizations).
+6.15.1. Executing OPT_EXPR pass (perform const folding).
+6.15.2. Executing OPT_MERGE pass (detect identical cells).
+6.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.15.5. Executing OPT_MERGE pass (detect identical cells).
+6.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.15.8. Executing OPT_EXPR pass (perform const folding).
+6.15.9. Finished fast OPT passes. (There is nothing left to do.)
+6.16. Executing MEMORY pass.
+6.16.1. Executing OPT_MEM pass (optimize memories).
+6.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+6.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+6.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+6.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+6.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+6.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+6.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+6.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+7. Executing SYNTH pass.
+7.1. Executing OPT pass (performing simple optimizations).
+7.1.1. Executing OPT_EXPR pass (perform const folding).
+7.1.2. Executing OPT_MERGE pass (detect identical cells).
+7.1.3. Executing OPT_DFF pass (perform DFF optimizations).
+7.1.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+7.1.5. Rerunning OPT passes. (Removed registers in this run.)
+7.1.6. Executing OPT_EXPR pass (perform const folding).
+7.1.7. Executing OPT_MERGE pass (detect identical cells).
+7.1.8. Executing OPT_DFF pass (perform DFF optimizations).
+7.1.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+7.1.10. Finished fast OPT passes.
+7.2. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+7.3. Executing OPT pass (performing simple optimizations).
+7.3.1. Executing OPT_EXPR pass (perform const folding).
+7.3.2. Executing OPT_MERGE pass (detect identical cells).
+7.3.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+7.3.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+7.3.5. Executing OPT_MERGE pass (detect identical cells).
+7.3.6. Executing OPT_SHARE pass.
+7.3.7. Executing OPT_DFF pass (perform DFF optimizations).
+7.3.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+7.3.9. Executing OPT_EXPR pass (perform const folding).
+7.3.10. Rerunning OPT passes. (Maybe there is more to do..)
+7.3.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+7.3.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+7.3.13. Executing OPT_MERGE pass (detect identical cells).
+7.3.14. Executing OPT_SHARE pass.
+7.3.15. Executing OPT_DFF pass (perform DFF optimizations).
+7.3.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+7.3.17. Executing OPT_EXPR pass (perform const folding).
+7.3.18. Rerunning OPT passes. (Maybe there is more to do..)
+7.3.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+7.3.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+7.3.21. Executing OPT_MERGE pass (detect identical cells).
+7.3.22. Executing OPT_SHARE pass.
+7.3.23. Executing OPT_DFF pass (perform DFF optimizations).
+7.3.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+7.3.25. Executing OPT_EXPR pass (perform const folding).
+7.3.26. Rerunning OPT passes. (Maybe there is more to do..)
+7.3.27. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+7.3.28. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+7.3.29. Executing OPT_MERGE pass (detect identical cells).
+7.3.30. Executing OPT_SHARE pass.
+7.3.31. Executing OPT_DFF pass (perform DFF optimizations).
+7.3.32. Executing OPT_CLEAN pass (remove unused cells and wires).
+7.3.33. Executing OPT_EXPR pass (perform const folding).
+7.3.34. Finished fast OPT passes. (There is nothing left to do.)
+7.4. Executing TECHMAP pass (map to technology primitives).
+7.4.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+7.4.2. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/common/lcu_kogge_stone.v
+7.4.3. Continuing TECHMAP pass.
+7.5. Executing OPT pass (performing simple optimizations).
+7.5.1. Executing OPT_EXPR pass (perform const folding).
+7.5.2. Executing OPT_MERGE pass (detect identical cells).
+7.5.3. Executing OPT_DFF pass (perform DFF optimizations).
+7.5.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+7.5.5. Finished fast OPT passes.
+7.6. Executing HIERARCHY pass (managing design hierarchy).
+7.6.1. Analyzing design hierarchy..
+7.6.2. Analyzing design hierarchy..
+7.7. Printing statistics.
+7.8. Executing CHECK pass (checking for obvious problems).
+8. Executing OPT pass (performing simple optimizations).
+8.1. Executing OPT_EXPR pass (perform const folding).
+8.2. Executing OPT_MERGE pass (detect identical cells).
+8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+8.5. Executing OPT_MERGE pass (detect identical cells).
+8.6. Executing OPT_DFF pass (perform DFF optimizations).
+8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+8.8. Executing OPT_EXPR pass (perform const folding).
+8.9. Rerunning OPT passes. (Maybe there is more to do..)
+8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+8.12. Executing OPT_MERGE pass (detect identical cells).
+8.13. Executing OPT_DFF pass (perform DFF optimizations).
+8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+8.15. Executing OPT_EXPR pass (perform const folding).
+8.16. Finished fast OPT passes. (There is nothing left to do.)
+9. Executing EXTRACT_FA pass (find and extract full/half adders).
+10. Executing TECHMAP pass (map to technology primitives).
+10.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/nangate45/cells_adders.v
+10.2. Continuing TECHMAP pass.
+11. Executing TECHMAP pass (map to technology primitives).
+11.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/tools/install/yosys/bin/../share/yosys/techmap.v
+11.2. Continuing TECHMAP pass.
+12. Executing OPT pass (performing simple optimizations).
+12.1. Executing OPT_EXPR pass (perform const folding).
+12.2. Executing OPT_MERGE pass (detect identical cells).
+12.3. Executing OPT_DFF pass (perform DFF optimizations).
+12.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+12.5. Finished fast OPT passes.
+13. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Warning: Emulating async reset latch with a plain D latch and logic for ex_stage.lsu_i.i_load_unit.n__tmp493$_DLATCH_NP0_
+14. Executing TECHMAP pass (map to technology primitives).
+14.1. Executing Verilog-2005 frontend: /OpenROAD-flow-scripts/flow/platforms/nangate45/cells_latch.v
+14.2. Continuing TECHMAP pass.
+15. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+15.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+16. Executing OPT pass (performing simple optimizations).
+16.1. Executing OPT_EXPR pass (perform const folding).
+16.2. Executing OPT_MERGE pass (detect identical cells).
+16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+16.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+16.5. Executing OPT_MERGE pass (detect identical cells).
+16.6. Executing OPT_DFF pass (perform DFF optimizations).
+16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+16.8. Executing OPT_EXPR pass (perform const folding).
+16.9. Rerunning OPT passes. (Maybe there is more to do..)
+16.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+16.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+16.12. Executing OPT_MERGE pass (detect identical cells).
+16.13. Executing OPT_DFF pass (perform DFF optimizations).
+16.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+16.15. Executing OPT_EXPR pass (perform const folding).
+16.16. Finished fast OPT passes. (There is nothing left to do.)
+17. Executing SETUNDEF pass (replace undef values with defined constants).
+abc -script /OpenROAD-flow-scripts/flow/scripts/abc_speed.script -liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib -liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib -dont_use TAPCELL_X1 -dont_use FILLCELL_X1 -dont_use AOI211_X1 -dont_use OAI211_X1 -constr /work/runs_big/syn_ariane133/objects/nangate45/ariane133/base/abc.constr
+18. Executing ABC pass (technology mapping using ABC).
+18.1. Extracting gate netlist of module `\SyncSpRamBeNx64_00000008_00000100_0_2' to `<abc-temp-dir>/input.blif'..
+18.1.1. Executed ABC.
+18.1.2. Re-integrating ABC results.
+18.2. Extracting gate netlist of module `\SyncSpRamBeNx64_00000008_00000100_0_2_d44' to `<abc-temp-dir>/input.blif'..
+18.2.1. Executed ABC.
+18.2.2. Re-integrating ABC results.
+18.3. Extracting gate netlist of module `\SyncSpRamBeNx64_00000008_00000100_0_2_d45' to `<abc-temp-dir>/input.blif'..
+18.3.1. Executed ABC.
+18.3.2. Re-integrating ABC results.
+18.4. Extracting gate netlist of module `\ariane' to `<abc-temp-dir>/input.blif'..
+18.4.1. Executed ABC.
+18.4.2. Re-integrating ABC results.
+18.5. Extracting gate netlist of module `\csr_regfile_0000000000000000_1' to `<abc-temp-dir>/input.blif'..
+18.5.1. Executed ABC.
+18.5.2. Re-integrating ABC results.
+18.6. Extracting gate netlist of module `\ex_stage' to `<abc-temp-dir>/input.blif'..
+18.6.1. Executed ABC.
+18.6.2. Re-integrating ABC results.
+18.7. Extracting gate netlist of module `\frontend_0000000000000000' to `<abc-temp-dir>/input.blif'..
+18.7.1. Executed ABC.
+18.7.2. Re-integrating ABC results.
+18.8. Extracting gate netlist of module `\issue_read_operands' to `<abc-temp-dir>/input.blif'..
+18.8.1. Executed ABC.
+18.8.2. Re-integrating ABC results.
+18.9. Extracting gate netlist of module `\miss_handler_NR_PORTS3' to `<abc-temp-dir>/input.blif'..
+18.9.1. Executed ABC.
+18.9.2. Re-integrating ABC results.
+18.10. Extracting gate netlist of module `\mmu_16_16_00000001' to `<abc-temp-dir>/input.blif'..
+18.10.1. Executed ABC.
+18.10.2. Re-integrating ABC results.
+18.11. Extracting gate netlist of module `\multiplier' to `<abc-temp-dir>/input.blif'..
+18.11.1. Executed ABC.
+18.11.2. Re-integrating ABC results.
+18.12. Extracting gate netlist of module `\perf_counters' to `<abc-temp-dir>/input.blif'..
+18.12.1. Executed ABC.
+18.12.2. Re-integrating ABC results.
+18.13. Extracting gate netlist of module `\scoreboard_00000008_00000004' to `<abc-temp-dir>/input.blif'..
+18.13.1. Executed ABC.
+18.13.2. Re-integrating ABC results.
+18.14. Extracting gate netlist of module `\std_nbdcache_0000000080000000' to `<abc-temp-dir>/input.blif'..
+18.14.1. Executed ABC.
+18.14.2. Re-integrating ABC results.
+Took 316 seconds: abc -script /OpenROAD-flow-scripts/flow/scripts/abc_speed.script -liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib -liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib -dont_use TAPCELL_X1 -dont_use FILLCELL_X1 -dont_use AOI211_X1 -dont_use OAI211_X1 -constr /work/runs_big/syn_ariane133/objects/nangate45/ariane133/base/abc.constr
+19. Executing SPLITNETS pass (splitting up multi-bit signals).
+20. Executing OPT_CLEAN pass (remove unused cells and wires).
+21. Executing HILOMAP pass (mapping to constant drivers).
+22. Executing INSBUF pass (insert buffer cells for connected wires).
+23. Executing CHECK pass (checking for obvious problems).
+24. Printing statistics.
+25. Executing CHECK pass (checking for obvious problems).
+26. Executing Verilog backend.
+26.1. Executing BMUXMAP pass.
+26.2. Executing DEMUXMAP pass.
+Warnings: 56 unique messages, 98 total
+End of script. Logfile hash: 6c1434f365, time: 812.27s, user: 500.63s, system: 4.14s, MEM: 682.03 MB peak
+Yosys 0.68+post (git sha1 UNKNOWN, Release, GNU /usr/local/bin/wrapped-cc/g++ 15.2.0)
+Time spent: 38% 1x abc (312 sec), 37% 1x extract_fa (304 sec), ...
+Elapsed time: 13:32.84[h:]min:sec. CPU time: user 810.74 sys 6.94 (100%). Peak memory: 698396KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_2_yosys              .v          812      818     1.01      682 ef3f55b1d3
+cp /OpenROAD-flow-scripts/flow/designs/nangate45/ariane133/ariane.sdc /work/runs_big/syn_ariane133/results/nangate45/ariane133/base/1_2_yosys.sdc
+touch -r /OpenROAD-flow-scripts/flow/designs/nangate45/ariane133/ariane.sdc /work/runs_big/syn_ariane133/results/nangate45/ariane133/base/1_2_yosys.sdc
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+mkdir -p /work/runs_big/syn_ariane133/objects/nangate45/ariane133/base
+/OpenROAD-flow-scripts/flow/scripts/flow.sh 1_synth synth_odb
+Running synth_odb.tcl, stage 1_synth
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/nangate45/lef/NangateOpenCellLibrary.tech.lef, created 22 layers, 27 vias
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/nangate45/lef/NangateOpenCellLibrary.macro.mod.lef, created 135 library cells
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/nangate45/lef/fakeram45_256x16.lef, created 1 library cells
+link_design ariane
+read_sdc /work/runs_big/syn_ariane133/results/nangate45/ariane133/base/1_2_yosys.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+eliminate_dead_logic
+Removed 4777 unused instances and 4923 unused nets.
+Design area 710135 um^2 100% utilization.
+write_db /work/runs_big/syn_ariane133/results/nangate45/ariane133/base/1_synth.odb
+write_sdc -no_timestamp /work/runs_big/syn_ariane133/results/nangate45/ariane133/base/1_synth.sdc
+Elapsed time: 0:05.50[h:]min:sec. CPU time: user 5.08 sys 0.37 (99%). Peak memory: 525856KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+1_synth                .odb          5        5     0.99      513 3fd3e02010
+1_synth                .sdc                                       f691ea8fd0

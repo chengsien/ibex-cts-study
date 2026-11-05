@@ -1,0 +1,11 @@
+run_name=syn_ariane133
+date_utc=2026-11-05T06:56:55Z
+design=nangate45/ariane133
+cts_args_override=
+base_run=
+target=synth
+image=openroad/orfs:26Q4-260-gc9ac73efc
+makevar=DESIGN_CONFIG=./designs/nangate45/ariane133/config.mk
+makevar=WORK_HOME=/work/runs_big/syn_ariane133
+exit_code=0
+wall_seconds=854

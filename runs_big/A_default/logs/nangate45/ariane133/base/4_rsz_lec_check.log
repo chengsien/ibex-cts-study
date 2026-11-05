@@ -1,0 +1,123 @@
+[2026-11-05 07:39:41.293] [miter_logger] [info] MiterStrategy::run starting
+[2026-11-05 07:39:41.293] [miter_logger] [info] Collecting POs for design 0: ariane
+
+[2026-11-05 07:39:41.897] [miter_logger] [info] Collected 46645 PIs for design 0
+
+[2026-11-05 07:39:41.897] [miter_logger] [info] Collected 67870 POs for design 0
+
+[2026-11-05 07:39:41.901] [miter_logger] [info] design 0 PI summary by model/term (46645 total terminals, 19 unique rows):
+| Model            | Term        | Count |
+|------------------|-------------|-------|
+| DFFR_X1          | Q           | 20578 |
+| DFFR_X1          | QN          | 20578 |
+| LOGIC1_X1        | Z           |  2130 |
+| fakeram45_256x16 | rd_out      |  2112 |
+| LOGIC0_X1        | Z           |   910 |
+| ariane           | axi_resp_i  |    82 |
+| ariane           | boot_addr_i |    64 |
+| ariane           | hart_id_i   |    64 |
+| DFFR_X2          | Q           |    43 |
+| DFFR_X2          | QN          |    43 |
+| DFFS_X1          | Q           |    15 |
+| DFFS_X1          | QN          |    15 |
+| DLH_X1           | Q           |     4 |
+| ariane           | irq_i       |     2 |
+| ariane           | clk_i       |     1 |
+| ariane           | debug_req_i |     1 |
+| ariane           | ipi_i       |     1 |
+| ariane           | rst_ni      |     1 |
+| ariane           | time_irq_i  |     1 |
+
+[2026-11-05 07:39:41.905] [miter_logger] [info] design 0 PO summary by model/term (67870 total terminals, 18 unique rows):
+| Model            | Term      | Count |
+|------------------|-----------|-------|
+| DFFR_X1          | CK        | 20578 |
+| DFFR_X1          | D         | 20578 |
+| DFFR_X1          | RN        | 20578 |
+| fakeram45_256x16 | w_mask_in |  2112 |
+| fakeram45_256x16 | wd_in     |  2112 |
+| fakeram45_256x16 | addr_in   |  1056 |
+| ariane           | axi_req_o |   278 |
+| fakeram45_256x16 | ce_in     |   132 |
+| fakeram45_256x16 | clk       |   132 |
+| fakeram45_256x16 | we_in     |   132 |
+| DFFR_X2          | CK        |    43 |
+| DFFR_X2          | D         |    43 |
+| DFFR_X2          | RN        |    43 |
+| DFFS_X1          | CK        |    15 |
+| DFFS_X1          | D         |    15 |
+| DFFS_X1          | SN        |    15 |
+| DLH_X1           | D         |     4 |
+| DLH_X1           | G         |     4 |
+
+[2026-11-05 07:39:41.911] [miter_logger] [info] Collecting POs for design 1: ariane
+
+[2026-11-05 07:39:42.593] [miter_logger] [info] size of common inputs: 43601
+[2026-11-05 07:39:42.593] [miter_logger] [info] size of diff0 inputs: 0
+[2026-11-05 07:39:42.593] [miter_logger] [info] size of diff1 inputs: 0
+[2026-11-05 07:39:42.609] [miter_logger] [info] Collected 46645 PIs for design 1
+
+[2026-11-05 07:39:42.609] [miter_logger] [info] Collected 67870 POs for design 1
+
+[2026-11-05 07:39:42.612] [miter_logger] [info] design 1 PI summary by model/term (46645 total terminals, 19 unique rows):
+| Model            | Term        | Count |
+|------------------|-------------|-------|
+| DFFR_X1          | Q           | 20578 |
+| DFFR_X1          | QN          | 20578 |
+| LOGIC1_X1        | Z           |  2130 |
+| fakeram45_256x16 | rd_out      |  2112 |
+| LOGIC0_X1        | Z           |   910 |
+| ariane           | axi_resp_i  |    82 |
+| ariane           | boot_addr_i |    64 |
+| ariane           | hart_id_i   |    64 |
+| DFFR_X2          | Q           |    43 |
+| DFFR_X2          | QN          |    43 |
+| DFFS_X1          | Q           |    15 |
+| DFFS_X1          | QN          |    15 |
+| DLH_X1           | Q           |     4 |
+| ariane           | irq_i       |     2 |
+| ariane           | clk_i       |     1 |
+| ariane           | debug_req_i |     1 |
+| ariane           | ipi_i       |     1 |
+| ariane           | rst_ni      |     1 |
+| ariane           | time_irq_i  |     1 |
+
+[2026-11-05 07:39:42.616] [miter_logger] [info] design 1 PO summary by model/term (67870 total terminals, 18 unique rows):
+| Model            | Term      | Count |
+|------------------|-----------|-------|
+| DFFR_X1          | CK        | 20578 |
+| DFFR_X1          | D         | 20578 |
+| DFFR_X1          | RN        | 20578 |
+| fakeram45_256x16 | w_mask_in |  2112 |
+| fakeram45_256x16 | wd_in     |  2112 |
+| fakeram45_256x16 | addr_in   |  1056 |
+| ariane           | axi_req_o |   278 |
+| fakeram45_256x16 | ce_in     |   132 |
+| fakeram45_256x16 | clk       |   132 |
+| fakeram45_256x16 | we_in     |   132 |
+| DFFR_X2          | CK        |    43 |
+| DFFR_X2          | D         |    43 |
+| DFFR_X2          | RN        |    43 |
+| DFFS_X1          | CK        |    15 |
+| DFFS_X1          | D         |    15 |
+| DFFS_X1          | SN        |    15 |
+| DLH_X1           | D         |     4 |
+| DLH_X1           | G         |     4 |
+
+[2026-11-05 07:39:42.619] [miter_logger] [info] normalizeInputs: starting
+[2026-11-05 07:39:42.760] [miter_logger] [info] size of common inputs: 46645
+[2026-11-05 07:39:42.760] [miter_logger] [info] size of diff0 inputs: 0
+[2026-11-05 07:39:42.760] [miter_logger] [info] size of diff1 inputs: 0
+[2026-11-05 07:39:42.786] [miter_logger] [info] normalizeOutputs: starting
+[2026-11-05 07:39:42.966] [miter_logger] [info] size of common outputs: 67870
+[2026-11-05 07:39:42.966] [miter_logger] [info] size of diff0 outputs: 0
+[2026-11-05 07:39:42.966] [miter_logger] [info] size of diff1 outputs: 0
+[2026-11-05 07:39:42.992] [miter_logger] [info] size of PIs in circuit 0: 46645
+[2026-11-05 07:39:42.992] [miter_logger] [info] size of PIs in circuit 1: 46645
+[2026-11-05 07:39:42.992] [miter_logger] [info] size of POs in circuit 0: 67870
+[2026-11-05 07:39:42.992] [miter_logger] [info] size of POs in circuit 1: 67870
+[2026-11-05 07:39:48.058] [miter_logger] [info] Building miter expression
+[2026-11-05 07:39:48.093] [miter_logger] [info] Finished building miter expression
+[2026-11-05 07:39:50.181] [miter_logger] [info] Starting solver
+[2026-11-05 07:45:39.669] [miter_logger] [info] SAT solver finished: UNSAT
+[2026-11-05 07:45:39.669] [miter_logger] [info] Circuits are IDENTICAL

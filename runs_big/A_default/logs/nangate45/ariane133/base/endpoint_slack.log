@@ -1,0 +1,6 @@
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib
+read_db /work/runs_big/A_default/results/nangate45/ariane133/base/6_final.odb
+read_sdc /work/runs_big/A_default/results/nangate45/ariane133/base/6_final.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+Elapsed time: 0:54.11[h:]min:sec. CPU time: user 60.92 sys 2.04 (116%). Peak memory: 1697272KB.

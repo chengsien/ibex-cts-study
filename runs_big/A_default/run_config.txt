@@ -1,0 +1,13 @@
+run_name=A_default
+date_utc=2026-11-05T07:16:07Z
+design=nangate45/ariane133
+cts_args_override=
+base_run=
+target=finish
+resume=1
+image=openroad/orfs:26Q4-260-gc9ac73efc
+makevar=DESIGN_CONFIG=./designs/nangate45/ariane133/config.mk
+makevar=WORK_HOME=/work/runs_big/A_default
+exit_code=0
+wall_seconds=9021
+note=floorplan..finish only (synthesis: run_config.prev1.txt). The docker client was detached (SIGKILL) at 2026-11-05T07:29:51Z so the flow could outlive the session's 2-hour job limit; flow.log continues via docker logs, exit code from docker wait.

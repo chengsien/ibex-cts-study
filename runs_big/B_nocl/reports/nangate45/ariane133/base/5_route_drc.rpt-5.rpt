@@ -1,0 +1,15 @@
+violation type: Short
+	srcs: net:net29350 net:net28931
+	bbox = (424.5050, 99.1200) - (424.6450, 99.2600) on Layer metal5
+violation type: Short
+	srcs: net:net29350 net:net28931
+	bbox = (424.5050, 99.1200) - (424.9250, 99.2600) on Layer metal5
+violation type: Short
+	srcs: net:net29350 net:net28931
+	bbox = (424.7850, 99.1200) - (424.9250, 99.2600) on Layer metal5
+violation type: Short
+	srcs: net:net29342 net:net27357
+	bbox = (421.9850, 98.8400) - (422.1250, 98.9800) on Layer metal6
+violation type: Short
+	srcs: net:net29342 net:net1181
+	bbox = (422.2650, 98.8400) - (422.4050, 98.9800) on Layer metal6

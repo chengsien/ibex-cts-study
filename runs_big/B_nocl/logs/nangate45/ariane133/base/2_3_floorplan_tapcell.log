@@ -1,0 +1,19 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 4 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/fakeram45_256x16.lib
+read_db /work/runs_big/A_default/results/nangate45/ariane133/base/2_2_floorplan_macro.odb
+read_sdc /work/runs_big/A_default/results/nangate45/ariane133/base/2_1_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[INFO ODB-0303] The initial 850 rows (5330350 sites) were cut with 132 shapes for a total of 3622 rows (3666203 sites).
+[INFO TAP-0004] Inserted 7244 endcaps.
+[INFO TAP-0005] Inserted 2630 tapcells.
+Design area 716899 um^2 51% utilization.
+write_db /work/runs_big/A_default/results/nangate45/ariane133/base/2_3_floorplan_tapcell.odb
+Elapsed time: 0:01.15[h:]min:sec. CPU time: user 0.86 sys 0.26 (97%). Peak memory: 292852KB.
+Log                    Ext     Elapsed      CPU     CPU/ Peak Mem sha1sum
+                                     s        s  Elapsed       MB [0:10)
+2_3_floorplan_tapcell  .odb          1        1     0.97      285 5fc74b93e7
