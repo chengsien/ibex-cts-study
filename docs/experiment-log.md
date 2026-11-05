@@ -1499,3 +1499,144 @@ for this platform.
 corner hold, cheaply. It also showed that a CTS setting's cost depends on
 the library: the same TritonCTS option was free on Nangate45 and doubled
 clock power on ASAP7.
+
+---
+
+## E18 — A design about 10× larger, measured (limitation: "the 10× conclusion is inference")
+
+**Question.** findings Q4 predicted how the CTS picture changes for a
+design 10× larger, without running one. What actually happens?
+
+**Choice of design.** Two ORFS Nangate45 designs with SRAM macros were
+synthesized (`scripts/run_big.sh -T synth`):
+* **swerv_wrapper:** 77,014 cells and 11,308 flops (about 5–6× Ibex).
+* **ariane133:** 160,150 cells, 20,767 DFFR + 15 DFFS flops and 132
+  `fakeram45_256x16` macros. Its standard-cell area is about 300k µm²
+  (716k µm² chip area minus 416k µm² of macros).
+
+Against Ibex's 14,423 cells, 28,151 µm² and 1,938 sinks, ariane133 is
+**11.1× the cells, 10.7× the standard-cell area and 10.7× the flops**, so
+it was chosen. It uses its own ORFS SDC: 3.0 ns, with
+`set_clock_latency 0.535` on the virtual I/O clock.
+
+**Method** (`scripts/e18_run.sh`). These are the same three settings as
+Ibex RA / RB_nocl / RC_full:
+* A_default: the full flow (synthesis 854 s, then floorplan → finish 9,021 s);
+* B_nocl: clustering off (5,512 s);
+* C_ndrfull: NDR full (4,319 s).
+
+B and C branch from A's placement and ran with `LEC_CHECK=0`. The formal
+equivalence check is verification only; on A it passed (“Circuits are
+IDENTICAL”) after 5 minutes of SAT solving. Each run then got the clock
+report, endpoint and CK-arrival dumps (`scripts/e18_collect.py`,
+`results/e18_10x.csv` / `.png`), the clock-net and NDR lists, and the worst
+hold paths (`scripts/e18_hold_paths.tcl`).
+
+Two measurement notes:
+* 4 of the 20,772 clock sinks are G pins of synthesized latches driven by
+  logic (AND2/MUX2). Their pin arrival is a data arrival (E15), which put
+  3.18 ns into the raw maximum. The latency statistics below use the 20,768
+  sinks driven by clock buffers.
+* OpenSTA's `report_clock_skew` keeps the sign of the worst pair; the
+  magnitude is reported.
+
+**An incident on the way.** The disk filled up while C's branch copied A's
+run directory.
+* The half-finished copy contained A's `6_final.odb` and `run_config.txt`.
+* `e18_run.sh` only checked for `6_final.odb` and would have analysed A's
+  results as C's.
+* Nothing of it was committed, because the auto-commit failed on the full
+  disk. The directory was deleted, intermediates were cleaned up (stage 4–6
+  databases, GDS and DEF of A/B, and those of 13 finished Ibex runs), and C
+  was re-run from scratch.
+* `run_big.sh` now removes a failed copy. `e18_run.sh` accepts a run only if
+  its own `run_config.txt` has its `run_name` and `exit_code=0`.
+
+**Result 1: the default tree at 10×** (post-route, RCX).
+
+| | Ibex RA | ariane133 A_default | ratio |
+|---|---|---|---|
+| clock sinks | 1,938 | 20,772 (incl. 132 SRAM) | 10.7× |
+| clock buffers | 316 | 3,794 | 12.0× |
+| tree depth (CTS log) | 2–3 | 7–8 (registers), 7 (macros) | about 3× |
+| average sink wire length (CTS log) | 111–121 µm | 935 µm (regs), 2,064 µm (macros) | about 8× |
+| routed clock wire | 12.6 mm | 184.6 mm | 14.6× |
+| insertion delay min / mean / max | 272 / 291 / 312 ps | 468 / 549 / 605 ps | 1.9× (mean) |
+| mean latency, % of period | 13.2 % | 18.3 % | |
+| insertion spread / setup skew | 40 / 40 ps | 137 / 107 ps | 3.4× / 2.7× |
+| clock power share | 32.7 % | 15.9 % | |
+| setup WNS / failing endpoints | −14.3 ps / 31 | −279.9 ps / 2,060 | |
+| hold WNS | +85.5 ps | **+24.3 ps** | |
+
+**Result 2: the three settings at 10×.** Δ is relative to the same
+design's default. The split is over the default's failing endpoints: 31 for
+Ibex, 2,060 for ariane133.
+
+| | Ibex no-cl. | Ibex NDR full | ariane no-cl. | ariane NDR full |
+|---|---|---|---|---|
+| clock buffers | 295 (−7 %) | 316 | 3,201 (−16 %) | 3,794 |
+| clock power | +2.1 % | −0.4 % | **−16.4 %** | −0.5 % |
+| mean latency | 274.9 ps | 283.5 ps | 585.6 ps (+37) | 534.8 ps (−14) |
+| setup skew | 21.7 ps | 26.7 ps | **286.5 ps** | 107.2 ps |
+| ΔWNS | +18.6 | +30.7 | +23.7 | +6.8 |
+| Δ clock part | +18.9 | +13.9 | +8.7 | **+1.6** |
+| Δ data part | +0.6 | +16.7 | +8.5 | +5.5 |
+| hold WNS | +85.3 | +85.5 | **−8.5 (4 viol.)** | +20.2 |
+| NDR nets / share of clock wire | – | 9 / 11.2 % | – | 129 / 13.4 % (default half: 17 / 2.5 %) |
+
+Worst hold paths (`runs_big/*/reports/.../e18_hold_paths.txt`):
+* **A and C:** register → write-data pins of the data-cache SRAMs, +24.3 /
+  +20.2 ps; the SRAM clock arrives at 0.60 ns.
+* **B:** register → tag-SRAM write data, −8.5 ps; the SRAM clock arrives at
+  **0.733 ns** against about 0.43–0.6 ns at the launching flops.
+
+**Findings, Q4's predictions against the measurement.**
+1. **“About 3–4 more levels; latency roughly doubles to about 0.5–0.7 ns”:
+   confirmed, a little deeper than predicted.** The tree has 7–8 levels,
+   and latency is 1.9× (549 ps, 18 % of the period).
+2. **“Skew would be tens of ps even when balanced”: worse.** Skew is about
+   100 ps with the default (107 ps setup skew, 137 ps spread).
+3. **“The differences between strategies grow”: not in the clock part.**
+   * Clustering off gains +8.7 ps and NDR full +1.6 ps of clock part,
+     against +18.9 and +13.9 on Ibex.
+   * As a share of the period the differences shrink. With 2,060 failing
+     endpoints from many start points, a balance-oriented knob moves the
+     average far less than on Ibex, where one launch flop fed all 31
+     failing endpoints.
+4. **“Sink clustering becomes necessary”: confirmed, but not for the stated
+   reason.**
+   * Without clustering the H-tree to 20k sinks uses 16 % *fewer* buffers
+     and 16 % less clock power, at the same depth. So clustering is not
+     needed for buffer count.
+   * But skew triples (287 ps), and the 132 SRAM macros, hung directly on a
+     5-level tree with about 1,900 µm per sink, end up 130 ps later than
+     the registers. Hold then fails at the typical corner (4 endpoints,
+     −8.5 ps).
+   * On Ibex clustering off was the best and nearly free knob. At 10× it
+     trades power for skew and a hold violation.
+5. **“NDR matters more and covers a meaningful fraction”: partly.**
+   * `full` covers 129 nets and 13.4 % of the clock wire, about the
+     same share as on Ibex (11.2 %). The default `half` covers only 2.5 %.
+   * In nominal STA NDR full is nearly free (−0.5 % clock power) but gains
+     only +1.6 ps of clock part. Its latency drop (−14 ps) is shared by
+     launch and capture.
+   * Its crosstalk benefit (E13) was not measured at 10×.
+6. **“Clock power share stays high or rises”: wrong.** It falls from 32.7 %
+   to 15.9 %. More logic per flop and the SRAM macros raise the non-clock
+   power faster than the clock tree grows.
+7. **Not predicted: hold becomes the constraint, and it depends on CTS.**
+   * The typical-corner hold margin drops from +85 ps to +24 ps.
+   * The binding paths are register → SRAM write data, whose margin is set
+     by the macro-tree vs register-tree latency gap. That is exactly what
+     the CTS setting changes.
+   * On Ibex and ASAP7-Ibex (E17) hold was CTS-independent. At 10× it is
+     not, and a fast corner would cut the remaining 20–24 ps further
+     (Nangate45 has no fast library to check).
+8. **Not measured at 10×:** useful skew, OCV, crosstalk and routing noise.
+   The Q4 statements on those remain expectations.
+
+**Learned.** The 10× design confirmed the latency and depth trend but
+broke most strategy-level expectations: the clock-part gains shrank, the
+clock-power share fell, and the cheapest knob on Ibex became a hold risk.
+The risk moves from setup to hold, and from flop-to-flop balance to the
+macro-tree vs register-tree balance.
